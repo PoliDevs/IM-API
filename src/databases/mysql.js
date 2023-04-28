@@ -40,6 +40,54 @@ let capsEntries = entries.map((entry) => [
 ]);
 sequelize.models = Object.fromEntries(capsEntries);
 
+//todo relations
+console.log(sequelize.models);
+const { Bussines, Bussines_types,Franchises, Franchise_types, Employees, Employee_types, Commerces, Cities, States, Countries, Comm_types, Menus, Pdvs, Pdv_types, Menu_types, Dishes, Table_services, Orders, Accounts, Payments, Additionals, Supplies, Recipes, Dishe_types, Products, Suppliers, Unit_types, Prod_types }= sequelize.models;
+
+
+Bussines_types.hasMany(Bussines);
+Franchise_types.hasMany(Franchises);
+Bussines.hasMany(Franchises);
+Employee_types.hasMany(Employees);
+Employees.hasMany(Commerces);
+Franchises.hasMany(Commerces);
+Cities.hasMany(Commerces);
+States.hasMany(Commerces);
+Countries.hasMany(Commerces);
+Comm_types.hasMany(Commerces);
+Menus.hasMany(Commerces);
+Cities.hasMany(States);
+States.hasMany(Countries);
+Pdv_types.hasMany(Pdvs);
+Pdvs.hasMany(Commerces);
+Menu_types.hasMany(Menus);
+Dishes.hasMany(Menus);
+Table_services.hasMany(Menus);
+Menus.hasMany(Orders);
+Pdvs.hasMany(Orders);
+Employees.hasMany(Orders);
+Dishes.hasMany(Orders);
+Accounts.hasMany(Orders);
+Payments.hasMany(Orders);
+Additionals.hasMany(Dishes);
+Supplies.hasMany(Dishes);
+Recipes.hasMany(Dishes);
+Dishe_types.hasMany(Dishes);
+Products.hasMany(Recipes);
+Supplies.hasMany(Recipes);
+Suppliers.hasMany(Supplies);
+Unit_types.hasMany(Products);
+Prod_types.hasMany(Products);
+Suppliers.hasMany(Products);
+
+
+
+
+
+
+
+
+
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
