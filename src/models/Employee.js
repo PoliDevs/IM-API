@@ -70,11 +70,7 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING,
         allowNull: true,
       },
-      employeeType: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        defaultValue: "colaborator",
-      },
+
     },
     {
       timestamps: false,
