@@ -10,7 +10,10 @@ All commits must be in English, you can use a translator.
 ## Rules about Pull Request:
 You never, never, never, make a change directly to main Branch, you can also, make a PR of your task branch to main. <br/>
 Never merge your own PR, another dev will need to review it and merge it. <br/>
-Try to make a PR with a title that matches the nature of the task itself, if you can't find the words to make it, you can simply put the task code, or the branch name.
+Try to make a PR with a title that matches the nature of the task itself, if you can't find the words to make it, you can simply put the task code, or the branch name. <br/>
+
+## Rules about Merge Conflicts:
+In case of merge conflict, **notify the owner of the pull request**, it is their responsibility to solve the conflict, once they have solved it, they can notify you so that the pull request can be merged.
 
 ## Rules about Variables:
 All of the variables in the project, must use camelCase, and all of them must be in English. <br/> 
