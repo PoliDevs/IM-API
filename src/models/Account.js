@@ -20,8 +20,9 @@ module.exports = (sequelize) => {
         type: DataTypes.DATE,
       },
       status: {
-        type: DataTypes.STRING,
-        defaultValue: "no_active", //active - no_active - cancel - suspended
+        type: DataTypes.ENUM("noActive", "active", "banned"),
+        allowNull: true,
+        defaultValue: "noActive",
       },
       email: {
         type: DataTypes.STRING,
