@@ -20,4 +20,4 @@ All of the variables in the project, must use camelCase, and all of them must be
 Its better to have a long variable name but, with a descriptive name like `var anotherUnnecesaryAndWeirdWithNoSenseVariable = ""` than `var varA = ""`. Try to avoid misspellings in the variable name.
 
 ## Rules about installing new modules:
-You can install new dependencies, to do that, simply reach out @SantiagoRiveros (or simply email him to `santiagoriverosjasis@gmail.com`) to notify all of the dev team, and to make sure we are creating a consistent project.
+You can install new dependencies, to do that, simply reach out [@SantiagoRiveros] (https://www.github.com/SantiagoRiveros) (or simply email him to `santiagoriverosjasis@gmail.com`) to notify all of the dev team, and to make sure we are creating a consistent project.
