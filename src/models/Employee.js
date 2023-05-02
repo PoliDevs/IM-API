@@ -20,7 +20,7 @@ module.exports = (sequelize) => {
       address: {
         type: DataTypes.STRING,
       },
-      birthdate: {
+      birthDate: {
         type: DataTypes.DATE,
       },
       start: {
@@ -36,16 +36,16 @@ module.exports = (sequelize) => {
       email: {
         type: DataTypes.STRING,
       },
-      google_user: {
+      googleUser: {
         type: DataTypes.STRING,
       },
-      facebook_user: {
+      facebookUser: {
         type: DataTypes.STRING,
       },
-      twiter_user: {
+      twitterUser: {
         type: DataTypes.STRING,
       },
-      validated_email: {
+      validatedEmail: {
         type: DataTypes.BOOLEAN,
         defaultValue: false,
       },

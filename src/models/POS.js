@@ -4,7 +4,7 @@ module.exports = (sequelize) => {
   sequelize.define(
     "pdvs",
     {
-      qrcode: {
+      qrCode: {
         type: DataTypes.STRING,
         defaultValue: "",
       },

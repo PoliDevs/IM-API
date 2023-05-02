@@ -10,7 +10,7 @@ module.exports = (sequelize) => {
       name: {
         type: DataTypes.STRING,
       },
-      cuil: {
+      ssn: {
         type: DataTypes.STRING,
       },
       mail: {

@@ -13,14 +13,14 @@ module.exports = (sequelize) => {
       stock: {
         type: DataTypes.INTEGER,
       },
-      point_order: {
+      pointOrder: {
         type: DataTypes.INTEGER,
       },
       cost: {
         type: DataTypes.FLOAT,
         defaultValue: 0,
       },
-      allergen_type: {
+      allergenType: {
         type: DataTypes.STRING,
         defaultValue: "", //celiaco - diabético - lactosa
       },

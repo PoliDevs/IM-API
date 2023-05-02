@@ -2,15 +2,15 @@ require("dotenv").config();
 const server = require("./src/servers");
 const { conn } = require("./src/databases/mysql.js");
 
-const { SERVER_PUERTO } = process.env;
+const { PORT } = process.env;
 
-const puerto = SERVER_PUERTO || 3001;
-let mensaje = "%s listening at " + puerto;
+const port = PORT || 3001;
+let message = "%s listening at " + port;
 conn
   .sync({ force: true })
   .then(() => {
-    server.listen(puerto, () => {
-      console.log(mensaje);
+    server.listen(port, () => {
+      console.log(message);
     });
   })
   .catch((err) => {
