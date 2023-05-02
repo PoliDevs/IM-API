@@ -9,12 +9,10 @@ module.exports = (sequelize) => {
     {
       qrcode: {
         type: DataTypes.STRING,
-        allowNull: true,
-        defaultValue: '',
+        defaultValue: "",
       },
       active: {
         type: DataTypes.BOOLEAN,
-        allowNull: true,
         defaultValue: true,
       },
     },
