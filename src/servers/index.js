@@ -1,6 +1,3 @@
-//* configuramos el servidor
-const colors = require("colors");
-
 const express = require("express");
 const cookieParser = require("cookie-parser");
 const morgan = require("morgan");

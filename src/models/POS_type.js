@@ -1,20 +1,17 @@
 const { DataTypes } = require("sequelize");
 
-// Exportamos una funcion que define el modelo
-// Luego le injectamos la conexion a sequelize.
 module.exports = (sequelize) => {
-  // defino el modelo
   sequelize.define(
-    "pdvs",
+    "pdv_types",
     {
-      qrcode: {
+      type: {
         type: DataTypes.STRING,
-        allowNull: true,
-        defaultValue: '',
+      },
+      detail: {
+        type: DataTypes.TEXT,
       },
       active: {
         type: DataTypes.BOOLEAN,
-        allowNull: true,
         defaultValue: true,
       },
     },

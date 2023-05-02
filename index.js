@@ -1,7 +1,3 @@
-//* este módulo es el primero en ejecutarse
-const colors = require("colors");
-
-//! necesitamos conectar  al server y a la base de datos
 require("dotenv").config();
 const server = require("./src/servers");
 const { conn } = require("./src/databases/mysql.js");
