@@ -13,7 +13,14 @@ module.exports = (sequelize) => {
         allowNull: true,
       },
       status: {
-        type: DataTypes.STRING,
+        type: DataTypes.ENUM(
+          "orderPlaced",
+          "processingOrder",
+          "orderInPreparation",
+          "orderReady",
+          "delivered",
+          "canceled"
+        ),
         allowNull: true,
       },
       detail: {
