@@ -41,9 +41,36 @@ let capsEntries = entries.map((entry) => [
 sequelize.models = Object.fromEntries(capsEntries);
 
 //todo relations
-console.log(sequelize.models);
-const { Bussines, Bussines_types,Franchises, Franchise_types, Employees, Employee_types, Commerces, Cities, States, Countries, Comm_types, Menus, Pdvs, Pdv_types, Menu_types, Dishes, Table_services, Orders, Accounts, Payments, Additionals, Supplies, Recipes, Dishe_types, Products, Suppliers, Unit_types, Prod_types }= sequelize.models;
-
+const {
+  Bussines,
+  Bussines_types,
+  Franchises,
+  Franchise_types,
+  Employees,
+  Employee_types,
+  Commerces,
+  Cities,
+  States,
+  Countries,
+  Comm_types,
+  Menus,
+  Pdvs,
+  Pdv_types,
+  Menu_types,
+  Dishes,
+  Table_services,
+  Orders,
+  Accounts,
+  Payments,
+  Additionals,
+  Supplies,
+  Recipes,
+  Dishe_types,
+  Products,
+  Suppliers,
+  Unit_types,
+  Prod_types,
+} = sequelize.models;
 
 Bussines_types.hasMany(Bussines);
 Bussines.belongsTo(Bussines_types);
@@ -113,15 +140,6 @@ Prod_types.hasMany(Products);
 Products.belongsTo(Prod_types);
 Suppliers.hasMany(Products);
 Products.belongsTo(Suppliers);
-
-
-
-
-
-
-
-
-
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');

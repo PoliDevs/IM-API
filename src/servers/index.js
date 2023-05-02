@@ -1,7 +1,3 @@
-//* configuramos el servidor
-
-console.log("entramos a server");
-
 const express = require("express");
 const cookieParser = require("cookie-parser");
 const morgan = require("morgan");
@@ -29,7 +25,7 @@ server.use((err, req, res, next) => {
   // eslint-disable-line no-unused-vars
   const status = err.status || 500;
   const message = err.message || err;
-  console.error("eeeeeee", err);
+  console.error("The next error happens in servers: ", err);
   res.status(status).send(message);
 });
 
