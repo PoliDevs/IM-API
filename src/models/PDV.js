@@ -7,10 +7,10 @@ module.exports = (sequelize) => {
   sequelize.define(
     "pdvs",
     {
-      qrcode: {
+      qrCode: {
         type: DataTypes.STRING,
         allowNull: true,
-        defaultValue: '',
+        defaultValue: "",
       },
       active: {
         type: DataTypes.BOOLEAN,

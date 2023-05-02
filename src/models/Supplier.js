@@ -15,7 +15,7 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING,
         allowNull: true,
       },
-      cuil: {
+      ssn: {
         type: DataTypes.STRING,
         allowNull: true,
       },

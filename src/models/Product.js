@@ -19,7 +19,7 @@ module.exports = (sequelize) => {
         type: DataTypes.INTEGER,
         allowNull: true,
       },
-      point_order: {
+      pointOrder: {
         type: DataTypes.INTEGER,
         allowNull: true,
       },
@@ -28,15 +28,15 @@ module.exports = (sequelize) => {
         allowNull: true,
         defaultValue: 0,
       },
-      allergen_type: {
+      allergenType: {
         type: DataTypes.STRING,
         allowNull: true,
-        defaultValue: '',//celiaco - diabético - lactosa
+        defaultValue: "", //celiaco - diabético - lactosa
       },
       careful: {
         type: DataTypes.STRING,
         allowNull: true,
-        defaultValue: '',//celiacos
+        defaultValue: "", //celiacos
       },
       active: {
         type: DataTypes.BOOLEAN,

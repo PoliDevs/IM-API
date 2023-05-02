@@ -34,12 +34,12 @@ module.exports = (sequelize) => {
         allowNull: true,
         defaultValue: 0,
       },
-        validity: {
+      validity: {
         type: DataTypes.DATE,
         allowNull: true,
         defaultValue: 0,
       },
-        photo: {
+      photo: {
         type: DataTypes.STRING,
         allowNull: true,
       },

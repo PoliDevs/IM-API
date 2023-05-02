@@ -23,36 +23,35 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING,
         allowNull: true,
       },
-      birthdate: {
+      birthDate: {
         type: DataTypes.DATE,
         allowNull: true,
       },
       status: {
         type: DataTypes.STRING,
         allowNull: true,
-        defaultValue: "no_active",//active - no_active - cancel - suspended
+        defaultValue: "no_active", //active - no_active - cancel - suspended
       },
       email: {
         type: DataTypes.STRING,
         allowNull: true,
       },
-      google_user: {
+      googleUser: {
         type: DataTypes.STRING,
         allowNull: true,
       },
-      facebook_user: {
+      facebookUser: {
         type: DataTypes.STRING,
         allowNull: true,
       },
-      twiter_user: {
+      twitterUser: {
         type: DataTypes.STRING,
         allowNull: true,
       },
-      validated_email: {
+      validatedEmail: {
         type: DataTypes.BOOLEAN,
         allowNull: true,
         defaultValue: false,
-        
       },
     },
     {

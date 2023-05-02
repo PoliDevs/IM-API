@@ -28,7 +28,7 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING,
         allowNull: true,
       },
-      birthdate: {
+      birthDate: {
         type: DataTypes.DATE,
         allowNull: true,
       },
@@ -49,19 +49,19 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING,
         allowNull: true,
       },
-      google_user: {
+      googleUser: {
         type: DataTypes.STRING,
         allowNull: true,
       },
-      facebook_user: {
+      facebookUser: {
         type: DataTypes.STRING,
         allowNull: true,
       },
-      twiter_user: {
+      twitterUser: {
         type: DataTypes.STRING,
         allowNull: true,
       },
-      validated_email: {
+      validatedEmail: {
         type: DataTypes.BOOLEAN,
         allowNull: true,
         defaultValue: false,
@@ -70,7 +70,6 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING,
         allowNull: true,
       },
-
     },
     {
       timestamps: false,
