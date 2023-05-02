@@ -28,9 +28,8 @@ module.exports = (sequelize) => {
         allowNull: true,
       },
       status: {
-        type: DataTypes.STRING,
+        type: DataTypes.ENUM("noActive", "active", "banned"),
         allowNull: true,
-        defaultValue: "no_active",//active - no_active - cancel - suspended
       },
       email: {
         type: DataTypes.STRING,
@@ -52,7 +51,6 @@ module.exports = (sequelize) => {
         type: DataTypes.BOOLEAN,
         allowNull: true,
         defaultValue: false,
-        
       },
     },
     {
