@@ -42,104 +42,104 @@ sequelize.models = Object.fromEntries(capsEntries);
 
 //todo relations
 const {
-  Bussines,
-  Bussines_types,
-  Franchises,
-  Franchise_types,
-  Employees,
-  Employee_types,
-  Commerces,
-  Cities,
-  States,
-  Countries,
-  Comm_types,
-  Menus,
-  Pdvs,
-  Pdv_types,
-  Menu_types,
-  Dishes,
-  Table_services,
-  Orders,
-  Accounts,
-  Payments,
-  Additionals,
-  Supplies,
-  Recipes,
-  Dishe_types,
-  Products,
-  Suppliers,
-  Unit_types,
-  Prod_types,
+  Business,
+  BusinessType,
+  Franchise,
+  FranchiseType,
+  Employee,
+  EmployeeType,
+  Commerce,
+  City,
+  State,
+  Country,
+  CommerceType,
+  Menu,
+  Pos,
+  PosType,
+  MenuType,
+  Dish,
+  TableService,
+  Order,
+  Account,
+  Payment,
+  Additional,
+  Supply,
+  Recipe,
+  DishType,
+  Product,
+  Supplier,
+  UnitType,
+  ProductType,
 } = sequelize.models;
 
-Bussines_types.hasMany(Bussines);
-Bussines.belongsTo(Bussines_types);
-Franchise_types.hasMany(Franchises);
-Franchises.belongsTo(Franchise_types);
-Bussines.hasMany(Franchises);
-Franchises.belongsTo(Bussines);
-Employee_types.hasMany(Employees);
-Employees.belongsTo(Employee_types);
-Employees.hasMany(Commerces);
-Commerces.belongsTo(Employees);
-Franchises.hasMany(Commerces);
-Commerces.belongsTo(Franchises);
-Cities.hasMany(Commerces);
-Commerces.belongsTo(Cities);
-States.hasMany(Commerces);
-Commerces.belongsTo(States);
-Countries.hasMany(Commerces);
-Commerces.belongsTo(Countries);
-Comm_types.hasMany(Commerces);
-Commerces.belongsTo(Comm_types);
-Menus.hasMany(Commerces);
-Commerces.belongsTo(Menus);
-Cities.hasMany(States);
-States.belongsTo(Cities);
-States.hasMany(Countries);
-Countries.belongsTo(States);
-Pdv_types.hasMany(Pdvs);
-Pdvs.belongsTo(Pdv_types);
-Pdvs.hasMany(Commerces);
-Commerces.belongsTo(Pdvs);
-Menu_types.hasMany(Menus);
-Menus.belongsTo(Menu_types);
-Dishes.hasMany(Menus);
-Menus.belongsTo(Dishes);
-Table_services.hasMany(Menus);
-Menus.belongsTo(Table_services);
-Menus.hasMany(Orders);
-Orders.belongsTo(Menus);
-Pdvs.hasMany(Orders);
-Orders.belongsTo(Pdvs);
-Employees.hasMany(Orders);
-Orders.belongsTo(Employees);
-Dishes.hasMany(Orders);
-Orders.belongsTo(Dishes);
-Accounts.hasMany(Orders);
-Orders.belongsTo(Accounts);
-Payments.hasMany(Orders);
-Orders.belongsTo(Payments);
-Additionals.hasMany(Dishes);
-Dishes.belongsTo(Additionals);
-Supplies.hasMany(Dishes);
-Dishes.belongsTo(Supplies);
-Recipes.hasMany(Dishes);
-Dishes.belongsTo(Recipes);
-Dishe_types.hasMany(Dishes);
-Dishes.belongsTo(Dishe_types);
-Products.hasMany(Recipes);
-Recipes.belongsTo(Products);
-Supplies.hasMany(Recipes);
-Recipes.belongsTo(Supplies);
-Suppliers.hasMany(Supplies);
-Supplies.belongsTo(Suppliers);
-Unit_types.hasMany(Products);
-Products.belongsTo(Unit_types);
-Prod_types.hasMany(Products);
-Products.belongsTo(Prod_types);
-Suppliers.hasMany(Products);
-Products.belongsTo(Suppliers);
+BusinessType.hasMany(Business);
+Business.belongsTo(BusinessType);
+FranchiseType.hasMany(Franchise);
+Franchise.belongsTo(FranchiseType);
+Business.hasMany(Franchise);
+Franchise.belongsTo(Business);
+EmployeeType.hasMany(Employee);
+Employee.belongsTo(EmployeeType);
+Employee.hasMany(Commerce);
+Commerce.belongsTo(Employee);
+Franchise.hasMany(Commerce);
+Commerce.belongsTo(Franchise);
+City.hasMany(Commerce);
+Commerce.belongsTo(City);
+State.hasMany(Commerce);
+Commerce.belongsTo(State);
+Country.hasMany(Commerce);
+Commerce.belongsTo(Country);
+CommerceType.hasMany(Commerce);
+Commerce.belongsTo(CommerceType);
+Menu.hasMany(Commerce);
+Commerce.belongsTo(Menu);
+City.hasMany(State);
+State.belongsTo(City);
+State.hasMany(Country);
+Country.belongsTo(State);
+PosType.hasMany(Pos);
+Pos.belongsTo(PosType);
+Pos.hasMany(Commerce);
+Commerce.belongsTo(Pos);
+MenuType.hasMany(Menu);
+Menu.belongsTo(MenuType);
+Dish.hasMany(Menu);
+Menu.belongsTo(Dish);
+TableService.hasMany(Menu);
+Menu.belongsTo(TableService);
+Menu.hasMany(Order);
+Order.belongsTo(Menu);
+Pos.hasMany(Order);
+Order.belongsTo(Pos);
+Employee.hasMany(Order);
+Order.belongsTo(Employee);
+Dish.hasMany(Order);
+Order.belongsTo(Dish);
+Account.hasMany(Order);
+Order.belongsTo(Account);
+Payment.hasMany(Order);
+Order.belongsTo(Payment);
+Additional.hasMany(Dish);
+Dish.belongsTo(Additional);
+Supply.hasMany(Dish);
+Dish.belongsTo(Supply);
+Recipe.hasMany(Dish);
+Dish.belongsTo(Recipe);
+DishType.hasMany(Dish);
+Dish.belongsTo(DishType);
+Product.hasMany(Recipe);
+Recipe.belongsTo(Product);
+Supply.hasMany(Recipe);
+Recipe.belongsTo(Supply);
+Supplier.hasMany(Supply);
+Supply.belongsTo(Supplier);
+UnitType.hasMany(Product);
+Product.belongsTo(UnitType);
+ProductType.hasMany(Product);
+Product.belongsTo(ProductType);
+Supplier.hasMany(Product);
+Product.belongsTo(Supplier);
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');

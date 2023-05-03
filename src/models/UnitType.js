@@ -2,16 +2,13 @@ const { DataTypes } = require("sequelize");
 
 module.exports = (sequelize) => {
   sequelize.define(
-    "dishe_types",
+    "unitType",
     {
-      type: {
+      unit: {
         type: DataTypes.STRING,
       },
       detail: {
-        type: DataTypes.STRING,
-      },
-      photo: {
-        type: DataTypes.STRING,
+        type: DataTypes.TEXT,
       },
       active: {
         type: DataTypes.BOOLEAN,

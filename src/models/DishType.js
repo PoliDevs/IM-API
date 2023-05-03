@@ -2,13 +2,16 @@ const { DataTypes } = require("sequelize");
 
 module.exports = (sequelize) => {
   sequelize.define(
-    "prod_types",
+    "dishType",
     {
       type: {
         type: DataTypes.STRING,
       },
       detail: {
-        type: DataTypes.TEXT,
+        type: DataTypes.STRING,
+      },
+      photo: {
+        type: DataTypes.STRING,
       },
       active: {
         type: DataTypes.BOOLEAN,

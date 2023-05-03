@@ -2,13 +2,13 @@ const { DataTypes } = require("sequelize");
 
 module.exports = (sequelize) => {
   sequelize.define(
-    "employee_types",
+    "businessType",
     {
       type: {
         type: DataTypes.STRING,
       },
       detail: {
-        type: DataTypes.TEXT,
+        type: DataTypes.INTEGER,
       },
       active: {
         type: DataTypes.BOOLEAN,
