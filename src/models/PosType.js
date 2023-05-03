@@ -2,9 +2,9 @@ const { DataTypes } = require("sequelize");
 
 module.exports = (sequelize) => {
   sequelize.define(
-    "unit_types",
+    "posType",
     {
-      unit: {
+      type: {
         type: DataTypes.STRING,
       },
       detail: {
