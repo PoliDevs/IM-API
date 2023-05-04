@@ -4,10 +4,10 @@ module.exports = (sequelize) => {
   sequelize.define(
     "employee",
     {
-      name: {
+      firstName: {
         type: DataTypes.STRING,
       },
-      surname: {
+      LastName: {
         type: DataTypes.STRING,
       },
 
