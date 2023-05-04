@@ -1,4 +1,4 @@
 const employeeType = require("express").Router();
-const { EmployeeType } = require("../../databases/mysql");
+const { EmployeeType } = require("../../db");
 
 module.exports = employeeType;
