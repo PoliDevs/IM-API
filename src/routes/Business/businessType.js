@@ -1,4 +1,4 @@
 const businessType = require("express").Router();
-const { BusinessType } = require("../../databases/mysql");
+const { BusinessType } = require("../../db");
 
 module.exports = businessType;
