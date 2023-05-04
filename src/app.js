@@ -1,7 +1,7 @@
 const express = require("express");
 const cookieParser = require("cookie-parser");
 const morgan = require("morgan");
-const routes = require("../routes/");
+const routes = require("./routes/");
 
 const server = express();
 server.name = "My Node.js Server";
