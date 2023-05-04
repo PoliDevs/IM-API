@@ -52,7 +52,7 @@ const {
   City,
   State,
   Country,
-  CommerceType,
+  CommerceFact,
   Menu,
   Pos,
   PosType,
@@ -90,8 +90,8 @@ State.hasMany(Commerce);
 Commerce.belongsTo(State);
 Country.hasMany(Commerce);
 Commerce.belongsTo(Country);
-CommerceType.hasMany(Commerce);
-Commerce.belongsTo(CommerceType);
+CommerceFact.hasMany(Commerce);
+Commerce.belongsTo(CommerceFact);
 Menu.hasMany(Commerce);
 Commerce.belongsTo(Menu);
 City.hasMany(State);
