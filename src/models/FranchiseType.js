@@ -2,16 +2,17 @@ const { DataTypes } = require("sequelize");
 
 module.exports = (sequelize) => {
   sequelize.define(
-    "country",
+    "franchise_type",
     {
-      id: {
-        type: DataTypes.INTEGER,
-        autoIncrement: false,
-        allowNull: false,
-        primaryKey: true,
-      },
-      name: {
+      type: {
         type: DataTypes.STRING,
+      },
+      detail: {
+        type: DataTypes.TEXT,
+      },
+      active: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: true,
       },
     },
     {
