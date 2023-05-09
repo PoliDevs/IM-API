@@ -1,3 +1,5 @@
+<img src="https://github.com/SantiagoRiveros/IM-API/assets/70020219/82e215f7-dda2-4f48-a88c-34acf72a5d27" width="400" height="400"/>
+
 ## Rules about Branches:
 All branches must match his name with an specific task-card of the project in Jira. <br/>
 All must match this format `IM-{Number of the task}`.
