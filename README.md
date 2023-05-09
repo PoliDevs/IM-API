@@ -5,6 +5,7 @@
 1. [Introduction](#introduction)
 2. [Stack](#stack)
 3. [Rules](#rules) <br/>
+  a. [About Tasks & Chart](#rules-about-tasks-&-chart)<br/>
   a. [About Branches](#rules-about-branches)<br/>
   b. [About Commits](#rules-about-commits)<br/>
   c. [About Pull Requests](#rules-about-pull-requests)<br/>
@@ -20,6 +21,17 @@
 
 
 # Rules <a name="rules"></a>
+
+### Rules about Tasks & Chart: <a name="rules-about-tasks-&-chart"></a>
+When you get a new task, and you start doing it, you need to follow the next steps:
+1. create a [branch](#rules-about-branches)
+2. put the task in jira to `In Progress` state.
+3. make all the code you need to fulfill the requirementes, for more info [about this](#rules-about-commits)
+4. when you think that the task is done, make all the necessary commits/push and then, go back to github, and in the upper tab, go to `Pull Requests`
+5. when you are in that tab, you can create the [Pull Request](#rules-about-pull-requests)
+6. then, put the task to `Code Review` state.
+7. wait for another developer to review your pull request (You can reach out if this step takes a lot of time)
+8. when that developer merges your code, he is responsible to put your task in Jira to `Donde` state.
 
 ### Rules about Branches: <a name="rules-about-branches"></a>
 All branches must match his name with an specific task-card of the project in Jira. <br/>
@@ -46,3 +58,5 @@ Its better to have a long variable name but, with a descriptive name like `var a
 You can install new dependencies, to do that, simply reach out [@SantiagoRiveros] (https://www.github.com/SantiagoRiveros) (or simply email him to `santiagoriverosjasis@gmail.com`) to notify all of the dev team, and to make sure we are creating a consistent project.
 
 # External References <a name="external-references"></a>
+
+1. [Jira](https://i-menu.atlassian.net/jira/software/projects/IM/boards/1)
