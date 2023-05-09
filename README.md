@@ -14,7 +14,8 @@
   d. [About Merge Conflicts](#rules-about-merge-conflicts)<br/>
   e. [About Variables](#rules-about-variables)<br/>
   f. [About New Modules](#rules-about-installing-new-modules) <br/>
-4. [External References](#external-references)
+4. [Endpoints List](#endpoints-list)
+5. [External References](#external-references)
 
 # Introduction <a name="introduction"></a>
 
@@ -74,6 +75,8 @@ Its better to have a long variable name but, with a descriptive name like `var a
 
 ### Rules about installing new modules: <a name="rules-about-installing-new-modules"></a>
 You can install new dependencies, to do that, simply reach out [@SantiagoRiveros] (https://www.github.com/SantiagoRiveros) (or simply email him to `santiagoriverosjasis@gmail.com`) to notify all of the dev team, and to make sure we are creating a consistent project.
+
+# Endpoints List<a name="endpoints-list"></a>
 
 # External References <a name="external-references"></a>
 
