@@ -3,7 +3,9 @@
 # Index:
 
 1. [Introduction](#introduction)
-2. [Stack](#stack)
+2. [Stack](#stack) <br/>
+  a. [Front End](#front-end-stack) <br/>
+  b. [Back End](#back-end-stack)
 3. [Rules](#rules) <br/>
   a. [About Tasks & Chart](#rules-about-tasks-&-chart)<br/>
   a. [About Branches](#rules-about-branches)<br/>
@@ -19,6 +21,22 @@
 
 # Stack <a name="stack"></a>
 
+### Front End:<a name="front-end-stack"></a>
+-Javascript<br/>
+-React<br/>
+-React Native<br/>
+-Redux<br/>
+-TailWind<br/>
+-Storybook<br/>
+-React Testing Library
+
+### Back End:<a name="back-end-stack"></a>
+-Javascript<br/>
+-NodeJS<br/>
+-ExpressJS<br/>
+-Sequelize<br/>
+-MySQL<br/>
+-Jest
 
 # Rules <a name="rules"></a>
 
