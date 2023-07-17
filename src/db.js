@@ -16,7 +16,7 @@ const sequelize = new Sequelize(DB_NAME, DB_USER, DB_PASSWORD, {
   // },
 });
 
-//!apiticketupcode-production-0f30.up.railway.app
+
 const basename = path.basename(__dirname);
 const modelDefiners = [];
 
