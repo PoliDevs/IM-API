@@ -1,6 +1,6 @@
 require("dotenv").config();
 const server = require("./src/app.js");
-const { conn } = require("./src/databases/mysql.js");
+const { conn } = require("./src/db.js");
 
 const { PORT } = process.env;
 
