@@ -10,6 +10,8 @@ const router = Router();
 router.use(cors());
 
 router.use("/", businessRouter);
-router.use("/type", businessTypeRouter);
+router.use("/businessTsype", businessTypeRouter);
 
 module.exports = router;
+
+
