@@ -10,6 +10,6 @@ const router = Router();
 router.use(cors());
 
 router.use("/", franchiseRouter);
-router.use("/type", franchiseTypeRouter);
+router.use("/", franchiseTypeRouter);
 
 module.exports = router;

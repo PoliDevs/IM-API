@@ -43,6 +43,7 @@ module.exports = (sequelize) => {
     },
     {
       timestamps: false,
+      tableName: "accounts"
     }
   );
 };

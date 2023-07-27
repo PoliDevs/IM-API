@@ -40,9 +40,17 @@ module.exports = (sequelize) => {
         type: DataTypes.INTEGER,
         defaultValue: 0,
       },
+      rating:{
+        type: DataTypes.INTEGER
+      },
+      feedback:{
+        type: DataTypes.TEXT,
+        defaultValue: null
+      }
     },
     {
       timestamps: false,
+      tableName: "orders"
     }
   );
 };

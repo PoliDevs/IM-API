@@ -4,6 +4,9 @@ module.exports = (sequelize) => {
   sequelize.define(
     "menu",
     {
+      date: {
+        type: DataTypes.DATE,
+      },
       name: {
         type: DataTypes.STRING,
       },
@@ -39,6 +42,7 @@ module.exports = (sequelize) => {
     },
     {
       timestamps: false,
+      tableName: "menus"
     }
   );
 };

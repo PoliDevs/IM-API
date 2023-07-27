@@ -7,7 +7,7 @@ const { PORT } = process.env;
 const port = PORT || 3001;
 let message = "%s listening at " + port;
 conn
-  .sync({ force: true })
+  .sync({ alter : true })
   .then(() => {
     server.listen(port, () => {
       console.log(message);
@@ -16,3 +16,6 @@ conn
   .catch((err) => {
     console.error("The next error happens on the root:", err);
   });
+
+
+  

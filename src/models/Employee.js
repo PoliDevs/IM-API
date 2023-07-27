@@ -55,6 +55,7 @@ module.exports = (sequelize) => {
     },
     {
       timestamps: false,
+      tableName: "employees"
     }
   );
 };

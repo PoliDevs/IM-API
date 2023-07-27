@@ -8,7 +8,7 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING,
       },
       ssn: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
       },
       confirmed: {
         type: DataTypes.BOOLEAN,
@@ -27,6 +27,7 @@ module.exports = (sequelize) => {
     },
     {
       timestamps: false,
+      tableName: "business"
     }
   );
 };

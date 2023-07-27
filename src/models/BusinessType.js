@@ -8,7 +8,7 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING,
       },
       detail: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
       },
       active: {
         type: DataTypes.BOOLEAN,
@@ -17,6 +17,7 @@ module.exports = (sequelize) => {
     },
     {
       timestamps: false,
+      tableName: "businessTypes"
     }
   );
 };
