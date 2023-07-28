@@ -10,6 +10,6 @@ const router = Router();
 router.use(cors());
 
 router.use("/", posRouter);
-router.use("/type", posTypeRouter);
+router.use("/", posTypeRouter);
 
 module.exports = router;
