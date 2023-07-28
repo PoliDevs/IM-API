@@ -14,7 +14,7 @@ business.use(
 
 business.post("/", async (req, res) => {
   try {
-    const { name, ssn, detail, email, businessTypeId } = req.body;
+    const { name, ssn, detail, email, businessType } = req.body;
     const [businessCreated, created] = await Business.findOrCreate({
       where: {
         name: name.toLowerCase(),
@@ -24,7 +24,11 @@ business.post("/", async (req, res) => {
         ssn: ssn,
         detail:detail,
         email: email,
-        businessTypeId:businessTypeId
+        businessTypeId : businessType
+        ? (
+              await BusinessType.findOne({ where: { type: businessType } })
+            )?.id
+          : null,
       },
     });
     if (created) {
@@ -131,8 +135,11 @@ business.put("/update/:id",async (req,res)=>{
             )?.id
           : null,
       })
+      res.status(200).send("The data was modified successfully");
+    }else{
+       res.status(200).send("ID not found");
     }
-     res.status(200).send("The data was modified successfully");
+     
   } catch (error) {
     res.status(400).send(error);
   }
@@ -148,8 +155,11 @@ business.put("/confirmed/:id", async(req,res)=>{
       await businessFinded.update({
         confirmed : true,
       })
+      res.status(200).send("Confirmed");
+    }else{
+       res.status(200).send("ID not found");
     }
-     res.status(200).send("Confirmed");
+     
 
   } catch (error) {
     res.status(400).send(error);
@@ -166,8 +176,11 @@ business.put("/unconfirmed/:id", async(req,res)=>{
       await businessFinded.update({
         confirmed : false,
       })
+      res.status(200).send("Unconfirmed");
+    }else{
+       res.status(200).send("ID not found");
     }
-     res.status(200).send("Unconfirmed");
+     
 
   } catch (error) {
     res.status(400).send(error);
@@ -184,8 +197,11 @@ business.put("/active/:id", async(req,res)=>{
       await businessFinded.update({
         active : true,
       })
+      res.status(200).send("Active");
+    }else{
+       res.status(200).send("ID not found");
     }
-     res.status(200).send("Active");
+     
 
   } catch (error) {
     res.status(400).send(error);
@@ -202,8 +218,11 @@ business.put("/inactive/:id", async(req,res)=>{
       await businessFinded.update({
         active : false,
       })
+       res.status(200).send("Inactive");
+    }else{
+       res.status(200).send("ID not found");
     }
-     res.status(200).send("Inactive");
+    
 
   } catch (error) {
     res.status(400).send(error);

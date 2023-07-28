@@ -100,8 +100,11 @@ businessType.put("/update/:id",async (req,res)=>{
         type : type,
         detail : detail,
       })
+      res.status(200).send("The data was modified successfully");
+    }else{
+       res.status(200).send("ID not found");
     }
-     res.status(200).send("The data was modified successfully");
+     
   } catch (error) {
     res.status(400).send(error);
   }
@@ -117,8 +120,11 @@ businessType.put("/active/:id", async(req,res)=>{
       await businessFinded.update({
         active : true,
       })
+       res.status(200).send("Active");
+    }else{
+       res.status(200).send("ID not found");
     }
-     res.status(200).send("Active");
+    
 
   } catch (error) {
     res.status(400).send(error);
@@ -135,8 +141,11 @@ businessType.put("/inactive/:id", async(req,res)=>{
       await businessFinded.update({
         active : false,
       })
+      res.status(200).send("Inactive");
+    }else{
+       res.status(200).send("ID not found");
     }
-     res.status(200).send("Inactive");
+     
 
   } catch (error) {
     res.status(400).send(error);

@@ -1,6 +1,6 @@
 const franchise = require("express").Router();
 const express = require("express");
-const { Franchise, FranchiseType } = require("../../db");
+const { Franchise, FranchiseType, Business } = require("../../db");
 const cors = require("cors");
 
 
@@ -14,17 +14,25 @@ franchise.use(
 
 franchise.post("/", async (req, res) => {
   try {
-    const { name, ssn, detail, email, franchiseTypeId } = req.body;
+    const { name, detail, email, franchiseType, business } = req.body;
     const [franchiseCreated, created] = await Franchise.findOrCreate({
       where: {
         name: name.toLowerCase(),
       },
       defaults: {
         name: name.toLowerCase(),
-        ssn: ssn,
         detail:detail,
         email: email,
-        franchiseTypeId:franchiseTypeId
+        franchiseTypeId : franchiseType
+        ? (
+              await FranchiseType.findOne({ where: { type: franchiseType } })
+            )?.id
+          : null,
+        businessId : business
+        ? (
+              await Business.findOne({ where: { name: business } })
+            )?.id
+          : null,
       },
     });
     if (created) {
@@ -39,18 +47,24 @@ franchise.post("/", async (req, res) => {
 
 franchise.get("/all", async (req,res)=>{
   try {
-    const busi = await Franchise.findAll({
-      attributes: ["id","name","ssn","detail","email","confirmed","active"],
+    const franchi = await Franchise.findAll({
+      attributes: ["id","name","detail","email","active"],
       include:[
         {
           model: FranchiseType,
           attributes: ["id","type","detail","active"]
         }
+      ],
+      include:[
+        {
+          model: Business,
+          attributes: ["id","name","ssn","detail","email","confirmed","active"]
+        }
       ]
     })
 
-    if (busi.length > 0) {
-      res.status(201).json(busi);
+    if (franchi.length > 0) {
+      res.status(201).json(franchi);
     } else {
       res.status(422).json("Not found");
     }
@@ -61,19 +75,25 @@ franchise.get("/all", async (req,res)=>{
 
 franchise.get("/all_active", async (req,res)=>{
   try {
-    const busi = await Franchise.findAll({
+    const franchi = await Franchise.findAll({
       where: { active: true },
-      attributes: ["id","name","ssn","detail","email","confirmed","active"],
+      attributes: ["id","name","detail","email","active"],
       include:[
         {
           model: FranchiseType,
           attributes: ["id","type","detail","active"]
         }
+      ],
+      include:[
+        {
+          model: Business,
+          attributes: ["id","name","ssn","detail","email","confirmed","active"]
+        }
       ]
     })
 
-    if (busi.length > 0) {
-      res.status(201).json(busi);
+    if (franchi.length > 0) {
+      res.status(201).json(franchi);
     } else {
       res.status(422).json("Not found");
     }
@@ -86,18 +106,24 @@ franchise.get("/:id", async (req,res)=>{
   try {
     const id = req.params.id; 
     if (id && Number.isInteger(parseInt(id))){
-      const busi = await Franchise.findAll({
+      const franchi = await Franchise.findAll({
       where: { id: parseInt(id) },
-      attributes: ["id","name","ssn","detail","email","confirmed","active"],
+      attributes: ["id","name","detail","email","active"],
       include:[
         {
           model: FranchiseType,
           attributes: ["id","type","detail","active"]
         }
+      ],
+      include:[
+        {
+          model: Business,
+          attributes: ["id","name","ssn","detail","email","confirmed","active"]
+        }
       ]
     })
-      if (busi.length > 0) {
-        res.status(201).json(busi);
+      if (franchi.length > 0) {
+        res.status(201).json(franchi);
       } else {
         res.status(422).json("Not found");
       }
@@ -115,14 +141,13 @@ franchise.get("/:id", async (req,res)=>{
 franchise.put("/update/:id",async (req,res)=>{
   try {
     const id = req.params.id; 
-    const { name, ssn, detail, email, franchiseType } = req.body;
+    const { name, detail, email, franchiseType, business } = req.body;
      const franchiseFinded = await Franchise.findOne({
       where: { id: id },
     });
     if (franchiseFinded) {
       await franchiseFinded.update({
         name : name,
-        ssn : ssn,
         detail : detail,
         email : email,
         franchiseTypeId : franchiseType
@@ -130,45 +155,18 @@ franchise.put("/update/:id",async (req,res)=>{
               await FranchiseType.findOne({ where: { type: franchiseType } })
             )?.id
           : null,
+        businessId : business
+        ? (
+              await Business.findOne({ where: { name: business } })
+            )?.id
+          : null,
       })
+      res.status(200).send("The data was modified successfully");
+    }else{
+       res.status(200).send("ID not found");
     }
-     res.status(200).send("The data was modified successfully");
-  } catch (error) {
-    res.status(400).send(error);
-  }
-})
 
-franchise.put("/confirmed/:id", async(req,res)=>{
-  try {
-    const id = req.params.id; 
-    const franchiseFinded = await Franchise.findOne({
-      where: { id: id },
-    });
-    if (franchiseFinded) {
-      await franchiseFinded.update({
-        confirmed : true,
-      })
-    }
-     res.status(200).send("Confirmed");
-
-  } catch (error) {
-    res.status(400).send(error);
-  }
-})
-
-franchise.put("/unconfirmed/:id", async(req,res)=>{
-  try {
-    const id = req.params.id; 
-    const franchiseFinded = await Franchise.findOne({
-      where: { id: id },
-    });
-    if (franchiseFinded) {
-      await franchiseFinded.update({
-        confirmed : false,
-      })
-    }
-     res.status(200).send("Unconfirmed");
-
+     
   } catch (error) {
     res.status(400).send(error);
   }
@@ -184,8 +182,11 @@ franchise.put("/active/:id", async(req,res)=>{
       await franchiseFinded.update({
         active : true,
       })
+       res.status(200).send("Active");
+    }else{
+       res.status(200).send("ID not found");
     }
-     res.status(200).send("Active");
+    
 
   } catch (error) {
     res.status(400).send(error);
@@ -202,8 +203,11 @@ franchise.put("/inactive/:id", async(req,res)=>{
       await franchiseFinded.update({
         active : false,
       })
+     res.status(200).send("Inactive"); 
+    }else{
+       res.status(200).send("ID not found");
     }
-     res.status(200).send("Inactive");
+     
 
   } catch (error) {
     res.status(400).send(error);

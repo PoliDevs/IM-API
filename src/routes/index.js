@@ -6,7 +6,7 @@ const businessRouter = require("./Business");
 const businessTypeRouter = require("./Business/businessType");
 const commerceRouter = require("./Commerce");
 const dishRouter = require("./Dish");
-const employeeRouter = require("./Dish");
+const dishTypeRouter = require("./Dish/dishType");
 const franchiseRouter = require("./Franchise");
 const franchiseTypeRouter = require("./Franchise/franchiseType");
 const locationRouter = require("./Location");
@@ -18,6 +18,8 @@ const productRouter = require("./Product");
 const recipeRouter = require("./Recipe");
 const supplyRouter = require("./Supply");
 const tableServiceRouter = require("./TableService");
+const employeeRouter = require("./Employee");
+const employeeTypeRouter = require("./Employee/employeeType")
 
 const cors = require("cors");
 
@@ -32,6 +34,7 @@ router.use("/businessType", businessTypeRouter);
 router.use("/commerce", commerceRouter);
 router.use("/dish", dishRouter);
 router.use("/employee", employeeRouter);
+router.use("/employeeType", employeeTypeRouter);
 router.use("/franchiseType", franchiseTypeRouter);
 router.use("/franchise", franchiseRouter);
 router.use("/location", locationRouter);

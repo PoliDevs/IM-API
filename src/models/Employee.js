@@ -7,7 +7,7 @@ module.exports = (sequelize) => {
       firstName: {
         type: DataTypes.STRING,
       },
-      LastName: {
+      lastName: {
         type: DataTypes.STRING,
       },
 
