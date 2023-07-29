@@ -1,17 +1,13 @@
-const { Router } = require("express");
-
-const businessRouter = require("./business.js");
-const businessTypeRouter = require("./businessType.js");
-
-const cors = require("cors");
+const { Router } = require('express');
+const cors = require('cors');
+const businessRouter = require('./business');
+const businessTypeRouter = require('./businessType');
 
 const router = Router();
 
 router.use(cors());
 
-router.use("/", businessRouter);
-router.use("/", businessTypeRouter);
+router.use('/', businessRouter);
+router.use('/', businessTypeRouter);
 
 module.exports = router;
-
-

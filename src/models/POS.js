@@ -1,12 +1,12 @@
-const { DataTypes } = require("sequelize");
+const { DataTypes } = require('sequelize');
 
 module.exports = (sequelize) => {
   sequelize.define(
-    "pos",
+    'pos',
     {
       qrCode: {
         type: DataTypes.STRING,
-        defaultValue: "",
+        defaultValue: '',
       },
       active: {
         type: DataTypes.BOOLEAN,
@@ -15,7 +15,7 @@ module.exports = (sequelize) => {
     },
     {
       timestamps: false,
-      tableName: "pos"
-    }
+      tableName: 'pos',
+    },
   );
 };

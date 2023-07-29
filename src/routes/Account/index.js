@@ -1,13 +1,11 @@
-const { Router } = require("express");
-
-const accountRouter = require("./account.js");
-
-const cors = require("cors");
+const { Router } = require('express');
+const cors = require('cors');
+const accountRouter = require('./account');
 
 const router = Router();
 
 router.use(cors());
 
-router.use("/", accountRouter);
+router.use('/', accountRouter);
 
 module.exports = router;

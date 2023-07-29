@@ -1,8 +1,8 @@
-const { DataTypes } = require("sequelize");
+const { DataTypes } = require('sequelize');
 
 module.exports = (sequelize) => {
   sequelize.define(
-    "employeeType",
+    'employeeType',
     {
       type: {
         type: DataTypes.STRING,
@@ -17,7 +17,7 @@ module.exports = (sequelize) => {
     },
     {
       timestamps: false,
-      tableName: "employeeTypes"
-    }
+      tableName: 'employeeTypes',
+    },
   );
 };

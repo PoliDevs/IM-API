@@ -1,8 +1,8 @@
-const { DataTypes } = require("sequelize");
+const { DataTypes } = require('sequelize');
 
 module.exports = (sequelize) => {
   sequelize.define(
-    "order",
+    'order',
     {
       date: {
         type: DataTypes.DATE,
@@ -12,12 +12,12 @@ module.exports = (sequelize) => {
       },
       status: {
         type: DataTypes.ENUM(
-          "orderPlaced",
-          "processingOrder",
-          "orderInPreparation",
-          "orderReady",
-          "delivered",
-          "canceled"
+          'orderPlaced',
+          'processingOrder',
+          'orderInPreparation',
+          'orderReady',
+          'delivered',
+          'canceled',
         ),
         allowNull: true,
       },
@@ -40,17 +40,17 @@ module.exports = (sequelize) => {
         type: DataTypes.INTEGER,
         defaultValue: 0,
       },
-      rating:{
-        type: DataTypes.INTEGER
+      rating: {
+        type: DataTypes.INTEGER,
       },
-      feedback:{
+      feedback: {
         type: DataTypes.TEXT,
-        defaultValue: null
-      }
+        defaultValue: null,
+      },
     },
     {
       timestamps: false,
-      tableName: "orders"
-    }
+      tableName: 'orders',
+    },
   );
 };

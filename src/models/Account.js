@@ -1,8 +1,8 @@
-const { DataTypes } = require("sequelize");
+const { DataTypes } = require('sequelize');
 
 module.exports = (sequelize) => {
   sequelize.define(
-    "account",
+    'account',
     {
       name: {
         type: DataTypes.STRING,
@@ -20,9 +20,9 @@ module.exports = (sequelize) => {
         type: DataTypes.DATE,
       },
       status: {
-        type: DataTypes.ENUM("noActive", "active", "banned"),
+        type: DataTypes.ENUM('noActive', 'active', 'banned'),
         allowNull: true,
-        defaultValue: "noActive",
+        defaultValue: 'noActive',
       },
       email: {
         type: DataTypes.STRING,
@@ -43,7 +43,7 @@ module.exports = (sequelize) => {
     },
     {
       timestamps: false,
-      tableName: "accounts"
-    }
+      tableName: 'accounts',
+    },
   );
 };

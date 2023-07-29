@@ -1,8 +1,8 @@
-const { DataTypes } = require("sequelize");
+const { DataTypes } = require('sequelize');
 
 module.exports = (sequelize) => {
   sequelize.define(
-    "product",
+    'product',
     {
       name: {
         type: DataTypes.STRING,
@@ -22,11 +22,11 @@ module.exports = (sequelize) => {
       },
       allergenType: {
         type: DataTypes.STRING,
-        defaultValue: "", //celiaco - diabético - lactosa
+        defaultValue: '', // celiaco - diabético - lactosa
       },
       careful: {
         type: DataTypes.STRING,
-        defaultValue: "", //celiacos
+        defaultValue: '', // celiacos
       },
       active: {
         type: DataTypes.BOOLEAN,
@@ -35,7 +35,7 @@ module.exports = (sequelize) => {
     },
     {
       timestamps: false,
-      tableName: "products"
-    }
+      tableName: 'products',
+    },
   );
 };
