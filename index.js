@@ -1,21 +1,18 @@
-require("dotenv").config();
-const server = require("./src/app.js");
-const { conn } = require("./src/db.js");
+require('dotenv').config();
+const server = require('./src/app');
+const { conn } = require('./src/db');
 
 const { PORT } = process.env;
 
 const port = PORT || 3001;
-let message = "%s listening at " + port;
+const message = `%s listening at  ${port}`;
 conn
-  .sync({ alter : true })
+  .sync({ alter: true })
   .then(() => {
     server.listen(port, () => {
       console.log(message);
     });
   })
   .catch((err) => {
-    console.error("The next error happens on the root:", err);
+    console.error('The next error happens on the root:', err);
   });
-
-
-  

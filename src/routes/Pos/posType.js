@@ -1,155 +1,150 @@
-const posType = require("express").Router();
-const express = require("express");
-const { PosType } = require("../../db");
-const cors = require("cors");
+const posType = require('express').Router();
+const express = require('express');
+const cors = require('cors');
+const { PosType } = require('../../db');
 
 posType.use(express.json());
 posType.use(cors());
 posType.use(
   express.urlencoded({
     extended: true,
-  })
+  }),
 );
 
-posType.post("/",async(req,res)=>{
+posType.post('/', async (req, res) => {
   try {
-    const {type, detail} =req.body;
+    const { type, detail } = req.body;
+    // eslint-disable-next-line no-unused-vars
     const [posTypeCreated, created] = await PosType.findOrCreate({
       where: {
         type: type.toLowerCase(),
       },
       defaults: {
         type: type.toLowerCase(),
-        detail:detail,
+        detail,
       },
     });
     if (created) {
-      res.status(200).send("PosType created");
+      res.status(200).send('PosType created');
     } else {
-      res.status(422).send("Existing PosType ");
+      res.status(422).send('Existing PosType ');
     }
   } catch (error) {
-    
+    res.status(400).send(error);
   }
-})
+});
 
-posType.get("/all", async (req,res)=>{
+posType.get('/all', async (req, res) => {
   try {
     const poss = await PosType.findAll({
-      attributes: ["id","type","detail","active"],
-    })
+      attributes: ['id', 'type', 'detail', 'active'],
+    });
 
     if (poss.length > 0) {
       res.status(201).json(poss);
     } else {
-      res.status(422).json("Not found");
+      res.status(422).json('Not found');
     }
   } catch (error) {
     res.send(error);
   }
-})
+});
 
-posType.get("/all_active", async (req,res)=>{
+posType.get('/all_active', async (req, res) => {
   try {
     const poss = await PosType.findAll({
       where: { active: true },
-      attributes: ["id","type","detail","active"],
-    })
+      attributes: ['id', 'type', 'detail', 'active'],
+    });
 
     if (poss.length > 0) {
       res.status(201).json(poss);
     } else {
-      res.status(422).json("Not found");
+      res.status(422).json('Not found');
     }
   } catch (error) {
     res.send(error);
   }
-})
+});
 
-posType.get("/:id", async (req,res)=>{
+posType.get('/:id', async (req, res) => {
   try {
-    const id = req.params.id; 
-    if (id && Number.isInteger(parseInt(id))){
+    const { id } = req.params;
+    if (id && Number.isInteger(parseInt(id, 10))) {
       const poss = await PosType.findAll({
-      where: { id: parseInt(id) },
-      attributes: ["id","type","detail","active"],
-    })
+        where: { id: parseInt(id, 10) },
+        attributes: ['id', 'type', 'detail', 'active'],
+      });
       if (poss.length > 0) {
         res.status(201).json(poss);
       } else {
-        res.status(422).json("Not found");
+        res.status(422).json('Not found');
       }
     } else {
-      res.status(422).send("ID was not provided");
+      res.status(422).send('ID was not provided');
     }
-
   } catch (error) {
     res.send(error);
   }
-})
+});
 
-posType.put("/update/:id",async (req,res)=>{
+posType.put('/update/:id', async (req, res) => {
   try {
-    const id = req.params.id; 
+    const { id } = req.params;
     const { type, detail } = req.body;
-     const posFinded = await PosType.findOne({
-      where: { id: id },
-    });
-    if (posFinded) {
-      await posFinded.update({
-        type : type,
-        detail : detail,
-      })
-      res.status(200).send("The data was modified successfully");
-    }else{
-       res.status(200).send("ID not found");
-    }
-     
-  } catch (error) {
-    res.status(400).send(error);
-  }
-})
-
-posType.put("/active/:id", async(req,res)=>{
-  try {
-    const id = req.params.id; 
     const posFinded = await PosType.findOne({
-      where: { id: id },
+      where: { id },
     });
     if (posFinded) {
       await posFinded.update({
-        active : true,
-      })
-       res.status(200).send("Active");
-    }else{
-       res.status(200).send("ID not found");
+        type,
+        detail,
+      });
+      res.status(200).send('The data was modified successfully');
+    } else {
+      res.status(200).send('ID not found');
     }
-    
-
   } catch (error) {
     res.status(400).send(error);
   }
-})
+});
 
-posType.put("/inactive/:id", async(req,res)=>{
+posType.put('/active/:id', async (req, res) => {
   try {
-    const id = req.params.id; 
+    const { id } = req.params;
     const posFinded = await PosType.findOne({
-      where: { id: id },
+      where: { id },
     });
     if (posFinded) {
       await posFinded.update({
-        active : false,
-      })
-      res.status(200).send("Inactive");
-    }else{
-       res.status(200).send("ID not found");
+        active: true,
+      });
+      res.status(200).send('Active');
+    } else {
+      res.status(200).send('ID not found');
     }
-     
-
   } catch (error) {
     res.status(400).send(error);
   }
-})
+});
+
+posType.put('/inactive/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const posFinded = await PosType.findOne({
+      where: { id },
+    });
+    if (posFinded) {
+      await posFinded.update({
+        active: false,
+      });
+      res.status(200).send('Inactive');
+    } else {
+      res.status(200).send('ID not found');
+    }
+  } catch (error) {
+    res.status(400).send(error);
+  }
+});
 
 module.exports = posType;
