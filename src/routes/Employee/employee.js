@@ -2,7 +2,9 @@ const employee = require('express').Router();
 const express = require('express');
 const cors = require('cors');
 const bcrypt = require('bcrypt');
-const { Employee, EmployeeType } = require('../../db');
+const {
+  Employee, EmployeeType, Commerce, CommerceFact,
+} = require('../../db');
 
 employee.use(express.json());
 employee.use(cors());
@@ -29,6 +31,7 @@ employee.post('/', async (req, res) => {
       twitterUser,
       photo,
       employeeType,
+      commerce,
     } = req.body;
     const hash = bcrypt.hashSync(password, 10);
     // eslint-disable-next-line no-unused-vars
@@ -55,6 +58,11 @@ employee.post('/', async (req, res) => {
             await EmployeeType.findOne({ where: { type: employeeType } })
           )?.id
           : null,
+        commerceId: commerce
+          ? (
+            await Commerce.findOne({ where: { name: commerce } })
+          )?.id
+          : null,
       },
     });
     if (created) {
@@ -75,6 +83,16 @@ employee.get('/all', async (req, res) => {
         {
           model: EmployeeType,
           attributes: ['id', 'type', 'detail', 'active'],
+        },
+        {
+          model: Commerce,
+          attributes: ['id', 'name', 'neighborhood', 'address', 'active'],
+          include: [
+            {
+              model: CommerceFact,
+              attributes: ['id', 'type', 'detail', 'active'],
+            },
+          ],
         },
       ],
     });
@@ -98,6 +116,16 @@ employee.get('/all_active', async (req, res) => {
         {
           model: EmployeeType,
           attributes: ['id', 'type', 'detail', 'active'],
+        },
+        {
+          model: Commerce,
+          attributes: ['id', 'name', 'neighborhood', 'address', 'active'],
+          include: [
+            {
+              model: CommerceFact,
+              attributes: ['id', 'type', 'detail', 'active'],
+            },
+          ],
         },
       ],
     });
@@ -123,6 +151,16 @@ employee.get('/:id', async (req, res) => {
           {
             model: EmployeeType,
             attributes: ['id', 'type', 'detail', 'active'],
+          },
+          {
+            model: Commerce,
+            attributes: ['id', 'name', 'neighborhood', 'address', 'active'],
+            include: [
+              {
+                model: CommerceFact,
+                attributes: ['id', 'type', 'detail', 'active'],
+              },
+            ],
           },
         ],
       });
@@ -157,6 +195,7 @@ employee.put('/update/:id', async (req, res) => {
       twitterUser,
       photo,
       employeeType,
+      commerce,
     } = req.body;
     const hash = bcrypt.hashSync(password, 10);
     const employeeFinded = await Employee.findOne({
@@ -180,6 +219,11 @@ employee.put('/update/:id', async (req, res) => {
         employeeTypeId: employeeType
           ? (
             await EmployeeType.findOne({ where: { type: employeeType } })
+          )?.id
+          : null,
+        commerceId: commerce
+          ? (
+            await Commerce.findOne({ where: { name: commerce } })
           )?.id
           : null,
       });

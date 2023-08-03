@@ -19,6 +19,9 @@ module.exports = (sequelize) => {
       email: {
         type: DataTypes.STRING,
       },
+      phono: {
+        type: DataTypes.STRING,
+      },
       active: {
         type: DataTypes.BOOLEAN,
         defaultValue: true,

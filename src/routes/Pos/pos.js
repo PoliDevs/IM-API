@@ -1,7 +1,7 @@
 const pointOfSale = require('express').Router();
 const express = require('express');
 const cors = require('cors');
-const { Pos, PosType } = require('../../db');
+const { Pos, PosType, Commerce } = require('../../db');
 
 pointOfSale.use(express.json());
 pointOfSale.use(cors());
@@ -13,7 +13,7 @@ pointOfSale.use(
 
 pointOfSale.post('/', async (req, res) => {
   try {
-    const { qrCode, posType } = req.body;
+    const { qrCode, posType, commerce } = req.body;
     // eslint-disable-next-line no-unused-vars
     const [posCreated, created] = await Pos.findOrCreate({
       where: {
@@ -24,6 +24,11 @@ pointOfSale.post('/', async (req, res) => {
         posTypeId: posType
           ? (
             await PosType.findOne({ where: { type: posType } })
+          )?.id
+          : null,
+        commerceId: commerce
+          ? (
+            await Commerce.findOne({ where: { name: commerce } })
           )?.id
           : null,
       },
@@ -46,6 +51,10 @@ pointOfSale.get('/all', async (req, res) => {
         {
           model: PosType,
           attributes: ['id', 'type', 'detail', 'active'],
+        },
+        {
+          model: Commerce,
+          attributes: ['id', 'name', 'neighborhood', 'address', 'active'],
         },
       ],
     });
@@ -70,6 +79,10 @@ pointOfSale.get('/all_active', async (req, res) => {
           model: PosType,
           attributes: ['id', 'type', 'detail', 'active'],
         },
+        {
+          model: Commerce,
+          attributes: ['id', 'name', 'neighborhood', 'address', 'active'],
+        },
       ],
     });
 
@@ -92,6 +105,10 @@ pointOfSale.get('/all_inactive', async (req, res) => {
         {
           model: PosType,
           attributes: ['id', 'type', 'detail', 'active'],
+        },
+        {
+          model: Commerce,
+          attributes: ['id', 'name', 'neighborhood', 'address', 'active'],
         },
       ],
     });
@@ -118,6 +135,10 @@ pointOfSale.get('/:id', async (req, res) => {
             model: PosType,
             attributes: ['id', 'type', 'detail', 'active'],
           },
+          {
+            model: Commerce,
+            attributes: ['id', 'name', 'neighborhood', 'address', 'active'],
+          },
         ],
       });
       if (point.length > 0) {
@@ -136,7 +157,7 @@ pointOfSale.get('/:id', async (req, res) => {
 pointOfSale.put('/update/:id', async (req, res) => {
   try {
     const { id } = req.params;
-    const { qrCode, posType } = req.body;
+    const { qrCode, posType, commerce } = req.body;
     const posFinded = await Pos.findOne({
       where: { id },
     });
@@ -146,6 +167,11 @@ pointOfSale.put('/update/:id', async (req, res) => {
         posTypeId: posType
           ? (
             await PosType.findOne({ where: { type: posType } })
+          )?.id
+          : null,
+        commerceId: commerce
+          ? (
+            await Commerce.findOne({ where: { name: commerce } })
           )?.id
           : null,
       });
