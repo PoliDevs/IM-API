@@ -51,6 +51,7 @@ const {
   Employee,
   EmployeeType,
   Commerce,
+  Bank,
   City,
   State,
   Country,
@@ -87,6 +88,8 @@ Commerce.hasMany(Employee);
 Employee.belongsTo(Commerce);
 Franchise.hasMany(Commerce);
 Commerce.belongsTo(Franchise);
+Bank.hasMany(Commerce);
+Commerce.belongsTo(Bank);
 City.hasMany(Commerce);
 Commerce.belongsTo(City);
 State.hasMany(Commerce);
