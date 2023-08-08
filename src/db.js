@@ -60,6 +60,7 @@ const {
   PosType,
   MenuType,
   Dish,
+  Category,
   TableService,
   Order,
   Account,
@@ -142,6 +143,8 @@ ProductType.hasMany(Product);
 Product.belongsTo(ProductType);
 Supplier.hasMany(Product);
 Product.belongsTo(Supplier);
+Category.hasMany(Menu);
+Menu.belongsTo(Category);
 
 module.exports = {
   ...sequelize.models,
