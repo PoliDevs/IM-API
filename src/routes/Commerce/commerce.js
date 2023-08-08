@@ -2,7 +2,7 @@ const commerces = require('express').Router();
 const express = require('express');
 const cors = require('cors');
 const {
-  Commerce, CommerceFact, Franchise, FranchiseType,
+  Commerce, CommerceFact, Franchise, FranchiseType, Bank,
 } = require('../../db');
 
 commerces.use(express.json());
@@ -16,7 +16,7 @@ commerces.use(
 commerces.post('/', async (req, res) => {
   try {
     const {
-      name, neighborhood, address, workSchedule, email, phono, franchiseName, commerceFact,
+      name, neighborhood, address, workSchedule, email, phono, franchiseName, commerceFact, account,
     } = req.body;
     // eslint-disable-next-line no-unused-vars
     const [commerceCreated, created] = await Commerce.findOrCreate({
@@ -40,12 +40,17 @@ commerces.post('/', async (req, res) => {
             await CommerceFact.findOne({ where: { type: commerceFact } })
           )?.id
           : null,
+        bankId: account
+          ? (
+            await Bank.findOne({ where: { account } })
+          )?.id
+          : null,
       },
     });
     if (created) {
-      res.status(200).send('Business created');
+      res.status(200).send('Commerce created');
     } else {
-      res.status(422).send('Existing Business ');
+      res.status(422).send('Existing Commerce ');
     }
   } catch (error) {
     res.status(400).send(error);
@@ -70,6 +75,10 @@ commerces.get('/all', async (req, res) => {
               attributes: ['id', 'type', 'detail'],
             },
           ],
+        },
+        {
+          model: Bank,
+          attributes: ['id', 'account', 'number', 'detail', 'active'],
         },
       ],
     });
@@ -103,6 +112,10 @@ commerces.get('/all_active', async (req, res) => {
               attributes: ['id', 'type', 'detail'],
             },
           ],
+        },
+        {
+          model: Bank,
+          attributes: ['id', 'account', 'number', 'detail', 'active'],
         },
       ],
     });
@@ -139,6 +152,10 @@ commerces.get('/:id', async (req, res) => {
               },
             ],
           },
+          {
+            model: Bank,
+            attributes: ['id', 'account', 'number', 'detail', 'active'],
+          },
         ],
       });
       if (comm.length > 0) {
@@ -158,7 +175,7 @@ commerces.put('/update/:id', async (req, res) => {
   try {
     const { id } = req.params;
     const {
-      name, neighborhood, address, workSchedule, email, phono, franchiseName, commerceFact,
+      name, neighborhood, address, workSchedule, email, phono, franchiseName, commerceFact, account,
     } = req.body;
     const commerceFinded = await Commerce.findOne({
       where: { id },
@@ -179,6 +196,11 @@ commerces.put('/update/:id', async (req, res) => {
         commerceFactId: commerceFact
           ? (
             await CommerceFact.findOne({ where: { type: commerceFact } })
+          )?.id
+          : null,
+        bankId: account
+          ? (
+            await Bank.findOne({ where: { account } })
           )?.id
           : null,
       });
@@ -221,6 +243,30 @@ commerces.put('/inactive/:id', async (req, res) => {
         active: false,
       });
       res.status(200).send('Inactive');
+    } else {
+      res.status(200).send('ID not found');
+    }
+  } catch (error) {
+    res.status(400).send(error);
+  }
+});
+
+commerces.put('/bnk/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { account } = req.body;
+    const commerceFinded = await Commerce.findOne({
+      where: { id },
+    });
+    if (commerceFinded) {
+      await commerceFinded.update({
+        bankId: account
+          ? (
+            await Bank.findOne({ where: { account } })
+          )?.id
+          : null,
+      });
+      res.status(200).send('The data was modified successfully');
     } else {
       res.status(200).send('ID not found');
     }
