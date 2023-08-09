@@ -275,4 +275,42 @@ commerces.put('/bnk/:id', async (req, res) => {
   }
 });
 
+commerces.put('/open/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const commerceFinded = await Commerce.findOne({
+      where: { id },
+    });
+    if (commerceFinded) {
+      await commerceFinded.update({
+        open: true,
+      });
+      res.status(200).send('Open');
+    } else {
+      res.status(200).send('ID not found');
+    }
+  } catch (error) {
+    res.status(400).send(error);
+  }
+});
+
+commerces.put('/close/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const commerceFinded = await Commerce.findOne({
+      where: { id },
+    });
+    if (commerceFinded) {
+      await commerceFinded.update({
+        open: false,
+      });
+      res.status(200).send('Close');
+    } else {
+      res.status(200).send('ID not found');
+    }
+  } catch (error) {
+    res.status(400).send(error);
+  }
+});
+
 module.exports = commerces;
