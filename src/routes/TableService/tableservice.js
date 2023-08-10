@@ -1,4 +1,162 @@
-const tableservice = require("express").Router();
-const { TableService } = require("../../db");
+const tableservice = require('express').Router();
+const express = require('express');
+const cors = require('cors');
+const { TableService } = require('../../db');
+
+tableservice.use(express.json());
+tableservice.use(cors());
+tableservice.use(
+  express.urlencoded({
+    extended: true,
+  }),
+);
+
+tableservice.post('/', async (req, res) => {
+  try {
+    const {
+      type, detail, cost, promotion, discount, validity,
+    } = req.body;
+    // eslint-disable-next-line no-unused-vars
+    const [tableServiceCreated, created] = await TableService.findOrCreate({
+      where: {
+        type: type.toLowerCase(),
+      },
+      defaults: {
+        type: type.toLowerCase(),
+        detail,
+        cost,
+        promotion,
+        discount,
+        validity,
+      },
+    });
+    if (created) {
+      res.status(200).send('TableService created');
+    } else {
+      res.status(422).send('Existing TableService ');
+    }
+  } catch (error) {
+    res.status(400).send(error);
+  }
+});
+
+tableservice.get('/all', async (req, res) => {
+  try {
+    const service = await TableService.findAll({
+      attributes: ['id', 'type', 'detail', 'cost', 'promotion', 'discount', 'validity', 'active'],
+    });
+
+    if (service.length > 0) {
+      res.status(201).json(service);
+    } else {
+      res.status(422).json('Not found');
+    }
+  } catch (error) {
+    res.send(error);
+  }
+});
+
+tableservice.get('/all_active', async (req, res) => {
+  try {
+    const service = await TableService.findAll({
+      where: { active: true },
+      attributes: ['id', 'type', 'detail', 'cost', 'promotion', 'discount', 'validity', 'active'],
+    });
+
+    if (service.length > 0) {
+      res.status(201).json(service);
+    } else {
+      res.status(422).json('Not found');
+    }
+  } catch (error) {
+    res.send(error);
+  }
+});
+
+tableservice.get('/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    if (id && Number.isInteger(parseInt(id, 10))) {
+      const service = await TableService.findAll({
+        where: { id: parseInt(id, 10) },
+        attributes: ['id', 'type', 'detail', 'cost', 'promotion', 'discount', 'validity', 'active'],
+      });
+      if (service.length > 0) {
+        res.status(201).json(service);
+      } else {
+        res.status(422).json('Not found');
+      }
+    } else {
+      res.status(422).send('ID was not provided');
+    }
+  } catch (error) {
+    res.send(error);
+  }
+});
+
+tableservice.put('/update/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const {
+      type, detail, cost, promotion, discount, validity,
+    } = req.body;
+    const serviceFinded = await TableService.findOne({
+      where: { id },
+    });
+    if (serviceFinded) {
+      await serviceFinded.update({
+        type,
+        detail,
+        cost,
+        promotion,
+        discount,
+        validity,
+      });
+      res.status(200).send('The data was modified successfully');
+    } else {
+      res.status(200).send('ID not found');
+    }
+  } catch (error) {
+    res.status(400).send(error);
+  }
+});
+
+tableservice.put('/active/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const serviceFinded = await TableService.findOne({
+      where: { id },
+    });
+    if (serviceFinded) {
+      await serviceFinded.update({
+        active: true,
+      });
+      res.status(200).send('Active');
+    } else {
+      res.status(200).send('ID not found');
+    }
+  } catch (error) {
+    res.status(400).send(error);
+  }
+});
+
+tableservice.put('/inactive/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const serviceFinded = await TableService.findOne({
+      where: { id },
+    });
+    if (serviceFinded) {
+      await serviceFinded.update({
+        active: false,
+      });
+      res.status(200).send('Inactive');
+    } else {
+      res.status(200).send('ID not found');
+    }
+  } catch (error) {
+    res.status(400).send(error);
+  }
+});
 
 module.exports = tableservice;

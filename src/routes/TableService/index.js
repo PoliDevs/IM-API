@@ -1,13 +1,11 @@
-const { Router } = require("express");
-
-const tableServiceRouter = require("./tableService.js");
-
-const cors = require("cors");
+const { Router } = require('express');
+const cors = require('cors');
+const tableServiceRouter = require('./tableservice');
 
 const router = Router();
 
 router.use(cors());
 
-router.use("/", tableServiceRouter);
+router.use('/', tableServiceRouter);
 
 module.exports = router;
