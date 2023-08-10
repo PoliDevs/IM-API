@@ -1,15 +1,13 @@
-const { Router } = require("express");
-
-const dishRouter = require("./dish.js");
-const dishTypeRouter = require("./dishType.js");
-
-const cors = require("cors");
+const { Router } = require('express');
+const cors = require('cors');
+const dishRouter = require('./dish');
+const dishTypeRouter = require('./dishType');
 
 const router = Router();
 
 router.use(cors());
 
-router.use("/", dishRouter);
-router.use("/type", dishTypeRouter);
+router.use('/', dishRouter);
+router.use('/', dishTypeRouter);
 
 module.exports = router;
