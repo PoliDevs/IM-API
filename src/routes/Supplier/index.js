@@ -1,15 +1,11 @@
-const { Router } = require("express");
-
-const supplierRouter = require("./supplier.js");
-
-
-const cors = require("cors");
+const { Router } = require('express');
+const cors = require('cors');
+const supplierRouter = require('./supplier');
 
 const router = Router();
 
 router.use(cors());
 
-router.use("/", supplierRouter);
-
+router.use('/', supplierRouter);
 
 module.exports = router;
