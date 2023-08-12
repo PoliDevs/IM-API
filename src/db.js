@@ -74,6 +74,7 @@ const {
   Supplier,
   UnitType,
   ProductType,
+  SuppliesType,
 } = sequelize.models;
 
 BusinessType.hasMany(Business);
@@ -140,6 +141,8 @@ Supply.hasMany(Recipe);
 Recipe.belongsTo(Supply);
 Supplier.hasMany(Supply);
 Supply.belongsTo(Supplier);
+SuppliesType.hasMany(Supplier);
+Supplier.belongsTo(SuppliesType);
 UnitType.hasMany(Product);
 Product.belongsTo(UnitType);
 ProductType.hasMany(Product);

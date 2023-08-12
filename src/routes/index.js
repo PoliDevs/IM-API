@@ -23,6 +23,7 @@ const posTypeRouter = require('./Pos/posType');
 const productRouter = require('./Product');
 const recipeRouter = require('./Recipe');
 const supplyRouter = require('./Supply');
+const supplyTypeRouter = require('./Supply/supplyType');
 const supplierRouter = require('./Supplier');
 const tableServiceRouter = require('./TableService');
 const employeeRouter = require('./Employee');
@@ -56,6 +57,7 @@ router.use('/posType', posTypeRouter);
 router.use('/product', productRouter);
 router.use('/recipe', recipeRouter);
 router.use('/supply', supplyRouter);
+router.use('/supplyType', supplyTypeRouter);
 router.use('/supplier', supplierRouter);
 router.use('/tableService', tableServiceRouter);
 
