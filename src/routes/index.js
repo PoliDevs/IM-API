@@ -28,6 +28,7 @@ const supplierRouter = require('./Supplier');
 const tableServiceRouter = require('./TableService');
 const employeeRouter = require('./Employee');
 const employeeTypeRouter = require('./Employee/employeeType');
+const unitRouter = require('./Unit');
 
 const router = Router();
 
@@ -60,5 +61,6 @@ router.use('/supply', supplyRouter);
 router.use('/supplyType', supplyTypeRouter);
 router.use('/supplier', supplierRouter);
 router.use('/tableService', tableServiceRouter);
+router.use('/unit', unitRouter);
 
 module.exports = router;

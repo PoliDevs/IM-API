@@ -1,7 +1,7 @@
 const supplyType = require('express').Router();
 const express = require('express');
 const cors = require('cors');
-const { SuppliesType } = require('../../db');
+const { SuppliesType, UnitType } = require('../../db');
 
 supplyType.use(express.json());
 supplyType.use(cors());
@@ -13,7 +13,7 @@ supplyType.use(
 
 supplyType.post('/', async (req, res) => {
   try {
-    const { type, detail } = req.body;
+    const { type, detail, unit } = req.body;
     // eslint-disable-next-line no-unused-vars
     const [supplyTypeCreated, created] = await SuppliesType.findOrCreate({
       where: {
@@ -22,6 +22,11 @@ supplyType.post('/', async (req, res) => {
       defaults: {
         type: type.toLowerCase(),
         detail,
+        unitTypeId: unit
+          ? (
+            await UnitType.findOne({ where: { unit } })
+          )?.id
+          : null,
       },
     });
     if (created) {
@@ -38,6 +43,12 @@ supplyType.get('/all', async (req, res) => {
   try {
     const supy = await SuppliesType.findAll({
       attributes: ['id', 'type', 'detail', 'active'],
+      include: [
+        {
+          model: UnitType,
+          attributes: ['id', 'unit', 'detail', 'active'],
+        },
+      ],
     });
 
     if (supy.length > 0) {
@@ -55,6 +66,12 @@ supplyType.get('/all_active', async (req, res) => {
     const supy = await SuppliesType.findAll({
       where: { active: true },
       attributes: ['id', 'type', 'detail', 'active'],
+      include: [
+        {
+          model: UnitType,
+          attributes: ['id', 'unit', 'detail', 'active'],
+        },
+      ],
     });
 
     if (supy.length > 0) {
@@ -74,6 +91,12 @@ supplyType.get('/:id', async (req, res) => {
       const supy = await SuppliesType.findAll({
         where: { id: parseInt(id, 10) },
         attributes: ['id', 'type', 'detail', 'active'],
+        include: [
+          {
+            model: UnitType,
+            attributes: ['id', 'unit', 'detail', 'active'],
+          },
+        ],
       });
       if (supy.length > 0) {
         res.status(201).json(supy);
@@ -91,7 +114,7 @@ supplyType.get('/:id', async (req, res) => {
 supplyType.put('/update/:id', async (req, res) => {
   try {
     const { id } = req.params;
-    const { type, detail } = req.body;
+    const { type, detail, unit } = req.body;
     const suplyFinded = await SuppliesType.findOne({
       where: { id },
     });
@@ -99,6 +122,11 @@ supplyType.put('/update/:id', async (req, res) => {
       await suplyFinded.update({
         type,
         detail,
+        unitTypeId: unit
+          ? (
+            await UnitType.findOne({ where: { unit } })
+          )?.id
+          : null,
       });
       res.status(200).send('The data was modified successfully');
     } else {

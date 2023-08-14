@@ -141,8 +141,8 @@ Supply.hasMany(Recipe);
 Recipe.belongsTo(Supply);
 Supplier.hasMany(Supply);
 Supply.belongsTo(Supplier);
-SuppliesType.hasMany(Supplier);
-Supplier.belongsTo(SuppliesType);
+SuppliesType.hasMany(Supply);
+Supply.belongsTo(SuppliesType);
 UnitType.hasMany(Product);
 Product.belongsTo(UnitType);
 ProductType.hasMany(Product);
@@ -151,6 +151,9 @@ Supplier.hasMany(Product);
 Product.belongsTo(Supplier);
 Category.hasMany(Menu);
 Menu.belongsTo(Category);
+
+UnitType.hasMany(SuppliesType);
+SuppliesType.belongsTo(UnitType);
 
 module.exports = {
   ...sequelize.models,
