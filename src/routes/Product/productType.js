@@ -1,4 +1,150 @@
-const productType = require("express").Router();
-const { ProductType } = require("../../db");
+const productType = require('express').Router();
+const express = require('express');
+const cors = require('cors');
+const { ProductType } = require('../../db');
+
+productType.use(express.json());
+productType.use(cors());
+productType.use(
+  express.urlencoded({
+    extended: true,
+  }),
+);
+
+productType.post('/', async (req, res) => {
+  try {
+    const { type, detail } = req.body;
+    // eslint-disable-next-line no-unused-vars
+    const [productTypeCreated, created] = await ProductType.findOrCreate({
+      where: {
+        type: type.toLowerCase(),
+      },
+      defaults: {
+        type: type.toLowerCase(),
+        detail,
+      },
+    });
+    if (created) {
+      res.status(200).send('ProductType created');
+    } else {
+      res.status(422).send('Existing ProductType ');
+    }
+  } catch (error) {
+    res.status(400).send(error);
+  }
+});
+
+productType.get('/all', async (req, res) => {
+  try {
+    const prod = await ProductType.findAll({
+      attributes: ['id', 'type', 'detail', 'active'],
+    });
+
+    if (prod.length > 0) {
+      res.status(201).json(prod);
+    } else {
+      res.status(422).json('Not found');
+    }
+  } catch (error) {
+    res.send(error);
+  }
+});
+
+productType.get('/all_active', async (req, res) => {
+  try {
+    const prod = await ProductType.findAll({
+      where: { active: true },
+      attributes: ['id', 'type', 'detail', 'active'],
+    });
+
+    if (prod.length > 0) {
+      res.status(201).json(prod);
+    } else {
+      res.status(422).json('Not found');
+    }
+  } catch (error) {
+    res.send(error);
+  }
+});
+
+productType.get('/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    if (id && Number.isInteger(parseInt(id, 10))) {
+      const prod = await ProductType.findAll({
+        where: { id: parseInt(id, 10) },
+        attributes: ['id', 'type', 'detail', 'active'],
+      });
+      if (prod.length > 0) {
+        res.status(201).json(prod);
+      } else {
+        res.status(422).json('Not found');
+      }
+    } else {
+      res.status(422).send('ID was not provided');
+    }
+  } catch (error) {
+    res.send(error);
+  }
+});
+
+productType.put('/update/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { type, detail } = req.body;
+    const productFinded = await ProductType.findOne({
+      where: { id },
+    });
+    if (productFinded) {
+      await productFinded.update({
+        type,
+        detail,
+      });
+      res.status(200).send('The data was modified successfully');
+    } else {
+      res.status(200).send('ID not found');
+    }
+  } catch (error) {
+    res.status(400).send(error);
+  }
+});
+
+productType.put('/active/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const productFinded = await ProductType.findOne({
+      where: { id },
+    });
+    if (productFinded) {
+      await productFinded.update({
+        active: true,
+      });
+      res.status(200).send('Active');
+    } else {
+      res.status(200).send('ID not found');
+    }
+  } catch (error) {
+    res.status(400).send(error);
+  }
+});
+
+productType.put('/inactive/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const productFinded = await ProductType.findOne({
+      where: { id },
+    });
+    if (productFinded) {
+      await productFinded.update({
+        active: false,
+      });
+      res.status(200).send('Inactive');
+    } else {
+      res.status(200).send('ID not found');
+    }
+  } catch (error) {
+    res.status(400).send(error);
+  }
+});
 
 module.exports = productType;
