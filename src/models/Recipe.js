@@ -4,6 +4,10 @@ module.exports = (sequelize) => {
   sequelize.define(
     'recipe',
     {
+      date: {
+        type: DataTypes.DATE,
+        defaultValue: DataTypes.NOW,
+      },
       name: {
         type: DataTypes.STRING,
       },
@@ -14,6 +18,14 @@ module.exports = (sequelize) => {
       active: {
         type: DataTypes.BOOLEAN,
         defaultValue: true,
+      },
+      ingredients: {
+        type: DataTypes.JSON,
+        allowNull: true,
+      },
+      supplies: {
+        type: DataTypes.JSON,
+        allowNull: true,
       },
     },
     {

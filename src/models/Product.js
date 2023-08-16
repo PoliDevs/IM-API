@@ -4,6 +4,10 @@ module.exports = (sequelize) => {
   sequelize.define(
     'product',
     {
+      date: {
+        type: DataTypes.DATE,
+        defaultValue: DataTypes.NOW,
+      },
       name: {
         type: DataTypes.STRING,
       },
