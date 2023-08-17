@@ -86,7 +86,7 @@ recipe.put('/addproducts/:id', async (req, res) => {
     if (recipeFinded) {
       // eslint-disable-next-line no-unused-vars
       const amountsAsNumbers = ingredients.amount.map((amount) => parseFloat(amount));
-      const activeAsBooleans = ingredients.active.map(() => true);
+      const activeAsBooleans = ingredients.active.map((value) => value === '1');
       const updatedIngredients = {
         product: ingredients.product || [],
         active: activeAsBooleans || [],
@@ -96,7 +96,7 @@ recipe.put('/addproducts/:id', async (req, res) => {
       };
 
       const amountsAsNumbersS = supply.amount.map((amount) => parseFloat(amount));
-      const activeAsBooleansS = supply.active.map(() => true);
+      const activeAsBooleansS = supply.active.map((value) => value === '1');
       const updatedSupply = {
         supply: supply.supply || [],
         active: activeAsBooleansS || [],

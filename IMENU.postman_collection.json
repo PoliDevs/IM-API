@@ -1,0 +1,4377 @@
+{
+	"info": {
+		"_postman_id": "e2b53df7-fcdf-4cfb-b757-2705296e8da5",
+		"name": "IMENU",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20869915"
+	},
+	"item": [
+		{
+			"name": "Accounts",
+			"item": []
+		},
+		{
+			"name": "Additionals",
+			"item": [
+				{
+					"name": "NEW Additional",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"mostaza\",\r\n    \"amount\": 1,\r\n    \"cost\":0,\r\n    \"promotion\":1,\r\n    \"discount\":0,\r\n    \"photo\":\"\"\r\n    \r\n}\r\n/*\r\n{\r\n    \"name\": \"mayonesa\",\r\n    \"amount\": 2,\r\n    \"cost\":0,\r\n    \"promotion\":1,\r\n    \"discount\":0,\r\n    \"photo\":\"\"\r\n    \r\n}\r\n*/",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/additional/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"additional",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE Additional",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"mostaza\",\r\n    \"amount\": 1,\r\n    \"cost\":0,\r\n    \"promotion\":1,\r\n    \"discount\":0,\r\n    \"photo\":\"\"\r\n    \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/additional/update/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"additional",
+								"update",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ALL Additional",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/additional/all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"additional",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ID Additional",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/additional/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"additional",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Active",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/additional/active/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"additional",
+								"active",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Inactive",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/additional/inactive/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"additional",
+								"inactive",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ALL Active Additional",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/additional/all_active",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"additional",
+								"all_active"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Bank",
+			"item": [
+				{
+					"name": "NEW Bank",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"account\": \"Visa\",\r\n    \"number\":\"897777\",\r\n    \"detail\": \"Pago con tarjeta de crédito\"\r\n    \r\n}\r\n/*\r\n{\r\n    \"account\": \"Mercado Pago\",\r\n    \"number\":\"45879995656\",\r\n    \"detail\": \"Cuenta para hacer pagos\"\r\n    \r\n}\r\n*/",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/bank/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"bank",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE Bank",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"account\": \"Mercado Pago\",\r\n    \"number\":\"45879995656\",\r\n    \"detail\": \"Cuenta para hacer pagos\"\r\n    \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/bank/update/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"bank",
+								"update",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ALL Bank",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/bank/all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"bank",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ID Bank",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/bank/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"bank",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Active",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/bank/active/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"bank",
+								"active",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Inactive",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/bank/inactive/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"bank",
+								"inactive",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ALL Active Bank",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/bank/all_active",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"bank",
+								"all_active"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Bussines",
+			"item": [
+				{
+					"name": "NEW Bussines",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "/*{\r\n    \"name\": \"Lucho Burger\",\r\n    \"ssn\": \"45787\",\r\n    \"detail\": \"Hamburguesas de carne vacuna\",\r\n    \"email\": \"luisfactum@gmail.com\",\r\n    \"businessType\":\"burger\"\r\n    \r\n}*/\r\n/*\r\n{\r\n    \"name\": \"super paty\",\r\n    \"ssn\": \"555555\",\r\n    \"detail\": \"Super Pattys\",\r\n    \"email\": \"luisglogista@gmail.com\",\r\n    \"businessType\":\"burger\"   \r\n}\r\n*/\r\n\r\n{\r\n    \"name\": \"perros calientes\",\r\n    \"ssn\": \"4589658700\",\r\n    \"detail\": \"Los mejores panchos del sur\",\r\n    \"email\": \"luisglogista@gmail.com\",\r\n    \"businessType\":\"panchería\"\r\n    \r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/business/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"business",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE Business",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Lucho-Burger\",\r\n    \"ssn\": \"4589658700\",\r\n    \"detail\": \"Amburguesas al paso\",\r\n    \"email\": \"luisglogista@gmail.com\",\r\n    \"businessType\":\"burger\"\r\n    \r\n}\r\n/*\r\n{\r\n    \"name\": \"super paty\",\r\n    \"ssn\": \"555555\",\r\n    \"detail\": \"Super Pattys\",\r\n    \"email\": \"luisglogista@gmail.com\",\r\n    \"businessType\":\"burger\"   \r\n}\r\n*/\r\n/*\r\n{\r\n    \"name\": \"perros calientes\",\r\n    \"ssn\": \"4589658700\",\r\n    \"detail\": \"Los mejores panchos del sur\",\r\n    \"email\": \"luisglogista@gmail.com\",\r\n    \"businessType\":\"panchería\"\r\n    \r\n}\r\n*/",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/business/update/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"business",
+								"update",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ALL Business",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/business/all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"business",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ID Business",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/business/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"business",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Confirmed",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/business/confirmed/4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"business",
+								"confirmed",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Unconfirmed",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/business/unconfirmed/4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"business",
+								"unconfirmed",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Active",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/business/active/4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"business",
+								"active",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Inactive",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/business/inactive/4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"business",
+								"inactive",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ALL Active Business",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/business/all_active",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"business",
+								"all_active"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Business Type",
+			"item": [
+				{
+					"name": "NEW BusinessType",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "/*\r\n{\r\n    \"type\": \"Burger\",\r\n    \"detail\": \"Hamburguesas\"\r\n    \r\n}\r\n*/\r\n{\r\n    \"type\": \"Panchería\",\r\n    \"detail\": \"Hot Dogs\"\r\n    \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/businessType/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"businessType",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE BusinessType",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"type\": \"Burger\",\r\n    \"detail\": \"Hamburguesas\"\r\n\r\n    \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/businessType/update/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"businessType",
+								"update",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ALL BusinessType",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/businessType/all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"businessType",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ID BusinessType",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/businessType/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"businessType",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Active",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/businessType/active/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"businessType",
+								"active",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Inactive",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/businessType/inactive/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"businessType",
+								"inactive",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ALL Active BusinessType",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/businessType/all_active",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"businessType",
+								"all_active"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Category",
+			"item": [
+				{
+					"name": "NEW Category",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "/*\r\n{\r\n    \"category\": \"Pastas\",\r\n    \"detail\": \"Comidas de pastas\"\r\n    \r\n}\r\n*/\r\n\r\n{\r\n    \"category\": \"Minutas\",\r\n    \"detail\": \"Comidas de minutas\"\r\n    \r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/category/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"category",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE Category",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"category\": \"Minutas\",\r\n    \"detail\": \"Comidas de minutas\"\r\n    \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/category/update/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"category",
+								"update",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ALL Categoty",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/category/all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"category",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ID Category",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/category/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"category",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Active",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/category/active/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"category",
+								"active",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Inactive",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/category/inactive/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"category",
+								"inactive",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ALL Active Category",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/category/all_active",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"category",
+								"all_active"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Commerces",
+			"item": [
+				{
+					"name": "NEW Commerce",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"CP Luisito\",\r\n    \"neighborhood\": \"Florencio Varela\",\r\n    \"address\": \"Av Carabelas 1000\",\r\n    \"workSchedule\": \"12 a 24\",\r\n    \"email\":\"luisglogista@gmail.com\",\r\n    \"phono\":\"01142552154\",\r\n    \"franchiseName\":\"\",\r\n    \"commerceFact\":\"celíaco\",\r\n    \"account\":\"\"\r\n    \r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/commerce/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"commerce",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE Commerce",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"CP Luisito\",\r\n    \"neighborhood\": \"Florencio Varela\",\r\n    \"address\": \"Av Carabelas 1000\",\r\n    \"workSchedule\": \"12 a 24\",\r\n    \"email\":\"luisglogista@gmail.com\",\r\n    \"phono\":\"01142552154\",\r\n    \"franchiseName\":\"\",\r\n    \"commerceFact\":\"celíaco\",\r\n    \"account\":\"\"\r\n    \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/commerce/update/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"commerce",
+								"update",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ALL Commerce",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/commerce/all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"commerce",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ALL Active Commerce",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/commerce/all_active",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"commerce",
+								"all_active"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ID Commerce",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/commerce/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"commerce",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Active",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/commerce/active/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"commerce",
+								"active",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Inactive",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/commerce/inactive/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"commerce",
+								"inactive",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE Bank Commerce",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"account\": \"\"\r\n    \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/commerce/bnk/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"commerce",
+								"bnk",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Open",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/commerce/open/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"commerce",
+								"open",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Close",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/commerce/close/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"commerce",
+								"close",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "CommerceFact",
+			"item": [
+				{
+					"name": "NEW CommerceFact",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"type\": \"celíaco\",\r\n    \"detail\": \"Comidas sin glutten\"\r\n    \r\n}\r\n/*\r\n{\r\n    \"type\": \"vegano\",\r\n    \"detail\": \"Menu vegano\"\r\n    \r\n}\r\n*/",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/commerceFacts",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"commerceFacts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE CommerceFact",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"type\": \"celíaco\",\r\n    \"detail\": \"Comidas aptas para celíacos o intolerantes al gluten\"\r\n    \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/commerceFacts/update/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"commerceFacts",
+								"update",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ALL CommerceFact",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/commerceFacts/all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"commerceFacts",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ID CommerceFact",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/commerceFacts/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"commerceFacts",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Active",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/commerceFacts/active/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"commerceFacts",
+								"active",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Inactive",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/commerceFacts/inactive/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"commerceFacts",
+								"inactive",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ALL Active CommerceFact",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/commerceFacts/all_active",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"commerceFacts",
+								"all_active"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Dishes",
+			"item": [
+				{
+					"name": "NEW Dish",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"fritas\",\r\n    \"description\": \"porción de fritas\",\r\n    \"photo\": \"\",\r\n    \"cost\": 800,\r\n    \"promotion\": 0,\r\n    \"discount\": 0,\r\n    \"estimatedTime\": 10,\r\n    \"type\": \"libre\",\r\n    \"additional\": \"\",\r\n    \"supply\": \"\",\r\n    \"recipe\": \"fritas\"\r\n    \r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/dish/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"dish",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE Dish",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"fritas\",\r\n    \"description\": \"porción de fritas\",\r\n    \"photo\": \"\",\r\n    \"cost\": 800,\r\n    \"promotion\": 0,\r\n    \"discount\": 0,\r\n    \"estimatedTime\": 10,\r\n    \"type\": \"libre\",\r\n    \"additional\": \"\",\r\n    \"supply\": \"\",\r\n    \"recipe\": \"fritas\"\r\n    \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/dish/update/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"dish",
+								"update",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ALL Dishes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/dish/all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"dish",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ID Dish",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/dish/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"dish",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Active",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/dish/active/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"dish",
+								"active",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Inactive",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/dish/inactive/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"dish",
+								"inactive",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ALL Active Dish",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/dish/all_active",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"dish",
+								"all_active"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Dish Type",
+			"item": [
+				{
+					"name": "NEW DishType",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"type\": \"libre\",\r\n    \"detail\": \"no es apto para todos\",\r\n    \"photo\":\"\"\r\n    \r\n}\r\n/*\r\n{\r\n    \"type\": \"vegano\",\r\n    \"detail\": \"Sin carne\",\r\n    \"photo\":\"\"\r\n    \r\n}\r\n{\r\n    \"type\": \"celíaco\",\r\n    \"detail\": \"Apto para celíaco\",\r\n    \"photo\":\"\"\r\n    \r\n}\r\n*/",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/dishType/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"dishType",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE DishType",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"type\": \"vegano\",\r\n    \"detail\": \"Sin derivados de animales\",\r\n    \"photo\":\"\"\r\n    \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/dishType/update/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"dishType",
+								"update",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ALL DishType",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/dishType/all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"dishType",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ID DishType",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/dishType/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"dishType",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Active",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/dishType/active/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"dishType",
+								"active",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Inactive",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/dishType/inactive/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"dishType",
+								"inactive",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ALL Active DishType",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/dishType/all_active",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"dishType",
+								"all_active"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Employees",
+			"item": [
+				{
+					"name": "NEW Employee",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\": \"luis\",\r\n    \"lastName\": \"gimenez\",\r\n    \"password\": \"1111\",\r\n    \"address\": \"ecuador 3531\",\r\n    \"phone\":\"4879-8956\",\r\n    \"birthDate\":\"1967-10-24\",\r\n    \"start\":\"2023-07-27\",\r\n    \"document\":\"2154874\",\r\n    \"email\":\"luisfactum@gmail.com\",\r\n    \"googleUser\":\"\",\r\n    \"facebookUser\":\"\",\r\n    \"twitterUser\":\"\",\r\n    \"photo\":\"\",\r\n    \"employeeType\":\"mozo\",\r\n    \"commerce\":\"\"\r\n    \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/employee/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"employee",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE Employee",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\": \"luis\",\r\n    \"lastName\": \"gimenez\",\r\n    \"password\": \"1111\",\r\n    \"address\": \"ecuador 3531\",\r\n    \"phone\":\"4879-8956\",\r\n    \"birthDate\":\"1967-10-24\",\r\n    \"start\":\"2023-07-27\",\r\n    \"document\":\"2154874\",\r\n    \"email\":\"luisfactum@gmail.com\",\r\n    \"googleUser\":\"\",\r\n    \"facebookUser\":\"\",\r\n    \"twitterUser\":\"\",\r\n    \"photo\":\"\",\r\n    \"employeeType\":\"mozo\",\r\n    \"commerce\":\"\"\r\n    \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/employee/update/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"employee",
+								"update",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ALL Employees",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/employee/all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"employee",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ID Employee",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/employee/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"employee",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Validated Email",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/employee/validated/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"employee",
+								"validated",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Unvalidated Email",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/employee/unvalidated/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"employee",
+								"unvalidated",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Active",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/employee/active/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"employee",
+								"active",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Inactive",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/employee/inactive/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"employee",
+								"inactive",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ALL Active Employee",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/employee/all_active",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"employee",
+								"all_active"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Employee Type",
+			"item": [
+				{
+					"name": "NEW EmployeeType",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"type\": \"mozo\",\r\n    \"detail\": \"Atención en mesa\"\r\n    \r\n}\r\n/*\r\n{\r\n    \"type\": \"maitre\",\r\n    \"detail\": \"Maitre\"\r\n    \r\n}\r\n*/",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/employeeType/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"employeeType",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE EmployeeType",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"type\": \"cocinero\",\r\n    \"detail\": \"Prepara los platos\"\r\n\r\n    \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/employeeType/update/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"employeeType",
+								"update",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ALL EmployeeType",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/employeeType/all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"employeeType",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ID EmployeeType",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/employeeType/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"employeeType",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Active",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/employeeType/active/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"employeeType",
+								"active",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Inactive",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/employeeType/inactive/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"employeeType",
+								"inactive",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ALL Active EmployeeType",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/employeeType/all_active",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"employeeType",
+								"all_active"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Franchises",
+			"item": [
+				{
+					"name": "NEW Franchise",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"campo bravo\",\r\n    \"detail\": \"cadena sin gluten\",\r\n    \"email\": \"luisfactum@gmail.com\",\r\n    \"franchiseType\":\"cadena\",\r\n    \"business\":\"Lucho-Burger\"\r\n    \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/franchise/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"franchise",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE Franchise",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"franquicia b1\",\r\n    \"detail\": \"cadena sin gluten\",\r\n    \"email\": \"luisfactum@gmail.com\",\r\n    \"franchiseType\":\"cadena\",\r\n    \"business\":\"Lucho-Burger\"\r\n    \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/franchise/update/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"franchise",
+								"update",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ALL Franchise",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/franchise/all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"franchise",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ID Franchise",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/franchise/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"franchise",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Active",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/franchise/active/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"franchise",
+								"active",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Inactive",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/franchise/inactive/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"franchise",
+								"inactive",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ALL Active Franchise",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/franchise/all_active",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"franchise",
+								"all_active"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Franchise Type",
+			"item": [
+				{
+					"name": "NEW FranchiseType",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"type\": \"Pizza Hut\",\r\n    \"detail\": \"Local de pizzas y empanadas\"\r\n    \r\n}\r\n/*\r\n{\r\n    \"type\": \"Food Track independiente\",\r\n    \"detail\": \"Carrito único\"\r\n    \r\n}\r\n*/",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/franchiseType/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"franchiseType",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE FranchiseType",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"type\": \"local único\",\r\n    \"detail\": \"local independiente\"\r\n\r\n    \r\n}\r\n/*\r\n{\r\n    \"type\": \"cadena\",\r\n    \"detail\": \"cadena de gastronómica\"\r\n\r\n    \r\n}\r\n*/",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/franchiseType/update/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"franchiseType",
+								"update",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ALL FranchiseType",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/franchiseType/all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"franchiseType",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ID FranchiseType",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/franchiseType/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"franchiseType",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Active",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/franchiseType/active/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"franchiseType",
+								"active",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Inactive",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/franchiseType/inactive/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"franchiseType",
+								"inactive",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ALL Active FranchiseType",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/franchiseType/all_active",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"franchiseType",
+								"all_active"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Menus",
+			"item": [
+				{
+					"name": "NEW Menu",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"date\": \"2023-08-17\",\r\n    \"name\": \"mila con fritas\",\r\n    \"description\": \"milanesa con papas fritas\",\r\n    \"status\": \"\",\r\n    \"cost\": 2500,\r\n    \"promotion\": 0,\r\n    \"discount\": 0,\r\n    \"validity\": \"2023-09-17\",\r\n    \"photo\": \"\",\r\n    \"commerce\": \"cp luisito\",\r\n    \"menuType\": \"libre\",\r\n    \"tableService\": \"mesa\",\r\n    \"category\": \"Minutas\",\r\n    \"dishes\": {\r\n        \"id\": [\"1\",\"2\"],\r\n        \"name\": [\"milanesa\",\"fritas\"],\r\n        \"description\": [\"milanesa\",\"porción de fritas\"],\r\n        \"photo\": [\"\",\"\"],\r\n        \"cost\": [\"2.200\",\"800\"],\r\n        \"promotion\": [\"0\",\"0\"],\r\n        \"discount\": [\"0\",\"0\"],\r\n        \"estimatedTime\": [\"40\",\"10\"],\r\n        \"active\": [\"1\",\"0\"],\r\n        \"additionalId\": [\"\",\"\"],\r\n        \"supplyId\": [\"\",\"\"],\r\n        \"recipeId\": [\"1\",\"2\"],\r\n        \"dishTypeId\": [\"3\",\"3\"],\r\n        \"date\": [\"2023-08-16\",\"2023-08-16\"]\r\n    }\r\n    \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/menu/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"menu",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE Menu",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"date\": \"2023-08-17\",\r\n    \"name\": \"mila con fritas\",\r\n    \"description\": \"milanesa con papas fritas\",\r\n    \"status\": \"\",\r\n    \"cost\": 2500,\r\n    \"promotion\": 0,\r\n    \"discount\": 0,\r\n    \"validity\": \"2023-09-17\",\r\n    \"photo\": \"\",\r\n    \"commerce\": \"cp luisito\",\r\n    \"menuType\": \"libre\",\r\n    \"tableService\": \"mesa\",\r\n    \"category\": \"Minutas\",\r\n    \"dishes\": {\r\n        \"id\": [\"1\",\"2\"],\r\n        \"name\": [\"milanesa\",\"fritas\"],\r\n        \"description\": [\"milanesa\",\"porción de fritas\"],\r\n        \"photo\": [\"\",\"\"],\r\n        \"cost\": [\"2.200\",\"800\"],\r\n        \"promotion\": [\"0\",\"0\"],\r\n        \"discount\": [\"0\",\"0\"],\r\n        \"estimatedTime\": [\"40\",\"10\"],\r\n        \"active\": [\"1\",\"1\"],\r\n        \"additionalId\": [\"\",\"\"],\r\n        \"supplyId\": [\"\",\"\"],\r\n        \"recipeId\": [\"1\",\"2\"],\r\n        \"dishTypeId\": [\"3\",\"3\"],\r\n        \"date\": [\"2023-08-16\",\"2023-08-16\"]\r\n    }\r\n    \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/menu/update/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"menu",
+								"update",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ALL Menus",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/menu/all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"menu",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ID Menu",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/menu/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"menu",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Active",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/menu/active/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"menu",
+								"active",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Inactive",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/menu/inactive/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"menu",
+								"inactive",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ALL Active Menu",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/menu/all_active",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"menu",
+								"all_active"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Menu Type",
+			"item": [
+				{
+					"name": "NEW MenuType",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"type\": \"libre\",\r\n    \"detail\": \"No es apto para celíacos\"\r\n    \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/menuType/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"menuType",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE MenuType",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"type\": \"celíaca\",\r\n    \"detail\": \"Menu apto para celíacos\"\r\n    \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/menuType/update/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"menuType",
+								"update",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ALL MenuType",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/menuType/all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"menuType",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ID MenuType",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/menuType/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"menuType",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Active",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/menuType/active/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"menuType",
+								"active",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Inactive",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/menuType/inactive/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"menuType",
+								"inactive",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ALL Active MenuType",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/menuType/all_active",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"menuType",
+								"all_active"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Orders",
+			"item": []
+		},
+		{
+			"name": "Payments",
+			"item": []
+		},
+		{
+			"name": "Pos",
+			"item": [
+				{
+					"name": "NEW Pos",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"qrCode\": \"https://punctuation-gamma.vercel.app/6\",\r\n    \"posType\": \"mesa\",\r\n    \"commerce\":\"CB Lomas\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/pos/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"pos",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE Pos",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"qrCode\": \"https://punctuation-gamma.vercel.app/3\",\r\n    \"posType\": \"mesa\"\r\n    \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/pos/update/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"pos",
+								"update",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ALL Pos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/pos/all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"pos",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ID Pos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/pos/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"pos",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Active",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/pos/active/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"pos",
+								"active",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Inactive",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/pos/inactive/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"pos",
+								"inactive",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ALL Active Pos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/pos/all_active",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"pos",
+								"all_active"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ALL InActive Pos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/pos/all_inactive",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"pos",
+								"all_inactive"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Pos Type",
+			"item": [
+				{
+					"name": "NEW PosType",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "/*\r\n{\r\n    \"type\": \"mesa\",\r\n    \"detail\": \"Mesa\"\r\n    \r\n}\r\n*/\r\n/*\r\n{\r\n    \"type\": \"VIP\",\r\n    \"detail\": \"Mesa VIP\"\r\n    \r\n}\r\n*/\r\n{\r\n    \"type\": \"delivery\",\r\n    \"detail\": \"delivery\"\r\n    \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/posType/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"posType",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE PosType",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"type\": \"Take away\",\r\n    \"detail\": \"Entra por app\"\r\n    \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/posType/update/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"posType",
+								"update",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ALL PosType",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/posType/all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"posType",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ID PosType",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/posType/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"posType",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Active",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/posType/active/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"posType",
+								"active",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Inactive",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/posType/inactive/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"posType",
+								"inactive",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ALL Active PosType",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/posType/all_active",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"posType",
+								"all_active"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Products",
+			"item": [
+				{
+					"name": "NEW product",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"aceite\",\r\n    \"photo\": \"\",\r\n    \"stock\": 20,\r\n    \"pointOrder\": 10,\r\n    \"cost\" : 1800,\r\n    \"allergenType\" : \"\",\r\n    \"careful\" : \"\",\r\n    \"unit\" :\"lt\",\r\n    \"type\" :\"aceite\",\r\n    \"supplier\" :\"chino\"\r\n    \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/product/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"product",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE Product",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Nalga\",\r\n    \"photo\": \"\",\r\n    \"stock\": 5,\r\n    \"pointOrder\": 4,\r\n    \"cost\" : 2750,\r\n    \"allergenType\" : \"\",\r\n    \"careful\" : \"\",\r\n    \"unit\" :\"kg\",\r\n    \"type\" :\"carnes rojas\",\r\n    \"supplier\" :\"Ricas Carnes\"\r\n    \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/product/update/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"product",
+								"update",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ALL Products",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/product/all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"product",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ID Product",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/product/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"product",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Active",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/product/active/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"product",
+								"active",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Inactive",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/product/inactive/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"product",
+								"inactive",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ALL Active Products",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/product/all_active",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"product",
+								"all_active"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Product Type",
+			"item": [
+				{
+					"name": "NEW ProductType",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"type\": \"verduras\",\r\n    \"detail\": \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/productType/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"productType",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE ProductType",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"type\": \"harina\",\r\n    \"detail\": \"\"   \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/productType/update/7",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"productType",
+								"update",
+								"7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ALL ProductType",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/productType/all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"productType",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ID ProductType",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/productType/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"productType",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Active",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/productType/active/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"productType",
+								"active",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Inactive",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/productType/inactive/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"productType",
+								"inactive",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ALL Active ProductType",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/productType/all_active",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"productType",
+								"all_active"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Recipes",
+			"item": [
+				{
+					"name": "NEW Recipe",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Fritas\",\r\n    \"amount\": 1,\r\n    \"unit\": \"unidad\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/recipe/newrecipe",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"recipe",
+								"newrecipe"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ADD Product to Recipe",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"ingredients\": {\r\n        \"product\": [\"papa\",\"aceite\"],\r\n        \"active\": [\"1\",\"1\"],\r\n        \"detail\": [\"\",\"\"],\r\n        \"amount\": [\"0.2\",\"0.1\"],\r\n        \"unit\": [\"kg\", \"lt\"]\r\n    },\r\n    \"supply\": {\r\n       \"active\": [\"1\"],\r\n       \"supply\": [\"servilletas\"],\r\n       \"detail\":[\"\"],\r\n       \"amount\": [\"1\"],\r\n       \"unit\": [\"unidad\"] \r\n    }\r\n}\r\n/*{\r\n{\r\n    \"ingredients\": {\r\n        \"product\": [\"nalga\",\"pan rallado\"],\r\n        \"active\": [\"1\",\"1\"],\r\n        \"detail\": [\"xxxx\",\"\"],\r\n        \"amount\": [\"1\",\"0.5\"],\r\n        \"unit\": [\"kg\", \"kg\"]\r\n    },\r\n    \"supply\": {\r\n       \"active\": [\"1\",\"1\"],\r\n       \"supply\": [\"servilletas\",\"\"],\r\n       \"detail\":[\"ccccc\",\"\"],\r\n       \"amount\": [\"1\",\"0.1\"],\r\n       \"unit\": [\"unidad\", \"\"] \r\n    }\r\n}\r\n*/",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/recipe/addproducts/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"recipe",
+								"addproducts",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ALL Recipes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/recipe/all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"recipe",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ID Recipe",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/recipe/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"recipe",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Active",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/recipe/active/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"recipe",
+								"active",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Inactive",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/recipe/inactive/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"recipe",
+								"inactive",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ALL Active Recipe",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/recipe/all_active",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"recipe",
+								"all_active"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE Recipe",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Milanesa\",\r\n    \"amount\": 1,\r\n    \"unit\": \"unidad\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/recipe/update/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"recipe",
+								"update",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Suppliers",
+			"item": [
+				{
+					"name": "NEW Suppliers",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"item\": \"super\",\r\n    \"name\": \"Chino\",\r\n    \"ssn\":\"69696969\",\r\n    \"mail\":\"luisglogista@gmail.com\",\r\n    \"phone\":\"2222222\",\r\n    \"contact\":\"Mii\"\r\n}\r\n/*\r\n{\r\n    \"item\": \"papelería\",\r\n    \"name\": \"Todo papel\",\r\n    \"ssn\":\"555555\",\r\n    \"mail\":\"luisglogista@gmail.com\",\r\n    \"phone\":\"548754\",\r\n    \"contact\":\"Pedro\"\r\n}\r\n{\r\n    \"item\": \"Carnes\",\r\n    \"name\": \"Ricas Carnes\",\r\n    \"ssn\":\"451112222\",\r\n    \"mail\":\"luisglogista@gmail.com\",\r\n    \"phone\":\"4521555\",\r\n    \"contact\":\"Lucho\"\r\n}\r\n{\r\n    \"item\": \"Verduras\",\r\n    \"name\": \"La lechuga\",\r\n    \"ssn\":\"77878888787\",\r\n    \"mail\":\"luisglogista@gmail.com\",\r\n    \"phone\":\"4355678\",\r\n    \"contact\":\"Pepe\"\r\n}\r\n{\r\n    \"item\": \"bandejas\",\r\n    \"name\": \"Super Envases\",\r\n    \"ssn\":\"232323\",\r\n    \"mail\":\"luisglogista@gmail.com\",\r\n    \"phone\":\"222222\",\r\n    \"contact\":\"José\"\r\n}\r\n*/",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/supplier/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"supplier",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE Suppliers",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"item\": \"Carnes\",\r\n    \"name\": \"Ricas Carnes\",\r\n    \"ssn\":\"451112222\",\r\n    \"mail\":\"luisglogista@gmail.com\",\r\n    \"phone\":\"4521555\",\r\n    \"contact\":\"Lucho\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/supplier/update/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"supplier",
+								"update",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ALL Suppliers",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/supplier/all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"supplier",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ID Supplier",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/supplier/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"supplier",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Active",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/supplier/active/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"supplier",
+								"active",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Inactive",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/supplier/inactive/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"supplier",
+								"inactive",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ALL Active Suppliers",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/supplier/all_active",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"supplier",
+								"all_active"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Supplies",
+			"item": [
+				{
+					"name": "NEW Supply",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"servilletas\",\r\n    \"cost\": 855.50,\r\n    \"promotion\":0,\r\n    \"discount\":0,\r\n    \"supplier\":\"Todo papel\",\r\n    \"suppliesType\":\"papelería\"\r\n    \r\n}\r\n/*\r\n{\r\n    \"name\": \"bandejas\",\r\n    \"cost\": 855.50,\r\n    \"promotion\":0,\r\n    \"discount\":0,\r\n    \"supplier\":\"Super Envases\",\r\n    \"suppliesType\":\"cajas\"\r\n    \r\n}\r\n*/",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/supply/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"supply",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE Supply",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"servilletas\",\r\n    \"cost\": 200,\r\n    \"promotion\":0,\r\n    \"discount\":0,\r\n    \"supplier\":\"Todo papel\",\r\n    \"suppliesType\":\"papelería\"\r\n    \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/supply/update/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"supply",
+								"update",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ALL Supplies",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/supply/all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"supply",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ID Supply",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/supply/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"supply",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Active",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/supply/active/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"supply",
+								"active",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Inactive",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/supply/inactive/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"supply",
+								"inactive",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ALL Active Supply",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/supply/all_active",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"supply",
+								"all_active"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Supplies Type",
+			"item": [
+				{
+					"name": "NEW SupplyType",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"type\": \"manteles\",\r\n    \"detail\": \"servicio de lavandería de manteles\",\r\n    \"unit\":\"unidad\"\r\n}\r\n/*\r\n{\r\n    \"type\": \"térmicos\",\r\n    \"detail\": \"envases térmicos\",\r\n    \"unit\":\"\"\r\n}\r\n{\r\n    \"type\": \"cajas\",\r\n    \"detail\": \"cajas de cartóns\",\r\n    \"unit\":\"unidad\"\r\n}\r\n{\r\n    \"type\": \"papelería\",\r\n    \"detail\": \"servilletas y papeles varios\",\r\n    \"unit\":\"kg\"\r\n}\r\n*/",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/supplyType/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"supplyType",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE SupplyType",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"type\": \"cajas\",\r\n    \"detail\": \"cajas de cartón\",\r\n    \"unit\":\"unidad\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/supplyType/update/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"supplyType",
+								"update",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ALL SupplyType",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/supplyType/all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"supplyType",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ID SupplyType",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/supplyType/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"supplyType",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Active",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/supplyType/active/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"supplyType",
+								"active",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Inactive",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/supplyType/inactive/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"supplyType",
+								"inactive",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ALL Active SupplyType",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/supplyType/all_active",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"supplyType",
+								"all_active"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Services",
+			"item": [
+				{
+					"name": "NEW Service",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"type\": \"mesa\",\r\n    \"detail\": \"Servicio de mesa con panera\",\r\n    \"cost\": 500,\r\n    \"promotion\": 1,\r\n    \"discount\":1,\r\n    \"validity\":\"2023-12-31\"\r\n    \r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/tableservice/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"tableservice",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE Service",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"type\": \"mesa\",\r\n    \"detail\": \"Servicio de mesa con panera + cubiertos\",\r\n    \"cost\": 500,\r\n    \"promotion\": 1,\r\n    \"discount\":1,\r\n    \"validity\":\"2023-12-31\"\r\n    \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/tableservice/update/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"tableservice",
+								"update",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ALL Services",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/tableservice/all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"tableservice",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ID Service",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/tableservice/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"tableservice",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Active",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/tableservice/active/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"tableservice",
+								"active",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Inactive",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/tableservice/inactive/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"tableservice",
+								"inactive",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ALL Active Services",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/tableservice/all_active",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"tableservice",
+								"all_active"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Units",
+			"item": [
+				{
+					"name": "NEW Units",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"unit\": \"g\",\r\n    \"detail\": \"gramos\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/unit/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"unit",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE Unit",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"unit\": \"g\",\r\n    \"detail\": \"gramos\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/unit/update/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"unit",
+								"update",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ALL Units",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/unit/all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"unit",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ID Unit",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/unit/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"unit",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Active",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/unit/active/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"unit",
+								"active",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Inactive",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/unit/inactive/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"unit",
+								"inactive",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ALL Active Unit",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/unit/all_active",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"unit",
+								"all_active"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

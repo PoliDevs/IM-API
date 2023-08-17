@@ -111,8 +111,6 @@ Commerce.hasMany(Pos);
 Pos.belongsTo(Commerce);
 MenuType.hasMany(Menu);
 Menu.belongsTo(MenuType);
-Dish.hasMany(Menu);
-Menu.belongsTo(Dish);
 TableService.hasMany(Menu);
 Menu.belongsTo(TableService);
 Menu.hasMany(Order);

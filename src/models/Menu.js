@@ -35,6 +35,10 @@ module.exports = (sequelize) => {
       photo: {
         type: DataTypes.STRING,
       },
+      dishes: {
+        type: DataTypes.JSON,
+        allowNull: true,
+      },
       active: {
         type: DataTypes.BOOLEAN,
         defaultValue: true,
