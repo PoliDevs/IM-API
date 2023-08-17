@@ -1,13 +1,11 @@
-const { Router } = require("express");
-
-const paymentRouter = require("./payment.js");
-
-const cors = require("cors");
+const { Router } = require('express');
+const cors = require('cors');
+const paymentRouter = require('./payment');
 
 const router = Router();
 
 router.use(cors());
 
-router.use("/", paymentRouter);
+router.use('/', paymentRouter);
 
 module.exports = router;
