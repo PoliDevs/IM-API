@@ -5,10 +5,10 @@ module.exports = (sequelize) => {
     'order',
     {
       date: {
-        type: DataTypes.DATE,
+        type: DataTypes.STRING,
       },
       hour: {
-        type: DataTypes.DATE,
+        type: DataTypes.STRING,
       },
       status: {
         type: DataTypes.ENUM(
@@ -49,7 +49,7 @@ module.exports = (sequelize) => {
       },
     },
     {
-      timestamps: false,
+      timestamps: true,
       tableName: 'orders',
     },
   );
