@@ -1,15 +1,13 @@
-const { Router } = require("express");
-
-const franchiseRouter = require("./franchise.js");
-const franchiseTypeRouter = require("./franchiseType.js");
-
-const cors = require("cors");
+const { Router } = require('express');
+const cors = require('cors');
+const franchiseRouter = require('./franchise');
+const franchiseTypeRouter = require('./franchiseType');
 
 const router = Router();
 
 router.use(cors());
 
-router.use("/", franchiseRouter);
-router.use("/", franchiseTypeRouter);
+router.use('/', franchiseRouter);
+router.use('/', franchiseTypeRouter);
 
 module.exports = router;
