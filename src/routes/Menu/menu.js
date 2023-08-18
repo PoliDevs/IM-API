@@ -15,7 +15,7 @@ menu.use(
   }),
 );
 
-menu.post('/', async (req, res) => {
+menu.post('/menu', async (req, res) => {
   try {
     const {
       date,
@@ -189,7 +189,7 @@ menu.get('/all_active', async (req, res) => {
   }
 });
 
-menu.get('/:id', async (req, res) => {
+menu.get('/detail/:id', async (req, res) => {
   try {
     const { id } = req.params;
     if (id && Number.isInteger(parseInt(id, 10))) {
@@ -358,6 +358,10 @@ menu.put('/inactive/:id', async (req, res) => {
   } catch (error) {
     res.status(400).send(error);
   }
+});
+
+menu.all('*', async (req, res) => {
+  res.status(404).send('Ruta no encontrada');
 });
 
 module.exports = menu;

@@ -11,7 +11,7 @@ business.use(
   }),
 );
 
-business.post('/', async (req, res) => {
+business.post('/business', async (req, res) => {
   try {
     const {
       name, ssn, detail, email, businessType,
@@ -88,7 +88,7 @@ business.get('/all_active', async (req, res) => {
   }
 });
 
-business.get('/:id', async (req, res) => {
+business.get('/:detail/:id', async (req, res) => {
   try {
     const { id } = req.params;
     if (id && Number.isInteger(parseInt(id, 10))) {
@@ -219,6 +219,10 @@ business.put('/inactive/:id', async (req, res) => {
   } catch (error) {
     res.status(400).send(error);
   }
+});
+
+business.all('*', async (req, res) => {
+  res.status(404).send('Ruta no encontrada');
 });
 
 module.exports = business;

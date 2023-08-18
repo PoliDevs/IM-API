@@ -16,7 +16,7 @@ product.use(
   }),
 );
 
-product.post('/', async (req, res) => {
+product.post('/product', async (req, res) => {
   try {
     const {
       name,
@@ -131,7 +131,7 @@ product.get('/all_active', async (req, res) => {
   }
 });
 
-product.get('/:id', async (req, res) => {
+product.get('/detail/:id', async (req, res) => {
   try {
     const { id } = req.params;
     if (id && Number.isInteger(parseInt(id, 10))) {
@@ -254,6 +254,10 @@ product.put('/inactive/:id', async (req, res) => {
   } catch (error) {
     res.status(400).send(error);
   }
+});
+
+product.all('*', async (req, res) => {
+  res.status(404).send('Ruta no encontrada');
 });
 
 module.exports = product;

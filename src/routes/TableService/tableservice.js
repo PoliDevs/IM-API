@@ -11,7 +11,7 @@ tableservice.use(
   }),
 );
 
-tableservice.post('/', async (req, res) => {
+tableservice.post('/service', async (req, res) => {
   try {
     const {
       type, detail, cost, promotion, discount, validity,
@@ -73,7 +73,7 @@ tableservice.get('/all_active', async (req, res) => {
   }
 });
 
-tableservice.get('/:id', async (req, res) => {
+tableservice.get('/detail/:id', async (req, res) => {
   try {
     const { id } = req.params;
     if (id && Number.isInteger(parseInt(id, 10))) {
@@ -157,6 +157,10 @@ tableservice.put('/inactive/:id', async (req, res) => {
   } catch (error) {
     res.status(400).send(error);
   }
+});
+
+tableservice.all('*', async (req, res) => {
+  res.status(404).send('Ruta no encontrada');
 });
 
 module.exports = tableservice;

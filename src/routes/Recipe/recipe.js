@@ -13,7 +13,7 @@ recipe.use(
   }),
 );
 
-recipe.post('/newrecipe', async (req, res) => {
+recipe.post('/recipe', async (req, res) => {
   try {
     const {
       name,
@@ -163,7 +163,7 @@ recipe.get('/all_active', async (req, res) => {
   }
 });
 
-recipe.get('/:id', async (req, res) => {
+recipe.get('/detail/:id', async (req, res) => {
   try {
     const { id } = req.params;
     if (id && Number.isInteger(parseInt(id, 10))) {
@@ -254,6 +254,10 @@ recipe.put('/inactive/:id', async (req, res) => {
   } catch (error) {
     res.status(400).send(error);
   }
+});
+
+recipe.all('*', async (req, res) => {
+  res.status(404).send('Ruta no encontrada');
 });
 
 module.exports = recipe;

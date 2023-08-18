@@ -11,7 +11,7 @@ supplier.use(
   }),
 );
 
-supplier.post('/', async (req, res) => {
+supplier.post('/supplier', async (req, res) => {
   try {
     const {
       item,
@@ -78,7 +78,7 @@ supplier.get('/all_active', async (req, res) => {
   }
 });
 
-supplier.get('/:id', async (req, res) => {
+supplier.get('/detail/:id', async (req, res) => {
   try {
     const { id } = req.params;
     if (id && Number.isInteger(parseInt(id, 10))) {
@@ -167,6 +167,10 @@ supplier.put('/inactive/:id', async (req, res) => {
   } catch (error) {
     res.status(400).send(error);
   }
+});
+
+supplier.all('*', async (req, res) => {
+  res.status(404).send('Ruta no encontrada');
 });
 
 module.exports = supplier;

@@ -11,7 +11,7 @@ commerceFacts.use(
   }),
 );
 
-commerceFacts.post('/', async (req, res) => {
+commerceFacts.post('/fact', async (req, res) => {
   try {
     const { type, detail } = req.body;
     // eslint-disable-next-line no-unused-vars
@@ -67,7 +67,7 @@ commerceFacts.get('/all_active', async (req, res) => {
   }
 });
 
-commerceFacts.get('/:id', async (req, res) => {
+commerceFacts.get('/detail/:id', async (req, res) => {
   try {
     const { id } = req.params;
     if (id && Number.isInteger(parseInt(id, 10))) {
@@ -145,6 +145,10 @@ commerceFacts.put('/inactive/:id', async (req, res) => {
   } catch (error) {
     res.status(400).send(error);
   }
+});
+
+commerceFacts.all('*', async (req, res) => {
+  res.status(404).send('Ruta no encontrada');
 });
 
 module.exports = commerceFacts;

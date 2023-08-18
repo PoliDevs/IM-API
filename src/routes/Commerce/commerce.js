@@ -13,7 +13,7 @@ commerces.use(
   }),
 );
 
-commerces.post('/', async (req, res) => {
+commerces.post('/commerce', async (req, res) => {
   try {
     const {
       name, neighborhood, address, workSchedule, email, phono, franchiseName, commerceFact, account,
@@ -130,7 +130,7 @@ commerces.get('/all_active', async (req, res) => {
   }
 });
 
-commerces.get('/:id', async (req, res) => {
+commerces.get('/detail/:id', async (req, res) => {
   try {
     const { id } = req.params;
     if (id && Number.isInteger(parseInt(id, 10))) {
@@ -311,6 +311,10 @@ commerces.put('/close/:id', async (req, res) => {
   } catch (error) {
     res.status(400).send(error);
   }
+});
+
+commerces.all('*', async (req, res) => {
+  res.status(404).send('Ruta no encontrada');
 });
 
 module.exports = commerces;

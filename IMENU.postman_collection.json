@@ -8,7 +8,303 @@
 	"item": [
 		{
 			"name": "Accounts",
-			"item": []
+			"item": [
+				{
+					"name": "NEW Account",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Viviana Chimenti\",\r\n    \"password\": \"1234\",\r\n    \"phone\": \"222222\",\r\n    \"address\": \"san nicolas 3257\",\r\n    \"birthDate\":\"1981-02-27\",\r\n    \"email\": \"vivichimenti@gmail.com\",\r\n    \"googleUser\": \"\",\r\n    \"facebookUser\": \"\",\r\n    \"twitterUser\": \"\"\r\n}\r\n/*\r\n{\r\n    \"name\": \"Ernesto Machado\",\r\n    \"password\": \"1234\",\r\n    \"phone\": \"1141658088\",\r\n    \"address\": \"ecuador 3531\",\r\n    \"birthDate\":\"1967-10-24\",\r\n    \"email\": \"luisfactum@gmail.com\",\r\n    \"googleUser\": \"\",\r\n    \"facebookUser\": \"\",\r\n    \"twitterUser\": \"\"\r\n}\r\n*/\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/account/account",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"account",
+								"account"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE Account",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Ernesto Machado\",\r\n    \"password\": \"1234\",\r\n    \"phone\": \"1141658088\",\r\n    \"address\": \"ecuador 3531\",\r\n    \"birthDate\":\"1967-10-24\",\r\n    \"email\": \"luisfactum@gmail.com\",\r\n    \"googleUser\": \"\",\r\n    \"facebookUser\": \"\",\r\n    \"twitterUser\": \"\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/account/update/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"account",
+								"update",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ALL Accounts",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/account/all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"account",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ID Account",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/account/detail/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"account",
+								"detail",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Validated Email",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/account/validated/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"account",
+								"validated",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "In-validated Email",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/account/invalidated/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"account",
+								"invalidated",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Active",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/account/active/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"account",
+								"active",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Inactive",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/account/inactive/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"account",
+								"inactive",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Banned",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/account/banned/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"account",
+								"banned",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ALL Accounts Active",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/account/all_Active",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"account",
+								"all_Active"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ALL Accounts No Active",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/account/all_NoActive",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"account",
+								"all_NoActive"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ALL Accounts Banned",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/account/all_banned",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"account",
+								"all_banned"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE Change Email",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"emailNew\": \"123luisfactum@gmail.com\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/account/emailChange/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"account",
+								"emailChange",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		},
 		{
 			"name": "Additionals",
@@ -20,7 +316,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"mostaza\",\r\n    \"amount\": 1,\r\n    \"cost\":0,\r\n    \"promotion\":1,\r\n    \"discount\":0,\r\n    \"photo\":\"\"\r\n    \r\n}\r\n/*\r\n{\r\n    \"name\": \"mayonesa\",\r\n    \"amount\": 2,\r\n    \"cost\":0,\r\n    \"promotion\":1,\r\n    \"discount\":0,\r\n    \"photo\":\"\"\r\n    \r\n}\r\n*/",
+							"raw": "{\r\n    \"name\": \"sal\",\r\n    \"amount\": 1,\r\n    \"cost\":0,\r\n    \"promotion\":1,\r\n    \"discount\":0,\r\n    \"photo\":\"\"\r\n    \r\n}\r\n/*\r\n{\r\n    \"name\": \"mayonesa\",\r\n    \"amount\": 2,\r\n    \"cost\":0,\r\n    \"promotion\":1,\r\n    \"discount\":0,\r\n    \"photo\":\"\"\r\n    \r\n}\r\n    \"name\": \"mostaza\",\r\n    \"amount\": 1,\r\n    \"cost\":0,\r\n    \"promotion\":1,\r\n    \"discount\":0,\r\n    \"photo\":\"\"\r\n    \r\n}\r\n*/",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -28,7 +324,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3001/additional/",
+							"raw": "http://localhost:3001/additional/additional",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -36,7 +332,7 @@
 							"port": "3001",
 							"path": [
 								"additional",
-								""
+								"additional"
 							]
 						}
 					},
@@ -98,7 +394,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3001/additional/2",
+							"raw": "http://localhost:3001/additional/detail/2",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -106,6 +402,7 @@
 							"port": "3001",
 							"path": [
 								"additional",
+								"detail",
 								"2"
 							]
 						}
@@ -186,7 +483,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"account\": \"Visa\",\r\n    \"number\":\"897777\",\r\n    \"detail\": \"Pago con tarjeta de crédito\"\r\n    \r\n}\r\n/*\r\n{\r\n    \"account\": \"Mercado Pago\",\r\n    \"number\":\"45879995656\",\r\n    \"detail\": \"Cuenta para hacer pagos\"\r\n    \r\n}\r\n*/",
+							"raw": "{\r\n    \"account\": \"American Express\",\r\n    \"number\":\"897777\",\r\n    \"detail\": \"Pago con tarjeta de crédito\"\r\n    \r\n}\r\n/*\r\n{\r\n    \"account\": \"Mercado Pago\",\r\n    \"number\":\"45879995656\",\r\n    \"detail\": \"Cuenta para hacer pagos\"\r\n    \r\n}\r\n{\r\n    \"account\": \"Visa\",\r\n    \"number\":\"897777\",\r\n    \"detail\": \"Pago con tarjeta de crédito\"\r\n    \r\n}\r\n*/",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -194,7 +491,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3001/bank/",
+							"raw": "http://localhost:3001/bank/bank",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -202,7 +499,7 @@
 							"port": "3001",
 							"path": [
 								"bank",
-								""
+								"bank"
 							]
 						}
 					},
@@ -264,7 +561,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3001/bank/2",
+							"raw": "http://localhost:3001/bank/detail/2",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -272,6 +569,7 @@
 							"port": "3001",
 							"path": [
 								"bank",
+								"detail",
 								"2"
 							]
 						}
@@ -352,7 +650,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "/*{\r\n    \"name\": \"Lucho Burger\",\r\n    \"ssn\": \"45787\",\r\n    \"detail\": \"Hamburguesas de carne vacuna\",\r\n    \"email\": \"luisfactum@gmail.com\",\r\n    \"businessType\":\"burger\"\r\n    \r\n}*/\r\n/*\r\n{\r\n    \"name\": \"super paty\",\r\n    \"ssn\": \"555555\",\r\n    \"detail\": \"Super Pattys\",\r\n    \"email\": \"luisglogista@gmail.com\",\r\n    \"businessType\":\"burger\"   \r\n}\r\n*/\r\n\r\n{\r\n    \"name\": \"perros calientes\",\r\n    \"ssn\": \"4589658700\",\r\n    \"detail\": \"Los mejores panchos del sur\",\r\n    \"email\": \"luisglogista@gmail.com\",\r\n    \"businessType\":\"panchería\"\r\n    \r\n}\r\n",
+							"raw": "/*{\r\n    \"name\": \"Lucho Burger\",\r\n    \"ssn\": \"45787\",\r\n    \"detail\": \"Hamburguesas de carne vacuna\",\r\n    \"email\": \"luisfactum@gmail.com\",\r\n    \"businessType\":\"burger\"\r\n    \r\n}*/\r\n/*\r\n{\r\n    \"name\": \"super paty\",\r\n    \"ssn\": \"555555\",\r\n    \"detail\": \"Super Pattys\",\r\n    \"email\": \"luisglogista@gmail.com\",\r\n    \"businessType\":\"burger\"   \r\n}\r\n{\r\n    \"name\": \"perros calientes\",\r\n    \"ssn\": \"4589658700\",\r\n    \"detail\": \"Los mejores panchos del sur\",\r\n    \"email\": \"luisglogista@gmail.com\",\r\n    \"businessType\":\"panchería\"\r\n    \r\n}\r\n*/\r\n\r\n{\r\n    \"name\": \"La Pizza\",\r\n    \"ssn\": \"4545454545\",\r\n    \"detail\": \"Piza a la piedra\",\r\n    \"email\": \"luisglogista@gmail.com\",\r\n    \"businessType\":\"pizzas\"\r\n    \r\n}\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -360,7 +658,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3001/business/",
+							"raw": "http://localhost:3001/business/business",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -368,7 +666,7 @@
 							"port": "3001",
 							"path": [
 								"business",
-								""
+								"business"
 							]
 						}
 					},
@@ -430,7 +728,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3001/business/2",
+							"raw": "http://localhost:3001/business/detail/2",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -438,6 +736,7 @@
 							"port": "3001",
 							"path": [
 								"business",
+								"detail",
 								"2"
 							]
 						}
@@ -560,7 +859,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "/*\r\n{\r\n    \"type\": \"Burger\",\r\n    \"detail\": \"Hamburguesas\"\r\n    \r\n}\r\n*/\r\n{\r\n    \"type\": \"Panchería\",\r\n    \"detail\": \"Hot Dogs\"\r\n    \r\n}",
+							"raw": "/*\r\n{\r\n    \"type\": \"Burger\",\r\n    \"detail\": \"Hamburguesas\"\r\n    \r\n}\r\n    \"type\": \"Panchería\",\r\n    \"detail\": \"Hot Dogs\"\r\n    \r\n}\r\n*/\r\n{\r\n    \"type\": \"Pizzas\",\r\n    \"detail\": \"Pizzería\"\r\n    \r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -568,7 +867,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3001/businessType/",
+							"raw": "http://localhost:3001/businessType/businessType",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -576,7 +875,7 @@
 							"port": "3001",
 							"path": [
 								"businessType",
-								""
+								"businessType"
 							]
 						}
 					},
@@ -638,7 +937,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3001/businessType/3",
+							"raw": "http://localhost:3001/businessType/detail/3",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -646,6 +945,7 @@
 							"port": "3001",
 							"path": [
 								"businessType",
+								"detail",
 								"3"
 							]
 						}
@@ -726,7 +1026,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "/*\r\n{\r\n    \"category\": \"Pastas\",\r\n    \"detail\": \"Comidas de pastas\"\r\n    \r\n}\r\n*/\r\n\r\n{\r\n    \"category\": \"Minutas\",\r\n    \"detail\": \"Comidas de minutas\"\r\n    \r\n}\r\n",
+							"raw": "/*\r\n{\r\n    \"category\": \"Pastas\",\r\n    \"detail\": \"Comidas de pastas\"\r\n    \r\n}\r\n{\r\n    \"category\": \"Minutas\",\r\n    \"detail\": \"Comidas de minutas\"\r\n    \r\n}\r\n*/\r\n\r\n{\r\n    \"category\": \"Postres\",\r\n    \"detail\": \"Postres\"\r\n}\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -734,7 +1034,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3001/category/",
+							"raw": "http://localhost:3001/category/category",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -742,7 +1042,7 @@
 							"port": "3001",
 							"path": [
 								"category",
-								""
+								"category"
 							]
 						}
 					},
@@ -804,7 +1104,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3001/category/2",
+							"raw": "http://localhost:3001/category/detail/2",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -812,6 +1112,7 @@
 							"port": "3001",
 							"path": [
 								"category",
+								"detail",
 								"2"
 							]
 						}
@@ -892,7 +1193,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"CP Luisito\",\r\n    \"neighborhood\": \"Florencio Varela\",\r\n    \"address\": \"Av Carabelas 1000\",\r\n    \"workSchedule\": \"12 a 24\",\r\n    \"email\":\"luisglogista@gmail.com\",\r\n    \"phono\":\"01142552154\",\r\n    \"franchiseName\":\"\",\r\n    \"commerceFact\":\"celíaco\",\r\n    \"account\":\"\"\r\n    \r\n}\r\n",
+							"raw": "{\r\n    \"name\": \"la tablita\",\r\n    \"neighborhood\": \"Belgrano\",\r\n    \"address\": \"Av Juramento 150\",\r\n    \"workSchedule\": \"12 a 24\",\r\n    \"email\":\"luisfactum@gmail.com\",\r\n    \"phono\":\"01142552154\",\r\n    \"franchiseName\":\"\",\r\n    \"commerceFact\":\"\",\r\n    \"account\":\"\"\r\n    \r\n}\r\n/*\r\n{\r\n    \"name\": \"CP Luisito\",\r\n    \"neighborhood\": \"Florencio Varela\",\r\n    \"address\": \"Av Carabelas 1000\",\r\n    \"workSchedule\": \"12 a 24\",\r\n    \"email\":\"luisglogista@gmail.com\",\r\n    \"phono\":\"01142552154\",\r\n    \"franchiseName\":\"\",\r\n    \"commerceFact\":\"celíaco\",\r\n    \"account\":\"\"\r\n    \r\n}\r\n*/\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -900,7 +1201,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3001/commerce/",
+							"raw": "http://localhost:3001/commerce/commerce",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -908,7 +1209,7 @@
 							"port": "3001",
 							"path": [
 								"commerce",
-								""
+								"commerce"
 							]
 						}
 					},
@@ -990,7 +1291,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3001/commerce/1",
+							"raw": "http://localhost:3001/commerce/detail/1",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -998,6 +1299,7 @@
 							"port": "3001",
 							"path": [
 								"commerce",
+								"detail",
 								"1"
 							]
 						}
@@ -1130,7 +1432,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"type\": \"celíaco\",\r\n    \"detail\": \"Comidas sin glutten\"\r\n    \r\n}\r\n/*\r\n{\r\n    \"type\": \"vegano\",\r\n    \"detail\": \"Menu vegano\"\r\n    \r\n}\r\n*/",
+							"raw": "{\r\n    \"type\": \"diabético\",\r\n    \"detail\": \"Bajo en azucar\"\r\n    \r\n}\r\n/*\r\n{\r\n    \"type\": \"vegano\",\r\n    \"detail\": \"Menu vegano\"\r\n    \r\n}\r\n{\r\n    \"type\": \"celíaco\",\r\n    \"detail\": \"Comidas sin glutten\"\r\n    \r\n\r\n*/",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1138,14 +1440,15 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3001/commerceFacts",
+							"raw": "http://localhost:3001/commerceFacts/fact",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "3001",
 							"path": [
-								"commerceFacts"
+								"commerceFacts",
+								"fact"
 							]
 						}
 					},
@@ -1207,7 +1510,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3001/commerceFacts/1",
+							"raw": "http://localhost:3001/commerceFacts/detail/1",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1215,6 +1518,7 @@
 							"port": "3001",
 							"path": [
 								"commerceFacts",
+								"detail",
 								"1"
 							]
 						}
@@ -1295,7 +1599,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"fritas\",\r\n    \"description\": \"porción de fritas\",\r\n    \"photo\": \"\",\r\n    \"cost\": 800,\r\n    \"promotion\": 0,\r\n    \"discount\": 0,\r\n    \"estimatedTime\": 10,\r\n    \"type\": \"libre\",\r\n    \"additional\": \"\",\r\n    \"supply\": \"\",\r\n    \"recipe\": \"fritas\"\r\n    \r\n}\r\n",
+							"raw": "{\r\n    \"name\": \"ensalada lechuga y tomate\",\r\n    \"description\": \"lechuga y tomate\",\r\n    \"photo\": \"\",\r\n    \"cost\": 700,\r\n    \"promotion\": 0,\r\n    \"discount\": 0,\r\n    \"estimatedTime\": 10,\r\n    \"type\": \"libre\",\r\n    \"additional\": \"\",\r\n    \"supply\": \"\",\r\n    \"recipe\": \"ensalada\"\r\n    \r\n}\r\n/*\r\n{\r\n    \"name\": \"fritas\",\r\n    \"description\": \"porción de fritas\",\r\n    \"photo\": \"\",\r\n    \"cost\": 800,\r\n    \"promotion\": 0,\r\n    \"discount\": 0,\r\n    \"estimatedTime\": 10,\r\n    \"type\": \"libre\",\r\n    \"additional\": \"\",\r\n    \"supply\": \"\",\r\n    \"recipe\": \"fritas\"\r\n    \r\n}\r\n*/\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1303,7 +1607,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3001/dish/",
+							"raw": "http://localhost:3001/dish/dish",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1311,7 +1615,7 @@
 							"port": "3001",
 							"path": [
 								"dish",
-								""
+								"dish"
 							]
 						}
 					},
@@ -1373,7 +1677,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3001/dish/2",
+							"raw": "http://localhost:3001/dish/detail/2",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1381,6 +1685,7 @@
 							"port": "3001",
 							"path": [
 								"dish",
+								"detail",
 								"2"
 							]
 						}
@@ -1461,7 +1766,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"type\": \"libre\",\r\n    \"detail\": \"no es apto para todos\",\r\n    \"photo\":\"\"\r\n    \r\n}\r\n/*\r\n{\r\n    \"type\": \"vegano\",\r\n    \"detail\": \"Sin carne\",\r\n    \"photo\":\"\"\r\n    \r\n}\r\n{\r\n    \"type\": \"celíaco\",\r\n    \"detail\": \"Apto para celíaco\",\r\n    \"photo\":\"\"\r\n    \r\n}\r\n*/",
+							"raw": "{\r\n    \"type\": \"diabético\",\r\n    \"detail\": \"apto para diabético\",\r\n    \"photo\":\"\"\r\n    \r\n}\r\n/*\r\n{\r\n    \"type\": \"vegano\",\r\n    \"detail\": \"Sin carne\",\r\n    \"photo\":\"\"\r\n    \r\n}\r\n{\r\n    \"type\": \"celíaco\",\r\n    \"detail\": \"Apto para celíaco\",\r\n    \"photo\":\"\"\r\n    \r\n}\r\n{\r\n    \"type\": \"libre\",\r\n    \"detail\": \"no es apto para todos\",\r\n    \"photo\":\"\"\r\n    \r\n}\r\n*/",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1469,7 +1774,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3001/dishType/",
+							"raw": "http://localhost:3001/dishType/type",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1477,7 +1782,7 @@
 							"port": "3001",
 							"path": [
 								"dishType",
-								""
+								"type"
 							]
 						}
 					},
@@ -1539,7 +1844,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3001/dishType/2",
+							"raw": "http://localhost:3001/dishType/detail/2",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1547,6 +1852,7 @@
 							"port": "3001",
 							"path": [
 								"dishType",
+								"detail",
 								"2"
 							]
 						}
@@ -1627,7 +1933,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"firstName\": \"luis\",\r\n    \"lastName\": \"gimenez\",\r\n    \"password\": \"1111\",\r\n    \"address\": \"ecuador 3531\",\r\n    \"phone\":\"4879-8956\",\r\n    \"birthDate\":\"1967-10-24\",\r\n    \"start\":\"2023-07-27\",\r\n    \"document\":\"2154874\",\r\n    \"email\":\"luisfactum@gmail.com\",\r\n    \"googleUser\":\"\",\r\n    \"facebookUser\":\"\",\r\n    \"twitterUser\":\"\",\r\n    \"photo\":\"\",\r\n    \"employeeType\":\"mozo\",\r\n    \"commerce\":\"\"\r\n    \r\n}",
+							"raw": "{\r\n    \"firstName\": \"mario\",\r\n    \"lastName\": \"garcia\",\r\n    \"password\": \"22222\",\r\n    \"address\": \"colombia 2323\",\r\n    \"phone\":\"4444-3333\",\r\n    \"birthDate\":\"2000-04-15\",\r\n    \"start\":\"2023-07-27\",\r\n    \"document\":\"34343434\",\r\n    \"email\":\"luisglogista@gmail.com\",\r\n    \"googleUser\":\"\",\r\n    \"facebookUser\":\"\",\r\n    \"twitterUser\":\"\",\r\n    \"photo\":\"\",\r\n    \"employeeType\":\"cocinero\",\r\n    \"commerce\":\"\"\r\n    \r\n}\r\n/*{\r\n    \"firstName\": \"luis\",\r\n    \"lastName\": \"gimenez\",\r\n    \"password\": \"1111\",\r\n    \"address\": \"ecuador 3531\",\r\n    \"phone\":\"4879-8956\",\r\n    \"birthDate\":\"1967-10-24\",\r\n    \"start\":\"2023-07-27\",\r\n    \"document\":\"2154874\",\r\n    \"email\":\"luisfactum@gmail.com\",\r\n    \"googleUser\":\"\",\r\n    \"facebookUser\":\"\",\r\n    \"twitterUser\":\"\",\r\n    \"photo\":\"\",\r\n    \"employeeType\":\"mozo\",\r\n    \"commerce\":\"\"\r\n    \r\n}\r\n{\r\n    \"firstName\": \"viviana\",\r\n    \"lastName\": \"chimenti\",\r\n    \"password\": \"1111\",\r\n    \"address\": \"ecuador 3531\",\r\n    \"phone\":\"4444-8956\",\r\n    \"birthDate\":\"1981-02-27\",\r\n    \"start\":\"2023-07-27\",\r\n    \"document\":\"2154874\",\r\n    \"email\":\"vivichimenti@gmail.com\",\r\n    \"googleUser\":\"\",\r\n    \"facebookUser\":\"\",\r\n    \"twitterUser\":\"\",\r\n    \"photo\":\"\",\r\n    \"employeeType\":\"mozo\",\r\n    \"commerce\":\"\"\r\n    \r\n}\r\n*/",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1635,7 +1941,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3001/employee/",
+							"raw": "http://localhost:3001/employee/employee",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1643,7 +1949,7 @@
 							"port": "3001",
 							"path": [
 								"employee",
-								""
+								"employee"
 							]
 						}
 					},
@@ -1705,7 +2011,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3001/employee/2",
+							"raw": "http://localhost:3001/employee/detail/2",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1713,6 +2019,7 @@
 							"port": "3001",
 							"path": [
 								"employee",
+								"detail",
 								"2"
 							]
 						}
@@ -1835,7 +2142,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"type\": \"mozo\",\r\n    \"detail\": \"Atención en mesa\"\r\n    \r\n}\r\n/*\r\n{\r\n    \"type\": \"maitre\",\r\n    \"detail\": \"Maitre\"\r\n    \r\n}\r\n*/",
+							"raw": "{\r\n    \"type\": \"cocinero\",\r\n    \"detail\": \"Cocinero\"\r\n    \r\n}\r\n/*\r\n{\r\n    \"type\": \"maitre\",\r\n    \"detail\": \"Maitre\"\r\n    \r\n}\r\n{\r\n    \"type\": \"mozo\",\r\n    \"detail\": \"Atención en mesa\"\r\n    \r\n}\r\n*/",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1843,7 +2150,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3001/employeeType/",
+							"raw": "http://localhost:3001/employeeType/type",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1851,7 +2158,7 @@
 							"port": "3001",
 							"path": [
 								"employeeType",
-								""
+								"type"
 							]
 						}
 					},
@@ -1913,7 +2220,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3001/employeeType/3",
+							"raw": "http://localhost:3001/employeeType/detail/3",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1921,6 +2228,7 @@
 							"port": "3001",
 							"path": [
 								"employeeType",
+								"detail",
 								"3"
 							]
 						}
@@ -2001,7 +2309,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"campo bravo\",\r\n    \"detail\": \"cadena sin gluten\",\r\n    \"email\": \"luisfactum@gmail.com\",\r\n    \"franchiseType\":\"cadena\",\r\n    \"business\":\"Lucho-Burger\"\r\n    \r\n}",
+							"raw": "{\r\n    \"name\": \"El pollo loco\",\r\n    \"detail\": \"parrillas\",\r\n    \"email\": \"luisfactum@gmail.com\",\r\n    \"franchiseType\":\"parrillas\",\r\n    \"business\":\"\"\r\n    \r\n}\r\n/*\r\n{\r\n    \"name\": \"campo bravo\",\r\n    \"detail\": \"cadena sin gluten\",\r\n    \"email\": \"luisfactum@gmail.com\",\r\n    \"franchiseType\":\"cadena\",\r\n    \"business\":\"Lucho-Burger\"\r\n    \r\n}\r\n*/",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -2009,7 +2317,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3001/franchise/",
+							"raw": "http://localhost:3001/franchise/franchise",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -2017,7 +2325,7 @@
 							"port": "3001",
 							"path": [
 								"franchise",
-								""
+								"franchise"
 							]
 						}
 					},
@@ -2079,7 +2387,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3001/franchise/1",
+							"raw": "http://localhost:3001/franchise/detail/1",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -2087,6 +2395,7 @@
 							"port": "3001",
 							"path": [
 								"franchise",
+								"detail",
 								"1"
 							]
 						}
@@ -2167,7 +2476,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"type\": \"Pizza Hut\",\r\n    \"detail\": \"Local de pizzas y empanadas\"\r\n    \r\n}\r\n/*\r\n{\r\n    \"type\": \"Food Track independiente\",\r\n    \"detail\": \"Carrito único\"\r\n    \r\n}\r\n*/",
+							"raw": "{\r\n    \"type\": \"La Tablita\",\r\n    \"detail\": \"Parrilla\"\r\n    \r\n}\r\n/*\r\n{\r\n    \"type\": \"Food Track independiente\",\r\n    \"detail\": \"Carrito único\"\r\n    \r\n}\r\n{\r\n    \"type\": \"Pizza Hut\",\r\n    \"detail\": \"Local de pizzas y empanadas\"\r\n    \r\n}\r\n*/",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -2175,7 +2484,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3001/franchiseType/",
+							"raw": "http://localhost:3001/franchiseType/type",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -2183,7 +2492,7 @@
 							"port": "3001",
 							"path": [
 								"franchiseType",
-								""
+								"type"
 							]
 						}
 					},
@@ -2196,7 +2505,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"type\": \"local único\",\r\n    \"detail\": \"local independiente\"\r\n\r\n    \r\n}\r\n/*\r\n{\r\n    \"type\": \"cadena\",\r\n    \"detail\": \"cadena de gastronómica\"\r\n\r\n    \r\n}\r\n*/",
+							"raw": "{\r\n    \"type\": \"parrillas\",\r\n    \"detail\": \"comida de parrillas\"\r\n\r\n    \r\n}\r\n/*\r\n{\r\n    \"type\": \"cadena\",\r\n    \"detail\": \"cadena de gastronómica\"\r\n\r\n    \r\n}\r\n*/",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -2204,7 +2513,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3001/franchiseType/update/2",
+							"raw": "http://localhost:3001/franchiseType/update/3",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -2213,7 +2522,7 @@
 							"path": [
 								"franchiseType",
 								"update",
-								"2"
+								"3"
 							]
 						}
 					},
@@ -2245,7 +2554,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3001/franchiseType/1",
+							"raw": "http://localhost:3001/franchiseType/detail/1",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -2253,6 +2562,7 @@
 							"port": "3001",
 							"path": [
 								"franchiseType",
+								"detail",
 								"1"
 							]
 						}
@@ -2341,7 +2651,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3001/menu/",
+							"raw": "http://localhost:3001/menu/menu",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -2349,7 +2659,7 @@
 							"port": "3001",
 							"path": [
 								"menu",
-								""
+								"menu"
 							]
 						}
 					},
@@ -2411,7 +2721,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3001/menu/3",
+							"raw": "http://localhost:3001/menu/detail/3",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -2419,6 +2729,7 @@
 							"port": "3001",
 							"path": [
 								"menu",
+								"detail",
 								"3"
 							]
 						}
@@ -2507,7 +2818,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3001/menuType/",
+							"raw": "http://localhost:3001/menuType/type",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -2515,7 +2826,7 @@
 							"port": "3001",
 							"path": [
 								"menuType",
-								""
+								"type"
 							]
 						}
 					},
@@ -2577,7 +2888,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3001/menuType/1",
+							"raw": "http://localhost:3001/menuType/detail/1",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -2585,6 +2896,7 @@
 							"port": "3001",
 							"path": [
 								"menuType",
+								"detail",
 								"1"
 							]
 						}
@@ -2657,11 +2969,337 @@
 		},
 		{
 			"name": "Orders",
-			"item": []
+			"item": [
+				{
+					"name": "NEW Order",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"date\": \"2023-08-18\",\r\n    \"hour\": \"08:57\",\r\n    \"status\": \"orderPlaced\",\r\n    \"detail\": \"\",\r\n    \"validity\": \"2023-08-18\",\r\n    \"promotion\": 0,\r\n    \"discount\": 0,\r\n    \"surcharge\": 0,\r\n    \"rating\": 5,\r\n    \"feedback\": \"\",\r\n    \"menu\": \"\",\r\n    \"pos\": 1,\r\n    \"employee\": 2,\r\n    \"dish\": \"milanesa\",\r\n    \"account\": 1,\r\n    \"payment\": \"efectivo\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/order/order",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"order",
+								"order"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE Order",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"date\": \"2023-08-17\",\r\n    \"hour\": \"20:27\",\r\n    \"status\": \"orderPlaced\",\r\n    \"detail\": \"que las papas estén bien doradas\",\r\n    \"validity\": \"2023-08-17\",\r\n    \"promotion\": 0,\r\n    \"discount\": 0,\r\n    \"surcharge\": 0,\r\n    \"rating\": 5,\r\n    \"feedback\": \"\",\r\n    \"menu\": \"mila con fritas\",\r\n    \"pos\": 1,\r\n    \"employee\": 2,\r\n    \"dish\": \"\",\r\n    \"account\": 1,\r\n    \"payment\": \"efectivo\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/order/change-status/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"order",
+								"change-status",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ALL Order",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/order/all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"order",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ID Order",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/order/detail/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"order",
+								"detail",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ALL Status Order",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"status\": \"processingOrder\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/order/status",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"order",
+								"status"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE Status Order",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"status\": \"orderPlaced\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/order/change-status/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"order",
+								"change-status",
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		},
 		{
 			"name": "Payments",
-			"item": []
+			"item": [
+				{
+					"name": "NEW Payment",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"type\": \"mercadopago\",\r\n    \"detail\": \"\"\r\n    \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/payment/payment",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"payment",
+								"payment"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE Payment",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"type\": \"tarjeta visa\",\r\n    \"detail\": \"visa\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/payment/update/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"payment",
+								"update",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ALL Payments",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/payment/all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"payment",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ID Payment",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/payment/detail/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"payment",
+								"detail",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Active",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/payment/active/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"payment",
+								"active",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Inactive",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/payment/inactive/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"payment",
+								"inactive",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ALL Active Payment",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/payment/all_active",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"payment",
+								"all_active"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		},
 		{
 			"name": "Pos",
@@ -2673,7 +3311,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"qrCode\": \"https://punctuation-gamma.vercel.app/6\",\r\n    \"posType\": \"mesa\",\r\n    \"commerce\":\"CB Lomas\"\r\n}",
+							"raw": "{\r\n    \"qrCode\": \"https://punctuation-gamma.vercel.app/7\",\r\n    \"posType\": \"mesa\",\r\n    \"commerce\":\"CB Lomas\"\r\n}\r\n/*\r\n{\r\n    \"qrCode\": \"https://punctuation-gamma.vercel.app/6\",\r\n    \"posType\": \"mesa\",\r\n    \"commerce\":\"CB Lomas\"\r\n}\r\n*/",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -2681,7 +3319,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3001/pos/",
+							"raw": "http://localhost:3001/pos/pos",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -2689,7 +3327,7 @@
 							"port": "3001",
 							"path": [
 								"pos",
-								""
+								"pos"
 							]
 						}
 					},
@@ -2751,7 +3389,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3001/pos/3",
+							"raw": "http://localhost:3001/pos/detail/3",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -2759,6 +3397,7 @@
 							"port": "3001",
 							"path": [
 								"pos",
+								"detail",
 								"3"
 							]
 						}
@@ -2867,7 +3506,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3001/posType/",
+							"raw": "http://localhost:3001/posType/type",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -2875,7 +3514,7 @@
 							"port": "3001",
 							"path": [
 								"posType",
-								""
+								"type"
 							]
 						}
 					},
@@ -2937,7 +3576,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3001/posType/3",
+							"raw": "http://localhost:3001/posType/detail/3",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -2945,6 +3584,7 @@
 							"port": "3001",
 							"path": [
 								"posType",
+								"detail",
 								"3"
 							]
 						}
@@ -3025,7 +3665,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"aceite\",\r\n    \"photo\": \"\",\r\n    \"stock\": 20,\r\n    \"pointOrder\": 10,\r\n    \"cost\" : 1800,\r\n    \"allergenType\" : \"\",\r\n    \"careful\" : \"\",\r\n    \"unit\" :\"lt\",\r\n    \"type\" :\"aceite\",\r\n    \"supplier\" :\"chino\"\r\n    \r\n}",
+							"raw": "{\r\n    \"name\": \"leche\",\r\n    \"photo\": \"\",\r\n    \"stock\": 20,\r\n    \"pointOrder\": 10,\r\n    \"cost\" : 900,\r\n    \"allergenType\" : \"\",\r\n    \"careful\" : \"\",\r\n    \"unit\" :\"lt\",\r\n    \"type\" :\"lacteos\",\r\n    \"supplier\" :\"chino\"\r\n    \r\n}\r\n/*\r\n{\r\n    \"name\": \"aceite\",\r\n    \"photo\": \"\",\r\n    \"stock\": 20,\r\n    \"pointOrder\": 10,\r\n    \"cost\" : 1800,\r\n    \"allergenType\" : \"\",\r\n    \"careful\" : \"\",\r\n    \"unit\" :\"lt\",\r\n    \"type\" :\"aceite\",\r\n    \"supplier\" :\"chino\"\r\n    \r\n}\r\n*/",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -3033,7 +3673,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3001/product/",
+							"raw": "http://localhost:3001/product/product",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -3041,7 +3681,7 @@
 							"port": "3001",
 							"path": [
 								"product",
-								""
+								"product"
 							]
 						}
 					},
@@ -3103,7 +3743,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3001/product/1",
+							"raw": "http://localhost:3001/product/detail/1",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -3111,6 +3751,7 @@
 							"port": "3001",
 							"path": [
 								"product",
+								"detail",
 								"1"
 							]
 						}
@@ -3191,7 +3832,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"type\": \"verduras\",\r\n    \"detail\": \"\"\r\n}",
+							"raw": "{\r\n    \"type\": \"lacteos\",\r\n    \"detail\": \"\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -3199,7 +3840,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3001/productType/",
+							"raw": "http://localhost:3001/productType/type",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -3207,7 +3848,7 @@
 							"port": "3001",
 							"path": [
 								"productType",
-								""
+								"type"
 							]
 						}
 					},
@@ -3269,7 +3910,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3001/productType/2",
+							"raw": "http://localhost:3001/productType/detail/2",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -3277,6 +3918,7 @@
 							"port": "3001",
 							"path": [
 								"productType",
+								"detail",
 								"2"
 							]
 						}
@@ -3365,7 +4007,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3001/recipe/newrecipe",
+							"raw": "http://localhost:3001/recipe/recipe",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -3373,7 +4015,7 @@
 							"port": "3001",
 							"path": [
 								"recipe",
-								"newrecipe"
+								"recipe"
 							]
 						}
 					},
@@ -3435,7 +4077,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3001/recipe/1",
+							"raw": "http://localhost:3001/recipe/detail/1",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -3443,6 +4085,7 @@
 							"port": "3001",
 							"path": [
 								"recipe",
+								"detail",
 								"1"
 							]
 						}
@@ -3561,7 +4204,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3001/supplier/",
+							"raw": "http://localhost:3001/supplier/supplier",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -3569,7 +4212,7 @@
 							"port": "3001",
 							"path": [
 								"supplier",
-								""
+								"supplier"
 							]
 						}
 					},
@@ -3631,7 +4274,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3001/supplier/1",
+							"raw": "http://localhost:3001/supplier/detail/1",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -3639,6 +4282,7 @@
 							"port": "3001",
 							"path": [
 								"supplier",
+								"detail",
 								"1"
 							]
 						}
@@ -3719,7 +4363,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"servilletas\",\r\n    \"cost\": 855.50,\r\n    \"promotion\":0,\r\n    \"discount\":0,\r\n    \"supplier\":\"Todo papel\",\r\n    \"suppliesType\":\"papelería\"\r\n    \r\n}\r\n/*\r\n{\r\n    \"name\": \"bandejas\",\r\n    \"cost\": 855.50,\r\n    \"promotion\":0,\r\n    \"discount\":0,\r\n    \"supplier\":\"Super Envases\",\r\n    \"suppliesType\":\"cajas\"\r\n    \r\n}\r\n*/",
+							"raw": "{\r\n    \"name\": \"cucharitas para helado\",\r\n    \"cost\": 300.50,\r\n    \"promotion\":0,\r\n    \"discount\":0,\r\n    \"supplier\":\"Todo papel\",\r\n    \"suppliesType\":\"plásticos\"\r\n    \r\n}\r\n/*\r\n{\r\n    \"name\": \"bandejas\",\r\n    \"cost\": 855.50,\r\n    \"promotion\":0,\r\n    \"discount\":0,\r\n    \"supplier\":\"Super Envases\",\r\n    \"suppliesType\":\"cajas\"\r\n    \r\n}\r\n*/",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -3727,7 +4371,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3001/supply/",
+							"raw": "http://localhost:3001/supply/supply",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -3735,7 +4379,7 @@
 							"port": "3001",
 							"path": [
 								"supply",
-								""
+								"supply"
 							]
 						}
 					},
@@ -3797,7 +4441,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3001/supply/1",
+							"raw": "http://localhost:3001/supply/detail/1",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -3805,6 +4449,7 @@
 							"port": "3001",
 							"path": [
 								"supply",
+								"detail",
 								"1"
 							]
 						}
@@ -3885,7 +4530,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"type\": \"manteles\",\r\n    \"detail\": \"servicio de lavandería de manteles\",\r\n    \"unit\":\"unidad\"\r\n}\r\n/*\r\n{\r\n    \"type\": \"térmicos\",\r\n    \"detail\": \"envases térmicos\",\r\n    \"unit\":\"\"\r\n}\r\n{\r\n    \"type\": \"cajas\",\r\n    \"detail\": \"cajas de cartóns\",\r\n    \"unit\":\"unidad\"\r\n}\r\n{\r\n    \"type\": \"papelería\",\r\n    \"detail\": \"servilletas y papeles varios\",\r\n    \"unit\":\"kg\"\r\n}\r\n*/",
+							"raw": "{\r\n    \"type\": \"cucharas de plástico\",\r\n    \"detail\": \"cucharitas para helados\",\r\n    \"unit\":\"unidad\"\r\n}\r\n/*\r\n{\r\n    \"type\": \"térmicos\",\r\n    \"detail\": \"envases térmicos\",\r\n    \"unit\":\"\"\r\n}\r\n{\r\n    \"type\": \"cajas\",\r\n    \"detail\": \"cajas de cartóns\",\r\n    \"unit\":\"unidad\"\r\n}\r\n{\r\n    \"type\": \"papelería\",\r\n    \"detail\": \"servilletas y papeles varios\",\r\n    \"unit\":\"kg\"\r\n}\r\n{\r\n    \"type\": \"manteles\",\r\n    \"detail\": \"servicio de lavandería de manteles\",\r\n    \"unit\":\"unidad\"\r\n}\r\n*/",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -3893,7 +4538,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3001/supplyType/",
+							"raw": "http://localhost:3001/supplyType/type",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -3901,7 +4546,7 @@
 							"port": "3001",
 							"path": [
 								"supplyType",
-								""
+								"type"
 							]
 						}
 					},
@@ -3963,7 +4608,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3001/supplyType/2",
+							"raw": "http://localhost:3001/supplyType/detail/2",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -3971,6 +4616,7 @@
 							"port": "3001",
 							"path": [
 								"supplyType",
+								"detail",
 								"2"
 							]
 						}
@@ -4051,7 +4697,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"type\": \"mesa\",\r\n    \"detail\": \"Servicio de mesa con panera\",\r\n    \"cost\": 500,\r\n    \"promotion\": 1,\r\n    \"discount\":1,\r\n    \"validity\":\"2023-12-31\"\r\n    \r\n}\r\n",
+							"raw": "{\r\n    \"type\": \"delivery propio\",\r\n    \"detail\": \"Delivery propio\",\r\n    \"cost\": 300,\r\n    \"promotion\": 1,\r\n    \"discount\":1,\r\n    \"validity\":\"2023-12-31\"\r\n    \r\n}\r\n/*\r\n{\r\n    \"type\": \"mesa\",\r\n    \"detail\": \"Servicio de mesa con panera\",\r\n    \"cost\": 500,\r\n    \"promotion\": 1,\r\n    \"discount\":1,\r\n    \"validity\":\"2023-12-31\"\r\n    \r\n}\r\n*/\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -4059,7 +4705,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3001/tableservice/",
+							"raw": "http://localhost:3001/tableservice/service",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -4067,7 +4713,7 @@
 							"port": "3001",
 							"path": [
 								"tableservice",
-								""
+								"service"
 							]
 						}
 					},
@@ -4129,7 +4775,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3001/tableservice/1",
+							"raw": "http://localhost:3001/tableservice/detail/1",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -4137,6 +4783,7 @@
 							"port": "3001",
 							"path": [
 								"tableservice",
+								"detail",
 								"1"
 							]
 						}
@@ -4225,7 +4872,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3001/unit/",
+							"raw": "http://localhost:3001/unit/unit",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -4233,7 +4880,7 @@
 							"port": "3001",
 							"path": [
 								"unit",
-								""
+								"unit"
 							]
 						}
 					},
@@ -4295,7 +4942,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3001/unit/1",
+							"raw": "http://localhost:3001/unit/detail/1",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -4303,6 +4950,7 @@
 							"port": "3001",
 							"path": [
 								"unit",
+								"detail",
 								"1"
 							]
 						}

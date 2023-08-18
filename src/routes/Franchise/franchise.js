@@ -11,7 +11,7 @@ franchise.use(
   }),
 );
 
-franchise.post('/', async (req, res) => {
+franchise.post('/franchise', async (req, res) => {
   try {
     const {
       name, detail, email, franchiseType, business,
@@ -100,7 +100,7 @@ franchise.get('/all_active', async (req, res) => {
   }
 });
 
-franchise.get('/:id', async (req, res) => {
+franchise.get('/detail/:id', async (req, res) => {
   try {
     const { id } = req.params;
     if (id && Number.isInteger(parseInt(id, 10))) {
@@ -201,6 +201,10 @@ franchise.put('/inactive/:id', async (req, res) => {
   } catch (error) {
     res.status(400).send(error);
   }
+});
+
+franchise.all('*', async (req, res) => {
+  res.status(404).send('Ruta no encontrada');
 });
 
 module.exports = franchise;

@@ -11,7 +11,7 @@ bank.use(
   }),
 );
 
-bank.post('/', async (req, res) => {
+bank.post('/bank', async (req, res) => {
   try {
     const { account, number, detail } = req.body;
     // eslint-disable-next-line no-unused-vars
@@ -68,7 +68,7 @@ bank.get('/all_active', async (req, res) => {
   }
 });
 
-bank.get('/:id', async (req, res) => {
+bank.get('/detail/:id', async (req, res) => {
   try {
     const { id } = req.params;
     if (id && Number.isInteger(parseInt(id, 10))) {
@@ -147,6 +147,10 @@ bank.put('/inactive/:id', async (req, res) => {
   } catch (error) {
     res.status(400).send(error);
   }
+});
+
+bank.all('*', async (req, res) => {
+  res.status(404).send('Ruta no encontrada');
 });
 
 module.exports = bank;

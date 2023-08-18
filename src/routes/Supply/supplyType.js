@@ -11,7 +11,7 @@ supplyType.use(
   }),
 );
 
-supplyType.post('/', async (req, res) => {
+supplyType.post('/type', async (req, res) => {
   try {
     const { type, detail, unit } = req.body;
     // eslint-disable-next-line no-unused-vars
@@ -84,7 +84,7 @@ supplyType.get('/all_active', async (req, res) => {
   }
 });
 
-supplyType.get('/:id', async (req, res) => {
+supplyType.get('/detail/:id', async (req, res) => {
   try {
     const { id } = req.params;
     if (id && Number.isInteger(parseInt(id, 10))) {
@@ -173,6 +173,10 @@ supplyType.put('/inactive/:id', async (req, res) => {
   } catch (error) {
     res.status(400).send(error);
   }
+});
+
+supplyType.all('*', async (req, res) => {
+  res.status(404).send('Ruta no encontrada');
 });
 
 module.exports = supplyType;

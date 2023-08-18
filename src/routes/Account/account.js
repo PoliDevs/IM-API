@@ -12,7 +12,7 @@ account.use(
   }),
 );
 
-account.post('/', async (req, res) => {
+account.post('/account', async (req, res) => {
   try {
     const {
       name,
@@ -120,7 +120,7 @@ account.get('/all_banned', async (req, res) => {
   }
 });
 
-account.get('/:id', async (req, res) => {
+account.get('/detail/:id', async (req, res) => {
   try {
     const { id } = req.params;
     if (id && Number.isInteger(parseInt(id, 10))) {
@@ -296,6 +296,10 @@ account.put('/invalidated/:id', async (req, res) => {
   } catch (error) {
     res.status(400).send(error);
   }
+});
+
+account.all('*', async (req, res) => {
+  res.status(404).send('Ruta no encontrada');
 });
 
 module.exports = account;

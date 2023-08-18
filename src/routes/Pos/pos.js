@@ -11,7 +11,7 @@ pointOfSale.use(
   }),
 );
 
-pointOfSale.post('/', async (req, res) => {
+pointOfSale.post('/pos', async (req, res) => {
   try {
     const { qrCode, posType, commerce } = req.body;
     // eslint-disable-next-line no-unused-vars
@@ -123,7 +123,7 @@ pointOfSale.get('/all_inactive', async (req, res) => {
   }
 });
 
-pointOfSale.get('/:id', async (req, res) => {
+pointOfSale.get('/detail/:id', async (req, res) => {
   try {
     const { id } = req.params;
     if (id && Number.isInteger(parseInt(id, 10))) {
@@ -220,6 +220,10 @@ pointOfSale.put('/inactive/:id', async (req, res) => {
   } catch (error) {
     res.status(400).send(error);
   }
+});
+
+pointOfSale.all('*', async (req, res) => {
+  res.status(404).send('Ruta no encontrada');
 });
 
 module.exports = pointOfSale;
