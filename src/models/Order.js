@@ -47,6 +47,10 @@ module.exports = (sequelize) => {
         type: DataTypes.TEXT,
         defaultValue: null,
       },
+      paid: {
+        type: DataTypes.DOUBLE,
+        defaultValue: null,
+      },
     },
     {
       timestamps: true,
