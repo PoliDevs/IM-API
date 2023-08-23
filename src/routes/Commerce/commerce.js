@@ -2,7 +2,8 @@ const commerces = require('express').Router();
 const express = require('express');
 const cors = require('cors');
 const {
-  Commerce, CommerceFact, Franchise, FranchiseType, Bank,
+  Commerce, CommerceFact, Franchise,
+  FranchiseType, Bank, CommercialPlan,
 } = require('../../db');
 
 commerces.use(express.json());
@@ -16,7 +17,9 @@ commerces.use(
 commerces.post('/commerce', async (req, res) => {
   try {
     const {
-      name, neighborhood, address, workSchedule, email, phono, franchiseName, commerceFact, account,
+      name, neighborhood, address,
+      workSchedule, email, phono, franchiseName,
+      commerceFact, account, plan,
     } = req.body;
     // eslint-disable-next-line no-unused-vars
     const [commerceCreated, created] = await Commerce.findOrCreate({
@@ -43,6 +46,11 @@ commerces.post('/commerce', async (req, res) => {
         bankId: account
           ? (
             await Bank.findOne({ where: { account } })
+          )?.id
+          : null,
+        commercialPlanId: plan
+          ? (
+            await CommercialPlan.findOne({ where: { plan } })
           )?.id
           : null,
       },
@@ -80,6 +88,10 @@ commerces.get('/all', async (req, res) => {
           model: Bank,
           attributes: ['id', 'account', 'number', 'detail', 'active'],
         },
+        {
+          model: CommercialPlan,
+          attributes: ['id', 'plan', 'validity', 'cost', 'promotion', 'discount', 'scope', 'updatedAt', 'type', 'detail', 'active'],
+        },
       ],
     });
 
@@ -116,6 +128,10 @@ commerces.get('/all_active', async (req, res) => {
         {
           model: Bank,
           attributes: ['id', 'account', 'number', 'detail', 'active'],
+        },
+        {
+          model: CommercialPlan,
+          attributes: ['id', 'plan', 'validity', 'cost', 'promotion', 'discount', 'scope', 'updatedAt', 'type', 'detail', 'active'],
         },
       ],
     });
@@ -156,6 +172,10 @@ commerces.get('/detail/:id', async (req, res) => {
             model: Bank,
             attributes: ['id', 'account', 'number', 'detail', 'active'],
           },
+          {
+            model: CommercialPlan,
+            attributes: ['id', 'plan', 'validity', 'cost', 'promotion', 'discount', 'scope', 'updatedAt', 'type', 'detail', 'active'],
+          },
         ],
       });
       if (comm.length > 0) {
@@ -175,7 +195,9 @@ commerces.put('/update/:id', async (req, res) => {
   try {
     const { id } = req.params;
     const {
-      name, neighborhood, address, workSchedule, email, phono, franchiseName, commerceFact, account,
+      name, neighborhood, address,
+      workSchedule, email, phono, franchiseName,
+      commerceFact, account, plan,
     } = req.body;
     const commerceFinded = await Commerce.findOne({
       where: { id },
@@ -201,6 +223,11 @@ commerces.put('/update/:id', async (req, res) => {
         bankId: account
           ? (
             await Bank.findOne({ where: { account } })
+          )?.id
+          : null,
+        commercialPlanId: plan
+          ? (
+            await CommercialPlan.findOne({ where: { plan } })
           )?.id
           : null,
       });
