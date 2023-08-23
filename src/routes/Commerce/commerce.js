@@ -340,6 +340,30 @@ commerces.put('/close/:id', async (req, res) => {
   }
 });
 
+commerces.put('/plan/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { plan } = req.body;
+    const commerceFinded = await Commerce.findOne({
+      where: { id },
+    });
+    if (commerceFinded) {
+      await commerceFinded.update({
+        commercialPlanId: plan
+          ? (
+            await CommercialPlan.findOne({ where: { plan } })
+          )?.id
+          : null,
+      });
+      res.status(200).send('Change of Plan');
+    } else {
+      res.status(200).send('ID not found');
+    }
+  } catch (error) {
+    res.status(400).send(error);
+  }
+});
+
 commerces.all('*', async (req, res) => {
   res.status(404).send('Ruta no encontrada');
 });
