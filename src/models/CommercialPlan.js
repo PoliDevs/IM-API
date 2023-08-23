@@ -8,10 +8,15 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING,
       },
       validity: {
-        type: DataTypes.DATE,
+        type: DataTypes.STRING,
       },
       cost: {
         type: DataTypes.FLOAT,
+      },
+      type: {
+        type: DataTypes.ENUM('u', '%'),
+        allowNull: true,
+        defaultValue: '%',
       },
       promotion: {
         type: DataTypes.INTEGER,

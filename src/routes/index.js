@@ -30,6 +30,7 @@ const tableServiceRouter = require('./TableService');
 const employeeRouter = require('./Employee');
 const employeeTypeRouter = require('./Employee/employeeType');
 const unitRouter = require('./Unit');
+const commercialPlanRouter = require('./Commerce/commercialPlan');
 
 const router = Router();
 
@@ -64,5 +65,6 @@ router.use('/supplyType', supplyTypeRouter);
 router.use('/supplier', supplierRouter);
 router.use('/tableService', tableServiceRouter);
 router.use('/unit', unitRouter);
+router.use('/commercialPlan', commercialPlanRouter);
 
 module.exports = router;
