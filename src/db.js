@@ -75,6 +75,7 @@ const {
   UnitType,
   ProductType,
   SuppliesType,
+  CommercialPlan,
 } = sequelize.models;
 
 BusinessType.hasMany(Business);
@@ -89,6 +90,10 @@ Commerce.hasMany(Employee);
 Employee.belongsTo(Commerce);
 Franchise.hasMany(Commerce);
 Commerce.belongsTo(Franchise);
+
+CommercialPlan.hasMany(Commerce);
+Commerce.belongsTo(CommercialPlan);
+
 Bank.hasMany(Commerce);
 Commerce.belongsTo(Bank);
 City.hasMany(Commerce);
