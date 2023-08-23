@@ -303,6 +303,28 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "RAILWAY ALL Account",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://web-production-0667.up.railway.app/account/all",
+							"protocol": "https",
+							"host": [
+								"web-production-0667",
+								"up",
+								"railway",
+								"app"
+							],
+							"path": [
+								"account",
+								"all"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
