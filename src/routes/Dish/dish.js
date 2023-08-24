@@ -2,7 +2,7 @@ const dish = require('express').Router();
 const express = require('express');
 const cors = require('cors');
 const {
-  Dish, DishType, Additional, Supply, Recipe, Supplier, SuppliesType, UnitType,
+  Dish, DishType, Additional, Supply, Recipe, Supplier, SuppliesType, UnitType, Commerce,
 } = require('../../db');
 
 dish.use(express.json());
@@ -17,7 +17,7 @@ dish.post('/dish', async (req, res) => {
   try {
     const {
       name, description, photo, cost, promotion,
-      discount, estimatedTime, type, additional, supply, recipe,
+      discount, estimatedTime, type, additional, supply, recipe, commerce,
     } = req.body;
     const dishType = type
       ? (
@@ -39,6 +39,11 @@ dish.post('/dish', async (req, res) => {
         await Recipe.findOne({ where: { name: recipe } })
       )?.id
       : null;
+    const commerceId = commerce
+      ? (
+        await Commerce.findOne({ where: { name: commerce } })
+      )?.id
+      : null;
     // eslint-disable-next-line no-unused-vars
     const [dishCreated, created] = await Dish.findOrCreate({
       where: {
@@ -56,6 +61,7 @@ dish.post('/dish', async (req, res) => {
         additionalId: dishAdditional,
         supplyId: dishSupply,
         recipeId: dishRecipe,
+        commerceId,
       },
     });
     if (created) {
@@ -110,6 +116,10 @@ dish.get('/all', async (req, res) => {
               attributes: ['id', 'unit', 'detail', 'active'],
             },
           ],
+        },
+        {
+          model: Commerce,
+          attributes: ['id', 'name', 'neighborhood', 'address', 'active'],
         },
       ],
     });
@@ -167,6 +177,10 @@ dish.get('/all_active', async (req, res) => {
               attributes: ['id', 'unit', 'detail', 'active'],
             },
           ],
+        },
+        {
+          model: Commerce,
+          attributes: ['id', 'name', 'neighborhood', 'address', 'active'],
         },
       ],
     });
@@ -226,6 +240,10 @@ dish.get('/detail/:id', async (req, res) => {
                 attributes: ['id', 'unit', 'detail', 'active'],
               },
             ],
+          },
+          {
+            model: Commerce,
+            attributes: ['id', 'name', 'neighborhood', 'address', 'active'],
           },
         ],
       });

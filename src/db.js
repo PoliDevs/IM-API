@@ -128,6 +128,8 @@ Account.hasMany(Order);
 Order.belongsTo(Account);
 Payment.hasMany(Order);
 Order.belongsTo(Payment);
+Commerce.hasMany(Order);
+Order.belongsTo(Commerce);
 Additional.hasMany(Dish);
 Dish.belongsTo(Additional);
 Supply.hasMany(Dish);
@@ -136,6 +138,8 @@ Recipe.hasMany(Dish);
 Dish.belongsTo(Recipe);
 DishType.hasMany(Dish);
 Dish.belongsTo(DishType);
+Commerce.hasMany(Dish);
+Dish.belongsTo(Commerce);
 UnitType.hasMany(Recipe);
 Recipe.belongsTo(UnitType);
 Supplier.hasMany(Supply);
@@ -150,7 +154,6 @@ Supplier.hasMany(Product);
 Product.belongsTo(Supplier);
 Category.hasMany(Menu);
 Menu.belongsTo(Category);
-
 UnitType.hasMany(SuppliesType);
 SuppliesType.belongsTo(UnitType);
 

@@ -7,6 +7,7 @@ const {
   TableService, Category, PosType, EmployeeType, Additional, Recipe,
   UnitType,
 } = require('../../db');
+const { getOrders } = require('../../controllers/order');
 
 order.use(express.json());
 order.use(cors());
@@ -35,6 +36,8 @@ order.post('/order', async (req, res) => {
       dish,
       account,
       payment,
+      name,
+      commerce,
     } = req.body;
     const menuId = menu
       ? (
@@ -66,7 +69,13 @@ order.post('/order', async (req, res) => {
         await Payment.findOne({ where: { type: payment } })
       )?.id
       : null;
+    const commerceId = commerce
+      ? (
+        await Commerce.findOne({ where: { name: commerce } })
+      )?.id
+      : null;
     // eslint-disable-next-line no-unused-vars
+    const newOrder = await getOrders(date, poId, commerceId);
     const create = await Order.create({
       date,
       hour,
@@ -84,6 +93,9 @@ order.post('/order', async (req, res) => {
       dishId,
       accountId,
       paymentId,
+      name,
+      order: newOrder,
+      commerceId,
     });
     if (create) {
       res.status(200).send('Order created');
@@ -98,12 +110,24 @@ order.post('/order', async (req, res) => {
 order.get('/all', async (req, res) => {
   try {
     const ord = await Order.findAll({
-      attributes: ['id', 'date', 'hour', 'status', 'detail', 'validity', 'promotion', 'discount', 'surcharge', 'rating', 'feedback', 'paid'],
+      attributes: ['id', 'order', 'name', 'date', 'hour', 'status', 'detail', 'validity', 'promotion', 'discount', 'surcharge', 'rating', 'feedback', 'paid'],
       include: [
         {
           model: Menu,
           attributes: ['id', 'date', 'name', 'description', 'status', 'cost', 'promotion', 'discount', 'validity', 'photo', 'dishes', 'active'],
           include: [
+            {
+              model: MenuType,
+              attributes: ['id', 'type', 'detail', 'active'],
+            },
+            {
+              model: TableService,
+              attributes: ['id', 'type', 'detail', 'cost', 'promotion', 'discount', 'validity', 'active'],
+            },
+            {
+              model: Category,
+              attributes: ['id', 'category', 'detail', 'active'],
+            },
             {
               model: Commerce,
               attributes: ['id', 'name', 'neighborhood', 'address', 'workSchedule', 'email', 'phono', 'open', 'active'],
@@ -121,18 +145,6 @@ order.get('/all', async (req, res) => {
                   attributes: ['id', 'name', 'detail', 'active'],
                 },
               ],
-            },
-            {
-              model: MenuType,
-              attributes: ['id', 'type', 'detail', 'active'],
-            },
-            {
-              model: TableService,
-              attributes: ['id', 'type', 'detail', 'cost', 'promotion', 'discount', 'validity', 'active'],
-            },
-            {
-              model: Category,
-              attributes: ['id', 'category', 'detail', 'active'],
             },
           ],
         },
@@ -204,12 +216,24 @@ order.get('/detail/:id', async (req, res) => {
     if (id && Number.isInteger(parseInt(id, 10))) {
       const ord = await Order.findAll({
         where: { id: parseInt(id, 10) },
-        attributes: ['id', 'date', 'hour', 'status', 'detail', 'validity', 'promotion', 'discount', 'surcharge', 'rating', 'feedback', 'paid'],
+        attributes: ['id', 'order', 'name', 'date', 'hour', 'status', 'detail', 'validity', 'promotion', 'discount', 'surcharge', 'rating', 'feedback', 'paid'],
         include: [
           {
             model: Menu,
             attributes: ['id', 'date', 'name', 'description', 'status', 'cost', 'promotion', 'discount', 'validity', 'photo', 'dishes', 'active'],
             include: [
+              {
+                model: MenuType,
+                attributes: ['id', 'type', 'detail', 'active'],
+              },
+              {
+                model: TableService,
+                attributes: ['id', 'type', 'detail', 'cost', 'promotion', 'discount', 'validity', 'active'],
+              },
+              {
+                model: Category,
+                attributes: ['id', 'category', 'detail', 'active'],
+              },
               {
                 model: Commerce,
                 attributes: ['id', 'name', 'neighborhood', 'address', 'workSchedule', 'email', 'phono', 'open', 'active'],
@@ -227,18 +251,6 @@ order.get('/detail/:id', async (req, res) => {
                     attributes: ['id', 'name', 'detail', 'active'],
                   },
                 ],
-              },
-              {
-                model: MenuType,
-                attributes: ['id', 'type', 'detail', 'active'],
-              },
-              {
-                model: TableService,
-                attributes: ['id', 'type', 'detail', 'cost', 'promotion', 'discount', 'validity', 'active'],
-              },
-              {
-                model: Category,
-                attributes: ['id', 'category', 'detail', 'active'],
               },
             ],
           },
@@ -310,7 +322,7 @@ order.get('/status', async (req, res) => {
     const { status } = req.body;
     const ord = await Order.findAll({
       where: { status },
-      attributes: ['id', 'date', 'hour', 'status', 'detail', 'validity', 'promotion', 'discount', 'surcharge', 'rating', 'feedback', 'paid'],
+      attributes: ['id', 'order', 'name', 'date', 'hour', 'status', 'detail', 'validity', 'promotion', 'discount', 'surcharge', 'rating', 'feedback', 'paid'],
       include: [
         {
           model: Menu,

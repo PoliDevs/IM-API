@@ -1215,7 +1215,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"la tablita\",\r\n    \"neighborhood\": \"Belgrano\",\r\n    \"address\": \"Av Juramento 150\",\r\n    \"workSchedule\": \"12 a 24\",\r\n    \"email\":\"luisfactum@gmail.com\",\r\n    \"phono\":\"01142552154\",\r\n    \"franchiseName\":\"\",\r\n    \"commerceFact\":\"\",\r\n    \"account\":\"\"\r\n    \r\n}\r\n/*\r\n{\r\n    \"name\": \"CP Luisito\",\r\n    \"neighborhood\": \"Florencio Varela\",\r\n    \"address\": \"Av Carabelas 1000\",\r\n    \"workSchedule\": \"12 a 24\",\r\n    \"email\":\"luisglogista@gmail.com\",\r\n    \"phono\":\"01142552154\",\r\n    \"franchiseName\":\"\",\r\n    \"commerceFact\":\"celíaco\",\r\n    \"account\":\"\"\r\n    \r\n}\r\n*/\r\n",
+							"raw": "{\r\n    \"name\": \"la tablita\",\r\n    \"neighborhood\": \"Belgrano\",\r\n    \"address\": \"Av Juramento 150\",\r\n    \"workSchedule\": \"12 a 24\",\r\n    \"email\":\"luisfactum@gmail.com\",\r\n    \"phono\":\"01142552154\",\r\n    \"franchiseName\":\"\",\r\n    \"commerceFact\":\"\",\r\n    \"account\":\"\",\r\n    \"plan\": \"m1\"\r\n    \r\n}\r\n/*\r\n{\r\n    \"name\": \"CP Luisito\",\r\n    \"neighborhood\": \"Florencio Varela\",\r\n    \"address\": \"Av Carabelas 1000\",\r\n    \"workSchedule\": \"12 a 24\",\r\n    \"email\":\"luisglogista@gmail.com\",\r\n    \"phono\":\"01142552154\",\r\n    \"franchiseName\":\"\",\r\n    \"commerceFact\":\"celíaco\",\r\n    \"account\":\"\"\r\n    \r\n}\r\n*/\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1244,7 +1244,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"CP Luisito\",\r\n    \"neighborhood\": \"Florencio Varela\",\r\n    \"address\": \"Av Carabelas 1000\",\r\n    \"workSchedule\": \"12 a 24\",\r\n    \"email\":\"luisglogista@gmail.com\",\r\n    \"phono\":\"01142552154\",\r\n    \"franchiseName\":\"\",\r\n    \"commerceFact\":\"celíaco\",\r\n    \"account\":\"\"\r\n    \r\n}",
+							"raw": "{\r\n    \"name\": \"CP Luisito\",\r\n    \"neighborhood\": \"Florencio Varela\",\r\n    \"address\": \"Av Carabelas 1000\",\r\n    \"workSchedule\": \"12 a 24\",\r\n    \"email\":\"luisglogista@gmail.com\",\r\n    \"phono\":\"01142552154\",\r\n    \"franchiseName\":\"\",\r\n    \"commerceFact\":\"celíaco\",\r\n    \"account\":\"\",\r\n    \"plan\": \"m1\"\r\n    \r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1604,6 +1604,203 @@
 							"path": [
 								"commerceFacts",
 								"all_active"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Commercial Plan",
+			"item": [
+				{
+					"name": "NEW Commercial Plan",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"plan\": \"M6\",\r\n    \"validity\": \"2023-12-31\",\r\n    \"cost\": 7,\r\n    \"promotion\": 0,\r\n    \"discount\": 0,\r\n    \"scope\": \"Menú digital + pedidos inhouse + pedidos de terceros + POS + ERP\",\r\n    \"detail\": \"control de gestión de stocks\",\r\n    \"type\": \"u\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/commercialPlan/plan",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"commercialPlan",
+								"plan"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE CommercialPlan",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"plan\": \"M6\",\r\n    \"validity\": \"2023-12-31\",\r\n    \"cost\": 7,\r\n    \"promotion\": 0,\r\n    \"discount\": 0,\r\n    \"scope\": \"Menú digital + pedidos inhouse + pedidos de terceros + POS + ERP\",\r\n    \"detail\": \"control de gestión de stocks\",\r\n    \"type\": \"u\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/commercialPlan/update/6",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"commercialPlan",
+								"update",
+								"6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ALL CommercialPlan",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/commercialPlan/all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"commercialPlan",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ID CommercialPlan",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/commercialPlan/detail/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"commercialPlan",
+								"detail",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Active",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/commercialPlan/active/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"commercialPlan",
+								"active",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Inactive",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/commercialPlan/inactive/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"commercialPlan",
+								"inactive",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ALL Active CommercialPlan",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/commercialPlan/all_active",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"commercialPlan",
+								"all_active"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Plan",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"plan\": \"M1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/commerce/plan/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"commerce",
+								"plan",
+								"1"
 							]
 						}
 					},
@@ -2999,7 +3196,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"date\": \"2023-08-18\",\r\n    \"hour\": \"08:57\",\r\n    \"status\": \"orderPlaced\",\r\n    \"detail\": \"\",\r\n    \"validity\": \"2023-08-18\",\r\n    \"promotion\": 0,\r\n    \"discount\": 0,\r\n    \"surcharge\": 0,\r\n    \"rating\": 5,\r\n    \"feedback\": \"\",\r\n    \"menu\": \"\",\r\n    \"pos\": 1,\r\n    \"employee\": 2,\r\n    \"dish\": \"milanesa\",\r\n    \"account\": 1,\r\n    \"payment\": \"efectivo\"\r\n}\r\n",
+							"raw": "{\r\n    \"name\": \"ernesto\",\r\n    \"date\": \"2023-08-19\",\r\n    \"hour\": \"09:57\",\r\n    \"status\": \"orderPlaced\",\r\n    \"detail\": \"\",\r\n    \"validity\": \"2023-08-18\",\r\n    \"promotion\": 0,\r\n    \"discount\": 0,\r\n    \"surcharge\": 0,\r\n    \"rating\": 5,\r\n    \"feedback\": \"\",\r\n    \"menu\": \"mila con fritas\",\r\n    \"pos\": 2,\r\n    \"employee\": 2,\r\n    \"dish\": \"\",\r\n    \"account\": 1,\r\n    \"payment\": \"efectivo\",\r\n    \"commerce\": \"cp luisito\"\r\n}\r\n",
 							"options": {
 								"raw": {
 									"language": "json"

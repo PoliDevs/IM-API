@@ -4,6 +4,12 @@ module.exports = (sequelize) => {
   sequelize.define(
     'order',
     {
+      order: {
+        type: DataTypes.STRING,
+      },
+      name: {
+        type: DataTypes.STRING,
+      },
       date: {
         type: DataTypes.STRING,
       },
