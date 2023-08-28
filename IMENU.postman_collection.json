@@ -325,6 +325,35 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"luisfactum@gmail.com\",\r\n    \"password\": \"1234\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/loginaccount/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"loginaccount",
+								"login"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -2152,7 +2181,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"firstName\": \"mario\",\r\n    \"lastName\": \"garcia\",\r\n    \"password\": \"22222\",\r\n    \"address\": \"colombia 2323\",\r\n    \"phone\":\"4444-3333\",\r\n    \"birthDate\":\"2000-04-15\",\r\n    \"start\":\"2023-07-27\",\r\n    \"document\":\"34343434\",\r\n    \"email\":\"luisglogista@gmail.com\",\r\n    \"googleUser\":\"\",\r\n    \"facebookUser\":\"\",\r\n    \"twitterUser\":\"\",\r\n    \"photo\":\"\",\r\n    \"employeeType\":\"cocinero\",\r\n    \"commerce\":\"\"\r\n    \r\n}\r\n/*{\r\n    \"firstName\": \"luis\",\r\n    \"lastName\": \"gimenez\",\r\n    \"password\": \"1111\",\r\n    \"address\": \"ecuador 3531\",\r\n    \"phone\":\"4879-8956\",\r\n    \"birthDate\":\"1967-10-24\",\r\n    \"start\":\"2023-07-27\",\r\n    \"document\":\"2154874\",\r\n    \"email\":\"luisfactum@gmail.com\",\r\n    \"googleUser\":\"\",\r\n    \"facebookUser\":\"\",\r\n    \"twitterUser\":\"\",\r\n    \"photo\":\"\",\r\n    \"employeeType\":\"mozo\",\r\n    \"commerce\":\"\"\r\n    \r\n}\r\n{\r\n    \"firstName\": \"viviana\",\r\n    \"lastName\": \"chimenti\",\r\n    \"password\": \"1111\",\r\n    \"address\": \"ecuador 3531\",\r\n    \"phone\":\"4444-8956\",\r\n    \"birthDate\":\"1981-02-27\",\r\n    \"start\":\"2023-07-27\",\r\n    \"document\":\"2154874\",\r\n    \"email\":\"vivichimenti@gmail.com\",\r\n    \"googleUser\":\"\",\r\n    \"facebookUser\":\"\",\r\n    \"twitterUser\":\"\",\r\n    \"photo\":\"\",\r\n    \"employeeType\":\"mozo\",\r\n    \"commerce\":\"\"\r\n    \r\n}\r\n*/",
+							"raw": "{\r\n    \"firstName\": \"mario\",\r\n    \"lastName\": \"garcia\",\r\n    \"password\": \"22222\",\r\n    \"address\": \"colombia 2323\",\r\n    \"phone\":\"4444-3333\",\r\n    \"birthDate\":\"2000-04-15\",\r\n    \"start\":\"2023-07-27\",\r\n    \"document\":\"34343434\",\r\n    \"email\":\"luisglogista@gmail.com\",\r\n    \"googleUser\":\"\",\r\n    \"facebookUser\":\"\",\r\n    \"twitterUser\":\"\",\r\n    \"photo\":\"\",\r\n    \"employeeType\":\"cocinero\",\r\n    \"commerce\":\"cp luisito\"\r\n    \r\n}\r\n/*{\r\n    \"firstName\": \"luis\",\r\n    \"lastName\": \"gimenez\",\r\n    \"password\": \"1111\",\r\n    \"address\": \"ecuador 3531\",\r\n    \"phone\":\"4879-8956\",\r\n    \"birthDate\":\"1967-10-24\",\r\n    \"start\":\"2023-07-27\",\r\n    \"document\":\"2154874\",\r\n    \"email\":\"luisfactum@gmail.com\",\r\n    \"googleUser\":\"\",\r\n    \"facebookUser\":\"\",\r\n    \"twitterUser\":\"\",\r\n    \"photo\":\"\",\r\n    \"employeeType\":\"mozo\",\r\n    \"commerce\":\"\"\r\n    \r\n}\r\n{\r\n    \"firstName\": \"viviana\",\r\n    \"lastName\": \"chimenti\",\r\n    \"password\": \"1111\",\r\n    \"address\": \"ecuador 3531\",\r\n    \"phone\":\"4444-8956\",\r\n    \"birthDate\":\"1981-02-27\",\r\n    \"start\":\"2023-07-27\",\r\n    \"document\":\"2154874\",\r\n    \"email\":\"vivichimenti@gmail.com\",\r\n    \"googleUser\":\"\",\r\n    \"facebookUser\":\"\",\r\n    \"twitterUser\":\"\",\r\n    \"photo\":\"\",\r\n    \"employeeType\":\"mozo\",\r\n    \"commerce\":\"\"\r\n    \r\n}\r\n*/",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -2181,7 +2210,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"firstName\": \"luis\",\r\n    \"lastName\": \"gimenez\",\r\n    \"password\": \"1111\",\r\n    \"address\": \"ecuador 3531\",\r\n    \"phone\":\"4879-8956\",\r\n    \"birthDate\":\"1967-10-24\",\r\n    \"start\":\"2023-07-27\",\r\n    \"document\":\"2154874\",\r\n    \"email\":\"luisfactum@gmail.com\",\r\n    \"googleUser\":\"\",\r\n    \"facebookUser\":\"\",\r\n    \"twitterUser\":\"\",\r\n    \"photo\":\"\",\r\n    \"employeeType\":\"mozo\",\r\n    \"commerce\":\"\"\r\n    \r\n}",
+							"raw": "{\r\n    \"firstName\": \"luis\",\r\n    \"lastName\": \"gimenez\",\r\n    \"password\": \"1111\",\r\n    \"address\": \"ecuador 3531\",\r\n    \"phone\":\"4879-8956\",\r\n    \"birthDate\":\"1967-10-24\",\r\n    \"start\":\"2023-07-27\",\r\n    \"document\":\"2154874\",\r\n    \"email\":\"luisfactum@gmail.com\",\r\n    \"googleUser\":\"\",\r\n    \"facebookUser\":\"\",\r\n    \"twitterUser\":\"\",\r\n    \"photo\":\"\",\r\n    \"employeeType\":\"mozo\",\r\n    \"commerce\":\"cp luisito\"\r\n    \r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -2251,7 +2280,7 @@
 						"method": "PUT",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3001/employee/validated/2",
+							"raw": "http://localhost:3001/employee/validated/3",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -2260,7 +2289,7 @@
 							"path": [
 								"employee",
 								"validated",
-								"2"
+								"3"
 							]
 						}
 					},
@@ -2344,6 +2373,35 @@
 							"path": [
 								"employee",
 								"all_active"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"luisglogista@gmail.com\",\r\n    \"password\": \"22222\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/loginemployee/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"loginemployee",
+								"login"
 							]
 						}
 					},
