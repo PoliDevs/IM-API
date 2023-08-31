@@ -17,7 +17,7 @@ login.use(
   }),
 );
 
-login.post('/login', async (req, res) => {
+login.get('/login', async (req, res) => {
   try {
     const { email, password } = req.body;
     const accountFound = await Account.findOne({
