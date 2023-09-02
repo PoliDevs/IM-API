@@ -21,7 +21,7 @@ login.use(
   }),
 );
 
-login.get('/login', async (req, res) => {
+login.post('/login', async (req, res) => {
   try {
     const { email, password } = req.body;
     const employeeFound = await Employee.findOne({
