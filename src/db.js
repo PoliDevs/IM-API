@@ -76,6 +76,9 @@ const {
   ProductType,
   SuppliesType,
   CommercialPlan,
+  Courier,
+  CourierType,
+  Delivery,
 } = sequelize.models;
 
 BusinessType.hasMany(Business);
@@ -156,6 +159,12 @@ Category.hasMany(Menu);
 Menu.belongsTo(Category);
 UnitType.hasMany(SuppliesType);
 SuppliesType.belongsTo(UnitType);
+Delivery.hasMany(Order);
+Order.belongsTo(Delivery);
+CourierType.hasMany(Courier);
+Courier.belongsTo(CourierType);
+Courier.hasMany(Delivery);
+Delivery.belongsTo(Courier);
 
 module.exports = {
   ...sequelize.models,
