@@ -21,10 +21,10 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING,
       },
       birthDate: {
-        type: DataTypes.DATE,
+        type: DataTypes.DATEONLY,
       },
       start: {
-        type: DataTypes.DATE,
+        type: DataTypes.DATEONLY,
       },
       document: {
         type: DataTypes.STRING,

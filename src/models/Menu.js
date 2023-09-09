@@ -5,7 +5,7 @@ module.exports = (sequelize) => {
     'menu',
     {
       date: {
-        type: DataTypes.DATE,
+        type: DataTypes.DATEONLY,
       },
       name: {
         type: DataTypes.STRING,

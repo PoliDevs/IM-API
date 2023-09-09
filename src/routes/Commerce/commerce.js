@@ -191,6 +191,33 @@ commerces.get('/detail/:id', async (req, res) => {
   }
 });
 
+commerces.get('/openCommerce/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    if (id && Number.isInteger(parseInt(id, 10))) {
+      const comm = await Commerce.findOne({
+        where: {
+          id: parseInt(id, 10),
+          // active: true,
+        },
+        attributes: ['open', 'active'],
+      });
+
+      if (comm && comm.active === true) {
+        res.status(201).json(comm.open);
+      } else if (comm && comm.active === false) {
+        res.status(201).json('Commerce No Active');
+      } else {
+        res.status(422).json('Not found');
+      }
+    } else {
+      res.status(422).send('ID was not provided');
+    }
+  } catch (error) {
+    res.send(error);
+  }
+});
+
 commerces.put('/update/:id', async (req, res) => {
   try {
     const { id } = req.params;

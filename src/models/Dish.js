@@ -5,7 +5,7 @@ module.exports = (sequelize) => {
     'dish',
     {
       date: {
-        type: DataTypes.DATE,
+        type: DataTypes.DATEONLY,
         defaultValue: DataTypes.NOW,
       },
       name: {

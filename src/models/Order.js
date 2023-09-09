@@ -11,10 +11,11 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING,
       },
       date: {
-        type: DataTypes.STRING,
+        type: DataTypes.DATEONLY,
+        defaultValue: DataTypes.NOW,
       },
       hour: {
-        type: DataTypes.STRING,
+        type: DataTypes.TIME,
       },
       status: {
         type: DataTypes.ENUM(
@@ -31,8 +32,7 @@ module.exports = (sequelize) => {
         type: DataTypes.TEXT,
       },
       validity: {
-        type: DataTypes.INTEGER,
-        defaultValue: 0,
+        type: DataTypes.DATEONLY,
       },
       promotion: {
         type: DataTypes.INTEGER,

@@ -1,6 +1,7 @@
 const order = require('express').Router();
 const express = require('express');
 const cors = require('cors');
+const { Op } = require('sequelize');
 const {
   Order, Menu, Pos, Employee, Dish, Account, Payment,
   Commerce, CommerceFact, Bank, Franchise, MenuType,
@@ -19,96 +20,59 @@ order.use(
 
 order.post('/order', async (req, res) => {
   try {
-    const {
-      date,
-      hour,
-      status,
-      detail,
-      validity,
-      promotion,
-      discount,
-      surcharge,
-      rating,
-      feedback,
-      menu,
-      pos,
-      employee,
-      dish,
-      account,
-      payment,
-      name,
-      commerce,
-    } = req.body;
-    const menuId = menu
-      ? (
-        await Menu.findOne({ where: { name: menu } })
-      )?.id
-      : null;
-    const poId = pos
-      ? (
-        await Pos.findOne({ where: { id: pos } })
-      )?.id
-      : null;
-    const employeeId = employee
-      ? (
-        await Employee.findOne({ where: { id: employee } })
-      )?.id
-      : null;
-    const dishId = dish
-      ? (
-        await Dish.findOne({ where: { name: dish } })
-      )?.id
-      : null;
-    const accountId = account
-      ? (
-        await Account.findOne({ where: { id: account } })
-      )?.id
-      : null;
-    const paymentId = payment
-      ? (
-        await Payment.findOne({ where: { type: payment } })
-      )?.id
-      : null;
-    const commerceId = commerce
-      ? (
-        await Commerce.findOne({ where: { name: commerce } })
-      )?.id
-      : null;
-    // eslint-disable-next-line no-unused-vars
-    const newOrder = await getOrders(date, poId, commerceId);
-    const create = await Order.create({
-      date,
-      hour,
-      status,
-      detail,
-      validity,
-      promotion,
-      discount,
-      surcharge,
-      rating,
-      feedback,
-      menuId,
-      poId,
-      employeeId,
-      dishId,
-      accountId,
-      paymentId,
-      name,
-      order: newOrder,
-      commerceId,
-    });
-    if (create) {
-      res.status(200).send('Order created');
-    } else {
-      res.status(422).send('Existing Order ');
+    let orderes = req.body;
+    if (orderes.length > 0) {
+      const promises = orderes.map(async (element) => {
+        const newOrder = await getOrders(element.date, element.poId, element.commerceId);
+        // eslint-disable-next-line no-param-reassign
+        // element.order = newOrder;
+        const cleanedElement = { ...element };
+        if (cleanedElement.menuId === 0) {
+          delete cleanedElement.menuId;
+        }
+        if (cleanedElement.poId === 0) {
+          delete cleanedElement.poId;
+        }
+        if (cleanedElement.employeeId === 0) {
+          delete cleanedElement.employeeId;
+        }
+        if (cleanedElement.dishId === 0) {
+          delete cleanedElement.dishId;
+        }
+        if (cleanedElement.accountId === 0) {
+          delete cleanedElement.accountId;
+        }
+        if (cleanedElement.paymentId === 0) {
+          delete cleanedElement.paymentId;
+        }
+        if (cleanedElement.commerceId === 0) {
+          delete cleanedElement.commerceId;
+        }
+        if (cleanedElement.deliveryId === 0) {
+          delete cleanedElement.deliveryId;
+        }
+        cleanedElement.order = newOrder;
+        return cleanedElement;
+      });
+      orderes = await Promise.all(promises);
+      const newPedido = await Order.bulkCreate(orderes);
+      if (newPedido.length > 0) {
+        res.status(200).send({ mensaje: 'Order created', registros: newPedido.length });
+      } else {
+        res.status(422).send('Not Order ');
+      }
     }
   } catch (error) {
     res.status(400).send(error);
   }
 });
 
-order.get('/all', async (req, res) => {
+order.get('/orderes/:commerceId', async (req, res) => {
   try {
+    const { commerceId } = req.params;
+    if (!commerceId && !Number.isInteger(parseInt(commerceId, 10))) {
+      res.status(422).send('ID was not provided');
+    }
     const ord = await Order.findAll({
       attributes: ['id', 'order', 'name', 'date', 'hour', 'status', 'detail', 'validity', 'promotion', 'discount', 'surcharge', 'rating', 'feedback', 'paid'],
       include: [
@@ -128,29 +92,32 @@ order.get('/all', async (req, res) => {
               model: Category,
               attributes: ['id', 'category', 'detail', 'active'],
             },
+          ],
+        },
+        {
+          model: Commerce,
+          where: {
+            id: parseInt(commerceId, 10),
+          },
+          attributes: ['id', 'name', 'neighborhood', 'address', 'workSchedule', 'email', 'phono', 'open', 'active', 'start'],
+          include: [
             {
-              model: Commerce,
-              attributes: ['id', 'name', 'neighborhood', 'address', 'workSchedule', 'email', 'phono', 'open', 'active'],
-              include: [
-                {
-                  model: CommerceFact,
-                  attributes: ['id', 'type', 'detail', 'active'],
-                },
-                {
-                  model: Bank,
-                  attributes: ['id', 'account', 'number', 'detail', 'active'],
-                },
-                {
-                  model: Franchise,
-                  attributes: ['id', 'name', 'detail', 'active'],
-                },
-              ],
+              model: CommerceFact,
+              attributes: ['id', 'type', 'detail', 'active'],
+            },
+            {
+              model: Bank,
+              attributes: ['id', 'account', 'number', 'detail', 'active'],
+            },
+            {
+              model: Franchise,
+              attributes: ['id', 'name', 'detail', 'active'],
             },
           ],
         },
         {
           model: Pos,
-          attributes: ['id', 'qrCode', 'active'],
+          attributes: ['id', 'qrCode', 'active', 'discount', 'surcharge'],
           include: [
             {
               model: PosType,
@@ -190,7 +157,7 @@ order.get('/all', async (req, res) => {
         },
         {
           model: Account,
-          attributes: ['id', 'name', 'phone', 'address', 'birthDate', 'status', 'email', 'validatedEmail'],
+          attributes: ['id', 'name', 'phone', 'address', 'birthDate', 'status', 'email', 'validatedEmail', 'googleUser', 'facebookUser', 'twitterUser', 'cp'],
         },
         {
           model: Payment,
@@ -210,116 +177,232 @@ order.get('/all', async (req, res) => {
   }
 });
 
-order.get('/detail/:id', async (req, res) => {
+order.get('/detail/:order/:commerceId', async (req, res) => {
   try {
-    const { id } = req.params;
-    if (id && Number.isInteger(parseInt(id, 10))) {
-      const ord = await Order.findAll({
-        where: { id: parseInt(id, 10) },
-        attributes: ['id', 'order', 'name', 'date', 'hour', 'status', 'detail', 'validity', 'promotion', 'discount', 'surcharge', 'rating', 'feedback', 'paid'],
-        include: [
-          {
-            model: Menu,
-            attributes: ['id', 'date', 'name', 'description', 'status', 'cost', 'promotion', 'discount', 'validity', 'photo', 'dishes', 'active'],
-            include: [
-              {
-                model: MenuType,
-                attributes: ['id', 'type', 'detail', 'active'],
-              },
-              {
-                model: TableService,
-                attributes: ['id', 'type', 'detail', 'cost', 'promotion', 'discount', 'validity', 'active'],
-              },
-              {
-                model: Category,
-                attributes: ['id', 'category', 'detail', 'active'],
-              },
-              {
-                model: Commerce,
-                attributes: ['id', 'name', 'neighborhood', 'address', 'workSchedule', 'email', 'phono', 'open', 'active'],
-                include: [
-                  {
-                    model: CommerceFact,
-                    attributes: ['id', 'type', 'detail', 'active'],
-                  },
-                  {
-                    model: Bank,
-                    attributes: ['id', 'account', 'number', 'detail', 'active'],
-                  },
-                  {
-                    model: Franchise,
-                    attributes: ['id', 'name', 'detail', 'active'],
-                  },
-                ],
-              },
-            ],
+    const orderParam = req.params.order;
+    const commerceIdParam = req.params.commerceId;
+    const ord = await Order.findAll({
+      where: { order: orderParam },
+      attributes: ['id', 'order', 'name', 'date', 'hour', 'status', 'detail', 'validity', 'promotion', 'discount', 'surcharge', 'rating', 'feedback', 'paid'],
+      include: [
+        {
+          model: Menu,
+          attributes: ['id', 'date', 'name', 'description', 'status', 'cost', 'promotion', 'discount', 'validity', 'photo', 'dishes', 'active'],
+          include: [
+            {
+              model: MenuType,
+              attributes: ['id', 'type', 'detail', 'active'],
+            },
+            {
+              model: TableService,
+              attributes: ['id', 'type', 'detail', 'cost', 'promotion', 'discount', 'validity', 'active'],
+            },
+            {
+              model: Category,
+              attributes: ['id', 'category', 'detail', 'active'],
+            },
+          ],
+        },
+        {
+          model: Commerce,
+          where: {
+            id: parseInt(commerceIdParam, 10),
           },
-          {
-            model: Pos,
-            attributes: ['id', 'qrCode', 'active'],
-            include: [
-              {
-                model: PosType,
-                attributes: ['id', 'type', 'detail', 'active'],
-              },
-            ],
-          },
-          {
-            model: Employee,
-            attributes: ['id', 'firstName', 'lastName', 'document', 'photo', 'active'],
-            include: [
-              {
-                model: EmployeeType,
-                attributes: ['id', 'type', 'detail', 'active'],
-              },
-            ],
-          },
-          {
-            model: Dish,
-            attributes: ['id', 'name', 'description', 'photo', 'cost', 'promotion', 'discount', 'estimatedTime', 'date', 'active'],
-            include: [
-              {
-                model: Additional,
-                attributes: ['id', 'name', 'amount', 'cost', 'promotion', 'discount', 'photo', 'active'],
-              },
-              {
-                model: Recipe,
-                attributes: ['id', 'name', 'amount', 'date', 'active', 'ingredients', 'supplies'],
-                include: [
-                  {
-                    model: UnitType,
-                    attributes: ['id', 'unit', 'detail', 'active'],
-                  },
-                ],
-              },
-            ],
-          },
-          {
-            model: Account,
-            attributes: ['id', 'name', 'phone', 'address', 'birthDate', 'status', 'email', 'validatedEmail'],
-          },
-          {
-            model: Payment,
-            attributes: ['id', 'type', 'detail', 'active'],
-          },
-        ],
-      });
-      if (ord.length > 0) {
-        res.status(201).json(ord);
-      } else {
-        res.status(422).json('Not found');
-      }
+          attributes: ['id', 'name', 'neighborhood', 'address', 'workSchedule', 'email', 'phono', 'open', 'active', 'start'],
+          include: [
+            {
+              model: CommerceFact,
+              attributes: ['id', 'type', 'detail', 'active'],
+            },
+            {
+              model: Bank,
+              attributes: ['id', 'account', 'number', 'detail', 'active'],
+            },
+            {
+              model: Franchise,
+              attributes: ['id', 'name', 'detail', 'active'],
+            },
+          ],
+        },
+        {
+          model: Pos,
+          attributes: ['id', 'qrCode', 'active', 'discount', 'surcharge'],
+          include: [
+            {
+              model: PosType,
+              attributes: ['id', 'type', 'detail', 'active'],
+            },
+          ],
+        },
+        {
+          model: Employee,
+          attributes: ['id', 'firstName', 'lastName', 'document', 'photo', 'active'],
+          include: [
+            {
+              model: EmployeeType,
+              attributes: ['id', 'type', 'detail', 'active'],
+            },
+          ],
+        },
+        {
+          model: Dish,
+          attributes: ['id', 'name', 'description', 'photo', 'cost', 'promotion', 'discount', 'estimatedTime', 'date', 'active'],
+          include: [
+            {
+              model: Additional,
+              attributes: ['id', 'name', 'amount', 'cost', 'promotion', 'discount', 'photo', 'active'],
+            },
+            {
+              model: Recipe,
+              attributes: ['id', 'name', 'amount', 'date', 'active', 'ingredients', 'supplies'],
+              include: [
+                {
+                  model: UnitType,
+                  attributes: ['id', 'unit', 'detail', 'active'],
+                },
+              ],
+            },
+          ],
+        },
+        {
+          model: Account,
+          attributes: ['id', 'name', 'phone', 'address', 'birthDate', 'status', 'email', 'validatedEmail', 'googleUser', 'facebookUser', 'twitterUser', 'cp'],
+        },
+        {
+          model: Payment,
+          attributes: ['id', 'type', 'detail', 'active'],
+        },
+      ],
+    });
+    if (ord.length > 0) {
+      res.status(201).json(ord);
     } else {
-      res.status(422).send('ID was not provided');
+      res.status(422).json('Not found');
     }
   } catch (error) {
     res.status(500).json({ message: 'Error al obtener los pedidos' });
   }
 });
 
-order.get('/status', async (req, res) => {
+order.get('/dates/:commerceId', async (req, res) => {
+  try {
+    const commerceIdParam = req.params.commerceId;
+    const { startDate, endDate } = req.query;
+    const ord = await Order.findAll({
+      where: {
+        date: {
+          [Op.gte]: startDate,
+          [Op.lte]: endDate,
+        },
+      },
+      attributes: ['id', 'order', 'name', 'date', 'hour', 'status', 'detail', 'validity', 'promotion', 'discount', 'surcharge', 'rating', 'feedback', 'paid'],
+      include: [
+        {
+          model: Menu,
+          attributes: ['id', 'date', 'name', 'description', 'status', 'cost', 'promotion', 'discount', 'validity', 'photo', 'dishes', 'active'],
+          include: [
+            {
+              model: MenuType,
+              attributes: ['id', 'type', 'detail', 'active'],
+            },
+            {
+              model: TableService,
+              attributes: ['id', 'type', 'detail', 'cost', 'promotion', 'discount', 'validity', 'active'],
+            },
+            {
+              model: Category,
+              attributes: ['id', 'category', 'detail', 'active'],
+            },
+          ],
+        },
+        {
+          model: Commerce,
+          where: {
+            id: parseInt(commerceIdParam, 10),
+          },
+          attributes: ['id', 'name', 'neighborhood', 'address', 'workSchedule', 'email', 'phono', 'open', 'active', 'start'],
+          include: [
+            {
+              model: CommerceFact,
+              attributes: ['id', 'type', 'detail', 'active'],
+            },
+            {
+              model: Bank,
+              attributes: ['id', 'account', 'number', 'detail', 'active'],
+            },
+            {
+              model: Franchise,
+              attributes: ['id', 'name', 'detail', 'active'],
+            },
+          ],
+        },
+        {
+          model: Pos,
+          attributes: ['id', 'qrCode', 'active', 'discount', 'surcharge'],
+          include: [
+            {
+              model: PosType,
+              attributes: ['id', 'type', 'detail', 'active'],
+            },
+          ],
+        },
+        {
+          model: Employee,
+          attributes: ['id', 'firstName', 'lastName', 'document', 'photo', 'active'],
+          include: [
+            {
+              model: EmployeeType,
+              attributes: ['id', 'type', 'detail', 'active'],
+            },
+          ],
+        },
+        {
+          model: Dish,
+          attributes: ['id', 'name', 'description', 'photo', 'cost', 'promotion', 'discount', 'estimatedTime', 'date', 'active'],
+          include: [
+            {
+              model: Additional,
+              attributes: ['id', 'name', 'amount', 'cost', 'promotion', 'discount', 'photo', 'active'],
+            },
+            {
+              model: Recipe,
+              attributes: ['id', 'name', 'amount', 'date', 'active', 'ingredients', 'supplies'],
+              include: [
+                {
+                  model: UnitType,
+                  attributes: ['id', 'unit', 'detail', 'active'],
+                },
+              ],
+            },
+          ],
+        },
+        {
+          model: Account,
+          attributes: ['id', 'name', 'phone', 'address', 'birthDate', 'status', 'email', 'validatedEmail', 'googleUser', 'facebookUser', 'twitterUser', 'cp'],
+        },
+        {
+          model: Payment,
+          attributes: ['id', 'type', 'detail', 'active'],
+        },
+      ],
+    });
+    if (ord.length > 0) {
+      res.status(201).json(ord);
+    } else {
+      res.status(422).json('Not found');
+    }
+  } catch (error) {
+    res.status(500).json({ message: 'Error al obtener los pedidos' });
+  }
+});
+
+order.get('/status/:commerceId', async (req, res) => {
   try {
     const { status } = req.body;
+    const { commerceId } = req.params;
+    if (!commerceId && !Number.isInteger(parseInt(commerceId, 10))) {
+      res.status(422).send('ID was not provided');
+    }
     const ord = await Order.findAll({
       where: { status },
       attributes: ['id', 'order', 'name', 'date', 'hour', 'status', 'detail', 'validity', 'promotion', 'discount', 'surcharge', 'rating', 'feedback', 'paid'],
@@ -329,24 +412,6 @@ order.get('/status', async (req, res) => {
           attributes: ['id', 'date', 'name', 'description', 'status', 'cost', 'promotion', 'discount', 'validity', 'photo', 'dishes', 'active'],
           include: [
             {
-              model: Commerce,
-              attributes: ['id', 'name', 'neighborhood', 'address', 'workSchedule', 'email', 'phono', 'open', 'active'],
-              include: [
-                {
-                  model: CommerceFact,
-                  attributes: ['id', 'type', 'detail', 'active'],
-                },
-                {
-                  model: Bank,
-                  attributes: ['id', 'account', 'number', 'detail', 'active'],
-                },
-                {
-                  model: Franchise,
-                  attributes: ['id', 'name', 'detail', 'active'],
-                },
-              ],
-            },
-            {
               model: MenuType,
               attributes: ['id', 'type', 'detail', 'active'],
             },
@@ -361,8 +426,29 @@ order.get('/status', async (req, res) => {
           ],
         },
         {
+          model: Commerce,
+          where: {
+            id: parseInt(commerceId, 10),
+          },
+          attributes: ['id', 'name', 'neighborhood', 'address', 'workSchedule', 'email', 'phono', 'open', 'active', 'start'],
+          include: [
+            {
+              model: CommerceFact,
+              attributes: ['id', 'type', 'detail', 'active'],
+            },
+            {
+              model: Bank,
+              attributes: ['id', 'account', 'number', 'detail', 'active'],
+            },
+            {
+              model: Franchise,
+              attributes: ['id', 'name', 'detail', 'active'],
+            },
+          ],
+        },
+        {
           model: Pos,
-          attributes: ['id', 'qrCode', 'active'],
+          attributes: ['id', 'qrCode', 'active', 'discount', 'surcharge'],
           include: [
             {
               model: PosType,
@@ -402,7 +488,7 @@ order.get('/status', async (req, res) => {
         },
         {
           model: Account,
-          attributes: ['id', 'name', 'phone', 'address', 'birthDate', 'status', 'email', 'validatedEmail'],
+          attributes: ['id', 'name', 'phone', 'address', 'birthDate', 'status', 'email', 'validatedEmail', 'googleUser', 'facebookUser', 'twitterUser', 'cp'],
         },
         {
           model: Payment,
@@ -422,20 +508,17 @@ order.get('/status', async (req, res) => {
   }
 });
 
-order.put('/change-status/:id', async (req, res) => {
+order.put('/change-status/:order/:commerceId', async (req, res) => {
   try {
-    const { id } = req.params;
+    const { order: orderParam, commerceId: commerceIdParam } = req.params;
     const { status } = req.body;
-    const orderFinded = await Order.findOne({
-      where: { id },
+    const [rowsUpdated] = await Order.update({ status }, {
+      where: { order: orderParam, commerceId: commerceIdParam },
     });
-    if (orderFinded) {
-      await orderFinded.update({
-        status,
-      });
+    if (rowsUpdated > 0) {
       res.status(200).send(status);
     } else {
-      res.status(200).send('ID not found');
+      res.status(404).send('Order not found');
     }
   } catch (error) {
     res.status(400).send(error);

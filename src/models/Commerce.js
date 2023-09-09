@@ -7,6 +7,10 @@ module.exports = (sequelize) => {
       name: {
         type: DataTypes.STRING,
       },
+      start: {
+        type: DataTypes.DATEONLY,
+        defaultValue: DataTypes.NOW,
+      },
       neighborhood: {
         type: DataTypes.STRING,
       },

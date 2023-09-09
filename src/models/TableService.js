@@ -23,7 +23,7 @@ module.exports = (sequelize) => {
         defaultValue: 0,
       },
       validity: {
-        type: DataTypes.DATE,
+        type: DataTypes.DATEONLY,
       },
       active: {
         type: DataTypes.BOOLEAN,

@@ -12,6 +12,14 @@ module.exports = (sequelize) => {
         type: DataTypes.BOOLEAN,
         defaultValue: true,
       },
+      discount: {
+        type: DataTypes.INTEGER,
+        defaultValue: true,
+      },
+      surcharge: {
+        type: DataTypes.INTEGER,
+        defaultValue: 0,
+      },
     },
     {
       timestamps: false,

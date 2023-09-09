@@ -17,7 +17,7 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING,
       },
       birthDate: {
-        type: DataTypes.DATE,
+        type: DataTypes.DATEONLY,
       },
       status: {
         type: DataTypes.ENUM('noActive', 'active', 'banned'),
@@ -38,6 +38,10 @@ module.exports = (sequelize) => {
       },
       validatedEmail: {
         type: DataTypes.BOOLEAN,
+        defaultValue: false,
+      },
+      cp: {
+        type: DataTypes.STRING,
         defaultValue: false,
       },
     },

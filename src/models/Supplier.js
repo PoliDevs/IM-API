@@ -7,6 +7,10 @@ module.exports = (sequelize) => {
       item: {
         type: DataTypes.STRING,
       },
+      start: {
+        type: DataTypes.DATEONLY,
+        defaultValue: DataTypes.NOW,
+      },
       name: {
         type: DataTypes.STRING,
       },

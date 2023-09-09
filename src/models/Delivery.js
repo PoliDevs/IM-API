@@ -16,6 +16,10 @@ module.exports = (sequelize) => {
       account: {
         type: DataTypes.STRING,
       },
+      start: {
+        type: DataTypes.DATEONLY,
+        defaultValue: DataTypes.NOW,
+      },
       active: {
         type: DataTypes.BOOLEAN,
         defaultValue: true,

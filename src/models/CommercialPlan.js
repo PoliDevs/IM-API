@@ -8,7 +8,7 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING,
       },
       validity: {
-        type: DataTypes.STRING,
+        type: DataTypes.DATEONLY,
       },
       cost: {
         type: DataTypes.FLOAT,

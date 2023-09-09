@@ -189,6 +189,48 @@ menu.get('/all_active', async (req, res) => {
   }
 });
 
+menu.get('/menuCommerce/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    if (!id && !Number.isInteger(parseInt(id, 10))) {
+      res.status(422).send('ID was not provided');
+    }
+    const men = await Menu.findAll({
+      where: {
+        active: true,
+        id: parseInt(id, 10),
+      },
+      attributes: ['id', 'date', 'name', 'description', 'status', 'cost', 'promotion', 'discount', 'validity', 'photo', 'dishes', 'active'],
+      include: [
+        {
+          model: Commerce,
+          attributes: ['id', 'name', 'neighborhood', 'address', 'workSchedule', 'email', 'phono', 'open', 'active'],
+        },
+        {
+          model: MenuType,
+          attributes: ['id', 'type', 'detail', 'active'],
+        },
+        {
+          model: TableService,
+          attributes: ['id', 'type', 'detail', 'cost', 'promotion', 'discount', 'validity', 'active'],
+        },
+        {
+          model: Category,
+          attributes: ['id', 'category', 'detail', 'active'],
+        },
+      ],
+    });
+
+    if (men.length > 0) {
+      res.status(201).json(men);
+    } else {
+      res.status(422).json('Not found');
+    }
+  } catch (error) {
+    res.send(error);
+  }
+});
+
 menu.get('/detail/:id', async (req, res) => {
   try {
     const { id } = req.params;
@@ -199,6 +241,51 @@ menu.get('/detail/:id', async (req, res) => {
         include: [
           {
             model: Commerce,
+            attributes: ['id', 'name', 'neighborhood', 'address', 'workSchedule', 'email', 'phono', 'open', 'active'],
+          },
+          {
+            model: MenuType,
+            attributes: ['id', 'type', 'detail', 'active'],
+          },
+          {
+            model: TableService,
+            attributes: ['id', 'type', 'detail', 'cost', 'promotion', 'discount', 'validity', 'active'],
+          },
+          {
+            model: Category,
+            attributes: ['id', 'category', 'detail', 'active'],
+          },
+        ],
+      });
+      if (men.length > 0) {
+        res.status(201).json(men);
+      } else {
+        res.status(422).json('Not found');
+      }
+    } else {
+      res.status(422).send('ID was not provided');
+    }
+  } catch (error) {
+    res.send(error);
+  }
+});
+
+menu.get('/menuCommerceActive', async (req, res) => {
+  try {
+    const { commerceId, date } = req.body;
+    if (commerceId && Number.isInteger(parseInt(commerceId, 10))) {
+      const men = await Menu.findAll({
+        where: {
+          commerceId: parseInt(commerceId, 10),
+          date,
+        },
+        attributes: ['id', 'date', 'name', 'description', 'status', 'cost', 'promotion', 'discount', 'validity', 'photo', 'dishes', 'active'],
+        include: [
+          {
+            model: Commerce,
+            where: {
+              active: true,
+            },
             attributes: ['id', 'name', 'neighborhood', 'address', 'workSchedule', 'email', 'phono', 'open', 'active'],
           },
           {
