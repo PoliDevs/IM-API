@@ -154,6 +154,40 @@ pointOfSale.get('/detail/:id', async (req, res) => {
   }
 });
 
+pointOfSale.get('/posCommerce/:commerceId', async (req, res) => {
+  try {
+    const { commerceId } = req.params;
+    if (commerceId && Number.isInteger(parseInt(commerceId, 10))) {
+      const point = await Commerce.findAll({
+        where: { id: parseInt(commerceId, 10) },
+        attributes: ['id', 'name', 'neighborhood', 'address', 'active'],
+        include: [
+          {
+            model: Pos,
+            attributes: ['id', 'qrCode', 'active'],
+            include: [
+              {
+                model: PosType,
+                attributes: ['id', 'type', 'detail', 'active'],
+              },
+            ],
+          },
+        ],
+      });
+      res.status(201).json(point);
+      if (point.length > 0) {
+        res.status(201).json(point);
+      } else {
+        res.status(422).json('Not found');
+      }
+    } else {
+      res.status(422).send('ID was not provided');
+    }
+  } catch (error) {
+    res.status(500).send(error);
+  }
+});
+
 pointOfSale.put('/update/:id', async (req, res) => {
   try {
     const { id } = req.params;
