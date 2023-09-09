@@ -65,7 +65,7 @@ account.get('/all', async (req, res) => {
       res.status(422).json('Not found');
     }
   } catch (error) {
-    res.send(error);
+    res.status(500).send(error);
   }
 });
 
@@ -82,7 +82,7 @@ account.get('/all_Active', async (req, res) => {
       res.status(422).json('Not found');
     }
   } catch (error) {
-    res.send(error);
+    res.status(500).send(error);
   }
 });
 
@@ -99,7 +99,7 @@ account.get('/all_NoActive', async (req, res) => {
       res.status(422).json('Not found');
     }
   } catch (error) {
-    res.send(error);
+    res.status(500).send(error);
   }
 });
 
@@ -116,7 +116,7 @@ account.get('/all_banned', async (req, res) => {
       res.status(422).json('Not found');
     }
   } catch (error) {
-    res.send(error);
+    res.status(500).send(error);
   }
 });
 
@@ -137,7 +137,7 @@ account.get('/detail/:id', async (req, res) => {
       res.status(422).send('ID was not provided');
     }
   } catch (error) {
-    res.send(error);
+    res.status(500).send(error);
   }
 });
 

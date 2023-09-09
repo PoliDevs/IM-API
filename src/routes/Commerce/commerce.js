@@ -101,7 +101,7 @@ commerces.get('/all', async (req, res) => {
       res.status(422).json('Not found');
     }
   } catch (error) {
-    res.send(error);
+    res.status(500).send(error);
   }
 });
 
@@ -142,7 +142,7 @@ commerces.get('/all_active', async (req, res) => {
       res.status(422).json('Not found');
     }
   } catch (error) {
-    res.send(error);
+    res.status(500).send(error);
   }
 });
 
@@ -152,7 +152,7 @@ commerces.get('/detail/:id', async (req, res) => {
     if (id && Number.isInteger(parseInt(id, 10))) {
       const comm = await Commerce.findAll({
         where: { id: parseInt(id, 10) },
-        attributes: ['id', 'name', 'neighborhood', 'address', 'workSchedule', 'email', 'phono', 'active'],
+        attributes: ['id', 'name', 'neighborhood', 'address', 'workSchedule', 'email', 'open', 'phono', 'active', 'start'],
         include: [
           {
             model: CommerceFact,
@@ -187,7 +187,7 @@ commerces.get('/detail/:id', async (req, res) => {
       res.status(422).send('ID was not provided');
     }
   } catch (error) {
-    res.send(error);
+    res.status(500).send(error);
   }
 });
 
@@ -214,7 +214,7 @@ commerces.get('/openCommerce/:id', async (req, res) => {
       res.status(422).send('ID was not provided');
     }
   } catch (error) {
-    res.send(error);
+    res.status(500).send(error);
   }
 });
 
@@ -388,6 +388,36 @@ commerces.put('/plan/:id', async (req, res) => {
     }
   } catch (error) {
     res.status(400).send(error);
+  }
+});
+
+commerces.get('/commerceBkn/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    if (id && Number.isInteger(parseInt(id, 10))) {
+      const comm = await Commerce.findOne({
+        where: {
+          id: parseInt(id, 10),
+          // active: true,
+        },
+        attributes: ['id', 'name', 'neighborhood', 'address', 'workSchedule', 'email', 'phono', 'active'],
+        include: [
+          {
+            model: Bank,
+            attributes: ['id', 'account', 'number', 'detail', 'active'],
+          },
+        ],
+      });
+      if (comm) {
+        res.status(201).json(comm);
+      } else {
+        res.status(404).json('Not found');
+      }
+    } else {
+      res.status(422).send('ID was not provided');
+    }
+  } catch (error) {
+    res.status(500).send(error);
   }
 });
 

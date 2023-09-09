@@ -52,7 +52,7 @@ additional.get('/all', async (req, res) => {
       res.status(422).json('Not found');
     }
   } catch (error) {
-    res.send(error);
+    res.status(500).send(error);
   }
 });
 
@@ -69,7 +69,7 @@ additional.get('/all_active', async (req, res) => {
       res.status(422).json('Not found');
     }
   } catch (error) {
-    res.send(error);
+    res.status(500).send(error);
   }
 });
 
@@ -90,7 +90,7 @@ additional.get('/detail/:id', async (req, res) => {
       res.status(422).send('ID was not provided');
     }
   } catch (error) {
-    res.send(error);
+    res.status(500).send(error);
   }
 });
 
