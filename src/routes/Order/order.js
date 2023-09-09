@@ -525,6 +525,296 @@ order.put('/change-status/:order/:commerceId', async (req, res) => {
   }
 });
 
+order.put('/updateDetail/:order/:id/:commerceId', async (req, res) => {
+  try {
+    const {
+      order: orderParam,
+      commerceId: commerceIdParam,
+      id,
+    } = req.params;
+    const { detail } = req.body;
+    const [rowsUpdated] = await Order.update({ detail }, {
+      where: { order: orderParam, commerceId: commerceIdParam, id },
+    });
+    if (rowsUpdated > 0) {
+      res.status(200).send(`Modified detail of order: ${orderParam}`);
+    } else {
+      res.status(404).send('Order not found');
+    }
+  } catch (error) {
+    res.status(400).send(error);
+  }
+});
+
+order.put('/updateValidity/:order/:id/:commerceId', async (req, res) => {
+  try {
+    const {
+      order: orderParam,
+      commerceId: commerceIdParam,
+      id,
+    } = req.params;
+    const { validity } = req.body;
+    const [rowsUpdated] = await Order.update({ validity }, {
+      where: { order: orderParam, commerceId: commerceIdParam, id },
+    });
+    if (rowsUpdated > 0) {
+      res.status(200).send(`Modified validity of order: ${orderParam}`);
+    } else {
+      res.status(404).send('Order not found');
+    }
+  } catch (error) {
+    res.status(400).send(error);
+  }
+});
+
+order.put('/updatePromotion/:order/:id/:commerceId', async (req, res) => {
+  try {
+    const {
+      order: orderParam,
+      commerceId: commerceIdParam,
+      id,
+    } = req.params;
+    const { promotion } = req.body;
+    const [rowsUpdated] = await Order.update({ promotion }, {
+      where: { order: orderParam, commerceId: commerceIdParam, id },
+    });
+    if (rowsUpdated > 0) {
+      res.status(200).send(`Modified promotion of order: ${orderParam}`);
+    } else {
+      res.status(404).send('Order not found');
+    }
+  } catch (error) {
+    res.status(400).send(error);
+  }
+});
+
+order.put('/updateDiscount/:order/:id/:commerceId', async (req, res) => {
+  try {
+    const {
+      order: orderParam,
+      commerceId: commerceIdParam,
+      id,
+    } = req.params;
+    const { discount } = req.body;
+    const [rowsUpdated] = await Order.update({ discount }, {
+      where: { order: orderParam, commerceId: commerceIdParam, id },
+    });
+    if (rowsUpdated > 0) {
+      res.status(200).send(`Modified discount of order: ${orderParam}`);
+    } else {
+      res.status(404).send('Order not found');
+    }
+  } catch (error) {
+    res.status(400).send(error);
+  }
+});
+
+order.put('/updateSurcharge/:order/:id/:commerceId', async (req, res) => {
+  try {
+    const {
+      order: orderParam,
+      commerceId: commerceIdParam,
+      id,
+    } = req.params;
+    const { surcharge } = req.body;
+    const [rowsUpdated] = await Order.update({ surcharge }, {
+      where: { order: orderParam, commerceId: commerceIdParam, id },
+    });
+    if (rowsUpdated > 0) {
+      res.status(200).send(`Modified surcharge of order: ${orderParam}`);
+    } else {
+      res.status(404).send('Order not found');
+    }
+  } catch (error) {
+    res.status(400).send(error);
+  }
+});
+
+order.put('/rating/:order/:commerceId', async (req, res) => {
+  try {
+    const { order: orderParam, commerceId: commerceIdParam } = req.params;
+    const { rating, feedback } = req.body;
+    const [rowsUpdated] = await Order.update({ rating, feedback }, {
+      where: { order: orderParam, commerceId: commerceIdParam },
+    });
+    if (rowsUpdated > 0) {
+      res.status(200).send(`Modified feeback of order: ${orderParam}`);
+    } else {
+      res.status(404).send('Order not found');
+    }
+  } catch (error) {
+    res.status(400).send(error);
+  }
+});
+
+order.put('/updateMenu/:order/:id/:commerceId', async (req, res) => {
+  try {
+    const {
+      order: orderParam,
+      commerceId: commerceIdParam,
+      id,
+    } = req.params;
+    const { menuId } = req.body;
+    const [rowsUpdated] = await Order.update({ menuId }, {
+      where: { order: orderParam, commerceId: commerceIdParam, id },
+    });
+    if (rowsUpdated > 0) {
+      res.status(200).send(`Modified menu of order: ${orderParam}`);
+    } else {
+      res.status(404).send('Order not found');
+    }
+  } catch (error) {
+    res.status(400).send(error);
+  }
+});
+
+order.put('/updatePos/:order/:id/:commerceId', async (req, res) => {
+  try {
+    const {
+      order: orderParam,
+      commerceId: commerceIdParam,
+      id,
+    } = req.params;
+    const { poId } = req.body;
+    const [rowsUpdated] = await Order.update({ poId }, {
+      where: { order: orderParam, commerceId: commerceIdParam, id },
+    });
+    if (rowsUpdated > 0) {
+      res.status(200).send(`Modified pos of order: ${orderParam}`);
+    } else {
+      res.status(404).send('Order not found');
+    }
+  } catch (error) {
+    res.status(400).send(error);
+  }
+});
+
+order.put('/updateEmployee/:order/:id/:commerceId', async (req, res) => {
+  try {
+    const {
+      order: orderParam,
+      commerceId: commerceIdParam,
+      id,
+    } = req.params;
+    const { employeeId } = req.body;
+    const [rowsUpdated] = await Order.update({ employeeId }, {
+      where: { order: orderParam, commerceId: commerceIdParam, id },
+    });
+    if (rowsUpdated > 0) {
+      res.status(200).send(`Modified employee of order: ${orderParam}`);
+    } else {
+      res.status(404).send('Order not found');
+    }
+  } catch (error) {
+    res.status(400).send(error);
+  }
+});
+
+order.put('/updateDish/:order/:id/:commerceId', async (req, res) => {
+  try {
+    const {
+      order: orderParam,
+      commerceId: commerceIdParam,
+      id,
+    } = req.params;
+    const { dishId } = req.body;
+    const [rowsUpdated] = await Order.update({ dishId }, {
+      where: { order: orderParam, commerceId: commerceIdParam, id },
+    });
+    if (rowsUpdated > 0) {
+      res.status(200).send(`Modified dish of order: ${orderParam}`);
+    } else {
+      res.status(404).send('Order not found');
+    }
+  } catch (error) {
+    res.status(400).send(error);
+  }
+});
+
+order.put('/updateAccount/:order/:id/:commerceId', async (req, res) => {
+  try {
+    const {
+      order: orderParam,
+      commerceId: commerceIdParam,
+      id,
+    } = req.params;
+    const { accountId } = req.body;
+    const [rowsUpdated] = await Order.update({ accountId }, {
+      where: { order: orderParam, commerceId: commerceIdParam, id },
+    });
+    if (rowsUpdated > 0) {
+      res.status(200).send(`Modified account of order: ${orderParam}`);
+    } else {
+      res.status(404).send('Order not found');
+    }
+  } catch (error) {
+    res.status(400).send(error);
+  }
+});
+
+order.put('/updatePayment/:order/:id/:commerceId', async (req, res) => {
+  try {
+    const {
+      order: orderParam,
+      commerceId: commerceIdParam,
+      id,
+    } = req.params;
+    const { paymentId } = req.body;
+    const [rowsUpdated] = await Order.update({ paymentId }, {
+      where: { order: orderParam, commerceId: commerceIdParam, id },
+    });
+    if (rowsUpdated > 0) {
+      res.status(200).send(`Modified payment of order: ${orderParam}`);
+    } else {
+      res.status(404).send('Order not found');
+    }
+  } catch (error) {
+    res.status(400).send(error);
+  }
+});
+
+order.put('/updateDelivery/:order/:id/:commerceId', async (req, res) => {
+  try {
+    const {
+      order: orderParam,
+      commerceId: commerceIdParam,
+      id,
+    } = req.params;
+    const { deliveryId } = req.body;
+    const [rowsUpdated] = await Order.update({ deliveryId }, {
+      where: { order: orderParam, commerceId: commerceIdParam, id },
+    });
+    if (rowsUpdated > 0) {
+      res.status(200).send(`Modified delivery of order: ${orderParam}`);
+    } else {
+      res.status(404).send('Order not found');
+    }
+  } catch (error) {
+    res.status(400).send(error);
+  }
+});
+
+order.put('/updatePaid/:order/:id/:commerceId', async (req, res) => {
+  try {
+    const {
+      order: orderParam,
+      commerceId: commerceIdParam,
+      id,
+    } = req.params;
+    const { paid } = req.body;
+    const [rowsUpdated] = await Order.update({ paid }, {
+      where: { order: orderParam, commerceId: commerceIdParam, id },
+    });
+    if (rowsUpdated > 0) {
+      res.status(200).send(`Modified paid of order: ${orderParam}`);
+    } else {
+      res.status(404).send('Order not found');
+    }
+  } catch (error) {
+    res.status(400).send(error);
+  }
+});
+
 order.all('*', async (req, res) => {
   res.status(404).send('Ruta no encontrada');
 });
