@@ -815,6 +815,124 @@ order.put('/updatePaid/:order/:id/:commerceId', async (req, res) => {
   }
 });
 
+order.get('/paidOrderes/:commerceId', async (req, res) => {
+  try {
+    const { commerceId: commerceIdParam } = req.params;
+    const { startDate, endDate } = req.query;
+    const ord = await Order.findAll({
+      where: {
+        date: {
+          [Op.gte]: startDate,
+          [Op.lte]: endDate,
+        },
+        status: {
+          [Op.not]: 'canceled',
+        },
+        paid: {
+          [Op.gt]: 0,
+        },
+      },
+      attributes: ['id', 'order', 'name', 'date', 'hour', 'status', 'detail', 'validity', 'promotion', 'discount', 'surcharge', 'rating', 'feedback', 'paid'],
+      include: [
+        {
+          model: Menu,
+          attributes: ['id', 'date', 'name', 'description', 'status', 'cost', 'promotion', 'discount', 'validity', 'photo', 'dishes', 'active'],
+          include: [
+            {
+              model: MenuType,
+              attributes: ['id', 'type', 'detail', 'active'],
+            },
+            {
+              model: TableService,
+              attributes: ['id', 'type', 'detail', 'cost', 'promotion', 'discount', 'validity', 'active'],
+            },
+            {
+              model: Category,
+              attributes: ['id', 'category', 'detail', 'active'],
+            },
+          ],
+        },
+        {
+          model: Commerce,
+          where: {
+            id: parseInt(commerceIdParam, 10),
+          },
+          attributes: ['id', 'name', 'neighborhood', 'address', 'workSchedule', 'email', 'phono', 'open', 'active', 'start'],
+          include: [
+            {
+              model: CommerceFact,
+              attributes: ['id', 'type', 'detail', 'active'],
+            },
+            {
+              model: Bank,
+              attributes: ['id', 'account', 'number', 'detail', 'active'],
+            },
+            {
+              model: Franchise,
+              attributes: ['id', 'name', 'detail', 'active'],
+            },
+          ],
+        },
+        {
+          model: Pos,
+          attributes: ['id', 'qrCode', 'active', 'discount', 'surcharge'],
+          include: [
+            {
+              model: PosType,
+              attributes: ['id', 'type', 'detail', 'active'],
+            },
+          ],
+        },
+        {
+          model: Employee,
+          attributes: ['id', 'firstName', 'lastName', 'document', 'photo', 'active'],
+          include: [
+            {
+              model: EmployeeType,
+              attributes: ['id', 'type', 'detail', 'active'],
+            },
+          ],
+        },
+        {
+          model: Dish,
+          attributes: ['id', 'name', 'description', 'photo', 'cost', 'promotion', 'discount', 'estimatedTime', 'date', 'active'],
+          include: [
+            {
+              model: Additional,
+              attributes: ['id', 'name', 'amount', 'cost', 'promotion', 'discount', 'photo', 'active'],
+            },
+            {
+              model: Recipe,
+              attributes: ['id', 'name', 'amount', 'date', 'active', 'ingredients', 'supplies'],
+              include: [
+                {
+                  model: UnitType,
+                  attributes: ['id', 'unit', 'detail', 'active'],
+                },
+              ],
+            },
+          ],
+        },
+        {
+          model: Account,
+          attributes: ['id', 'name', 'phone', 'address', 'birthDate', 'status', 'email', 'validatedEmail', 'googleUser', 'facebookUser', 'twitterUser', 'cp'],
+        },
+        {
+          model: Payment,
+          attributes: ['id', 'type', 'detail', 'active'],
+        },
+      ],
+    });
+    if (ord) {
+      res.status(201).json(ord);
+    } else {
+      res.status(422).json('Not found');
+    }
+  } catch (error) {
+    res.status(500).json({ message: 'Error al obtener los pagos realizados' });
+  }
+});
+
 order.all('*', async (req, res) => {
   res.status(404).send('Ruta no encontrada');
 });
