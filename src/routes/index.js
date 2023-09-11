@@ -36,6 +36,7 @@ const loginAccountRouter = require('./LogIn/loginAccount');
 const deliveryRouter = require('./Delivery');
 const courierRouter = require('./Courier');
 const courierTypeRouter = require('./Courier/courierType');
+const sectorRouter = require('./Sector');
 
 const router = Router();
 
@@ -76,5 +77,6 @@ router.use('/loginaccount', loginAccountRouter);
 router.use('/delivery', deliveryRouter);
 router.use('/courier', courierRouter);
 router.use('/courierType', courierTypeRouter);
+router.use('/sector', sectorRouter);
 
 module.exports = router;

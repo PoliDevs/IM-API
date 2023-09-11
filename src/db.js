@@ -79,6 +79,7 @@ const {
   Courier,
   CourierType,
   Delivery,
+  Sector,
 } = sequelize.models;
 
 BusinessType.hasMany(Business);
@@ -165,6 +166,8 @@ CourierType.hasMany(Courier);
 Courier.belongsTo(CourierType);
 Courier.hasMany(Delivery);
 Delivery.belongsTo(Courier);
+Sector.hasMany(Pos);
+Pos.belongsTo(Sector);
 
 module.exports = {
   ...sequelize.models,
