@@ -1361,6 +1361,48 @@
 					"response": []
 				},
 				{
+					"name": "ID Commerce_Open",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/commerce/openCommerce/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"commerce",
+								"openCommerce",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Commerce Bank for ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/commerce/commerceBkn/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"commerce",
+								"commerceBkn",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Active",
 					"request": {
 						"method": "PUT",
@@ -1409,7 +1451,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"account\": \"\"\r\n    \r\n}",
+							"raw": "{\r\n    \"account\": \"visa\"\r\n    \r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1833,6 +1875,486 @@
 								"commerce",
 								"plan",
 								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Courier",
+			"item": [
+				{
+					"name": "NEW Courier",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\": \"jose\",\r\n    \"lastName\":\"san martín\",\r\n    \"document\": \"78455\",\r\n    \"address\": \"Mendoza 8754\",\r\n    \"cp\": \"889\",\r\n    \"bank\": \"santander\",\r\n    \"account\": \"63666\",\r\n    \"detail\": \"nunca trabajó\",\r\n    \"start\": \"2023-09-10\",\r\n    \"courierType\": \"bici\"\r\n}\r\n/*\r\n{\r\n    \"firstName\": \"juan\",\r\n    \"lastName\":\"centurion\",\r\n    \"document\": \"125487\",\r\n    \"address\": \"Av cabo blanco 1254\",\r\n    \"cp\": \"2154\",\r\n    \"bank\": \"itau\",\r\n    \"account\": \"54879865\",\r\n    \"detail\": \"vien de trabajar en la tablita\",\r\n    \"start\": \"2023-09-09\",\r\n    \"courierType\": \"bici\"\r\n}\r\n*/",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/courier/courier",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"courier",
+								"courier"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE Courier",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\": \"jose\",\r\n    \"lastName\":\"san martín\",\r\n    \"document\": \"78455\",\r\n    \"address\": \"Mendoza 8754\",\r\n    \"cp\": \"889\",\r\n    \"bank\": \"santander\",\r\n    \"account\": \"63666\",\r\n    \"detail\": \"nunca trabajó\",\r\n    \"start\": \"2023-09-10\",\r\n    \"courierType\": \"bici\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/courier/update/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"courier",
+								"update",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ALL Courier",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/courier/all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"courier",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ID Courier",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/courier/detail/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"courier",
+								"detail",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Active",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/courier/active/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"courier",
+								"active",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Inactive",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/delivery/inactive/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"delivery",
+								"inactive",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ALL Active Courier",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/courier/all_active",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"courier",
+								"all_active"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "CourierType",
+			"item": [
+				{
+					"name": "NEW Courier Type",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"type\": \"bici\",\r\n    \"detail\":\"bicicleta\"\r\n    \r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/courierType/courierType",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"courierType",
+								"courierType"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE Courier Type",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"type\": \"bici\",\r\n    \"detail\":\"bicicleta\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/courierType/update/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"courierType",
+								"update",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ALL Courier Type",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/courierType/all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"courierType",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ID Courier Type",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/courierType/detail/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"courierType",
+								"detail",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Active",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/courierType/active/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"courierType",
+								"active",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Inactive",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/courierType/inactive/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"courierType",
+								"inactive",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ALL Active Courier Type",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/courierType/all_active",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"courierType",
+								"all_active"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Delivery",
+			"item": [
+				{
+					"name": "NEW Delivery",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Rappi\",\r\n    \"detail\":\"rappi\",\r\n    \"company\": \"rappi sa\",\r\n    \"account\": \"777777\",\r\n    \"start\": \"2023-08-10\",\r\n    \"courierId\": 1\r\n    \r\n}\r\n/*\r\n{\r\n    \"name\": \"Pedido Ya\",\r\n    \"detail\":\"peya\",\r\n    \"company\": \"peya sa\",\r\n    \"account\": \"7896666\",\r\n    \"start\": \"2023-08-10\",\r\n    \"courierId\": 1\r\n    \r\n}\r\n*/",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/delivery/delivery",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"delivery",
+								"delivery"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE Delivery",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Rappi\",\r\n    \"detail\":\"rappi\",\r\n    \"company\": \"rappi sa\",\r\n    \"account\": \"777777\",\r\n    \"start\": \"2023-08-10\",\r\n    \"courierId\": 1\r\n    \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/delivery/update/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"delivery",
+								"update",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ALL Delivery",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/delivery/all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"delivery",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ID Delivery",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/delivery/delivery/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"delivery",
+								"delivery",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Active",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/delivery/active/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"delivery",
+								"active",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ALL Active Delivery",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/delivery/all_active",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"delivery",
+								"all_active"
 							]
 						}
 					},
@@ -3080,6 +3602,38 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Menu Active x Commerce",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"commerceId\": 1,\r\n    \"date\": \"2023-08-17\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/menu/menuCommerceActive",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"menu",
+								"menuCommerceActive"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -3260,7 +3814,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"ernesto\",\r\n    \"date\": \"2023-08-19\",\r\n    \"hour\": \"09:57\",\r\n    \"status\": \"orderPlaced\",\r\n    \"detail\": \"\",\r\n    \"validity\": \"2023-08-18\",\r\n    \"promotion\": 0,\r\n    \"discount\": 0,\r\n    \"surcharge\": 0,\r\n    \"rating\": 5,\r\n    \"feedback\": \"\",\r\n    \"menu\": \"mila con fritas\",\r\n    \"pos\": 2,\r\n    \"employee\": 2,\r\n    \"dish\": \"\",\r\n    \"account\": 1,\r\n    \"payment\": \"efectivo\",\r\n    \"commerce\": \"cp luisito\"\r\n}\r\n",
+							"raw": "[\r\n    {\r\n    \"name\": \"xxx\",\r\n    \"date\": \"2023-09-08\",\r\n    \"hour\": \"09:57\",\r\n    \"status\": \"orderPlaced\",\r\n    \"detail\": \"\",\r\n    \"validity\": \"2023-09-08\",\r\n    \"promotion\": 0,\r\n    \"discount\": 0.1,\r\n    \"surcharge\": 0,\r\n    \"rating\": 5,\r\n    \"feedback\": \"\",\r\n    \"menuId\": 3,\r\n    \"poId\": 3,\r\n    \"employeeId\": 2,\r\n    \"dishId\": 0,\r\n    \"accountId\": 3,\r\n    \"paymentId\": 1,\r\n    \"commerceId\": 1,\r\n    \"deliveryId\": 0,\r\n    \"paid\" : 2250,\r\n    \"order\": \"\"\r\n},\r\n{\r\n    \"name\": \"xxx\",\r\n    \"date\": \"2023-09-08\",\r\n    \"hour\": \"09:57\",\r\n    \"status\": \"orderPlaced\",\r\n    \"detail\": \"\",\r\n    \"validity\": \"2023-09-08\",\r\n    \"promotion\": 0,\r\n    \"discount\": 0,\r\n    \"surcharge\": 0.1,\r\n    \"rating\": 5,\r\n    \"feedback\": \"\",\r\n    \"menuId\": 3,\r\n    \"poId\": 3,\r\n    \"employeeId\": 2,\r\n    \"dishId\": 0,\r\n    \"accountId\": 3,\r\n    \"paymentId\": 1,\r\n    \"commerceId\": 1,\r\n    \"deliveryId\": 0,\r\n    \"paid\": 0,\r\n    \"order\": \"\"\r\n}\r\n]\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -3278,57 +3832,8 @@
 								"order",
 								"order"
 							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "UPDATE Order",
-					"request": {
-						"method": "PUT",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"date\": \"2023-08-17\",\r\n    \"hour\": \"20:27\",\r\n    \"status\": \"orderPlaced\",\r\n    \"detail\": \"que las papas estén bien doradas\",\r\n    \"validity\": \"2023-08-17\",\r\n    \"promotion\": 0,\r\n    \"discount\": 0,\r\n    \"surcharge\": 0,\r\n    \"rating\": 5,\r\n    \"feedback\": \"\",\r\n    \"menu\": \"mila con fritas\",\r\n    \"pos\": 1,\r\n    \"employee\": 2,\r\n    \"dish\": \"\",\r\n    \"account\": 1,\r\n    \"payment\": \"efectivo\"\r\n}\r\n",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
 						},
-						"url": {
-							"raw": "http://localhost:3001/order/change-status/2",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3001",
-							"path": [
-								"order",
-								"change-status",
-								"2"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "ALL Order",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:3001/order/all",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3001",
-							"path": [
-								"order",
-								"all"
-							]
-						}
+						"description": "Genera nuevo order y genbera automáticamente el codigo o numero de pedido que se guarda en order."
 					},
 					"response": []
 				},
@@ -3338,7 +3843,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3001/order/detail/2",
+							"raw": "http://localhost:3001/order/detail/C2M3 - 1/2",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -3347,9 +3852,11 @@
 							"path": [
 								"order",
 								"detail",
+								"C2M3 - 1",
 								"2"
 							]
-						}
+						},
+						"description": "Trae el pedido designado todo en mayúscula por id de commerce."
 					},
 					"response": []
 				},
@@ -3363,7 +3870,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"status\": \"processingOrder\"\r\n}",
+							"raw": "{\r\n    \"status\": \"orderPlaced\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -3371,7 +3878,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3001/order/status",
+							"raw": "http://localhost:3001/order/status/1",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -3379,7 +3886,95 @@
 							"port": "3001",
 							"path": [
 								"order",
-								"status"
+								"status",
+								"1"
+							]
+						},
+						"description": "Trae las orderes de acuerdo al estado del campo status en order por el id de commerce."
+					},
+					"response": []
+				},
+				{
+					"name": "Order for Commerce",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/order/orderes/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"order",
+								"orderes",
+								"2"
+							]
+						},
+						"description": "Trae todas las orderes por id de commerce."
+					},
+					"response": []
+				},
+				{
+					"name": "Order for Date ",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/order/dates/2?startDate=2023-09-08&endDate=2023-09-08",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"order",
+								"dates",
+								"2"
+							],
+							"query": [
+								{
+									"key": "startDate",
+									"value": "2023-09-08"
+								},
+								{
+									"key": "endDate",
+									"value": "2023-09-08"
+								}
+							]
+						},
+						"description": "Trae todas las ordenes de order por id commerce y en intervalo de fecha. si las fechas coinciden trae el día."
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE DETAIL Order",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"detail\": \"sin sal\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/order/updateDetail/C2M3%20-%201/19/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"order",
+								"updateDetail",
+								"C2M3%20-%201",
+								"19",
+								"2"
 							]
 						}
 					},
@@ -3400,7 +3995,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3001/order/change-status/3",
+							"raw": "http://localhost:3001/order/change-status/C2M3 - 1/2",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -3409,7 +4004,455 @@
 							"path": [
 								"order",
 								"change-status",
-								"3"
+								"C2M3 - 1",
+								"2"
+							]
+						},
+						"description": "Cambia el estado de status, de la order, y se pasa el código de la order en mayúscula, el id de commerce todo por params y por body el nuevo status."
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE VALIDITY Order",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"validity\": \"2024-01-01\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/order/updateValidity/C2M3%20-%201/19/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"order",
+								"updateValidity",
+								"C2M3%20-%201",
+								"19",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE PROMOTION Order",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"promotion\": 0\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/order/updatePromotion/C2M3%20-%201/19/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"order",
+								"updatePromotion",
+								"C2M3%20-%201",
+								"19",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE DISCOUNT Order",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"discount\": 0\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/order/updateDiscount/C2M3%20-%201/19/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"order",
+								"updateDiscount",
+								"C2M3%20-%201",
+								"19",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE SURCHARGE Order",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"surcharge\": 0\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/order/updateSurcharge/C2M3%20-%201/19/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"order",
+								"updateSurcharge",
+								"C2M3%20-%201",
+								"19",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE Rating Order",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"rating\": 5,\r\n    \"feedback\": \"que bien atienden. y que rica es la comida\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/order/rating/C2M3 - 1/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"order",
+								"rating",
+								"C2M3 - 1",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE MENU Order",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"menuId\": 1\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/order/updateMenu/C2M3%20-%201/19/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"order",
+								"updateMenu",
+								"C2M3%20-%201",
+								"19",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE POS Order",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"poId\": 1\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/order/updateMenu/C2M3%20-%201/19/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"order",
+								"updateMenu",
+								"C2M3%20-%201",
+								"19",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE EMPLOYEE Order",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"employeeId\": 1\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/order/updateEmployee/C2M3%20-%201/19/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"order",
+								"updateEmployee",
+								"C2M3%20-%201",
+								"19",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE DISH Order",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"dishId\": 1\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/order/updateDish/C2M3%20-%201/19/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"order",
+								"updateDish",
+								"C2M3%20-%201",
+								"19",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE ACCOUNT Order",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"accountId\": 1\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/order/updateAccount/C2M3%20-%201/19/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"order",
+								"updateAccount",
+								"C2M3%20-%201",
+								"19",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE PAYMENT Order",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"paymentId\": 1\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/order/updatePayment/C2M3%20-%201/19/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"order",
+								"updatePayment",
+								"C2M3%20-%201",
+								"19",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE DELIVERY Order",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"deliveryId\": 1\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/order/updateDelivery/C2M3%20-%201/19/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"order",
+								"updateDelivery",
+								"C2M3%20-%201",
+								"19",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE PAID Order",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"paid\": 1000\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/order/updatePaid/C2M3%20-%201/20/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"order",
+								"updatePaid",
+								"C2M3%20-%201",
+								"20",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Paid Orderes ",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/order/paidOrderes/2?startDate=2023-09-08&endDate=2023-09-08",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"order",
+								"paidOrderes",
+								"2"
+							],
+							"query": [
+								{
+									"key": "startDate",
+									"value": "2023-09-08"
+								},
+								{
+									"key": "endDate",
+									"value": "2023-09-08"
+								}
 							]
 						}
 					},
@@ -3764,6 +4807,27 @@
 							"path": [
 								"pos",
 								"all_inactive"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Pos for Commerce",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/pos/posCommerce/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"pos",
+								"posCommerce",
+								"1"
 							]
 						}
 					},
