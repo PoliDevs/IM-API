@@ -1,7 +1,7 @@
 const sector = require('express').Router();
 const express = require('express');
 const cors = require('cors');
-const { Sector } = require('../../db');
+const { Sector, Pos } = require('../../db');
 
 sector.use(express.json());
 sector.use(cors());
@@ -49,6 +49,28 @@ sector.get('/all', async (req, res) => {
   try {
     const sect = await Sector.findAll({
       attributes: ['id', 'name', 'discount', 'surcharge', 'capacity', 'qrCode', 'detail', 'active'],
+    });
+
+    if (sect.length > 0) {
+      res.status(201).json(sect);
+    } else {
+      res.status(422).json('Not found');
+    }
+  } catch (error) {
+    res.status(500).send(error);
+  }
+});
+
+sector.get('/sectorPos', async (req, res) => {
+  try {
+    const sect = await Pos.findAll({
+      attributes: ['id', 'qrCode', 'discount', 'surcharge', 'capacity', 'detail', 'sectorId'],
+      include: [
+        {
+          model: Sector,
+          attributes: ['id', 'name', 'discount', 'surcharge', 'capacity', 'detail', 'qrCode'],
+        },
+      ],
     });
 
     if (sect.length > 0) {
