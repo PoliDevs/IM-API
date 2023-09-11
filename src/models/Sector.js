@@ -2,9 +2,9 @@ const { DataTypes } = require('sequelize');
 
 module.exports = (sequelize) => {
   sequelize.define(
-    'pos',
+    'sector',
     {
-      qrCode: {
+      name: {
         type: DataTypes.STRING,
         defaultValue: '',
       },
@@ -28,10 +28,14 @@ module.exports = (sequelize) => {
         type: DataTypes.TEXT,
         defaultValue: null,
       },
+      qrCode: {
+        type: DataTypes.STRING,
+        defaultValue: '',
+      },
     },
     {
       timestamps: false,
-      tableName: 'pos',
+      tableName: 'sectors',
     },
   );
 };
