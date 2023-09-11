@@ -1,7 +1,7 @@
 const delivery = require('express').Router();
 const express = require('express');
 const cors = require('cors');
-const { Delivery } = require('../../db');
+const { Delivery, Courier, CourierType } = require('../../db');
 
 delivery.use(express.json());
 delivery.use(cors());
@@ -19,6 +19,7 @@ delivery.post('/delivery', async (req, res) => {
       company,
       account,
       start,
+      courierId,
     } = req.body;
     // eslint-disable-next-line no-unused-vars
     const [deliveryCreated, created] = await Delivery.findOrCreate({
@@ -31,6 +32,7 @@ delivery.post('/delivery', async (req, res) => {
         company,
         account,
         start,
+        courierId,
       },
     });
     if (created) {
@@ -47,6 +49,18 @@ delivery.get('/all', async (req, res) => {
   try {
     const deliveryi = await Delivery.findAll({
       attributes: ['id', 'name', 'detail', 'company', 'account', 'start', 'active'],
+      include: [
+        {
+          model: Courier,
+          attributes: ['id', 'firstName', 'lastName', 'document', 'address', 'cp', 'bank', 'account', 'detail', 'start', 'active'],
+          include: [
+            {
+              model: CourierType,
+              attributes: ['id', 'type', 'detail', 'active'],
+            },
+          ],
+        },
+      ],
     });
 
     if (deliveryi.length > 0) {
@@ -64,6 +78,18 @@ delivery.get('/all_active', async (req, res) => {
     const deliveryi = await Delivery.findAll({
       where: { active: true },
       attributes: ['id', 'name', 'detail', 'company', 'account', 'start', 'active'],
+      include: [
+        {
+          model: Courier,
+          attributes: ['id', 'firstName', 'lastName', 'document', 'address', 'cp', 'bank', 'account', 'detail', 'start', 'active'],
+          include: [
+            {
+              model: CourierType,
+              attributes: ['id', 'type', 'detail', 'active'],
+            },
+          ],
+        },
+      ],
     });
 
     if (deliveryi.length > 0) {
@@ -83,6 +109,18 @@ delivery.get('/delivery/:id', async (req, res) => {
       const deliveryi = await Delivery.findAll({
         where: { id: parseInt(id, 10) },
         attributes: ['id', 'name', 'detail', 'company', 'account', 'start', 'active'],
+        include: [
+          {
+            model: Courier,
+            attributes: ['id', 'firstName', 'lastName', 'document', 'address', 'cp', 'bank', 'account', 'detail', 'start', 'active'],
+            include: [
+              {
+                model: CourierType,
+                attributes: ['id', 'type', 'detail', 'active'],
+              },
+            ],
+          },
+        ],
       });
       if (deliveryi.length > 0) {
         res.status(201).json(deliveryi);
@@ -106,6 +144,7 @@ delivery.put('/update/:id', async (req, res) => {
       company,
       account,
       start,
+      courierId,
     } = req.body;
     const deliveryFinded = await Delivery.findOne({
       where: { id },
@@ -117,6 +156,7 @@ delivery.put('/update/:id', async (req, res) => {
         company,
         account,
         start,
+        courierId,
       });
       res.status(200).send('The data was modified successfully');
     } else {
