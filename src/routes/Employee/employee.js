@@ -75,8 +75,12 @@ employee.post('/employee', async (req, res) => {
   }
 });
 
-employee.get('/all', async (req, res) => {
+employee.get('/all/:commerceId', async (req, res) => {
   try {
+    const { commerceId } = req.params;
+    if (!commerceId && !Number.isInteger(parseInt(commerceId, 10))) {
+      res.status(422).send('ID was not provided');
+    }
     const employ = await Employee.findAll({
       attributes: ['id', 'firstName', 'lastName', 'phone', 'address', 'birthDate', 'start', 'document', 'active', 'email', 'googleUser', 'facebookUser', 'twitterUser', 'validatedEmail', 'photo'],
       include: [
@@ -86,6 +90,9 @@ employee.get('/all', async (req, res) => {
         },
         {
           model: Commerce,
+          where: {
+            id: parseInt(commerceId, 10),
+          },
           attributes: ['id', 'name', 'neighborhood', 'address', 'active'],
           include: [
             {
@@ -107,8 +114,12 @@ employee.get('/all', async (req, res) => {
   }
 });
 
-employee.get('/all_active', async (req, res) => {
+employee.get('/all_active/:commerceId', async (req, res) => {
   try {
+    const { commerceId } = req.params;
+    if (!commerceId && !Number.isInteger(parseInt(commerceId, 10))) {
+      res.status(422).send('ID was not provided');
+    }
     const employ = await Employee.findAll({
       where: { active: true },
       attributes: ['id', 'firstName', 'lastName', 'phone', 'address', 'birthDate', 'start', 'document', 'active', 'email', 'googleUser', 'facebookUser', 'twitterUser', 'validatedEmail', 'photo'],
@@ -119,6 +130,9 @@ employee.get('/all_active', async (req, res) => {
         },
         {
           model: Commerce,
+          where: {
+            id: parseInt(commerceId, 10),
+          },
           attributes: ['id', 'name', 'neighborhood', 'address', 'active'],
           include: [
             {

@@ -88,7 +88,7 @@ business.get('/all_active', async (req, res) => {
   }
 });
 
-business.get('/:detail/:id', async (req, res) => {
+business.get('/detail/:id', async (req, res) => {
   try {
     const { id } = req.params;
     if (id && Number.isInteger(parseInt(id, 10))) {

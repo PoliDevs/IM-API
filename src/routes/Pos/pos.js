@@ -43,8 +43,12 @@ pointOfSale.post('/pos', async (req, res) => {
   }
 });
 
-pointOfSale.get('/all', async (req, res) => {
+pointOfSale.get('/all/:commerceId', async (req, res) => {
   try {
+    const { commerceId } = req.params;
+    if (!commerceId && !Number.isInteger(parseInt(commerceId, 10))) {
+      res.status(422).send('ID was not provided');
+    }
     const point = await Pos.findAll({
       attributes: ['id', 'qrCode', 'active'],
       include: [
@@ -54,6 +58,9 @@ pointOfSale.get('/all', async (req, res) => {
         },
         {
           model: Commerce,
+          where: {
+            id: parseInt(commerceId, 10),
+          },
           attributes: ['id', 'name', 'neighborhood', 'address', 'active'],
         },
       ],

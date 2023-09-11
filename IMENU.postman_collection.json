@@ -2764,7 +2764,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3001/employee/all",
+							"raw": "http://localhost:3001/employee/all/1",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -2772,7 +2772,8 @@
 							"port": "3001",
 							"path": [
 								"employee",
-								"all"
+								"all",
+								"1"
 							]
 						}
 					},
@@ -2889,7 +2890,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3001/employee/all_active",
+							"raw": "http://localhost:3001/employee/all_active/1",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -2897,7 +2898,8 @@
 							"port": "3001",
 							"path": [
 								"employee",
-								"all_active"
+								"all_active",
+								"1"
 							]
 						}
 					},
@@ -4695,7 +4697,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3001/pos/all",
+							"raw": "http://localhost:3001/pos/all/1",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -4703,7 +4705,8 @@
 							"port": "3001",
 							"path": [
 								"pos",
-								"all"
+								"all",
+								"1"
 							]
 						}
 					},
@@ -5526,6 +5529,193 @@
 								"recipe",
 								"update",
 								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Sector",
+			"item": [
+				{
+					"name": "NEW Sector",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"baños\",\r\n    \"discount\": 0,\r\n    \"surcharge\": 0,\r\n    \"capacity\": 4,\r\n    \"detail\": \"a la derecha de los baños\",\r\n    \"qrCode\": \"\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/sector/sector",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"sector",
+								"sector"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE Sector",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"baños\",\r\n    \"discount\": 0,\r\n    \"surcharge\": 0,\r\n    \"capacity\": 4,\r\n    \"detail\": \"a la derecha de los baños\",\r\n    \"qrCode\": \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/sector/update/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"sector",
+								"update",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ALL Sector",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/sector/all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"sector",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ID Sector",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/sector/detail/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"sector",
+								"detail",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Active",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/sector/active/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"sector",
+								"active",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Inactive",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/sector/inactive/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"sector",
+								"inactive",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ALL Active Sector",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/sector/all_active",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"sector",
+								"all_active"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GROUP Sector for POS",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/sector/sectorPos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"sector",
+								"sectorPos"
 							]
 						}
 					},
