@@ -33,6 +33,10 @@ module.exports = (sequelize) => {
         type: DataTypes.INTEGER,
         defaultValue: 0,
       },
+      surcharge: {
+        type: DataTypes.INTEGER,
+        defaultValue: 0,
+      },
       validity: {
         type: DataTypes.DATE,
         defaultValue: 0,

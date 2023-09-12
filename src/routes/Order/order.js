@@ -6,7 +6,7 @@ const {
   Order, Menu, Pos, Employee, Dish, Account, Payment,
   Commerce, CommerceFact, Bank, Franchise, MenuType,
   TableService, Category, PosType, EmployeeType, Additional, Recipe,
-  UnitType,
+  UnitType, Delivery, Courier, CourierType,
 } = require('../../db');
 const { getOrders } = require('../../controllers/order');
 
@@ -163,6 +163,22 @@ order.get('/orderes/:commerceId', async (req, res) => {
           model: Payment,
           attributes: ['id', 'type', 'detail', 'active'],
         },
+        {
+          model: Delivery,
+          attributes: ['id', 'name', 'detail', 'company', 'account', 'start', 'promotion', 'discount', 'surcharge', 'fee', 'logo', 'active'],
+          include: [
+            {
+              model: Courier,
+              attributes: ['id', 'firstName', 'lastName', 'document', 'address', 'cp', 'bank', 'account', 'detail', 'start', 'promotion', 'discount', 'surcharge', 'fee', 'active'],
+              include: [
+                {
+                  model: CourierType,
+                  attributes: ['id', 'type'],
+                },
+              ],
+            },
+          ],
+        },
       ],
     });
 
@@ -271,6 +287,22 @@ order.get('/detail/:order/:commerceId', async (req, res) => {
         {
           model: Payment,
           attributes: ['id', 'type', 'detail', 'active'],
+        },
+        {
+          model: Delivery,
+          attributes: ['id', 'name', 'detail', 'company', 'account', 'start', 'promotion', 'discount', 'surcharge', 'fee', 'logo', 'active'],
+          include: [
+            {
+              model: Courier,
+              attributes: ['id', 'firstName', 'lastName', 'document', 'address', 'cp', 'bank', 'account', 'detail', 'start', 'promotion', 'discount', 'surcharge', 'fee', 'active'],
+              include: [
+                {
+                  model: CourierType,
+                  attributes: ['id', 'type'],
+                },
+              ],
+            },
+          ],
         },
       ],
     });
@@ -384,6 +416,22 @@ order.get('/dates/:commerceId', async (req, res) => {
           model: Payment,
           attributes: ['id', 'type', 'detail', 'active'],
         },
+        {
+          model: Delivery,
+          attributes: ['id', 'name', 'detail', 'company', 'account', 'start', 'promotion', 'discount', 'surcharge', 'fee', 'logo', 'active'],
+          include: [
+            {
+              model: Courier,
+              attributes: ['id', 'firstName', 'lastName', 'document', 'address', 'cp', 'bank', 'account', 'detail', 'start', 'promotion', 'discount', 'surcharge', 'fee', 'active'],
+              include: [
+                {
+                  model: CourierType,
+                  attributes: ['id', 'type'],
+                },
+              ],
+            },
+          ],
+        },
       ],
     });
     if (ord.length > 0) {
@@ -493,6 +541,22 @@ order.get('/status/:commerceId', async (req, res) => {
         {
           model: Payment,
           attributes: ['id', 'type', 'detail', 'active'],
+        },
+        {
+          model: Delivery,
+          attributes: ['id', 'name', 'detail', 'company', 'account', 'start', 'promotion', 'discount', 'surcharge', 'fee', 'logo', 'active'],
+          include: [
+            {
+              model: Courier,
+              attributes: ['id', 'firstName', 'lastName', 'document', 'address', 'cp', 'bank', 'account', 'detail', 'start', 'promotion', 'discount', 'surcharge', 'fee', 'active'],
+              include: [
+                {
+                  model: CourierType,
+                  attributes: ['id', 'type'],
+                },
+              ],
+            },
+          ],
         },
       ],
     });
@@ -920,6 +984,22 @@ order.get('/paidOrderes/:commerceId', async (req, res) => {
         {
           model: Payment,
           attributes: ['id', 'type', 'detail', 'active'],
+        },
+        {
+          model: Delivery,
+          attributes: ['id', 'name', 'detail', 'company', 'account', 'start', 'promotion', 'discount', 'surcharge', 'fee', 'logo', 'active'],
+          include: [
+            {
+              model: Courier,
+              attributes: ['id', 'firstName', 'lastName', 'document', 'address', 'cp', 'bank', 'account', 'detail', 'start', 'promotion', 'discount', 'surcharge', 'fee', 'active'],
+              include: [
+                {
+                  model: CourierType,
+                  attributes: ['id', 'type'],
+                },
+              ],
+            },
+          ],
         },
       ],
     });

@@ -20,6 +20,25 @@ module.exports = (sequelize) => {
         type: DataTypes.DATEONLY,
         defaultValue: DataTypes.NOW,
       },
+      promotion: {
+        type: DataTypes.INTEGER,
+        defaultValue: 0,
+      },
+      discount: {
+        type: DataTypes.INTEGER,
+        defaultValue: 0,
+      },
+      surcharge: {
+        type: DataTypes.INTEGER,
+        defaultValue: 0,
+      },
+      fee: {
+        type: DataTypes.DECIMAL(10, 2),
+        defaultValue: 0,
+      },
+      logo: {
+        type: DataTypes.STRING,
+      },
       active: {
         type: DataTypes.BOOLEAN,
         defaultValue: true,

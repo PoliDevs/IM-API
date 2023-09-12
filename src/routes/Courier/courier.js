@@ -23,6 +23,10 @@ courier.post('/courier', async (req, res) => {
       account,
       detail,
       start,
+      promotion,
+      discount,
+      surcharge,
+      fee,
       courierType,
     } = req.body;
     // eslint-disable-next-line no-unused-vars
@@ -41,6 +45,10 @@ courier.post('/courier', async (req, res) => {
         account,
         detail,
         start,
+        promotion,
+        discount,
+        surcharge,
+        fee,
         courierTypeId: courierType
           ? (
             await CourierType.findOne({ where: { type: courierType } })
@@ -61,7 +69,7 @@ courier.post('/courier', async (req, res) => {
 courier.get('/all', async (req, res) => {
   try {
     const cour = await Courier.findAll({
-      attributes: ['id', 'firstName', 'lastName', 'document', 'address', 'cp', 'bank', 'account', 'detail', 'start', 'active'],
+      attributes: ['id', 'firstName', 'lastName', 'document', 'address', 'cp', 'bank', 'account', 'detail', 'start', 'promotion', 'discount', 'surcharge', 'fee', 'active'],
       include: [
         {
           model: CourierType,
@@ -84,7 +92,7 @@ courier.get('/all_active', async (req, res) => {
   try {
     const cour = await Courier.findAll({
       where: { active: true },
-      attributes: ['id', 'firstName', 'lastName', 'document', 'address', 'cp', 'bank', 'account', 'detail', 'start', 'active'],
+      attributes: ['id', 'firstName', 'lastName', 'document', 'address', 'cp', 'bank', 'account', 'detail', 'start', 'promotion', 'discount', 'surcharge', 'fee', 'active'],
       include: [
         {
           model: CourierType,
@@ -109,7 +117,7 @@ courier.get('/detail/:id', async (req, res) => {
     if (id && Number.isInteger(parseInt(id, 10))) {
       const cour = await Courier.findAll({
         where: { id: parseInt(id, 10) },
-        attributes: ['id', 'firstName', 'lastName', 'document', 'address', 'cp', 'bank', 'account', 'detail', 'start', 'active'],
+        attributes: ['id', 'firstName', 'lastName', 'document', 'address', 'cp', 'bank', 'account', 'detail', 'start', 'promotion', 'discount', 'surcharge', 'fee', 'active'],
         include: [
           {
             model: CourierType,
@@ -143,6 +151,10 @@ courier.put('/update/:id', async (req, res) => {
       account,
       detail,
       start,
+      promotion,
+      discount,
+      surcharge,
+      fee,
       courierType,
     } = req.body;
     const courierFinded = await Courier.findOne({
@@ -159,6 +171,10 @@ courier.put('/update/:id', async (req, res) => {
         account,
         detail,
         start,
+        promotion,
+        discount,
+        surcharge,
+        fee,
         courierTypeId: courierType
           ? (
             await CourierType.findOne({ where: { type: courierType } })

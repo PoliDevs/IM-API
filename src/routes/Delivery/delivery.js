@@ -1,5 +1,6 @@
 const delivery = require('express').Router();
 const express = require('express');
+const path = require('path');
 const cors = require('cors');
 const { Delivery, Courier, CourierType } = require('../../db');
 
@@ -10,6 +11,7 @@ delivery.use(
     extended: true,
   }),
 );
+delivery.use('/images', express.static(path.join(__dirname, 'src', 'img', 'logos')));
 
 delivery.post('/delivery', async (req, res) => {
   try {
@@ -20,6 +22,11 @@ delivery.post('/delivery', async (req, res) => {
       account,
       start,
       courierId,
+      promotion,
+      discount,
+      surcharge,
+      fee,
+      logo,
     } = req.body;
     // eslint-disable-next-line no-unused-vars
     const [deliveryCreated, created] = await Delivery.findOrCreate({
@@ -33,6 +40,11 @@ delivery.post('/delivery', async (req, res) => {
         account,
         start,
         courierId,
+        promotion,
+        discount,
+        surcharge,
+        fee,
+        logo: `/${logo}`,
       },
     });
     if (created) {
@@ -48,11 +60,11 @@ delivery.post('/delivery', async (req, res) => {
 delivery.get('/all', async (req, res) => {
   try {
     const deliveryi = await Delivery.findAll({
-      attributes: ['id', 'name', 'detail', 'company', 'account', 'start', 'active'],
+      attributes: ['id', 'name', 'detail', 'company', 'account', 'start', 'promotion', 'discount', 'surcharge', 'fee', 'logo', 'active'],
       include: [
         {
           model: Courier,
-          attributes: ['id', 'firstName', 'lastName', 'document', 'address', 'cp', 'bank', 'account', 'detail', 'start', 'active'],
+          attributes: ['id', 'firstName', 'lastName', 'document', 'address', 'cp', 'bank', 'account', 'detail', 'start', 'promotion', 'discount', 'surcharge', 'fee', 'active'],
           include: [
             {
               model: CourierType,
@@ -77,11 +89,11 @@ delivery.get('/all_active', async (req, res) => {
   try {
     const deliveryi = await Delivery.findAll({
       where: { active: true },
-      attributes: ['id', 'name', 'detail', 'company', 'account', 'start', 'active'],
+      attributes: ['id', 'name', 'detail', 'company', 'account', 'start', 'promotion', 'discount', 'surcharge', 'fee', 'logo', 'active'],
       include: [
         {
           model: Courier,
-          attributes: ['id', 'firstName', 'lastName', 'document', 'address', 'cp', 'bank', 'account', 'detail', 'start', 'active'],
+          attributes: ['id', 'firstName', 'lastName', 'document', 'address', 'cp', 'bank', 'account', 'detail', 'start', 'promotion', 'discount', 'surcharge', 'fee', 'active'],
           include: [
             {
               model: CourierType,
@@ -108,11 +120,11 @@ delivery.get('/delivery/:id', async (req, res) => {
     if (id && Number.isInteger(parseInt(id, 10))) {
       const deliveryi = await Delivery.findAll({
         where: { id: parseInt(id, 10) },
-        attributes: ['id', 'name', 'detail', 'company', 'account', 'start', 'active'],
+        attributes: ['id', 'name', 'detail', 'company', 'account', 'start', 'promotion', 'discount', 'surcharge', 'fee', 'logo', 'active'],
         include: [
           {
             model: Courier,
-            attributes: ['id', 'firstName', 'lastName', 'document', 'address', 'cp', 'bank', 'account', 'detail', 'start', 'active'],
+            attributes: ['id', 'firstName', 'lastName', 'document', 'address', 'cp', 'bank', 'account', 'detail', 'start', 'promotion', 'discount', 'surcharge', 'fee', 'active'],
             include: [
               {
                 model: CourierType,
@@ -145,6 +157,11 @@ delivery.put('/update/:id', async (req, res) => {
       account,
       start,
       courierId,
+      promotion,
+      discount,
+      surcharge,
+      fee,
+      logo,
     } = req.body;
     const deliveryFinded = await Delivery.findOne({
       where: { id },
@@ -157,6 +174,11 @@ delivery.put('/update/:id', async (req, res) => {
         account,
         start,
         courierId,
+        promotion,
+        discount,
+        surcharge,
+        fee,
+        logo: `/${logo}`,
       });
       res.status(200).send('The data was modified successfully');
     } else {
