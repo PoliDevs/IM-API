@@ -14,7 +14,12 @@ module.exports = (sequelize) => {
         type: DataTypes.TEXT,
       },
       status: {
-        type: DataTypes.STRING,
+        type: DataTypes.ENUM(
+          'last',
+          'old',
+          'pending',
+        ),
+        defaultValue: 'last',
       },
       cost: {
         type: DataTypes.FLOAT,
