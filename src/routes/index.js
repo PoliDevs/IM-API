@@ -31,12 +31,14 @@ const employeeRouter = require('./Employee');
 const employeeTypeRouter = require('./Employee/employeeType');
 const unitRouter = require('./Unit');
 const commercialPlanRouter = require('./Commerce/commercialPlan');
-const loginEmployeeRouter = require('./LogIn');
+const loginEmployeeRouter = require('./LogIn/loginEmployee');
 const loginAccountRouter = require('./LogIn/loginAccount');
 const deliveryRouter = require('./Delivery');
 const courierRouter = require('./Courier');
 const courierTypeRouter = require('./Courier/courierType');
 const sectorRouter = require('./Sector');
+const logoutEmployeeRouter = require('./LogOut/logoutEmployee');
+const logoutAccountRouter = require('./LogOut/logoutAccount');
 
 const router = Router();
 
@@ -78,5 +80,7 @@ router.use('/delivery', deliveryRouter);
 router.use('/courier', courierRouter);
 router.use('/courierType', courierTypeRouter);
 router.use('/sector', sectorRouter);
+router.use('/logoutemployee', logoutEmployeeRouter);
+router.use('/logoutaccount', logoutAccountRouter);
 
 module.exports = router;

@@ -97,7 +97,17 @@ login.post('/login', async (req, res) => {
       const tokenFront = jwt.sign(employeeFound, process.env.TOKENKEY, {
         expiresIn: '3h',
       });
-        // COOKIE FRONTEND
+      const tokenBack = jwt.sign({ id: employeeFound.id }, process.env.TOKENKEY, {
+        expiresIn: '3h',
+      });
+        // COOKIE BACKEND
+      res.cookie('employeeBackend', tokenBack, {
+        expires: new Date(Date.now() + 3 * 60 * 60 * 1000), // 3 horas de expiración
+        httpOnly: true, // Protege contra ataques de secuestro de cookies
+        secure: true, // Requiere HTTPS para enviar la cookie (si tu aplicación utiliza HTTPS)
+        // Agregar otras opciones de seguridad según sea necesario
+      });
+      // COOKIE FRONTEND
       res.cookie(
         'SessionEmployeeImenu',
         { employeeId: employeeInfo.id },
@@ -186,7 +196,18 @@ login.post('/loginG', async (req, res) => {
     const tokenFront = jwt.sign(employeeFound, process.env.TOKENKEY, {
       expiresIn: '3h',
     });
-      // COOKIE FRONTEND
+    const tokenBack = jwt.sign({ id: employeeFound.id }, process.env.TOKENKEY, {
+      expiresIn: '3h',
+    });
+      // COOKIE BACKEND
+    res.cookie('employeeBackend', tokenBack, {
+      expires: new Date(Date.now() + 3 * 60 * 60 * 1000), // 3 horas de expiración
+      httpOnly: true, // Protege contra ataques de secuestro de cookies
+      secure: true, // Requiere HTTPS para enviar la cookie (si tu aplicación utiliza HTTPS)
+      // Agregar otras opciones de seguridad según sea necesario
+    });
+
+    // COOKIE FRONTEND
     res.cookie(
       'SessionEmployeeImenu',
       { employeeId: employeeInfo.id },
@@ -205,6 +226,27 @@ login.post('/loginG', async (req, res) => {
     res.status(400).send(error);
   }
   return true;
+});
+
+// RUTA SOLO PARA PROBAR LECTURA DE COOKIE con jwt.verify
+login.get('/cookieBackendRead', (req, res) => {
+  try {
+    // eslint-disable-next-line no-console
+    console.log('req.cookies', req.cookies);
+    const token = req.cookies.employeeBackend;
+    const decoded = jwt.verify(token, process.env.TOKENKEY);
+
+    // eslint-disable-next-line no-console
+    console.log('decoded', decoded);
+
+    res.status(200).json({
+      message: 'Cookie read',
+    });
+  } catch (e) {
+    res.status(401).json({
+      error: e,
+    });
+  }
 });
 
 login.all('*', async (req, res) => {
