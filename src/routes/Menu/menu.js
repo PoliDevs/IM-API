@@ -290,7 +290,6 @@ menu.get('/lastMenu/:commerceId', async (req, res) => {
       where: {
         active: true,
         status: 'last',
-        id: parseInt(commerceId, 10),
       },
       attributes: ['id', 'date', 'name', 'description', 'status', 'cost', 'promotion', 'discount', 'validity', 'photo', 'dishes', 'active'],
       include: [
