@@ -55,7 +55,11 @@ module.exports = (sequelize) => {
       },
       paid: {
         type: DataTypes.DOUBLE,
-        defaultValue: null,
+        defaultValue: 0,
+      },
+      costDelivery: {
+        type: DataTypes.DOUBLE,
+        defaultValue: 0,
       },
     },
     {

@@ -33,7 +33,7 @@ module.exports = (sequelize) => {
         defaultValue: 0,
       },
       fee: {
-        type: DataTypes.DECIMAL(10, 2),
+        type: DataTypes.DOUBLE,
         defaultValue: 0,
       },
       logo: {

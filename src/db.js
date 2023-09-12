@@ -164,8 +164,8 @@ Delivery.hasMany(Order);
 Order.belongsTo(Delivery);
 CourierType.hasMany(Courier);
 Courier.belongsTo(CourierType);
-Courier.hasMany(Delivery);
-Delivery.belongsTo(Courier);
+Courier.hasMany(Order);
+Order.belongsTo(Courier);
 Sector.hasMany(Pos);
 Pos.belongsTo(Sector);
 

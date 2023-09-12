@@ -51,6 +51,12 @@ order.post('/order', async (req, res) => {
         if (cleanedElement.deliveryId === 0) {
           delete cleanedElement.deliveryId;
         }
+        if (cleanedElement.courierId === 0) {
+          delete cleanedElement.courierId;
+        }
+        if (cleanedElement.costDelivery === 0) {
+          delete cleanedElement.costDelivery;
+        }
         cleanedElement.order = newOrder;
         return cleanedElement;
       });
@@ -74,7 +80,7 @@ order.get('/orderes/:commerceId', async (req, res) => {
       res.status(422).send('ID was not provided');
     }
     const ord = await Order.findAll({
-      attributes: ['id', 'order', 'name', 'date', 'hour', 'status', 'detail', 'validity', 'promotion', 'discount', 'surcharge', 'rating', 'feedback', 'paid'],
+      attributes: ['id', 'order', 'name', 'date', 'hour', 'status', 'detail', 'validity', 'promotion', 'discount', 'surcharge', 'rating', 'feedback', 'paid', 'costDelivery'],
       include: [
         {
           model: Menu,
@@ -166,16 +172,14 @@ order.get('/orderes/:commerceId', async (req, res) => {
         {
           model: Delivery,
           attributes: ['id', 'name', 'detail', 'company', 'account', 'start', 'promotion', 'discount', 'surcharge', 'fee', 'logo', 'active'],
+        },
+        {
+          model: Courier,
+          attributes: ['id', 'firstName', 'lastName', 'document', 'address', 'cp', 'bank', 'account', 'detail', 'start', 'promotion', 'discount', 'surcharge', 'fee', 'active'],
           include: [
             {
-              model: Courier,
-              attributes: ['id', 'firstName', 'lastName', 'document', 'address', 'cp', 'bank', 'account', 'detail', 'start', 'promotion', 'discount', 'surcharge', 'fee', 'active'],
-              include: [
-                {
-                  model: CourierType,
-                  attributes: ['id', 'type'],
-                },
-              ],
+              model: CourierType,
+              attributes: ['id', 'type'],
             },
           ],
         },
@@ -199,7 +203,7 @@ order.get('/detail/:order/:commerceId', async (req, res) => {
     const commerceIdParam = req.params.commerceId;
     const ord = await Order.findAll({
       where: { order: orderParam },
-      attributes: ['id', 'order', 'name', 'date', 'hour', 'status', 'detail', 'validity', 'promotion', 'discount', 'surcharge', 'rating', 'feedback', 'paid'],
+      attributes: ['id', 'order', 'name', 'date', 'hour', 'status', 'detail', 'validity', 'promotion', 'discount', 'surcharge', 'rating', 'feedback', 'paid', 'costDelivery'],
       include: [
         {
           model: Menu,
@@ -291,16 +295,14 @@ order.get('/detail/:order/:commerceId', async (req, res) => {
         {
           model: Delivery,
           attributes: ['id', 'name', 'detail', 'company', 'account', 'start', 'promotion', 'discount', 'surcharge', 'fee', 'logo', 'active'],
+        },
+        {
+          model: Courier,
+          attributes: ['id', 'firstName', 'lastName', 'document', 'address', 'cp', 'bank', 'account', 'detail', 'start', 'promotion', 'discount', 'surcharge', 'fee', 'active'],
           include: [
             {
-              model: Courier,
-              attributes: ['id', 'firstName', 'lastName', 'document', 'address', 'cp', 'bank', 'account', 'detail', 'start', 'promotion', 'discount', 'surcharge', 'fee', 'active'],
-              include: [
-                {
-                  model: CourierType,
-                  attributes: ['id', 'type'],
-                },
-              ],
+              model: CourierType,
+              attributes: ['id', 'type'],
             },
           ],
         },
@@ -327,7 +329,7 @@ order.get('/dates/:commerceId', async (req, res) => {
           [Op.lte]: endDate,
         },
       },
-      attributes: ['id', 'order', 'name', 'date', 'hour', 'status', 'detail', 'validity', 'promotion', 'discount', 'surcharge', 'rating', 'feedback', 'paid'],
+      attributes: ['id', 'order', 'name', 'date', 'hour', 'status', 'detail', 'validity', 'promotion', 'discount', 'surcharge', 'rating', 'feedback', 'paid', 'costDelivery'],
       include: [
         {
           model: Menu,
@@ -419,16 +421,14 @@ order.get('/dates/:commerceId', async (req, res) => {
         {
           model: Delivery,
           attributes: ['id', 'name', 'detail', 'company', 'account', 'start', 'promotion', 'discount', 'surcharge', 'fee', 'logo', 'active'],
+        },
+        {
+          model: Courier,
+          attributes: ['id', 'firstName', 'lastName', 'document', 'address', 'cp', 'bank', 'account', 'detail', 'start', 'promotion', 'discount', 'surcharge', 'fee', 'active'],
           include: [
             {
-              model: Courier,
-              attributes: ['id', 'firstName', 'lastName', 'document', 'address', 'cp', 'bank', 'account', 'detail', 'start', 'promotion', 'discount', 'surcharge', 'fee', 'active'],
-              include: [
-                {
-                  model: CourierType,
-                  attributes: ['id', 'type'],
-                },
-              ],
+              model: CourierType,
+              attributes: ['id', 'type'],
             },
           ],
         },
@@ -453,7 +453,7 @@ order.get('/status/:commerceId', async (req, res) => {
     }
     const ord = await Order.findAll({
       where: { status },
-      attributes: ['id', 'order', 'name', 'date', 'hour', 'status', 'detail', 'validity', 'promotion', 'discount', 'surcharge', 'rating', 'feedback', 'paid'],
+      attributes: ['id', 'order', 'name', 'date', 'hour', 'status', 'detail', 'validity', 'promotion', 'discount', 'surcharge', 'rating', 'feedback', 'paid', 'costDelivery'],
       include: [
         {
           model: Menu,
@@ -545,16 +545,14 @@ order.get('/status/:commerceId', async (req, res) => {
         {
           model: Delivery,
           attributes: ['id', 'name', 'detail', 'company', 'account', 'start', 'promotion', 'discount', 'surcharge', 'fee', 'logo', 'active'],
+        },
+        {
+          model: Courier,
+          attributes: ['id', 'firstName', 'lastName', 'document', 'address', 'cp', 'bank', 'account', 'detail', 'start', 'promotion', 'discount', 'surcharge', 'fee', 'active'],
           include: [
             {
-              model: Courier,
-              attributes: ['id', 'firstName', 'lastName', 'document', 'address', 'cp', 'bank', 'account', 'detail', 'start', 'promotion', 'discount', 'surcharge', 'fee', 'active'],
-              include: [
-                {
-                  model: CourierType,
-                  attributes: ['id', 'type'],
-                },
-              ],
+              model: CourierType,
+              attributes: ['id', 'type'],
             },
           ],
         },
@@ -1010,6 +1008,48 @@ order.get('/paidOrderes/:commerceId', async (req, res) => {
     }
   } catch (error) {
     res.status(500).json({ message: 'Error al obtener los pagos realizados' });
+  }
+});
+
+order.put('/updateCourier/:order/:id/:commerceId', async (req, res) => {
+  try {
+    const {
+      order: orderParam,
+      commerceId: commerceIdParam,
+      id,
+    } = req.params;
+    const { courierId } = req.body;
+    const [rowsUpdated] = await Order.update({ courierId }, {
+      where: { order: orderParam, commerceId: commerceIdParam, id },
+    });
+    if (rowsUpdated > 0) {
+      res.status(200).send(`Modified courier of order: ${orderParam}`);
+    } else {
+      res.status(404).send('Order not found');
+    }
+  } catch (error) {
+    res.status(400).send(error);
+  }
+});
+
+order.put('/updateCostDelivery/:order/:id/:commerceId', async (req, res) => {
+  try {
+    const {
+      order: orderParam,
+      commerceId: commerceIdParam,
+      id,
+    } = req.params;
+    const { costDelivery } = req.body;
+    const [rowsUpdated] = await Order.update({ costDelivery }, {
+      where: { order: orderParam, commerceId: commerceIdParam, id },
+    });
+    if (rowsUpdated > 0) {
+      res.status(200).send(`Modified cost delivery of order: ${orderParam}`);
+    } else {
+      res.status(404).send('Order not found');
+    }
+  } catch (error) {
+    res.status(400).send(error);
   }
 });
 
