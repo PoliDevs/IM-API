@@ -1958,7 +1958,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"firstName\": \"jose\",\r\n    \"lastName\":\"san martín\",\r\n    \"document\": \"78455\",\r\n    \"address\": \"Mendoza 8754\",\r\n    \"cp\": \"889\",\r\n    \"bank\": \"santander\",\r\n    \"account\": \"63666\",\r\n    \"detail\": \"nunca trabajó\",\r\n    \"start\": \"2023-09-10\",\r\n    \"courierType\": \"bici\"\r\n}\r\n/*\r\n{\r\n    \"firstName\": \"juan\",\r\n    \"lastName\":\"centurion\",\r\n    \"document\": \"125487\",\r\n    \"address\": \"Av cabo blanco 1254\",\r\n    \"cp\": \"2154\",\r\n    \"bank\": \"itau\",\r\n    \"account\": \"54879865\",\r\n    \"detail\": \"vien de trabajar en la tablita\",\r\n    \"start\": \"2023-09-09\",\r\n    \"courierType\": \"bici\"\r\n}\r\n*/",
+							"raw": "{\r\n    \"firstName\": \"jose\",\r\n    \"lastName\":\"san martín\",\r\n    \"document\": \"78455\",\r\n    \"address\": \"Mendoza 8754\",\r\n    \"cp\": \"889\",\r\n    \"bank\": \"santander\",\r\n    \"account\": \"63666\",\r\n    \"detail\": \"nunca trabajó\",\r\n    \"start\": \"2023-09-10\",\r\n    \"courierType\": \"bici\",\r\n    \"promotion\": 0,\r\n    \"discount\": 0,\r\n    \"surcharge\": 0,\r\n    \"fee\": 200\r\n}\r\n/*\r\n{\r\n    \"firstName\": \"juan\",\r\n    \"lastName\":\"centurion\",\r\n    \"document\": \"125487\",\r\n    \"address\": \"Av cabo blanco 1254\",\r\n    \"cp\": \"2154\",\r\n    \"bank\": \"itau\",\r\n    \"account\": \"54879865\",\r\n    \"detail\": \"vien de trabajar en la tablita\",\r\n    \"start\": \"2023-09-09\",\r\n    \"courierType\": \"bici\",\r\n    \"promotion\": 0,\r\n    \"discount\": 0,\r\n    \"surcharge\": 0,\r\n    \"fee\": 200\r\n}\r\n*/",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1987,7 +1987,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"firstName\": \"jose\",\r\n    \"lastName\":\"san martín\",\r\n    \"document\": \"78455\",\r\n    \"address\": \"Mendoza 8754\",\r\n    \"cp\": \"889\",\r\n    \"bank\": \"santander\",\r\n    \"account\": \"63666\",\r\n    \"detail\": \"nunca trabajó\",\r\n    \"start\": \"2023-09-10\",\r\n    \"courierType\": \"bici\"\r\n}",
+							"raw": "{\r\n    \"firstName\": \"jose\",\r\n    \"lastName\":\"san martín\",\r\n    \"document\": \"78455\",\r\n    \"address\": \"Mendoza 8754\",\r\n    \"cp\": \"889\",\r\n    \"bank\": \"santander\",\r\n    \"account\": \"63666\",\r\n    \"detail\": \"nunca trabajó\",\r\n    \"start\": \"2023-09-10\",\r\n    \"courierType\": \"bici\",\r\n    \"promotion\": 0,\r\n    \"discount\": 0,\r\n    \"surcharge\": 0,\r\n    \"fee\": 200\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -2292,7 +2292,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"Rappi\",\r\n    \"detail\":\"rappi\",\r\n    \"company\": \"rappi sa\",\r\n    \"account\": \"777777\",\r\n    \"start\": \"2023-08-10\",\r\n    \"courierId\": 1\r\n    \r\n}\r\n/*\r\n{\r\n    \"name\": \"Pedido Ya\",\r\n    \"detail\":\"peya\",\r\n    \"company\": \"peya sa\",\r\n    \"account\": \"7896666\",\r\n    \"start\": \"2023-08-10\",\r\n    \"courierId\": 1\r\n    \r\n}\r\n*/",
+							"raw": "{\r\n    \"name\": \"Rappi\",\r\n    \"detail\":\"rappi\",\r\n    \"company\": \"rappi sa\",\r\n    \"account\": \"777777\",\r\n    \"start\": \"2023-08-10\",\r\n    \"courierId\": 1,\r\n    \"promotion\": 0,\r\n    \"discount\": 0,\r\n    \"surcharge\": 0,\r\n    \"fee\": 200,\r\n    \"logo\": \"\"\r\n}\r\n/*\r\n{\r\n    \"name\": \"Pedido Ya\",\r\n    \"detail\":\"peya\",\r\n    \"company\": \"peya sa\",\r\n    \"account\": \"7896666\",\r\n    \"start\": \"2023-08-10\",\r\n    \"courierId\": 1,\r\n    \"promotion\": 0,\r\n    \"discount\": 0,\r\n    \"surcharge\": 0,\r\n    \"fee\": 200,\r\n    \"logo\": \"\"\r\n    \r\n}\r\n*/",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -2321,7 +2321,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"Rappi\",\r\n    \"detail\":\"rappi\",\r\n    \"company\": \"rappi sa\",\r\n    \"account\": \"777777\",\r\n    \"start\": \"2023-08-10\",\r\n    \"courierId\": 1\r\n    \r\n}",
+							"raw": "{\r\n    \"name\": \"Rappi\",\r\n    \"detail\":\"rappi\",\r\n    \"company\": \"rappi sa\",\r\n    \"account\": \"777777\",\r\n    \"start\": \"2023-08-10\",\r\n    \"courierId\": 1,\r\n    \"promotion\": 0,\r\n    \"discount\": 0,\r\n    \"surcharge\": 0,\r\n    \"fee\": 0.2,\r\n    \"logo\": \"Rappi.png\"\r\n    \r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -3812,21 +3812,9 @@
 				},
 				{
 					"name": "LAST Menu",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
 						"url": {
 							"raw": "http://localhost:3001/menu/lastMenu/1",
 							"protocol": "http",
@@ -4022,7 +4010,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "[\r\n    {\r\n    \"name\": \"xxx\",\r\n    \"date\": \"2023-09-08\",\r\n    \"hour\": \"09:57\",\r\n    \"status\": \"orderPlaced\",\r\n    \"detail\": \"\",\r\n    \"validity\": \"2023-09-08\",\r\n    \"promotion\": 0,\r\n    \"discount\": 0.1,\r\n    \"surcharge\": 0,\r\n    \"rating\": 5,\r\n    \"feedback\": \"\",\r\n    \"menuId\": 3,\r\n    \"poId\": 3,\r\n    \"employeeId\": 2,\r\n    \"dishId\": 0,\r\n    \"accountId\": 3,\r\n    \"paymentId\": 1,\r\n    \"commerceId\": 1,\r\n    \"deliveryId\": 0,\r\n    \"paid\" : 2250,\r\n    \"order\": \"\"\r\n},\r\n{\r\n    \"name\": \"xxx\",\r\n    \"date\": \"2023-09-08\",\r\n    \"hour\": \"09:57\",\r\n    \"status\": \"orderPlaced\",\r\n    \"detail\": \"\",\r\n    \"validity\": \"2023-09-08\",\r\n    \"promotion\": 0,\r\n    \"discount\": 0,\r\n    \"surcharge\": 0.1,\r\n    \"rating\": 5,\r\n    \"feedback\": \"\",\r\n    \"menuId\": 3,\r\n    \"poId\": 3,\r\n    \"employeeId\": 2,\r\n    \"dishId\": 0,\r\n    \"accountId\": 3,\r\n    \"paymentId\": 1,\r\n    \"commerceId\": 1,\r\n    \"deliveryId\": 0,\r\n    \"paid\": 0,\r\n    \"order\": \"\"\r\n}\r\n]\r\n",
+							"raw": "[\r\n    {\r\n    \"name\": \"xxx\",\r\n    \"date\": \"2023-09-08\",\r\n    \"hour\": \"09:57\",\r\n    \"status\": \"orderPlaced\",\r\n    \"detail\": \"\",\r\n    \"validity\": \"2023-09-08\",\r\n    \"promotion\": 0,\r\n    \"discount\": 0.1,\r\n    \"surcharge\": 0,\r\n    \"rating\": 5,\r\n    \"feedback\": \"\",\r\n    \"menuId\": 3,\r\n    \"poId\": 3,\r\n    \"employeeId\": 2,\r\n    \"dishId\": 0,\r\n    \"accountId\": 3,\r\n    \"paymentId\": 1,\r\n    \"commerceId\": 1,\r\n    \"deliveryId\": 0,\r\n    \"paid\" : 2250,\r\n    \"order\": \"\",\r\n    \"courierId\": 1,\r\n    \"costDelivery\": 0\r\n},\r\n{\r\n    \"name\": \"xxx\",\r\n    \"date\": \"2023-09-08\",\r\n    \"hour\": \"09:57\",\r\n    \"status\": \"orderPlaced\",\r\n    \"detail\": \"\",\r\n    \"validity\": \"2023-09-08\",\r\n    \"promotion\": 0,\r\n    \"discount\": 0,\r\n    \"surcharge\": 0.1,\r\n    \"rating\": 5,\r\n    \"feedback\": \"\",\r\n    \"menuId\": 3,\r\n    \"poId\": 3,\r\n    \"employeeId\": 2,\r\n    \"dishId\": 0,\r\n    \"accountId\": 3,\r\n    \"paymentId\": 1,\r\n    \"commerceId\": 1,\r\n    \"deliveryId\": 0,\r\n    \"paid\": 0,\r\n    \"order\": \"\",\r\n    \"courierId\": 1,\r\n    \"costDelivery\": 0\r\n}\r\n]\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -4629,6 +4617,70 @@
 								"updatePaid",
 								"C2M3%20-%201",
 								"20",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE COURIER Order",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"courierId\": 1\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/order/updateCourier/C2M3%20-%201/19/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"order",
+								"updateCourier",
+								"C2M3%20-%201",
+								"19",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE COST DELIVERY Order",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"costDelivery\": 400\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/order/updateCostDelivery/C2M3%20-%201/19/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"order",
+								"updateCostDelivery",
+								"C2M3%20-%201",
+								"19",
 								"2"
 							]
 						}
