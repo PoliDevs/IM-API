@@ -16,7 +16,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"Viviana Chimenti\",\r\n    \"password\": \"1234\",\r\n    \"phone\": \"222222\",\r\n    \"address\": \"san nicolas 3257\",\r\n    \"birthDate\":\"1981-02-27\",\r\n    \"email\": \"vivichimenti@gmail.com\",\r\n    \"googleUser\": \"\",\r\n    \"facebookUser\": \"\",\r\n    \"twitterUser\": \"\"\r\n}\r\n/*\r\n{\r\n    \"name\": \"Ernesto Machado\",\r\n    \"password\": \"1234\",\r\n    \"phone\": \"1141658088\",\r\n    \"address\": \"ecuador 3531\",\r\n    \"birthDate\":\"1967-10-24\",\r\n    \"email\": \"luisfactum@gmail.com\",\r\n    \"googleUser\": \"\",\r\n    \"facebookUser\": \"\",\r\n    \"twitterUser\": \"\"\r\n}\r\n*/\r\n",
+							"raw": "{\r\n    \"name\": \"Viviana Chimenti\",\r\n    \"password\": \"1234\",\r\n    \"phone\": \"222222\",\r\n    \"address\": \"san nicolas 3257\",\r\n    \"birthDate\":\"1981-02-27\",\r\n    \"email\": \"vivichimenti@gmail.com\",\r\n    \"googleUser\": \"\",\r\n    \"facebookUser\": \"\",\r\n    \"twitterUser\": \"\",\r\n    \"neighborhood\": \"\",\r\n    \"sex\": \"F\",\r\n    \"cp\": \"\"\r\n}\r\n/*\r\n{\r\n    \"name\": \"Ernesto Machado\",\r\n    \"password\": \"1234\",\r\n    \"phone\": \"1141658088\",\r\n    \"address\": \"ecuador 3531\",\r\n    \"birthDate\":\"1967-10-24\",\r\n    \"email\": \"luisfactum@gmail.com\",\r\n    \"googleUser\": \"\",\r\n    \"facebookUser\": \"\",\r\n    \"twitterUser\": \"\",\r\n    \"neighborhood\": \"\",\r\n    \"sex\": \"M\",\r\n    \"cp\": \"\"\r\n}\r\n*/\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -45,7 +45,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"Ernesto Machado\",\r\n    \"password\": \"1234\",\r\n    \"phone\": \"1141658088\",\r\n    \"address\": \"ecuador 3531\",\r\n    \"birthDate\":\"1967-10-24\",\r\n    \"email\": \"luisfactum@gmail.com\",\r\n    \"googleUser\": \"\",\r\n    \"facebookUser\": \"\",\r\n    \"twitterUser\": \"\"\r\n}\r\n",
+							"raw": "{\r\n    \"name\": \"Ernesto Machado\",\r\n    \"password\": \"1234\",\r\n    \"phone\": \"1141658088\",\r\n    \"address\": \"ecuador 3531\",\r\n    \"birthDate\":\"1967-10-24\",\r\n    \"email\": \"luisfactum@gmail.com\",\r\n    \"googleUser\": \"\",\r\n    \"facebookUser\": \"\",\r\n    \"twitterUser\": \"\",\r\n    \"neighborhood\": \"\",\r\n    \"sex\": \"M\",\r\n    \"cp\": \"\"\r\n}\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -3594,7 +3594,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"date\": \"2023-08-17\",\r\n    \"name\": \"mila con fritas\",\r\n    \"description\": \"milanesa con papas fritas\",\r\n    \"status\": \"\",\r\n    \"cost\": 2500,\r\n    \"promotion\": 0,\r\n    \"discount\": 0,\r\n    \"validity\": \"2023-09-17\",\r\n    \"photo\": \"\",\r\n    \"commerce\": \"cp luisito\",\r\n    \"menuType\": \"libre\",\r\n    \"tableService\": \"mesa\",\r\n    \"category\": \"Minutas\",\r\n    \"dishes\": {\r\n        \"id\": [\"1\",\"2\"],\r\n        \"name\": [\"milanesa\",\"fritas\"],\r\n        \"description\": [\"milanesa\",\"porción de fritas\"],\r\n        \"photo\": [\"\",\"\"],\r\n        \"cost\": [\"2.200\",\"800\"],\r\n        \"promotion\": [\"0\",\"0\"],\r\n        \"discount\": [\"0\",\"0\"],\r\n        \"estimatedTime\": [\"40\",\"10\"],\r\n        \"active\": [\"1\",\"0\"],\r\n        \"additionalId\": [\"\",\"\"],\r\n        \"supplyId\": [\"\",\"\"],\r\n        \"recipeId\": [\"1\",\"2\"],\r\n        \"dishTypeId\": [\"3\",\"3\"],\r\n        \"date\": [\"2023-08-16\",\"2023-08-16\"]\r\n    }\r\n    \r\n}",
+							"raw": "{\r\n    \"date\": \"2023-08-17\",\r\n    \"name\": \"ensalada lechuga y tomate\",\r\n    \"description\": \"ensaladas\",\r\n    \"status\": \"\",\r\n    \"cost\": 700,\r\n    \"promotion\": 0,\r\n    \"discount\": 0,\r\n    \"validity\": \"2023-09-17\",\r\n    \"photo\": \"\",\r\n    \"commerce\": \"cp luisito\",\r\n    \"menuType\": \"libre\",\r\n    \"tableService\": \"mesa\",\r\n    \"category\": \"Minutas\",\r\n    \"dishes\": {\r\n        \"id\": [\"1\",\"2\"],\r\n        \"name\": [\"milanesa\",\"fritas\"],\r\n        \"description\": [\"milanesa\",\"porción de fritas\"],\r\n        \"photo\": [\"\",\"\"],\r\n        \"cost\": [\"2.200\",\"800\"],\r\n        \"promotion\": [\"0\",\"0\"],\r\n        \"discount\": [\"0\",\"0\"],\r\n        \"estimatedTime\": [\"40\",\"10\"],\r\n        \"active\": [\"1\",\"0\"],\r\n        \"additionalId\": [\"\",\"\"],\r\n        \"supplyId\": [\"\",\"\"],\r\n        \"recipeId\": [\"1\",\"2\"],\r\n        \"dishTypeId\": [\"3\",\"3\"],\r\n        \"date\": [\"2023-08-16\",\"2023-08-16\"]\r\n    }\r\n    \r\n}\r\n/*\r\n{\r\n    \"date\": \"2023-08-17\",\r\n    \"name\": \"mila con fritas\",\r\n    \"description\": \"milanesa con papas fritas\",\r\n    \"status\": \"\",\r\n    \"cost\": 2500,\r\n    \"promotion\": 0,\r\n    \"discount\": 0,\r\n    \"validity\": \"2023-09-17\",\r\n    \"photo\": \"\",\r\n    \"commerce\": \"cp luisito\",\r\n    \"menuType\": \"libre\",\r\n    \"tableService\": \"mesa\",\r\n    \"category\": \"Minutas\",\r\n    \"dishes\": {\r\n        \"id\": [\"1\",\"2\"],\r\n        \"name\": [\"milanesa\",\"fritas\"],\r\n        \"description\": [\"milanesa\",\"porción de fritas\"],\r\n        \"photo\": [\"\",\"\"],\r\n        \"cost\": [\"2.200\",\"800\"],\r\n        \"promotion\": [\"0\",\"0\"],\r\n        \"discount\": [\"0\",\"0\"],\r\n        \"estimatedTime\": [\"40\",\"10\"],\r\n        \"active\": [\"1\",\"0\"],\r\n        \"additionalId\": [\"\",\"\"],\r\n        \"supplyId\": [\"\",\"\"],\r\n        \"recipeId\": [\"1\",\"2\"],\r\n        \"dishTypeId\": [\"3\",\"3\"],\r\n        \"date\": [\"2023-08-16\",\"2023-08-16\"]\r\n    }\r\n    \r\n}\r\n*/",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -4711,6 +4711,37 @@
 								},
 								{
 									"key": "endDate",
+									"value": "2023-09-08"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Ventas ",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/order/vtas/2?dateFrom=2023-09-08&dateTo=2023-09-08",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"order",
+								"vtas",
+								"2"
+							],
+							"query": [
+								{
+									"key": "dateFrom",
+									"value": "2023-09-08"
+								},
+								{
+									"key": "dateTo",
 									"value": "2023-09-08"
 								}
 							]
