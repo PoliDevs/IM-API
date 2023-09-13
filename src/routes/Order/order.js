@@ -1,5 +1,6 @@
 const order = require('express').Router();
 const express = require('express');
+const { QueryTypes } = require('sequelize');
 const cors = require('cors');
 const { Op } = require('sequelize');
 const {
@@ -9,6 +10,7 @@ const {
   UnitType, Delivery, Courier, CourierType,
 } = require('../../db');
 const { getOrders } = require('../../controllers/order');
+const { conn: sequelize } = require('../../db');
 
 order.use(express.json());
 order.use(cors());
@@ -1050,6 +1052,18 @@ order.put('/updateCostDelivery/:order/:id/:commerceId', async (req, res) => {
     }
   } catch (error) {
     res.status(400).send(error);
+  }
+});
+
+order.get('/vtas/:commerceId', async (req, res) => {
+  try {
+    const commerceIdParam = req.params.commerceId;
+    const { dateFrom, dateTo } = req.query;
+    const vtas = await sequelize.query(`SELECT c.date, DAYOFWEEK(c.date) -1 AS num_dia, SUM(c.paid) AS tot_diario, COUNT(c.id) AS pedidos FROM orders c WHERE c.status != "canceled" AND c.commerceId >= ${commerceIdParam} AND c.date >= '${dateFrom}' AND c.date <= '${dateTo}' AND c.paid > 0 GROUP BY c.date ORDER BY c.date ASC;`, { type: QueryTypes.SELECT });
+    res.json(vtas);
+  } catch (error) {
+    // console.error(error);
+    res.status(500).json({ message: 'Error interno del servidor' });
   }
 });
 
