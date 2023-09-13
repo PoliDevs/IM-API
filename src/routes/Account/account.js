@@ -24,6 +24,8 @@ account.post('/account', async (req, res) => {
       googleUser,
       facebookUser,
       twitterUser,
+      sex,
+      neighborhood,
     } = req.body;
     const hash = bcrypt.hashSync(password, 10);
     // eslint-disable-next-line no-unused-vars
@@ -41,6 +43,8 @@ account.post('/account', async (req, res) => {
         googleUser: googleUser.toLowerCase(),
         facebookUser: facebookUser.toLowerCase(),
         twitterUser: twitterUser.toLowerCase(),
+        sex,
+        neighborhood,
       },
     });
     if (created) {
@@ -56,7 +60,7 @@ account.post('/account', async (req, res) => {
 account.get('/all', async (req, res) => {
   try {
     const acco = await Account.findAll({
-      attributes: ['id', 'name', 'password', 'phone', 'address', 'birthDate', 'status', 'email', 'googleUser', 'facebookUser', 'twitterUser', 'validatedEmail'],
+      attributes: ['id', 'name', 'password', 'phone', 'address', 'birthDate', 'status', 'email', 'googleUser', 'facebookUser', 'twitterUser', 'validatedEmail', 'sex', 'neighborhood'],
     });
 
     if (acco.length > 0) {
@@ -73,7 +77,7 @@ account.get('/all_Active', async (req, res) => {
   try {
     const acco = await Account.findAll({
       where: { status: 'active' },
-      attributes: ['id', 'name', 'password', 'phone', 'address', 'birthDate', 'status', 'email', 'googleUser', 'facebookUser', 'twitterUser', 'validatedEmail'],
+      attributes: ['id', 'name', 'password', 'phone', 'address', 'birthDate', 'status', 'email', 'googleUser', 'facebookUser', 'twitterUser', 'validatedEmail', 'sex', 'neighborhood'],
     });
 
     if (acco.length > 0) {
@@ -90,7 +94,7 @@ account.get('/all_NoActive', async (req, res) => {
   try {
     const acco = await Account.findAll({
       where: { status: 'noActive' },
-      attributes: ['id', 'name', 'password', 'phone', 'address', 'birthDate', 'status', 'email', 'googleUser', 'facebookUser', 'twitterUser', 'validatedEmail'],
+      attributes: ['id', 'name', 'password', 'phone', 'address', 'birthDate', 'status', 'email', 'googleUser', 'facebookUser', 'twitterUser', 'validatedEmail', 'sex', 'neighborhood'],
     });
 
     if (acco.length > 0) {
@@ -107,7 +111,7 @@ account.get('/all_banned', async (req, res) => {
   try {
     const acco = await Account.findAll({
       where: { status: 'banned' },
-      attributes: ['id', 'name', 'password', 'phone', 'address', 'birthDate', 'status', 'email', 'googleUser', 'facebookUser', 'twitterUser', 'validatedEmail'],
+      attributes: ['id', 'name', 'password', 'phone', 'address', 'birthDate', 'status', 'email', 'googleUser', 'facebookUser', 'twitterUser', 'validatedEmail', 'sex', 'neighborhood'],
     });
 
     if (acco.length > 0) {
@@ -126,7 +130,7 @@ account.get('/detail/:id', async (req, res) => {
     if (id && Number.isInteger(parseInt(id, 10))) {
       const acco = await Account.findAll({
         where: { id: parseInt(id, 10) },
-        attributes: ['id', 'name', 'password', 'phone', 'address', 'birthDate', 'status', 'email', 'googleUser', 'facebookUser', 'twitterUser', 'validatedEmail'],
+        attributes: ['id', 'name', 'password', 'phone', 'address', 'birthDate', 'status', 'email', 'googleUser', 'facebookUser', 'twitterUser', 'validatedEmail', 'sex', 'neighborhood'],
       });
       if (acco.length > 0) {
         res.status(201).json(acco);
@@ -155,6 +159,8 @@ account.put('/update/:id', async (req, res) => {
       facebookUser,
       twitterUser,
       validatedEmail,
+      sex,
+      neighborhood,
     } = req.body;
     const hash = bcrypt.hashSync(password, 10);
     const accountFinded = await Account.findOne({
@@ -172,6 +178,8 @@ account.put('/update/:id', async (req, res) => {
         facebookUser: facebookUser.toLowerCase(),
         twitterUser: twitterUser.toLowerCase(),
         validatedEmail,
+        sex,
+        neighborhood,
       });
       res.status(200).send('The data was modified successfully');
     } else {

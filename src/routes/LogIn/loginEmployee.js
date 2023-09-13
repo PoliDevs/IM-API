@@ -113,7 +113,7 @@ login.post('/login', async (req, res) => {
         { employeeId: employeeInfo.id },
         {
           expires: new Date(Date.now() + 3 * 60 * 60 * 1000),
-          httpOnly: false,
+          httpOnly: true,
         },
       );
       res.status(200).json({

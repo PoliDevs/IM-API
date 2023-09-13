@@ -40,6 +40,12 @@ module.exports = (sequelize) => {
         type: DataTypes.BOOLEAN,
         defaultValue: false,
       },
+      neighborhood: {
+        type: DataTypes.STRING,
+      },
+      sex: {
+        type: DataTypes.ENUM('M', 'F', 'Otro', 'x'),
+      },
       cp: {
         type: DataTypes.STRING,
         defaultValue: false,
