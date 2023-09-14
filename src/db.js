@@ -110,6 +110,12 @@ Bank.belongsTo(Commerce);
 Commerce.hasMany(CommerceFact);
 CommerceFact.belongsTo(Commerce);
 
+Commerce.hasMany(MenuType);
+MenuType.belongsTo(Commerce);
+
+Commerce.hasMany(Category);
+Category.belongsTo(Commerce);
+
 Commerce.hasMany(Menu);
 Menu.belongsTo(Commerce);
 City.hasMany(State);

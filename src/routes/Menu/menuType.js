@@ -13,7 +13,7 @@ menuType.use(
 
 menuType.post('/type', async (req, res) => {
   try {
-    const { type, detail } = req.body;
+    const { type, detail, commerceId } = req.body;
     // eslint-disable-next-line no-unused-vars
     const [menuTypeCreated, created] = await MenuType.findOrCreate({
       where: {
@@ -22,6 +22,7 @@ menuType.post('/type', async (req, res) => {
       defaults: {
         type: type.toLowerCase(),
         detail,
+        commerceId,
       },
     });
     if (created) {
@@ -34,10 +35,17 @@ menuType.post('/type', async (req, res) => {
   }
 });
 
-menuType.get('/all', async (req, res) => {
+menuType.get('/all/:commerceId', async (req, res) => {
   try {
+    const { commerceId } = req.params;
+    if (!commerceId && !Number.isInteger(parseInt(commerceId, 10))) {
+      res.status(422).send('ID was not provided');
+    }
     const menut = await MenuType.findAll({
-      attributes: ['id', 'type', 'detail', 'active'],
+      where: {
+        commerceId: parseInt(commerceId, 10),
+      },
+      attributes: ['id', 'type', 'detail', 'commerceId', 'active'],
     });
 
     if (menut.length > 0) {
@@ -50,11 +58,18 @@ menuType.get('/all', async (req, res) => {
   }
 });
 
-menuType.get('/all_active', async (req, res) => {
+menuType.get('/all_active/:commerceId', async (req, res) => {
   try {
+    const { commerceId } = req.params;
+    if (!commerceId && !Number.isInteger(parseInt(commerceId, 10))) {
+      res.status(422).send('ID was not provided');
+    }
     const menut = await MenuType.findAll({
-      where: { active: true },
-      attributes: ['id', 'type', 'detail', 'active'],
+      where: {
+        commerceId: parseInt(commerceId, 10),
+        active: true,
+      },
+      attributes: ['id', 'type', 'detail', 'commerceId', 'active'],
     });
 
     if (menut.length > 0) {
@@ -73,7 +88,7 @@ menuType.get('/detail/:id', async (req, res) => {
     if (id && Number.isInteger(parseInt(id, 10))) {
       const menut = await MenuType.findAll({
         where: { id: parseInt(id, 10) },
-        attributes: ['id', 'type', 'detail', 'active'],
+        attributes: ['id', 'type', 'detail', 'commerceId', 'active'],
       });
       if (menut.length > 0) {
         res.status(201).json(menut);
@@ -91,14 +106,17 @@ menuType.get('/detail/:id', async (req, res) => {
 menuType.put('/update/:id', async (req, res) => {
   try {
     const { id } = req.params;
-    const { type, detail } = req.body;
+    const { type, detail, commerceId } = req.body;
     const menuFinded = await MenuType.findOne({
-      where: { id },
+      where: {
+        id: parseInt(id, 10),
+      },
     });
     if (menuFinded) {
       await menuFinded.update({
         type,
         detail,
+        commerceId,
       });
       res.status(200).send('The data was modified successfully');
     } else {
@@ -113,7 +131,9 @@ menuType.put('/active/:id', async (req, res) => {
   try {
     const { id } = req.params;
     const menuFinded = await MenuType.findOne({
-      where: { id },
+      where: {
+        id: parseInt(id, 10),
+      },
     });
     if (menuFinded) {
       await menuFinded.update({
@@ -132,7 +152,9 @@ menuType.put('/inactive/:id', async (req, res) => {
   try {
     const { id } = req.params;
     const menuFinded = await MenuType.findOne({
-      where: { id },
+      where: {
+        id: parseInt(id, 10),
+      },
     });
     if (menuFinded) {
       await menuFinded.update({

@@ -115,7 +115,9 @@ bank.put('/update/:id', async (req, res) => {
       account, number, detail, commerceId,
     } = req.body;
     const bankFinded = await Bank.findOne({
-      where: { id },
+      where: {
+        id: parseInt(id, 10),
+      },
     });
     if (bankFinded) {
       await bankFinded.update({

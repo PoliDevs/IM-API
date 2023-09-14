@@ -108,7 +108,9 @@ commerceFacts.put('/update/:id', async (req, res) => {
     const { id } = req.params;
     const { type, detail, commerceId } = req.body;
     const commerceFinded = await CommerceFact.findOne({
-      where: { id },
+      where: {
+        id: parseInt(id, 10),
+      },
     });
     if (commerceFinded) {
       await commerceFinded.update({
@@ -129,7 +131,9 @@ commerceFacts.put('/active/:id', async (req, res) => {
   try {
     const { id } = req.params;
     const commerceFinded = await CommerceFact.findOne({
-      where: { id },
+      where: {
+        id: parseInt(id, 10),
+      },
     });
     if (commerceFinded) {
       await commerceFinded.update({
@@ -148,7 +152,9 @@ commerceFacts.put('/inactive/:id', async (req, res) => {
   try {
     const { id } = req.params;
     const commerceFinded = await CommerceFact.findOne({
-      where: { id },
+      where: {
+        id: parseInt(id, 10),
+      },
     });
     if (commerceFinded) {
       await commerceFinded.update({
