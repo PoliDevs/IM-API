@@ -13,7 +13,9 @@ bank.use(
 
 bank.post('/bank', async (req, res) => {
   try {
-    const { account, number, detail } = req.body;
+    const {
+      account, number, detail, commerceId,
+    } = req.body;
     // eslint-disable-next-line no-unused-vars
     const [bankCreated, created] = await Bank.findOrCreate({
       where: {
@@ -23,6 +25,7 @@ bank.post('/bank', async (req, res) => {
         account: account.toLowerCase(),
         number,
         detail,
+        commerceId,
       },
     });
     if (created) {
@@ -35,10 +38,17 @@ bank.post('/bank', async (req, res) => {
   }
 });
 
-bank.get('/all', async (req, res) => {
+bank.get('/all/:commerceId', async (req, res) => {
   try {
+    const { commerceId } = req.params;
+    if (!commerceId && !Number.isInteger(parseInt(commerceId, 10))) {
+      res.status(422).send('ID was not provided');
+    }
     const banki = await Bank.findAll({
-      attributes: ['id', 'account', 'number', 'detail', 'active'],
+      where: {
+        commerceId: parseInt(commerceId, 10),
+      },
+      attributes: ['id', 'account', 'number', 'detail', 'commerceId', 'active'],
     });
 
     if (banki.length > 0) {
@@ -51,11 +61,18 @@ bank.get('/all', async (req, res) => {
   }
 });
 
-bank.get('/all_active', async (req, res) => {
+bank.get('/all_active/:commerceId', async (req, res) => {
   try {
+    const { commerceId } = req.params;
+    if (!commerceId && !Number.isInteger(parseInt(commerceId, 10))) {
+      res.status(422).send('ID was not provided');
+    }
     const banki = await Bank.findAll({
-      where: { active: true },
-      attributes: ['id', 'account', 'number', 'detail', 'active'],
+      where: {
+        commerceId: parseInt(commerceId, 10),
+        active: true,
+      },
+      attributes: ['id', 'account', 'number', 'detail', 'commerceId', 'active'],
     });
 
     if (banki.length > 0) {
@@ -73,8 +90,10 @@ bank.get('/detail/:id', async (req, res) => {
     const { id } = req.params;
     if (id && Number.isInteger(parseInt(id, 10))) {
       const banki = await Bank.findAll({
-        where: { id: parseInt(id, 10) },
-        attributes: ['id', 'account', 'number', 'detail', 'active'],
+        where: {
+          id: parseInt(id, 10),
+        },
+        attributes: ['id', 'account', 'number', 'detail', 'commerceId', 'active'],
       });
       if (banki.length > 0) {
         res.status(201).json(banki);
@@ -92,7 +111,9 @@ bank.get('/detail/:id', async (req, res) => {
 bank.put('/update/:id', async (req, res) => {
   try {
     const { id } = req.params;
-    const { account, number, detail } = req.body;
+    const {
+      account, number, detail, commerceId,
+    } = req.body;
     const bankFinded = await Bank.findOne({
       where: { id },
     });
@@ -101,6 +122,7 @@ bank.put('/update/:id', async (req, res) => {
         account,
         number,
         detail,
+        commerceId,
       });
       res.status(200).send('The data was modified successfully');
     } else {
@@ -115,7 +137,9 @@ bank.put('/active/:id', async (req, res) => {
   try {
     const { id } = req.params;
     const bankFinded = await Bank.findOne({
-      where: { id },
+      where: {
+        id: parseInt(id, 10),
+      },
     });
     if (bankFinded) {
       await bankFinded.update({
@@ -134,7 +158,9 @@ bank.put('/inactive/:id', async (req, res) => {
   try {
     const { id } = req.params;
     const bankFinded = await Bank.findOne({
-      where: { id },
+      where: {
+        id: parseInt(id, 10),
+      },
     });
     if (bankFinded) {
       await bankFinded.update({

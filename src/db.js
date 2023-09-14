@@ -96,14 +96,17 @@ Franchise.hasMany(Commerce);
 Commerce.belongsTo(Franchise);
 CommercialPlan.hasMany(Commerce);
 Commerce.belongsTo(CommercialPlan);
-Bank.hasMany(Commerce);
-Commerce.belongsTo(Bank);
-City.hasMany(Commerce);
-Commerce.belongsTo(City);
-State.hasMany(Commerce);
-Commerce.belongsTo(State);
-Country.hasMany(Commerce);
-Commerce.belongsTo(Country);
+
+Commerce.hasMany(Bank);
+Bank.belongsTo(Commerce);
+
+// City.hasMany(Commerce);
+// Commerce.belongsTo(City);
+// State.hasMany(Commerce);
+// Commerce.belongsTo(State);
+// Country.hasMany(Commerce);
+// Commerce.belongsTo(Country);
+
 CommerceFact.hasMany(Commerce);
 Commerce.belongsTo(CommerceFact);
 Commerce.hasMany(Menu);
