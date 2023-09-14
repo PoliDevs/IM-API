@@ -13,15 +13,17 @@ categories.use(
 
 categories.post('/category', async (req, res) => {
   try {
-    const { category, detail } = req.body;
+    const { category, detail, commerceId } = req.body;
     // eslint-disable-next-line no-unused-vars
     const [categoryCreated, created] = await Category.findOrCreate({
       where: {
         category: category.toLowerCase(),
+        commerceId,
       },
       defaults: {
         category: category.toLowerCase(),
         detail,
+        commerceId,
       },
     });
     if (created) {
@@ -34,10 +36,17 @@ categories.post('/category', async (req, res) => {
   }
 });
 
-categories.get('/all', async (req, res) => {
+categories.get('/all/:commerceId', async (req, res) => {
   try {
+    const { commerceId } = req.params;
+    if (!commerceId && !Number.isInteger(parseInt(commerceId, 10))) {
+      res.status(422).send('ID was not provided');
+    }
     const caty = await Category.findAll({
-      attributes: ['id', 'category', 'detail', 'active'],
+      where: {
+        commerceId: parseInt(commerceId, 10),
+      },
+      attributes: ['id', 'category', 'detail', 'commerceId', 'active'],
     });
 
     if (caty.length > 0) {
@@ -50,11 +59,18 @@ categories.get('/all', async (req, res) => {
   }
 });
 
-categories.get('/all_active', async (req, res) => {
+categories.get('/all_active/:commerceId', async (req, res) => {
   try {
+    const { commerceId } = req.params;
+    if (!commerceId && !Number.isInteger(parseInt(commerceId, 10))) {
+      res.status(422).send('ID was not provided');
+    }
     const caty = await Category.findAll({
-      where: { active: true },
-      attributes: ['id', 'category', 'detail', 'active'],
+      where: {
+        commerceId: parseInt(commerceId, 10),
+        active: true,
+      },
+      attributes: ['id', 'category', 'detail', 'commerceId', 'active'],
     });
 
     if (caty.length > 0) {
@@ -73,7 +89,7 @@ categories.get('/detail/:id', async (req, res) => {
     if (id && Number.isInteger(parseInt(id, 10))) {
       const caty = await Category.findAll({
         where: { id: parseInt(id, 10) },
-        attributes: ['id', 'category', 'detail', 'active'],
+        attributes: ['id', 'category', 'detail', 'commerceId', 'active'],
       });
       if (caty.length > 0) {
         res.status(201).json(caty);
@@ -91,7 +107,7 @@ categories.get('/detail/:id', async (req, res) => {
 categories.put('/update/:id', async (req, res) => {
   try {
     const { id } = req.params;
-    const { category, detail } = req.body;
+    const { category, detail, commerceId } = req.body;
     const categoryFinded = await Category.findOne({
       where: { id },
     });
@@ -99,6 +115,7 @@ categories.put('/update/:id', async (req, res) => {
       await categoryFinded.update({
         category,
         detail,
+        commerceId,
       });
       res.status(200).send('The data was modified successfully');
     } else {
@@ -113,7 +130,9 @@ categories.put('/active/:id', async (req, res) => {
   try {
     const { id } = req.params;
     const categoryFinded = await Category.findOne({
-      where: { id },
+      where: {
+        id: parseInt(id, 10),
+      },
     });
     if (categoryFinded) {
       await categoryFinded.update({
@@ -132,7 +151,9 @@ categories.put('/inactive/:id', async (req, res) => {
   try {
     const { id } = req.params;
     const categoryFinded = await Category.findOne({
-      where: { id },
+      where: {
+        id: parseInt(id, 10),
+      },
     });
     if (categoryFinded) {
       await categoryFinded.update({

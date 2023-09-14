@@ -20,6 +20,7 @@ bank.post('/bank', async (req, res) => {
     const [bankCreated, created] = await Bank.findOrCreate({
       where: {
         account: account.toLowerCase(),
+        commerceId,
       },
       defaults: {
         account: account.toLowerCase(),

@@ -18,6 +18,7 @@ commerceFacts.post('/fact', async (req, res) => {
     const [commerceFactCreated, created] = await CommerceFact.findOrCreate({
       where: {
         type: type.toLowerCase(),
+        commerceId,
       },
       defaults: {
         type: type.toLowerCase(),

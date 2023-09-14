@@ -18,6 +18,7 @@ menuType.post('/type', async (req, res) => {
     const [menuTypeCreated, created] = await MenuType.findOrCreate({
       where: {
         type: type.toLowerCase(),
+        commerceId,
       },
       defaults: {
         type: type.toLowerCase(),
