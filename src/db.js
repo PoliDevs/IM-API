@@ -107,8 +107,9 @@ Bank.belongsTo(Commerce);
 // Country.hasMany(Commerce);
 // Commerce.belongsTo(Country);
 
-CommerceFact.hasMany(Commerce);
-Commerce.belongsTo(CommerceFact);
+Commerce.hasMany(CommerceFact);
+CommerceFact.belongsTo(Commerce);
+
 Commerce.hasMany(Menu);
 Menu.belongsTo(Commerce);
 City.hasMany(State);

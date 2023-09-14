@@ -13,7 +13,7 @@ commerceFacts.use(
 
 commerceFacts.post('/fact', async (req, res) => {
   try {
-    const { type, detail } = req.body;
+    const { type, detail, commerceId } = req.body;
     // eslint-disable-next-line no-unused-vars
     const [commerceFactCreated, created] = await CommerceFact.findOrCreate({
       where: {
@@ -22,6 +22,7 @@ commerceFacts.post('/fact', async (req, res) => {
       defaults: {
         type: type.toLowerCase(),
         detail,
+        commerceId,
       },
     });
     if (created) {
@@ -34,10 +35,17 @@ commerceFacts.post('/fact', async (req, res) => {
   }
 });
 
-commerceFacts.get('/all', async (req, res) => {
+commerceFacts.get('/all/:commerceId', async (req, res) => {
   try {
+    const { commerceId } = req.params;
+    if (!commerceId && !Number.isInteger(parseInt(commerceId, 10))) {
+      res.status(422).send('ID was not provided');
+    }
     const busi = await CommerceFact.findAll({
-      attributes: ['id', 'type', 'detail', 'active'],
+      where: {
+        commerceId: parseInt(commerceId, 10),
+      },
+      attributes: ['id', 'type', 'detail', 'commerceId', 'active'],
     });
 
     if (busi.length > 0) {
@@ -50,11 +58,18 @@ commerceFacts.get('/all', async (req, res) => {
   }
 });
 
-commerceFacts.get('/all_active', async (req, res) => {
+commerceFacts.get('/all_active/:commerceId', async (req, res) => {
   try {
+    const { commerceId } = req.params;
+    if (!commerceId && !Number.isInteger(parseInt(commerceId, 10))) {
+      res.status(422).send('ID was not provided');
+    }
     const busi = await CommerceFact.findAll({
-      where: { active: true },
-      attributes: ['id', 'type', 'detail', 'active'],
+      where: {
+        commerceId: parseInt(commerceId, 10),
+        active: true,
+      },
+      attributes: ['id', 'type', 'detail', 'commerceId', 'active'],
     });
 
     if (busi.length > 0) {
@@ -73,7 +88,7 @@ commerceFacts.get('/detail/:id', async (req, res) => {
     if (id && Number.isInteger(parseInt(id, 10))) {
       const busi = await CommerceFact.findAll({
         where: { id: parseInt(id, 10) },
-        attributes: ['id', 'type', 'detail', 'active'],
+        attributes: ['id', 'type', 'detail', 'commerceId', 'active'],
       });
       if (busi.length > 0) {
         res.status(201).json(busi);
@@ -91,7 +106,7 @@ commerceFacts.get('/detail/:id', async (req, res) => {
 commerceFacts.put('/update/:id', async (req, res) => {
   try {
     const { id } = req.params;
-    const { type, detail } = req.body;
+    const { type, detail, commerceId } = req.body;
     const commerceFinded = await CommerceFact.findOne({
       where: { id },
     });
@@ -99,6 +114,7 @@ commerceFacts.put('/update/:id', async (req, res) => {
       await commerceFinded.update({
         type,
         detail,
+        commerceId,
       });
       res.status(200).send('The data was modified successfully');
     } else {
