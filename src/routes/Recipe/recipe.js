@@ -18,21 +18,19 @@ recipe.post('/recipe', async (req, res) => {
     const {
       name,
       amount,
-      unit,
+      unitTypeId,
+      commerceId,
     } = req.body;
     // eslint-disable-next-line no-unused-vars
     const [recipeCreated, created] = await Recipe.findOrCreate({
       where: {
         name: name.toLowerCase(),
+        commerceId,
       },
       defaults: {
         name: name.toLowerCase(),
         amount,
-        unitTypeId: unit
-          ? (
-            await UnitType.findOne({ where: { unit } })
-          )?.id
-          : null,
+        unitTypeId,
       },
     });
     if (created) {
@@ -51,7 +49,7 @@ recipe.put('/update/:id', async (req, res) => {
     const {
       name,
       amount,
-      unit,
+      unitTypeId,
     } = req.body;
     const recipeFinded = await Recipe.findOne({
       where: { id },
@@ -60,11 +58,7 @@ recipe.put('/update/:id', async (req, res) => {
       await recipeFinded.update({
         name: name.toLowerCase(),
         amount,
-        unitTypeId: unit
-          ? (
-            await UnitType.findOne({ where: { unit } })
-          )?.id
-          : null,
+        unitTypeId,
       });
       res.status(200).send('The data was modified successfully');
     } else {
@@ -81,7 +75,9 @@ recipe.put('/addproducts/:id', async (req, res) => {
     const { ingredients, supply } = req.body;
 
     const recipeFinded = await Recipe.findOne({
-      where: { id },
+      where: {
+        id: parseInt(id, 10),
+      },
     });
     if (recipeFinded) {
       // eslint-disable-next-line no-unused-vars
@@ -118,10 +114,17 @@ recipe.put('/addproducts/:id', async (req, res) => {
   }
 });
 
-recipe.get('/all', async (req, res) => {
+recipe.get('/all/:commerceId', async (req, res) => {
   try {
+    const { commerceId } = req.params;
+    if (!commerceId && !Number.isInteger(parseInt(commerceId, 10))) {
+      res.status(422).send('ID was not provided');
+    }
     const reci = await Recipe.findAll({
-      attributes: ['id', 'date', 'name', 'amount', 'ingredients', 'supplies', 'active'],
+      where: {
+        commerceId: parseInt(commerceId, 10),
+      },
+      attributes: ['id', 'date', 'name', 'amount', 'ingredients', 'supplies', 'active', 'commerceId'],
       include: [
         {
           model: UnitType,
@@ -140,11 +143,18 @@ recipe.get('/all', async (req, res) => {
   }
 });
 
-recipe.get('/all_active', async (req, res) => {
+recipe.get('/all_active/:commerceId', async (req, res) => {
   try {
+    const { commerceId } = req.params;
+    if (!commerceId && !Number.isInteger(parseInt(commerceId, 10))) {
+      res.status(422).send('ID was not provided');
+    }
     const reci = await Recipe.findAll({
-      where: { active: true },
-      attributes: ['id', 'date', 'name', 'amount', 'ingredients', 'supplies', 'active'],
+      where: {
+        commerceId: parseInt(commerceId, 10),
+        active: true,
+      },
+      attributes: ['id', 'date', 'name', 'amount', 'ingredients', 'supplies', 'active', 'commerceId'],
       include: [
         {
           model: UnitType,
@@ -169,7 +179,7 @@ recipe.get('/detail/:id', async (req, res) => {
     if (id && Number.isInteger(parseInt(id, 10))) {
       const reci = await Recipe.findAll({
         where: { id: parseInt(id, 10) },
-        attributes: ['id', 'date', 'name', 'amount', 'ingredients', 'supplies', 'active'],
+        attributes: ['id', 'date', 'name', 'amount', 'ingredients', 'supplies', 'active', 'commerceId'],
         include: [
           {
             model: UnitType,
@@ -194,20 +204,18 @@ recipe.put('/update/:id', async (req, res) => {
   try {
     const { id } = req.params;
     const {
-      name, amount, unit,
+      name, amount, unitTypeId,
     } = req.body;
     const recipeFinded = await Recipe.findOne({
-      where: { id },
+      where: {
+        id: parseInt(id, 10),
+      },
     });
     if (recipeFinded) {
       await recipeFinded.update({
         name: name.toLowerCase(),
         amount,
-        unitTypeId: unit
-          ? (
-            await UnitType.findOne({ where: { unit } })
-          )?.id
-          : null,
+        unitTypeId,
       });
       res.status(200).send('The data was modified successfully');
     } else {
@@ -222,7 +230,9 @@ recipe.put('/active/:id', async (req, res) => {
   try {
     const { id } = req.params;
     const recipeFinded = await Recipe.findOne({
-      where: { id },
+      where: {
+        id: parseInt(id, 10),
+      },
     });
     if (recipeFinded) {
       await recipeFinded.update({
@@ -241,7 +251,9 @@ recipe.put('/inactive/:id', async (req, res) => {
   try {
     const { id } = req.params;
     const recipeFinded = await Recipe.findOne({
-      where: { id },
+      where: {
+        id: parseInt(id, 10),
+      },
     });
     if (recipeFinded) {
       await recipeFinded.update({
