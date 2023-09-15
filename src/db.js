@@ -124,6 +124,9 @@ Category.belongsTo(Commerce);
 Commerce.hasMany(Sector);
 Sector.belongsTo(Commerce);
 
+Commerce.hasMany(TableService);
+TableService.belongsTo(Commerce);
+
 Commerce.hasMany(Menu);
 Menu.belongsTo(Commerce);
 City.hasMany(State);
