@@ -26,12 +26,15 @@ account.post('/account', async (req, res) => {
       twitterUser,
       sex,
       neighborhood,
+      cp,
+      commerceId,
     } = req.body;
     const hash = bcrypt.hashSync(password, 10);
     // eslint-disable-next-line no-unused-vars
     const [acctionCreated, created] = await Account.findOrCreate({
       where: {
         email: email.toLowerCase(),
+        commerceId,
       },
       defaults: {
         name: name.toLowerCase(),
@@ -45,6 +48,8 @@ account.post('/account', async (req, res) => {
         twitterUser: twitterUser.toLowerCase(),
         sex,
         neighborhood,
+        cp,
+        commerceId,
       },
     });
     if (created) {
@@ -57,10 +62,17 @@ account.post('/account', async (req, res) => {
   }
 });
 
-account.get('/all', async (req, res) => {
+account.get('/all/:commerceId', async (req, res) => {
   try {
+    const { commerceId } = req.params;
+    if (!commerceId && !Number.isInteger(parseInt(commerceId, 10))) {
+      res.status(422).send('ID was not provided');
+    }
     const acco = await Account.findAll({
-      attributes: ['id', 'name', 'password', 'phone', 'address', 'birthDate', 'status', 'email', 'googleUser', 'facebookUser', 'twitterUser', 'validatedEmail', 'sex', 'neighborhood'],
+      where: {
+        commerceId: parseInt(commerceId, 10),
+      },
+      attributes: ['id', 'name', 'password', 'phone', 'address', 'birthDate', 'status', 'email', 'googleUser', 'facebookUser', 'twitterUser', 'validatedEmail', 'sex', 'neighborhood', 'commerceId', 'cp'],
     });
 
     if (acco.length > 0) {
@@ -73,11 +85,18 @@ account.get('/all', async (req, res) => {
   }
 });
 
-account.get('/all_Active', async (req, res) => {
+account.get('/all_Active/:commerceId', async (req, res) => {
   try {
+    const { commerceId } = req.params;
+    if (!commerceId && !Number.isInteger(parseInt(commerceId, 10))) {
+      res.status(422).send('ID was not provided');
+    }
     const acco = await Account.findAll({
-      where: { status: 'active' },
-      attributes: ['id', 'name', 'password', 'phone', 'address', 'birthDate', 'status', 'email', 'googleUser', 'facebookUser', 'twitterUser', 'validatedEmail', 'sex', 'neighborhood'],
+      where: {
+        commerceId: parseInt(commerceId, 10),
+        status: 'active',
+      },
+      attributes: ['id', 'name', 'password', 'phone', 'address', 'birthDate', 'status', 'email', 'googleUser', 'facebookUser', 'twitterUser', 'validatedEmail', 'sex', 'neighborhood', 'cp'],
     });
 
     if (acco.length > 0) {
@@ -90,11 +109,18 @@ account.get('/all_Active', async (req, res) => {
   }
 });
 
-account.get('/all_NoActive', async (req, res) => {
+account.get('/all_NoActive/:commerceId', async (req, res) => {
   try {
+    const { commerceId } = req.params;
+    if (!commerceId && !Number.isInteger(parseInt(commerceId, 10))) {
+      res.status(422).send('ID was not provided');
+    }
     const acco = await Account.findAll({
-      where: { status: 'noActive' },
-      attributes: ['id', 'name', 'password', 'phone', 'address', 'birthDate', 'status', 'email', 'googleUser', 'facebookUser', 'twitterUser', 'validatedEmail', 'sex', 'neighborhood'],
+      where: {
+        commerceId: parseInt(commerceId, 10),
+        status: 'noActive',
+      },
+      attributes: ['id', 'name', 'password', 'phone', 'address', 'birthDate', 'status', 'email', 'googleUser', 'facebookUser', 'twitterUser', 'validatedEmail', 'sex', 'neighborhood', 'cp'],
     });
 
     if (acco.length > 0) {
@@ -107,11 +133,18 @@ account.get('/all_NoActive', async (req, res) => {
   }
 });
 
-account.get('/all_banned', async (req, res) => {
+account.get('/all_banned/:commerceId', async (req, res) => {
   try {
+    const { commerceId } = req.params;
+    if (!commerceId && !Number.isInteger(parseInt(commerceId, 10))) {
+      res.status(422).send('ID was not provided');
+    }
     const acco = await Account.findAll({
-      where: { status: 'banned' },
-      attributes: ['id', 'name', 'password', 'phone', 'address', 'birthDate', 'status', 'email', 'googleUser', 'facebookUser', 'twitterUser', 'validatedEmail', 'sex', 'neighborhood'],
+      where: {
+        commerceId: parseInt(commerceId, 10),
+        status: 'banned',
+      },
+      attributes: ['id', 'name', 'password', 'phone', 'address', 'birthDate', 'status', 'email', 'googleUser', 'facebookUser', 'twitterUser', 'validatedEmail', 'sex', 'neighborhood', 'cp'],
     });
 
     if (acco.length > 0) {
@@ -130,7 +163,7 @@ account.get('/detail/:id', async (req, res) => {
     if (id && Number.isInteger(parseInt(id, 10))) {
       const acco = await Account.findAll({
         where: { id: parseInt(id, 10) },
-        attributes: ['id', 'name', 'password', 'phone', 'address', 'birthDate', 'status', 'email', 'googleUser', 'facebookUser', 'twitterUser', 'validatedEmail', 'sex', 'neighborhood'],
+        attributes: ['id', 'name', 'password', 'phone', 'address', 'birthDate', 'status', 'email', 'googleUser', 'facebookUser', 'twitterUser', 'validatedEmail', 'sex', 'neighborhood', 'cp'],
       });
       if (acco.length > 0) {
         res.status(201).json(acco);
@@ -161,10 +194,13 @@ account.put('/update/:id', async (req, res) => {
       validatedEmail,
       sex,
       neighborhood,
+      cp,
     } = req.body;
     const hash = bcrypt.hashSync(password, 10);
     const accountFinded = await Account.findOne({
-      where: { id },
+      where: {
+        id: parseInt(id, 10),
+      },
     });
     if (accountFinded) {
       await accountFinded.update({
@@ -180,6 +216,7 @@ account.put('/update/:id', async (req, res) => {
         validatedEmail,
         sex,
         neighborhood,
+        cp,
       });
       res.status(200).send('The data was modified successfully');
     } else {
@@ -194,7 +231,9 @@ account.put('/active/:id', async (req, res) => {
   try {
     const { id } = req.params;
     const accountFinded = await Account.findOne({
-      where: { id },
+      where: {
+        id: parseInt(id, 10),
+      },
     });
     if (accountFinded) {
       await accountFinded.update({
@@ -213,7 +252,9 @@ account.put('/inactive/:id', async (req, res) => {
   try {
     const { id } = req.params;
     const accountFinded = await Account.findOne({
-      where: { id },
+      where: {
+        id: parseInt(id, 10),
+      },
     });
     if (accountFinded) {
       await accountFinded.update({
@@ -232,7 +273,9 @@ account.put('/banned/:id', async (req, res) => {
   try {
     const { id } = req.params;
     const accountFinded = await Account.findOne({
-      where: { id },
+      where: {
+        id: parseInt(id, 10),
+      },
     });
     if (accountFinded) {
       await accountFinded.update({
@@ -252,7 +295,9 @@ account.put('/emailChange/:id', async (req, res) => {
     const { id } = req.params;
     const { emailNew } = req.body;
     const accountFinded = await Account.findOne({
-      where: { id },
+      where: {
+        id: parseInt(id, 10),
+      },
     });
     if (accountFinded) {
       await Account.update({
@@ -272,7 +317,9 @@ account.put('/validated/:id', async (req, res) => {
   try {
     const { id } = req.params;
     const accountFinded = await Account.findOne({
-      where: { id },
+      where: {
+        id: parseInt(id, 10),
+      },
     });
     if (accountFinded) {
       await accountFinded.update({
@@ -291,7 +338,9 @@ account.put('/invalidated/:id', async (req, res) => {
   try {
     const { id } = req.params;
     const accountFinded = await Account.findOne({
-      where: { id },
+      where: {
+        id: parseInt(id, 10),
+      },
     });
     if (accountFinded) {
       await accountFinded.update({

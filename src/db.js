@@ -193,6 +193,9 @@ Order.belongsTo(Courier);
 Sector.hasMany(Pos);
 Pos.belongsTo(Sector);
 
+Commerce.hasMany(Account);
+Account.belongsTo(Commerce);
+
 module.exports = {
   ...sequelize.models,
   conn: sequelize, // para importart la conexión { conn } = require('./db.js');
