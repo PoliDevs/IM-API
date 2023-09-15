@@ -13,15 +13,17 @@ payment.use(
 
 payment.post('/payment', async (req, res) => {
   try {
-    const { type, detail } = req.body;
+    const { type, detail, commerceId } = req.body;
     // eslint-disable-next-line no-unused-vars
     const [paymentCreated, created] = await Payment.findOrCreate({
       where: {
         type: type.toLowerCase(),
+        commerceId,
       },
       defaults: {
         type: type.toLowerCase(),
         detail,
+        commerceId,
       },
     });
     if (created) {
@@ -34,10 +36,17 @@ payment.post('/payment', async (req, res) => {
   }
 });
 
-payment.get('/all', async (req, res) => {
+payment.get('/all/:commerceId', async (req, res) => {
   try {
+    const { commerceId } = req.params;
+    if (!commerceId && !Number.isInteger(parseInt(commerceId, 10))) {
+      res.status(422).send('ID was not provided');
+    }
     const pay = await Payment.findAll({
-      attributes: ['id', 'type', 'detail', 'active'],
+      where: {
+        commerceId: parseInt(commerceId, 10),
+      },
+      attributes: ['id', 'type', 'detail', 'commerceId', 'active'],
     });
 
     if (pay.length > 0) {
@@ -50,11 +59,18 @@ payment.get('/all', async (req, res) => {
   }
 });
 
-payment.get('/all_active', async (req, res) => {
+payment.get('/all_active/:commerceId', async (req, res) => {
   try {
+    const { commerceId } = req.params;
+    if (!commerceId && !Number.isInteger(parseInt(commerceId, 10))) {
+      res.status(422).send('ID was not provided');
+    }
     const pay = await Payment.findAll({
-      where: { active: true },
-      attributes: ['id', 'type', 'detail', 'active'],
+      where: {
+        commerceId: parseInt(commerceId, 10),
+        active: true,
+      },
+      attributes: ['id', 'type', 'detail', 'commerceId', 'active'],
     });
 
     if (pay.length > 0) {
@@ -73,7 +89,7 @@ payment.get('/detail/:id', async (req, res) => {
     if (id && Number.isInteger(parseInt(id, 10))) {
       const pay = await Payment.findAll({
         where: { id: parseInt(id, 10) },
-        attributes: ['id', 'type', 'detail', 'active'],
+        attributes: ['id', 'type', 'detail', 'commerceId', 'active'],
       });
       if (pay.length > 0) {
         res.status(201).json(pay);
@@ -90,15 +106,18 @@ payment.get('/detail/:id', async (req, res) => {
 
 payment.put('/update/:id', async (req, res) => {
   try {
-    const { id } = req.params;
+    const { id, commerceId } = req.params;
     const { type, detail } = req.body;
     const paymentFinded = await Payment.findOne({
-      where: { id },
+      where: {
+        id: parseInt(id, 10),
+      },
     });
     if (paymentFinded) {
       await paymentFinded.update({
         type,
         detail,
+        commerceId,
       });
       res.status(200).send('The data was modified successfully');
     } else {
@@ -113,7 +132,9 @@ payment.put('/active/:id', async (req, res) => {
   try {
     const { id } = req.params;
     const paymentFinded = await Payment.findOne({
-      where: { id },
+      where: {
+        id: parseInt(id, 10),
+      },
     });
     if (paymentFinded) {
       await paymentFinded.update({
@@ -132,7 +153,9 @@ payment.put('/inactive/:id', async (req, res) => {
   try {
     const { id } = req.params;
     const paymentFinded = await Payment.findOne({
-      where: { id },
+      where: {
+        id: parseInt(id, 10),
+      },
     });
     if (paymentFinded) {
       await paymentFinded.update({

@@ -139,6 +139,9 @@ Pos.belongsTo(PosType);
 Commerce.hasMany(PosType);
 PosType.belongsTo(Commerce);
 
+Commerce.hasMany(Payment);
+Payment.belongsTo(Commerce);
+
 MenuType.hasMany(Menu);
 Menu.belongsTo(MenuType);
 TableService.hasMany(Menu);
