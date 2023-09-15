@@ -34,6 +34,7 @@ courier.post('/courier', async (req, res) => {
       where: {
         firstName: firstName.toLowerCase(),
         lastName: lastName.toLowerCase(),
+        courierTypeId,
       },
       defaults: {
         firstName: firstName.toLowerCase(),
