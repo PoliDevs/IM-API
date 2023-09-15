@@ -13,15 +13,17 @@ posType.use(
 
 posType.post('/type', async (req, res) => {
   try {
-    const { type, detail } = req.body;
+    const { type, detail, commerceId } = req.body;
     // eslint-disable-next-line no-unused-vars
     const [posTypeCreated, created] = await PosType.findOrCreate({
       where: {
         type: type.toLowerCase(),
+        commerceId,
       },
       defaults: {
         type: type.toLowerCase(),
         detail,
+        commerceId,
       },
     });
     if (created) {
@@ -34,10 +36,17 @@ posType.post('/type', async (req, res) => {
   }
 });
 
-posType.get('/all', async (req, res) => {
+posType.get('/all/:commerceId', async (req, res) => {
   try {
+    const { commerceId } = req.params;
+    if (!commerceId && !Number.isInteger(parseInt(commerceId, 10))) {
+      res.status(422).send('ID was not provided');
+    }
     const poss = await PosType.findAll({
-      attributes: ['id', 'type', 'detail', 'active'],
+      where: {
+        commerceId: parseInt(commerceId, 10),
+      },
+      attributes: ['id', 'type', 'detail', 'active', 'commerceId'],
     });
 
     if (poss.length > 0) {
@@ -50,11 +59,18 @@ posType.get('/all', async (req, res) => {
   }
 });
 
-posType.get('/all_active', async (req, res) => {
+posType.get('/all_active/:commerceId', async (req, res) => {
   try {
+    const { commerceId } = req.params;
+    if (!commerceId && !Number.isInteger(parseInt(commerceId, 10))) {
+      res.status(422).send('ID was not provided');
+    }
     const poss = await PosType.findAll({
-      where: { active: true },
-      attributes: ['id', 'type', 'detail', 'active'],
+      where: {
+        commerceId: parseInt(commerceId, 10),
+        active: true,
+      },
+      attributes: ['id', 'type', 'detail', 'active', 'commerceId'],
     });
 
     if (poss.length > 0) {
@@ -73,7 +89,7 @@ posType.get('/detail/:id', async (req, res) => {
     if (id && Number.isInteger(parseInt(id, 10))) {
       const poss = await PosType.findAll({
         where: { id: parseInt(id, 10) },
-        attributes: ['id', 'type', 'detail', 'active'],
+        attributes: ['id', 'type', 'detail', 'active', 'commerceId'],
       });
       if (poss.length > 0) {
         res.status(201).json(poss);
@@ -91,14 +107,17 @@ posType.get('/detail/:id', async (req, res) => {
 posType.put('/update/:id', async (req, res) => {
   try {
     const { id } = req.params;
-    const { type, detail } = req.body;
+    const { type, detail, commerceId } = req.body;
     const posFinded = await PosType.findOne({
-      where: { id },
+      where: {
+        id: parseInt(id, 10),
+      },
     });
     if (posFinded) {
       await posFinded.update({
         type,
         detail,
+        commerceId,
       });
       res.status(200).send('The data was modified successfully');
     } else {
@@ -113,7 +132,9 @@ posType.put('/active/:id', async (req, res) => {
   try {
     const { id } = req.params;
     const posFinded = await PosType.findOne({
-      where: { id },
+      where: {
+        id: parseInt(id, 10),
+      },
     });
     if (posFinded) {
       await posFinded.update({
@@ -132,7 +153,9 @@ posType.put('/inactive/:id', async (req, res) => {
   try {
     const { id } = req.params;
     const posFinded = await PosType.findOne({
-      where: { id },
+      where: {
+        id: parseInt(id, 10),
+      },
     });
     if (posFinded) {
       await posFinded.update({

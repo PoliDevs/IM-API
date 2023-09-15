@@ -8,6 +8,10 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING,
         defaultValue: '',
       },
+      name: {
+        type: DataTypes.STRING,
+        defaultValue: '',
+      },
       active: {
         type: DataTypes.BOOLEAN,
         defaultValue: true,

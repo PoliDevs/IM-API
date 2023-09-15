@@ -1,7 +1,9 @@
 const pointOfSale = require('express').Router();
 const express = require('express');
 const cors = require('cors');
-const { Pos, PosType, Commerce } = require('../../db');
+const {
+  Pos, PosType, Commerce, Sector,
+} = require('../../db');
 
 pointOfSale.use(express.json());
 pointOfSale.use(cors());
@@ -13,24 +15,23 @@ pointOfSale.use(
 
 pointOfSale.post('/pos', async (req, res) => {
   try {
-    const { qrCode, posType, commerce } = req.body;
+    const {
+      qrCode, posTypeId, discount, surcharge, capacity, detail, sectorId,
+    } = req.body;
     // eslint-disable-next-line no-unused-vars
     const [posCreated, created] = await Pos.findOrCreate({
       where: {
         qrCode: qrCode.toLowerCase(),
+        sectorId,
       },
       defaults: {
         qrCode: qrCode.toLowerCase(),
-        posTypeId: posType
-          ? (
-            await PosType.findOne({ where: { type: posType } })
-          )?.id
-          : null,
-        commerceId: commerce
-          ? (
-            await Commerce.findOne({ where: { name: commerce } })
-          )?.id
-          : null,
+        posTypeId,
+        discount,
+        surcharge,
+        capacity,
+        detail,
+        sectorId,
       },
     });
     if (created) {
@@ -49,19 +50,27 @@ pointOfSale.get('/all/:commerceId', async (req, res) => {
     if (!commerceId && !Number.isInteger(parseInt(commerceId, 10))) {
       res.status(422).send('ID was not provided');
     }
-    const point = await Pos.findAll({
-      attributes: ['id', 'qrCode', 'active'],
+    const point = await Commerce.findAll({
+      where: {
+        id: parseInt(commerceId, 10),
+      },
+      attributes: ['id', 'active'],
       include: [
         {
-          model: PosType,
-          attributes: ['id', 'type', 'detail', 'active'],
-        },
-        {
-          model: Commerce,
-          where: {
-            id: parseInt(commerceId, 10),
-          },
-          attributes: ['id', 'name', 'neighborhood', 'address', 'active'],
+          model: Sector,
+          attributes: ['id', 'name', 'active'],
+          include: [
+            {
+              model: Pos,
+              attributes: ['id', 'name', 'qrCode', 'posTypeId', 'discount', 'surcharge', 'capacity', 'detail', 'active'],
+              include: [
+                {
+                  model: PosType,
+                  attributes: ['id', 'type', 'detail', 'active'],
+                },
+              ],
+            },
+          ],
         },
       ],
     });
@@ -76,19 +85,36 @@ pointOfSale.get('/all/:commerceId', async (req, res) => {
   }
 });
 
-pointOfSale.get('/all_active', async (req, res) => {
+pointOfSale.get('/all_active/:commerceId', async (req, res) => {
   try {
-    const point = await Pos.findAll({
-      where: { active: true },
-      attributes: ['id', 'qrCode', 'active'],
+    const { commerceId } = req.params;
+    if (!commerceId && !Number.isInteger(parseInt(commerceId, 10))) {
+      res.status(422).send('ID was not provided');
+    }
+    const point = await Commerce.findAll({
+      where: {
+        id: parseInt(commerceId, 10),
+      },
+      attributes: ['id', 'active'],
       include: [
         {
-          model: PosType,
-          attributes: ['id', 'type', 'detail', 'active'],
-        },
-        {
-          model: Commerce,
-          attributes: ['id', 'name', 'neighborhood', 'address', 'active'],
+          model: Sector,
+          attributes: ['id', 'name', 'active'],
+          include: [
+            {
+              model: Pos,
+              where: {
+                active: true,
+              },
+              attributes: ['id', 'name', 'qrCode', 'posTypeId', 'discount', 'surcharge', 'capacity', 'detail', 'active'],
+              include: [
+                {
+                  model: PosType,
+                  attributes: ['id', 'type', 'detail', 'active'],
+                },
+              ],
+            },
+          ],
         },
       ],
     });
@@ -103,19 +129,36 @@ pointOfSale.get('/all_active', async (req, res) => {
   }
 });
 
-pointOfSale.get('/all_inactive', async (req, res) => {
+pointOfSale.get('/all_inactive/:commerceId', async (req, res) => {
   try {
+    const { commerceId } = req.params;
+    if (!commerceId && !Number.isInteger(parseInt(commerceId, 10))) {
+      res.status(422).send('ID was not provided');
+    }
     const point = await Pos.findAll({
-      where: { active: false },
-      attributes: ['id', 'qrCode', 'active'],
+      where: {
+        id: parseInt(commerceId, 10),
+      },
+      attributes: ['id', 'active'],
       include: [
         {
-          model: PosType,
-          attributes: ['id', 'type', 'detail', 'active'],
-        },
-        {
-          model: Commerce,
-          attributes: ['id', 'name', 'neighborhood', 'address', 'active'],
+          model: Sector,
+          attributes: ['id', 'name', 'active'],
+          include: [
+            {
+              model: Pos,
+              where: {
+                active: false,
+              },
+              attributes: ['id', 'name', 'qrCode', 'posTypeId', 'discount', 'surcharge', 'capacity', 'detail', 'active'],
+              include: [
+                {
+                  model: PosType,
+                  attributes: ['id', 'type', 'detail', 'active'],
+                },
+              ],
+            },
+          ],
         },
       ],
     });
@@ -136,52 +179,8 @@ pointOfSale.get('/detail/:id', async (req, res) => {
     if (id && Number.isInteger(parseInt(id, 10))) {
       const point = await Pos.findAll({
         where: { id: parseInt(id, 10) },
-        attributes: ['id', 'qrCode', 'active'],
-        include: [
-          {
-            model: PosType,
-            attributes: ['id', 'type', 'detail', 'active'],
-          },
-          {
-            model: Commerce,
-            attributes: ['id', 'name', 'neighborhood', 'address', 'active'],
-          },
-        ],
+        attributes: ['id', 'name', 'qrCode', 'posTypeId', 'discount', 'surcharge', 'capacity', 'detail', 'active'],
       });
-      if (point.length > 0) {
-        res.status(201).json(point);
-      } else {
-        res.status(422).json('Not found');
-      }
-    } else {
-      res.status(422).send('ID was not provided');
-    }
-  } catch (error) {
-    res.status(500).send(error);
-  }
-});
-
-pointOfSale.get('/posCommerce/:commerceId', async (req, res) => {
-  try {
-    const { commerceId } = req.params;
-    if (commerceId && Number.isInteger(parseInt(commerceId, 10))) {
-      const point = await Commerce.findAll({
-        where: { id: parseInt(commerceId, 10) },
-        attributes: ['id', 'name', 'neighborhood', 'address', 'active'],
-        include: [
-          {
-            model: Pos,
-            attributes: ['id', 'qrCode', 'active'],
-            include: [
-              {
-                model: PosType,
-                attributes: ['id', 'type', 'detail', 'active'],
-              },
-            ],
-          },
-        ],
-      });
-      res.status(201).json(point);
       if (point.length > 0) {
         res.status(201).json(point);
       } else {
@@ -198,23 +197,21 @@ pointOfSale.get('/posCommerce/:commerceId', async (req, res) => {
 pointOfSale.put('/update/:id', async (req, res) => {
   try {
     const { id } = req.params;
-    const { qrCode, posType, commerce } = req.body;
+    const {
+      qrCode, posTypeId, discount, surcharge, capacity, detail, sectorId,
+    } = req.body;
     const posFinded = await Pos.findOne({
       where: { id },
     });
     if (posFinded) {
       await posFinded.update({
-        qrCode,
-        posTypeId: posType
-          ? (
-            await PosType.findOne({ where: { type: posType } })
-          )?.id
-          : null,
-        commerceId: commerce
-          ? (
-            await Commerce.findOne({ where: { name: commerce } })
-          )?.id
-          : null,
+        qrCode: qrCode.toLowerCase(),
+        posTypeId,
+        discount,
+        surcharge,
+        capacity,
+        detail,
+        sectorId,
       });
       res.status(200).send('The data was modified successfully');
     } else {
@@ -229,7 +226,7 @@ pointOfSale.put('/active/:id', async (req, res) => {
   try {
     const { id } = req.params;
     const posFinded = await Pos.findOne({
-      where: { id },
+      id: parseInt(id, 10),
     });
     if (posFinded) {
       await posFinded.update({
@@ -248,7 +245,9 @@ pointOfSale.put('/inactive/:id', async (req, res) => {
   try {
     const { id } = req.params;
     const posFinded = await Pos.findOne({
-      where: { id },
+      where: {
+        id: parseInt(id, 10),
+      },
     });
     if (posFinded) {
       await posFinded.update({

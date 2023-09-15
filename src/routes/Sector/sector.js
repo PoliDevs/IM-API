@@ -1,7 +1,7 @@
 const sector = require('express').Router();
 const express = require('express');
 const cors = require('cors');
-const { Sector, Pos } = require('../../db');
+const { Sector, Pos, PosType } = require('../../db');
 
 sector.use(express.json());
 sector.use(cors());
@@ -20,11 +20,13 @@ sector.post('/sector', async (req, res) => {
       capacity,
       detail,
       qrCode,
+      commerceId,
     } = req.body;
     // eslint-disable-next-line no-unused-vars
     const [sectorCreated, created] = await Sector.findOrCreate({
       where: {
         name: name.toLowerCase(),
+        commerceId,
       },
       defaults: {
         name: name.toLowerCase(),
@@ -33,6 +35,7 @@ sector.post('/sector', async (req, res) => {
         capacity,
         detail,
         qrCode,
+        commerceId,
       },
     });
     if (created) {
@@ -45,10 +48,17 @@ sector.post('/sector', async (req, res) => {
   }
 });
 
-sector.get('/all', async (req, res) => {
+sector.get('/all/:commerceId', async (req, res) => {
   try {
+    const { commerceId } = req.params;
+    if (!commerceId && !Number.isInteger(parseInt(commerceId, 10))) {
+      res.status(422).send('ID was not provided');
+    }
     const sect = await Sector.findAll({
-      attributes: ['id', 'name', 'discount', 'surcharge', 'capacity', 'qrCode', 'detail', 'active'],
+      where: {
+        commerceId: parseInt(commerceId, 10),
+      },
+      attributes: ['id', 'name', 'discount', 'surcharge', 'capacity', 'qrCode', 'detail', 'commerceId', 'active'],
     });
 
     if (sect.length > 0) {
@@ -61,14 +71,27 @@ sector.get('/all', async (req, res) => {
   }
 });
 
-sector.get('/sectorPos', async (req, res) => {
+sector.get('/sectorPos/:commerceId', async (req, res) => {
   try {
-    const sect = await Pos.findAll({
-      attributes: ['id', 'qrCode', 'discount', 'surcharge', 'capacity', 'detail', 'sectorId'],
+    const { commerceId } = req.params;
+    if (!commerceId && !Number.isInteger(parseInt(commerceId, 10))) {
+      res.status(422).send('ID was not provided');
+    }
+    const sect = await Sector.findAll({
+      where: {
+        commerceId: parseInt(commerceId, 10),
+      },
+      attributes: ['id', 'name', 'discount', 'surcharge', 'capacity', 'detail', 'qrCode', 'commerceId', 'active'],
       include: [
         {
-          model: Sector,
-          attributes: ['id', 'name', 'discount', 'surcharge', 'capacity', 'detail', 'qrCode'],
+          model: Pos,
+          attributes: ['id', 'name', 'qrCode', 'posTypeId', 'discount', 'surcharge', 'capacity', 'detail'],
+          include: [
+            {
+              model: PosType,
+              attributes: ['id', 'type', 'detail', 'active'],
+            },
+          ],
         },
       ],
     });
@@ -83,11 +106,18 @@ sector.get('/sectorPos', async (req, res) => {
   }
 });
 
-sector.get('/all_active', async (req, res) => {
+sector.get('/all_active/:commerceId', async (req, res) => {
   try {
+    const { commerceId } = req.params;
+    if (!commerceId && !Number.isInteger(parseInt(commerceId, 10))) {
+      res.status(422).send('ID was not provided');
+    }
     const sect = await Sector.findAll({
-      where: { active: true },
-      attributes: ['id', 'name', 'discount', 'surcharge', 'capacity', 'qrCode', 'detail', 'active'],
+      where: {
+        commerceId: parseInt(commerceId, 10),
+        active: true,
+      },
+      attributes: ['id', 'name', 'discount', 'surcharge', 'capacity', 'qrCode', 'detail', 'commerceId', 'active'],
     });
 
     if (sect.length > 0) {
@@ -106,7 +136,7 @@ sector.get('/detail/:id', async (req, res) => {
     if (id && Number.isInteger(parseInt(id, 10))) {
       const sect = await Sector.findAll({
         where: { id: parseInt(id, 10) },
-        attributes: ['id', 'name', 'discount', 'surcharge', 'capacity', 'qrCode', 'detail', 'active'],
+        attributes: ['id', 'name', 'discount', 'surcharge', 'capacity', 'qrCode', 'detail', 'commerceId', 'active'],
       });
       if (sect.length > 0) {
         res.status(201).json(sect);
@@ -131,9 +161,12 @@ sector.put('/update/:id', async (req, res) => {
       capacity,
       detail,
       qrCode,
+      commerceId,
     } = req.body;
     const bankFinded = await Sector.findOne({
-      where: { id },
+      where: {
+        id: parseInt(id, 10),
+      },
     });
     if (bankFinded) {
       await bankFinded.update({
@@ -143,6 +176,7 @@ sector.put('/update/:id', async (req, res) => {
         capacity,
         detail,
         qrCode,
+        commerceId,
       });
       res.status(200).send('The data was modified successfully');
     } else {
@@ -157,7 +191,9 @@ sector.put('/active/:id', async (req, res) => {
   try {
     const { id } = req.params;
     const bankFinded = await Sector.findOne({
-      where: { id },
+      where: {
+        id: parseInt(id, 10),
+      },
     });
     if (bankFinded) {
       await bankFinded.update({
@@ -176,7 +212,9 @@ sector.put('/inactive/:id', async (req, res) => {
   try {
     const { id } = req.params;
     const bankFinded = await Sector.findOne({
-      where: { id },
+      where: {
+        id: parseInt(id, 10),
+      },
     });
     if (bankFinded) {
       await bankFinded.update({

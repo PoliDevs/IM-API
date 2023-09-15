@@ -116,16 +116,21 @@ MenuType.belongsTo(Commerce);
 Commerce.hasMany(Category);
 Category.belongsTo(Commerce);
 
+Commerce.hasMany(Sector);
+Sector.belongsTo(Commerce);
+
 Commerce.hasMany(Menu);
 Menu.belongsTo(Commerce);
 City.hasMany(State);
 State.belongsTo(City);
 State.hasMany(Country);
 Country.belongsTo(State);
+
 PosType.hasMany(Pos);
 Pos.belongsTo(PosType);
-Commerce.hasMany(Pos);
-Pos.belongsTo(Commerce);
+Commerce.hasMany(PosType);
+PosType.belongsTo(Commerce);
+
 MenuType.hasMany(Menu);
 Menu.belongsTo(MenuType);
 TableService.hasMany(Menu);
@@ -176,6 +181,7 @@ CourierType.hasMany(Courier);
 Courier.belongsTo(CourierType);
 Courier.hasMany(Order);
 Order.belongsTo(Courier);
+
 Sector.hasMany(Pos);
 Pos.belongsTo(Sector);
 
