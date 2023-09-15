@@ -27,7 +27,7 @@ courier.post('/courier', async (req, res) => {
       discount,
       surcharge,
       fee,
-      courierType,
+      courierTypeId,
     } = req.body;
     // eslint-disable-next-line no-unused-vars
     const [courierCreated, created] = await Courier.findOrCreate({
@@ -49,11 +49,7 @@ courier.post('/courier', async (req, res) => {
         discount,
         surcharge,
         fee,
-        courierTypeId: courierType
-          ? (
-            await CourierType.findOne({ where: { type: courierType } })
-          )?.id
-          : null,
+        courierTypeId,
       },
     });
     if (created) {
@@ -66,14 +62,21 @@ courier.post('/courier', async (req, res) => {
   }
 });
 
-courier.get('/all', async (req, res) => {
+courier.get('/all/:commerceId', async (req, res) => {
   try {
+    const { commerceId } = req.params;
+    if (!commerceId && !Number.isInteger(parseInt(commerceId, 10))) {
+      res.status(422).send('ID was not provided');
+    }
     const cour = await Courier.findAll({
-      attributes: ['id', 'firstName', 'lastName', 'document', 'address', 'cp', 'bank', 'account', 'detail', 'start', 'promotion', 'discount', 'surcharge', 'fee', 'active'],
+      attributes: ['id', 'firstName', 'lastName', 'document', 'address', 'cp', 'bank', 'account', 'detail', 'start', 'promotion', 'discount', 'surcharge', 'fee', 'active', 'courierTypeId'],
       include: [
         {
           model: CourierType,
-          attributes: ['id', 'type', 'detail', 'active'],
+          where: {
+            commerceId: parseInt(commerceId, 10),
+          },
+          attributes: ['id', 'type', 'detail', 'active', 'commerceId'],
         },
       ],
     });
@@ -88,15 +91,23 @@ courier.get('/all', async (req, res) => {
   }
 });
 
-courier.get('/all_active', async (req, res) => {
+courier.get('/all_active/:commerceId', async (req, res) => {
   try {
+    const { commerceId } = req.params;
+    if (!commerceId && !Number.isInteger(parseInt(commerceId, 10))) {
+      res.status(422).send('ID was not provided');
+    }
     const cour = await Courier.findAll({
       where: { active: true },
-      attributes: ['id', 'firstName', 'lastName', 'document', 'address', 'cp', 'bank', 'account', 'detail', 'start', 'promotion', 'discount', 'surcharge', 'fee', 'active'],
+      attributes: ['id', 'firstName', 'lastName', 'document', 'address', 'cp', 'bank', 'account', 'detail', 'start', 'promotion', 'discount', 'surcharge', 'fee', 'active', 'courierTypeId'],
       include: [
         {
           model: CourierType,
-          attributes: ['id', 'type', 'detail', 'active'],
+          where: {
+            commerceId: parseInt(commerceId, 10),
+            active: true,
+          },
+          attributes: ['id', 'type', 'detail', 'active', 'commerceId'],
         },
       ],
     });
@@ -117,11 +128,11 @@ courier.get('/detail/:id', async (req, res) => {
     if (id && Number.isInteger(parseInt(id, 10))) {
       const cour = await Courier.findAll({
         where: { id: parseInt(id, 10) },
-        attributes: ['id', 'firstName', 'lastName', 'document', 'address', 'cp', 'bank', 'account', 'detail', 'start', 'promotion', 'discount', 'surcharge', 'fee', 'active'],
+        attributes: ['id', 'firstName', 'lastName', 'document', 'address', 'cp', 'bank', 'account', 'detail', 'start', 'promotion', 'discount', 'surcharge', 'fee', 'active', 'courierTypeId'],
         include: [
           {
             model: CourierType,
-            attributes: ['id', 'type', 'detail', 'active'],
+            attributes: ['id', 'type', 'detail', 'active', 'commerceId'],
           },
         ],
       });
@@ -155,7 +166,7 @@ courier.put('/update/:id', async (req, res) => {
       discount,
       surcharge,
       fee,
-      courierType,
+      courierTypeId,
     } = req.body;
     const courierFinded = await Courier.findOne({
       where: { id },
@@ -175,11 +186,7 @@ courier.put('/update/:id', async (req, res) => {
         discount,
         surcharge,
         fee,
-        courierTypeId: courierType
-          ? (
-            await CourierType.findOne({ where: { type: courierType } })
-          )?.id
-          : null,
+        courierTypeId,
       });
       res.status(200).send('The data was modified successfully');
     } else {
@@ -194,7 +201,9 @@ courier.put('/active/:id', async (req, res) => {
   try {
     const { id } = req.params;
     const courierFinded = await Courier.findOne({
-      where: { id },
+      where: {
+        id: parseInt(id, 10),
+      },
     });
     if (courierFinded) {
       await courierFinded.update({
@@ -213,7 +222,9 @@ courier.put('/inactive/:id', async (req, res) => {
   try {
     const { id } = req.params;
     const courierFinded = await Courier.findOne({
-      where: { id },
+      where: {
+        id: parseInt(id, 10),
+      },
     });
     if (courierFinded) {
       await courierFinded.update({
