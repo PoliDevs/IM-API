@@ -13,15 +13,17 @@ courierType.use(
 
 courierType.post('/courierType', async (req, res) => {
   try {
-    const { type, detail } = req.body;
+    const { type, detail, commerceId } = req.body;
     // eslint-disable-next-line no-unused-vars
     const [courierTypeCreated, created] = await CourierType.findOrCreate({
       where: {
         type: type.toLowerCase(),
+        commerceId,
       },
       defaults: {
         type: type.toLowerCase(),
         detail,
+        commerceId,
       },
     });
     if (created) {
@@ -34,10 +36,17 @@ courierType.post('/courierType', async (req, res) => {
   }
 });
 
-courierType.get('/all', async (req, res) => {
+courierType.get('/all/:commerceId', async (req, res) => {
   try {
+    const { commerceId } = req.params;
+    if (!commerceId && !Number.isInteger(parseInt(commerceId, 10))) {
+      res.status(422).send('ID was not provided');
+    }
     const busi = await CourierType.findAll({
-      attributes: ['id', 'type', 'detail', 'active'],
+      where: {
+        commerceId: parseInt(commerceId, 10),
+      },
+      attributes: ['id', 'type', 'detail', 'active', 'commerceId'],
     });
 
     if (busi.length > 0) {
@@ -50,11 +59,18 @@ courierType.get('/all', async (req, res) => {
   }
 });
 
-courierType.get('/all_active', async (req, res) => {
+courierType.get('/all_active/:commerceId', async (req, res) => {
   try {
+    const { commerceId } = req.params;
+    if (!commerceId && !Number.isInteger(parseInt(commerceId, 10))) {
+      res.status(422).send('ID was not provided');
+    }
     const busi = await CourierType.findAll({
-      where: { active: true },
-      attributes: ['id', 'type', 'detail', 'active'],
+      where: {
+        commerceId: parseInt(commerceId, 10),
+        active: true,
+      },
+      attributes: ['id', 'type', 'detail', 'active', 'commerceId'],
     });
 
     if (busi.length > 0) {
@@ -73,7 +89,7 @@ courierType.get('/detail/:id', async (req, res) => {
     if (id && Number.isInteger(parseInt(id, 10))) {
       const busi = await CourierType.findAll({
         where: { id: parseInt(id, 10) },
-        attributes: ['id', 'type', 'detail', 'active'],
+        attributes: ['id', 'type', 'detail', 'active', 'commerceId'],
       });
       if (busi.length > 0) {
         res.status(201).json(busi);
@@ -93,7 +109,7 @@ courierType.put('/update/:id', async (req, res) => {
     const { id } = req.params;
     const { type, detail } = req.body;
     const courierFinded = await CourierType.findOne({
-      where: { id },
+      where: { id: parseInt(id, 10) },
     });
     if (courierFinded) {
       await courierFinded.update({
@@ -113,7 +129,7 @@ courierType.put('/active/:id', async (req, res) => {
   try {
     const { id } = req.params;
     const courierFinded = await CourierType.findOne({
-      where: { id },
+      where: { id: parseInt(id, 10) },
     });
     if (courierFinded) {
       await courierFinded.update({
@@ -132,7 +148,7 @@ courierType.put('/inactive/:id', async (req, res) => {
   try {
     const { id } = req.params;
     const courierFinded = await CourierType.findOne({
-      where: { id },
+      where: { id: parseInt(id, 10) },
     });
     if (courierFinded) {
       await courierFinded.update({
