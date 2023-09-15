@@ -88,8 +88,10 @@ FranchiseType.hasMany(Franchise);
 Franchise.belongsTo(FranchiseType);
 Business.hasMany(Franchise);
 Franchise.belongsTo(Business);
+
 EmployeeType.hasMany(Employee);
 Employee.belongsTo(EmployeeType);
+
 Commerce.hasMany(Employee);
 Employee.belongsTo(Commerce);
 Franchise.hasMany(Commerce);
@@ -99,6 +101,9 @@ Commerce.belongsTo(CommercialPlan);
 
 Commerce.hasMany(Bank);
 Bank.belongsTo(Commerce);
+
+Commerce.hasMany(EmployeeType);
+EmployeeType.belongsTo(Commerce);
 
 // City.hasMany(Commerce);
 // Commerce.belongsTo(City);
