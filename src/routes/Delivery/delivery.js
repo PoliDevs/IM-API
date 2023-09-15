@@ -2,7 +2,7 @@ const delivery = require('express').Router();
 const express = require('express');
 const path = require('path');
 const cors = require('cors');
-const { Delivery, Courier, CourierType } = require('../../db');
+const { Delivery } = require('../../db');
 
 delivery.use(express.json());
 delivery.use(cors());
@@ -21,17 +21,18 @@ delivery.post('/delivery', async (req, res) => {
       company,
       account,
       start,
-      courierId,
       promotion,
       discount,
       surcharge,
       fee,
       logo,
+      commerceId,
     } = req.body;
     // eslint-disable-next-line no-unused-vars
     const [deliveryCreated, created] = await Delivery.findOrCreate({
       where: {
         name: name.toLowerCase(),
+        commerceId,
       },
       defaults: {
         name: name.toLowerCase(),
@@ -39,12 +40,12 @@ delivery.post('/delivery', async (req, res) => {
         company,
         account,
         start,
-        courierId,
         promotion,
         discount,
         surcharge,
         fee,
-        logo: `/${logo}`,
+        logo: `${logo}`,
+        commerceId,
       },
     });
     if (created) {
@@ -57,22 +58,17 @@ delivery.post('/delivery', async (req, res) => {
   }
 });
 
-delivery.get('/all', async (req, res) => {
+delivery.get('/all/:commerceId', async (req, res) => {
   try {
+    const { commerceId } = req.params;
+    if (!commerceId && !Number.isInteger(parseInt(commerceId, 10))) {
+      res.status(422).send('ID was not provided');
+    }
     const deliveryi = await Delivery.findAll({
-      attributes: ['id', 'name', 'detail', 'company', 'account', 'start', 'promotion', 'discount', 'surcharge', 'fee', 'logo', 'active'],
-      include: [
-        {
-          model: Courier,
-          attributes: ['id', 'firstName', 'lastName', 'document', 'address', 'cp', 'bank', 'account', 'detail', 'start', 'promotion', 'discount', 'surcharge', 'fee', 'active'],
-          include: [
-            {
-              model: CourierType,
-              attributes: ['id', 'type', 'detail', 'active'],
-            },
-          ],
-        },
-      ],
+      where: {
+        commerceId: parseInt(commerceId, 10),
+      },
+      attributes: ['id', 'name', 'detail', 'company', 'account', 'start', 'promotion', 'discount', 'surcharge', 'fee', 'logo', 'active', 'commerceId'],
     });
 
     if (deliveryi.length > 0) {
@@ -85,23 +81,18 @@ delivery.get('/all', async (req, res) => {
   }
 });
 
-delivery.get('/all_active', async (req, res) => {
+delivery.get('/all_active/:commerceId', async (req, res) => {
   try {
+    const { commerceId } = req.params;
+    if (!commerceId && !Number.isInteger(parseInt(commerceId, 10))) {
+      res.status(422).send('ID was not provided');
+    }
     const deliveryi = await Delivery.findAll({
-      where: { active: true },
-      attributes: ['id', 'name', 'detail', 'company', 'account', 'start', 'promotion', 'discount', 'surcharge', 'fee', 'logo', 'active'],
-      include: [
-        {
-          model: Courier,
-          attributes: ['id', 'firstName', 'lastName', 'document', 'address', 'cp', 'bank', 'account', 'detail', 'start', 'promotion', 'discount', 'surcharge', 'fee', 'active'],
-          include: [
-            {
-              model: CourierType,
-              attributes: ['id', 'type', 'detail', 'active'],
-            },
-          ],
-        },
-      ],
+      where: {
+        commerceId: parseInt(commerceId, 10),
+        active: true,
+      },
+      attributes: ['id', 'name', 'detail', 'company', 'account', 'start', 'promotion', 'discount', 'surcharge', 'fee', 'logo', 'active', 'commerceId'],
     });
 
     if (deliveryi.length > 0) {
@@ -120,19 +111,7 @@ delivery.get('/delivery/:id', async (req, res) => {
     if (id && Number.isInteger(parseInt(id, 10))) {
       const deliveryi = await Delivery.findAll({
         where: { id: parseInt(id, 10) },
-        attributes: ['id', 'name', 'detail', 'company', 'account', 'start', 'promotion', 'discount', 'surcharge', 'fee', 'logo', 'active'],
-        include: [
-          {
-            model: Courier,
-            attributes: ['id', 'firstName', 'lastName', 'document', 'address', 'cp', 'bank', 'account', 'detail', 'start', 'promotion', 'discount', 'surcharge', 'fee', 'active'],
-            include: [
-              {
-                model: CourierType,
-                attributes: ['id', 'type', 'detail', 'active'],
-              },
-            ],
-          },
-        ],
+        attributes: ['id', 'name', 'detail', 'company', 'account', 'start', 'promotion', 'discount', 'surcharge', 'fee', 'logo', 'active', 'commerceId'],
       });
       if (deliveryi.length > 0) {
         res.status(201).json(deliveryi);
@@ -156,12 +135,12 @@ delivery.put('/update/:id', async (req, res) => {
       company,
       account,
       start,
-      courierId,
       promotion,
       discount,
       surcharge,
       fee,
       logo,
+      commerceId,
     } = req.body;
     const deliveryFinded = await Delivery.findOne({
       where: { id },
@@ -173,12 +152,12 @@ delivery.put('/update/:id', async (req, res) => {
         company,
         account,
         start,
-        courierId,
         promotion,
         discount,
         surcharge,
         fee,
-        logo: `/${logo}`,
+        logo: `${logo}`,
+        commerceId,
       });
       res.status(200).send('The data was modified successfully');
     } else {
@@ -193,7 +172,9 @@ delivery.put('/active/:id', async (req, res) => {
   try {
     const { id } = req.params;
     const deliveryFinded = await Delivery.findOne({
-      where: { id },
+      where: {
+        id: parseInt(id, 10),
+      },
     });
     if (deliveryFinded) {
       await deliveryFinded.update({
@@ -212,7 +193,9 @@ delivery.put('/inactive/:id', async (req, res) => {
   try {
     const { id } = req.params;
     const deliveryFinded = await Delivery.findOne({
-      where: { id },
+      where: {
+        id: parseInt(id, 10),
+      },
     });
     if (deliveryFinded) {
       await deliveryFinded.update({
