@@ -20,29 +20,25 @@ supply.post('/supply', async (req, res) => {
       cost,
       promotion,
       discount,
-      supplier,
-      suppliesType,
+      supplierId,
+      suppliesTypeId,
+      commerceId,
     } = req.body;
     // eslint-disable-next-line no-unused-vars
     const [supplyCreated, created] = await Supply.findOrCreate({
       where: {
         name: name.toLowerCase(),
+        commerceId,
+        supplierId,
       },
       defaults: {
         name: name.toLowerCase(),
         cost,
         promotion,
         discount,
-        supplierId: supplier
-          ? (
-            await Supplier.findOne({ where: { name: supplier } })
-          )?.id
-          : null,
-        suppliesTypeId: suppliesType
-          ? (
-            await SuppliesType.findOne({ where: { type: suppliesType } })
-          )?.id
-          : null,
+        supplierId,
+        suppliesTypeId,
+        commerceId,
       },
     });
     if (created) {
@@ -55,10 +51,17 @@ supply.post('/supply', async (req, res) => {
   }
 });
 
-supply.get('/all', async (req, res) => {
+supply.get('/all/:commerceId', async (req, res) => {
   try {
+    const { commerceId } = req.params;
+    if (!commerceId && !Number.isInteger(parseInt(commerceId, 10))) {
+      res.status(422).send('ID was not provided');
+    }
     const suppi = await Supply.findAll({
-      attributes: ['id', 'name', 'cost', 'promotion', 'discount', 'active'],
+      where: {
+        commerceId: parseInt(commerceId, 10),
+      },
+      attributes: ['id', 'name', 'cost', 'promotion', 'discount', 'active', 'commerceId'],
       include: [
         {
           model: Supplier,
@@ -87,11 +90,18 @@ supply.get('/all', async (req, res) => {
   }
 });
 
-supply.get('/all_active', async (req, res) => {
+supply.get('/all_active/:commerceId', async (req, res) => {
   try {
+    const { commerceId } = req.params;
+    if (!commerceId && !Number.isInteger(parseInt(commerceId, 10))) {
+      res.status(422).send('ID was not provided');
+    }
     const suppi = await Supply.findAll({
-      where: { active: true },
-      attributes: ['id', 'name', 'cost', 'promotion', 'discount', 'active'],
+      where: {
+        commerceId: parseInt(commerceId, 10),
+        active: true,
+      },
+      attributes: ['id', 'name', 'cost', 'promotion', 'discount', 'active', 'commerceId'],
       include: [
         {
           model: Supplier,
@@ -120,7 +130,7 @@ supply.get('/detail/:id', async (req, res) => {
     if (id && Number.isInteger(parseInt(id, 10))) {
       const suppi = await Supply.findAll({
         where: { id: parseInt(id, 10) },
-        attributes: ['id', 'name', 'cost', 'promotion', 'discount', 'active'],
+        attributes: ['id', 'name', 'cost', 'promotion', 'discount', 'active', 'commerceId'],
         include: [
           {
             model: Supplier,
@@ -153,11 +163,11 @@ supply.put('/update/:id', async (req, res) => {
       cost,
       promotion,
       discount,
-      supplier,
-      suppliesType,
+      supplierId,
+      suppliesTypeId,
     } = req.body;
     const supplyFinded = await Supply.findOne({
-      where: { id },
+      where: { id: parseInt(id, 10) },
     });
     if (supplyFinded) {
       await supplyFinded.update({
@@ -165,16 +175,8 @@ supply.put('/update/:id', async (req, res) => {
         cost,
         promotion,
         discount,
-        supplierId: supplier
-          ? (
-            await Supplier.findOne({ where: { name: supplier } })
-          )?.id
-          : null,
-        suppliesTypeId: suppliesType
-          ? (
-            await SuppliesType.findOne({ where: { type: suppliesType } })
-          )?.id
-          : null,
+        supplierId,
+        suppliesTypeId,
       });
       res.status(200).send('The data was modified successfully');
     } else {
@@ -189,7 +191,7 @@ supply.put('/active/:id', async (req, res) => {
   try {
     const { id } = req.params;
     const supplyFinded = await Supply.findOne({
-      where: { id },
+      where: { id: parseInt(id, 10) },
     });
     if (supplyFinded) {
       await supplyFinded.update({
@@ -208,7 +210,7 @@ supply.put('/inactive/:id', async (req, res) => {
   try {
     const { id } = req.params;
     const supplyFinded = await Supply.findOne({
-      where: { id },
+      where: { id: parseInt(id, 10) },
     });
     if (supplyFinded) {
       await supplyFinded.update({

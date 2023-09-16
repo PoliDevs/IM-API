@@ -214,6 +214,9 @@ Additional.belongsTo(Commerce);
 Commerce.hasMany(Recipe);
 Recipe.belongsTo(Commerce);
 
+Commerce.hasMany(Supply);
+Supply.belongsTo(Commerce);
+
 module.exports = {
   ...sequelize.models,
   conn: sequelize, // para importart la conexión { conn } = require('./db.js');
