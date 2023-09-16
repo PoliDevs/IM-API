@@ -198,6 +198,10 @@ Commerce.hasMany(ProductType);
 ProductType.belongsTo(Commerce);
 Commerce.hasMany(Product);
 Product.belongsTo(Commerce);
+Franchise.hasMany(Commerce);
+Commerce.belongsTo(Franchise);
+Business.hasMany(Commerce);
+Commerce.belongsTo(Business);
 
 module.exports = {
   ...sequelize.models,

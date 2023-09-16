@@ -18,8 +18,7 @@ commerces.post('/commerce', async (req, res) => {
   try {
     const {
       name, neighborhood, address,
-      workSchedule, email, phono, franchiseName,
-      commerceFact, account, plan,
+      workSchedule, email, phono, franchiseId, commercialPlanId, businessId,
     } = req.body;
     // eslint-disable-next-line no-unused-vars
     const [commerceCreated, created] = await Commerce.findOrCreate({
@@ -33,26 +32,9 @@ commerces.post('/commerce', async (req, res) => {
         workSchedule,
         email,
         phono,
-        franchiseId: franchiseName
-          ? (
-            await Franchise.findOne({ where: { name: franchiseName } })
-          )?.id
-          : null,
-        commerceFactId: commerceFact
-          ? (
-            await CommerceFact.findOne({ where: { type: commerceFact } })
-          )?.id
-          : null,
-        bankId: account
-          ? (
-            await Bank.findOne({ where: { account } })
-          )?.id
-          : null,
-        commercialPlanId: plan
-          ? (
-            await CommercialPlan.findOne({ where: { plan } })
-          )?.id
-          : null,
+        franchiseId,
+        commercialPlanId,
+        businessId,
       },
     });
     if (created) {
@@ -68,7 +50,7 @@ commerces.post('/commerce', async (req, res) => {
 commerces.get('/all', async (req, res) => {
   try {
     const comm = await Commerce.findAll({
-      attributes: ['id', 'name', 'neighborhood', 'address', 'workSchedule', 'email', 'phono', 'active'],
+      attributes: ['id', 'name', 'neighborhood', 'address', 'workSchedule', 'email', 'phono', 'active', 'franchiseId', 'commercialPlanId', 'businessId', 'open', 'start'],
       include: [
         {
           model: CommerceFact,
@@ -109,7 +91,7 @@ commerces.get('/all_active', async (req, res) => {
   try {
     const comm = await Commerce.findAll({
       where: { active: true },
-      attributes: ['id', 'name', 'neighborhood', 'address', 'workSchedule', 'email', 'phono', 'active'],
+      attributes: ['id', 'name', 'neighborhood', 'address', 'workSchedule', 'email', 'phono', 'active', 'franchiseId', 'commercialPlanId', 'businessId', 'open', 'start'],
       include: [
         {
           model: CommerceFact,
@@ -152,7 +134,7 @@ commerces.get('/detail/:id', async (req, res) => {
     if (id && Number.isInteger(parseInt(id, 10))) {
       const comm = await Commerce.findAll({
         where: { id: parseInt(id, 10) },
-        attributes: ['id', 'name', 'neighborhood', 'address', 'workSchedule', 'email', 'open', 'phono', 'active', 'start'],
+        attributes: ['id', 'name', 'neighborhood', 'address', 'workSchedule', 'email', 'phono', 'active', 'franchiseId', 'commercialPlanId', 'businessId', 'open', 'start'],
         include: [
           {
             model: CommerceFact,
@@ -223,8 +205,7 @@ commerces.put('/update/:id', async (req, res) => {
     const { id } = req.params;
     const {
       name, neighborhood, address,
-      workSchedule, email, phono, franchiseName,
-      commerceFact, account, plan,
+      workSchedule, email, phono, commercialPlanId,
     } = req.body;
     const commerceFinded = await Commerce.findOne({
       where: { id },
@@ -237,26 +218,7 @@ commerces.put('/update/:id', async (req, res) => {
         workSchedule,
         email,
         phono,
-        franchiseId: franchiseName
-          ? (
-            await Franchise.findOne({ where: { name: franchiseName } })
-          )?.id
-          : null,
-        commerceFactId: commerceFact
-          ? (
-            await CommerceFact.findOne({ where: { type: commerceFact } })
-          )?.id
-          : null,
-        bankId: account
-          ? (
-            await Bank.findOne({ where: { account } })
-          )?.id
-          : null,
-        commercialPlanId: plan
-          ? (
-            await CommercialPlan.findOne({ where: { plan } })
-          )?.id
-          : null,
+        commercialPlanId,
       });
       res.status(200).send('The data was modified successfully');
     } else {
@@ -400,7 +362,7 @@ commerces.get('/commerceBkn/:id', async (req, res) => {
           id: parseInt(id, 10),
           // active: true,
         },
-        attributes: ['id', 'name', 'neighborhood', 'address', 'workSchedule', 'email', 'phono', 'active'],
+        attributes: ['id', 'name', 'neighborhood', 'address', 'workSchedule', 'email', 'phono', 'active', 'franchiseId', 'commercialPlanId', 'businessId', 'open', 'start'],
         include: [
           {
             model: Bank,
