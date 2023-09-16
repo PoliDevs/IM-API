@@ -13,15 +13,17 @@ uniType.use(
 
 uniType.post('/unit', async (req, res) => {
   try {
-    const { unit, detail } = req.body;
+    const { unit, detail, commerceId } = req.body;
     // eslint-disable-next-line no-unused-vars
     const [unitTypeCreated, created] = await UnitType.findOrCreate({
       where: {
         unit: unit.toLowerCase(),
+        commerceId,
       },
       defaults: {
         unit: unit.toLowerCase(),
         detail,
+        commerceId,
       },
     });
     if (created) {
@@ -34,10 +36,17 @@ uniType.post('/unit', async (req, res) => {
   }
 });
 
-uniType.get('/all', async (req, res) => {
+uniType.get('/all/:commerceId', async (req, res) => {
   try {
+    const { commerceId } = req.params;
+    if (!commerceId && !Number.isInteger(parseInt(commerceId, 10))) {
+      res.status(422).send('ID was not provided');
+    }
     const uni = await UnitType.findAll({
-      attributes: ['id', 'unit', 'detail', 'active'],
+      where: {
+        commerceId: parseInt(commerceId, 10),
+      },
+      attributes: ['id', 'unit', 'detail', 'active', 'commerceId'],
     });
 
     if (uni.length > 0) {
@@ -50,11 +59,18 @@ uniType.get('/all', async (req, res) => {
   }
 });
 
-uniType.get('/all_active', async (req, res) => {
+uniType.get('/all_active/:commerceId', async (req, res) => {
   try {
+    const { commerceId } = req.params;
+    if (!commerceId && !Number.isInteger(parseInt(commerceId, 10))) {
+      res.status(422).send('ID was not provided');
+    }
     const uni = await UnitType.findAll({
-      where: { active: true },
-      attributes: ['id', 'unit', 'detail', 'active'],
+      where: {
+        commerceId: parseInt(commerceId, 10),
+        active: true,
+      },
+      attributes: ['id', 'unit', 'detail', 'active', 'commerceId'],
     });
 
     if (uni.length > 0) {
@@ -73,7 +89,7 @@ uniType.get('/detail/:id', async (req, res) => {
     if (id && Number.isInteger(parseInt(id, 10))) {
       const uni = await UnitType.findAll({
         where: { id: parseInt(id, 10) },
-        attributes: ['id', 'unit', 'detail', 'active'],
+        attributes: ['id', 'unit', 'detail', 'active', 'commerceId'],
       });
       if (uni.length > 0) {
         res.status(201).json(uni);
@@ -93,7 +109,7 @@ uniType.put('/update/:id', async (req, res) => {
     const { id } = req.params;
     const { unit, detail } = req.body;
     const unitFinded = await UnitType.findOne({
-      where: { id },
+      where: { id: parseInt(id, 10) },
     });
     if (unitFinded) {
       await unitFinded.update({
@@ -113,7 +129,7 @@ uniType.put('/active/:id', async (req, res) => {
   try {
     const { id } = req.params;
     const unitFinded = await UnitType.findOne({
-      where: { id },
+      where: { id: parseInt(id, 10) },
     });
     if (unitFinded) {
       await unitFinded.update({
@@ -132,7 +148,7 @@ uniType.put('/inactive/:id', async (req, res) => {
   try {
     const { id } = req.params;
     const unitFinded = await UnitType.findOne({
-      where: { id },
+      where: { id: parseInt(id, 10) },
     });
     if (unitFinded) {
       await unitFinded.update({
