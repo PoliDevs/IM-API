@@ -88,63 +88,42 @@ FranchiseType.hasMany(Franchise);
 Franchise.belongsTo(FranchiseType);
 Business.hasMany(Franchise);
 Franchise.belongsTo(Business);
-
 EmployeeType.hasMany(Employee);
 Employee.belongsTo(EmployeeType);
-
 Commerce.hasMany(Employee);
 Employee.belongsTo(Commerce);
 Franchise.hasMany(Commerce);
 Commerce.belongsTo(Franchise);
 CommercialPlan.hasMany(Commerce);
 Commerce.belongsTo(CommercialPlan);
-
 Commerce.hasMany(Bank);
 Bank.belongsTo(Commerce);
-
 Commerce.hasMany(EmployeeType);
 EmployeeType.belongsTo(Commerce);
-
-// City.hasMany(Commerce);
-// Commerce.belongsTo(City);
-// State.hasMany(Commerce);
-// Commerce.belongsTo(State);
-// Country.hasMany(Commerce);
-// Commerce.belongsTo(Country);
-
 Commerce.hasMany(CommerceFact);
 CommerceFact.belongsTo(Commerce);
-
 Commerce.hasMany(MenuType);
 MenuType.belongsTo(Commerce);
-
 Commerce.hasMany(Category);
 Category.belongsTo(Commerce);
-
 Commerce.hasMany(Sector);
 Sector.belongsTo(Commerce);
-
 Commerce.hasMany(TableService);
 TableService.belongsTo(Commerce);
-
 Commerce.hasMany(Menu);
 Menu.belongsTo(Commerce);
 City.hasMany(State);
 State.belongsTo(City);
 State.hasMany(Country);
 Country.belongsTo(State);
-
 PosType.hasMany(Pos);
 Pos.belongsTo(PosType);
 Commerce.hasMany(PosType);
 PosType.belongsTo(Commerce);
-
 Commerce.hasMany(Payment);
 Payment.belongsTo(Commerce);
-
 Commerce.hasMany(Delivery);
 Delivery.belongsTo(Commerce);
-
 MenuType.hasMany(Menu);
 Menu.belongsTo(MenuType);
 TableService.hasMany(Menu);
@@ -195,39 +174,30 @@ CourierType.hasMany(Courier);
 Courier.belongsTo(CourierType);
 Courier.hasMany(Order);
 Order.belongsTo(Courier);
-
 Sector.hasMany(Pos);
 Pos.belongsTo(Sector);
-
 Commerce.hasMany(Account);
 Account.belongsTo(Commerce);
-
 Commerce.hasMany(CourierType);
 CourierType.belongsTo(Commerce);
-
 Commerce.hasMany(DishType);
 DishType.belongsTo(Commerce);
-
 Commerce.hasMany(Additional);
 Additional.belongsTo(Commerce);
-
 Commerce.hasMany(Recipe);
 Recipe.belongsTo(Commerce);
-
 Commerce.hasMany(Supply);
 Supply.belongsTo(Commerce);
-
 Commerce.hasMany(SuppliesType);
 SuppliesType.belongsTo(Commerce);
-
 Commerce.hasMany(Supplier);
 Supplier.belongsTo(Commerce);
-
 Commerce.hasMany(UnitType);
 UnitType.belongsTo(Commerce);
-
 Commerce.hasMany(ProductType);
 ProductType.belongsTo(Commerce);
+Commerce.hasMany(Product);
+Product.belongsTo(Commerce);
 
 module.exports = {
   ...sequelize.models,

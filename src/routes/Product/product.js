@@ -26,14 +26,16 @@ product.post('/product', async (req, res) => {
       cost,
       allergenType,
       careful,
-      unit,
-      type,
-      supplier,
+      unitTypeId,
+      productTypeId,
+      supplierId,
+      commerceId,
     } = req.body;
     // eslint-disable-next-line no-unused-vars
     const [productCreated, created] = await Product.findOrCreate({
       where: {
         name: name.toLowerCase(),
+        commerceId,
       },
       defaults: {
         name: name.toLowerCase(),
@@ -43,21 +45,10 @@ product.post('/product', async (req, res) => {
         cost,
         allergenType,
         careful,
-        productTypeId: type
-          ? (
-            await ProductType.findOne({ where: { type } })
-          )?.id
-          : null,
-        supplierId: supplier
-          ? (
-            await Supplier.findOne({ where: { name: supplier } })
-          )?.id
-          : null,
-        unitTypeId: unit
-          ? (
-            await UnitType.findOne({ where: { unit } })
-          )?.id
-          : null,
+        productTypeId,
+        supplierId,
+        unitTypeId,
+        commerceId,
       },
     });
     if (created) {
@@ -70,10 +61,17 @@ product.post('/product', async (req, res) => {
   }
 });
 
-product.get('/all', async (req, res) => {
+product.get('/all/:commerceId', async (req, res) => {
   try {
+    const { commerceId } = req.params;
+    if (!commerceId && !Number.isInteger(parseInt(commerceId, 10))) {
+      res.status(422).send('ID was not provided');
+    }
     const prod = await Product.findAll({
-      attributes: ['id', 'name', 'photo', 'stock', 'pointOrder', 'cost', 'allergenType', 'careful', 'active'],
+      where: {
+        commerceId: parseInt(commerceId, 10),
+      },
+      attributes: ['id', 'name', 'photo', 'stock', 'pointOrder', 'cost', 'allergenType', 'careful', 'active', 'commerceId'],
       include: [
         {
           model: ProductType,
@@ -100,11 +98,18 @@ product.get('/all', async (req, res) => {
   }
 });
 
-product.get('/all_active', async (req, res) => {
+product.get('/all_active/:commerceId', async (req, res) => {
   try {
+    const { commerceId } = req.params;
+    if (!commerceId && !Number.isInteger(parseInt(commerceId, 10))) {
+      res.status(422).send('ID was not provided');
+    }
     const prod = await Product.findAll({
-      where: { active: true },
-      attributes: ['id', 'name', 'photo', 'stock', 'pointOrder', 'cost', 'allergenType', 'careful', 'active'],
+      where: {
+        commerceId: parseInt(commerceId, 10),
+        active: true,
+      },
+      attributes: ['id', 'name', 'photo', 'stock', 'pointOrder', 'cost', 'allergenType', 'careful', 'active', 'commerceId'],
       include: [
         {
           model: ProductType,
@@ -137,7 +142,7 @@ product.get('/detail/:id', async (req, res) => {
     if (id && Number.isInteger(parseInt(id, 10))) {
       const prod = await Product.findAll({
         where: { id: parseInt(id, 10) },
-        attributes: ['id', 'name', 'photo', 'stock', 'pointOrder', 'cost', 'allergenType', 'careful', 'active'],
+        attributes: ['id', 'name', 'photo', 'stock', 'pointOrder', 'cost', 'allergenType', 'careful', 'active', 'commerceId'],
         include: [
           {
             model: ProductType,
@@ -177,12 +182,12 @@ product.put('/update/:id', async (req, res) => {
       cost,
       allergenType,
       careful,
-      unit,
-      type,
-      supplier,
+      unitTypeId,
+      productTypeId,
+      supplierId,
     } = req.body;
     const productFinded = await Product.findOne({
-      where: { id },
+      where: { id: parseInt(id, 10) },
     });
     if (productFinded) {
       await productFinded.update({
@@ -193,21 +198,9 @@ product.put('/update/:id', async (req, res) => {
         cost,
         allergenType,
         careful,
-        productTypeId: type
-          ? (
-            await ProductType.findOne({ where: { type } })
-          )?.id
-          : null,
-        supplierId: supplier
-          ? (
-            await Supplier.findOne({ where: { name: supplier } })
-          )?.id
-          : null,
-        unitTypeId: unit
-          ? (
-            await UnitType.findOne({ where: { unit } })
-          )?.id
-          : null,
+        productTypeId,
+        supplierId,
+        unitTypeId,
       });
       res.status(200).send('The data was modified successfully');
     } else {
@@ -222,7 +215,7 @@ product.put('/active/:id', async (req, res) => {
   try {
     const { id } = req.params;
     const productFinded = await Product.findOne({
-      where: { id },
+      where: { id: parseInt(id, 10) },
     });
     if (productFinded) {
       await productFinded.update({
@@ -241,7 +234,7 @@ product.put('/inactive/:id', async (req, res) => {
   try {
     const { id } = req.params;
     const productFinded = await Product.findOne({
-      where: { id },
+      where: { id: parseInt(id, 10) },
     });
     if (productFinded) {
       await productFinded.update({
