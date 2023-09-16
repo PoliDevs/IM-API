@@ -13,15 +13,17 @@ productType.use(
 
 productType.post('/type', async (req, res) => {
   try {
-    const { type, detail } = req.body;
+    const { type, detail, commerceId } = req.body;
     // eslint-disable-next-line no-unused-vars
     const [productTypeCreated, created] = await ProductType.findOrCreate({
       where: {
         type: type.toLowerCase(),
+        commerceId,
       },
       defaults: {
         type: type.toLowerCase(),
         detail,
+        commerceId,
       },
     });
     if (created) {
@@ -34,10 +36,17 @@ productType.post('/type', async (req, res) => {
   }
 });
 
-productType.get('/all', async (req, res) => {
+productType.get('/all/:commerceId', async (req, res) => {
   try {
+    const { commerceId } = req.params;
+    if (!commerceId && !Number.isInteger(parseInt(commerceId, 10))) {
+      res.status(422).send('ID was not provided');
+    }
     const prod = await ProductType.findAll({
-      attributes: ['id', 'type', 'detail', 'active'],
+      where: {
+        commerceId: parseInt(commerceId, 10),
+      },
+      attributes: ['id', 'type', 'detail', 'active', 'commerceId'],
     });
 
     if (prod.length > 0) {
@@ -50,11 +59,18 @@ productType.get('/all', async (req, res) => {
   }
 });
 
-productType.get('/all_active', async (req, res) => {
+productType.get('/all_active/:commerceId', async (req, res) => {
   try {
+    const { commerceId } = req.params;
+    if (!commerceId && !Number.isInteger(parseInt(commerceId, 10))) {
+      res.status(422).send('ID was not provided');
+    }
     const prod = await ProductType.findAll({
-      where: { active: true },
-      attributes: ['id', 'type', 'detail', 'active'],
+      where: {
+        commerceId: parseInt(commerceId, 10),
+        active: true,
+      },
+      attributes: ['id', 'type', 'detail', 'active', 'commerceId'],
     });
 
     if (prod.length > 0) {
@@ -73,7 +89,7 @@ productType.get('/detail/:id', async (req, res) => {
     if (id && Number.isInteger(parseInt(id, 10))) {
       const prod = await ProductType.findAll({
         where: { id: parseInt(id, 10) },
-        attributes: ['id', 'type', 'detail', 'active'],
+        attributes: ['id', 'type', 'detail', 'active', 'commerceId'],
       });
       if (prod.length > 0) {
         res.status(201).json(prod);
@@ -93,7 +109,7 @@ productType.put('/update/:id', async (req, res) => {
     const { id } = req.params;
     const { type, detail } = req.body;
     const productFinded = await ProductType.findOne({
-      where: { id },
+      where: { id: parseInt(id, 10) },
     });
     if (productFinded) {
       await productFinded.update({
@@ -113,7 +129,7 @@ productType.put('/active/:id', async (req, res) => {
   try {
     const { id } = req.params;
     const productFinded = await ProductType.findOne({
-      where: { id },
+      where: { id: parseInt(id, 10) },
     });
     if (productFinded) {
       await productFinded.update({
@@ -132,7 +148,7 @@ productType.put('/inactive/:id', async (req, res) => {
   try {
     const { id } = req.params;
     const productFinded = await ProductType.findOne({
-      where: { id },
+      where: { id: parseInt(id, 10) },
     });
     if (productFinded) {
       await productFinded.update({
