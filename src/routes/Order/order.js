@@ -7,7 +7,7 @@ const {
   Order, Menu, Pos, Employee, Dish, Account, Payment,
   Commerce, CommerceFact, Bank, Franchise, MenuType,
   TableService, Category, PosType, EmployeeType, Additional, Recipe,
-  UnitType, Delivery, Courier, CourierType,
+  UnitType, Delivery, Courier, CourierType, Sector, Product,
 } = require('../../db');
 const { getOrders } = require('../../controllers/order');
 const { conn: sequelize } = require('../../db');
@@ -24,8 +24,14 @@ order.post('/order', async (req, res) => {
   try {
     let orderes = req.body;
     if (orderes.length > 0) {
+      let newOrder;
       const promises = orderes.map(async (element) => {
-        const newOrder = await getOrders(element.date, element.poId, element.commerceId);
+        newOrder = await getOrders(
+          element.date,
+          element.poId,
+          element.commerceId,
+          element.sectorId,
+        );
         // eslint-disable-next-line no-param-reassign
         // element.order = newOrder;
         const cleanedElement = { ...element };
@@ -34,6 +40,9 @@ order.post('/order', async (req, res) => {
         }
         if (cleanedElement.poId === 0) {
           delete cleanedElement.poId;
+        }
+        if (cleanedElement.sectorId === 0) {
+          delete cleanedElement.sectorId;
         }
         if (cleanedElement.employeeId === 0) {
           delete cleanedElement.employeeId;
@@ -59,13 +68,19 @@ order.post('/order', async (req, res) => {
         if (cleanedElement.costDelivery === 0) {
           delete cleanedElement.costDelivery;
         }
+        if (cleanedElement.productId === 0) {
+          delete cleanedElement.productId;
+        }
+        if (cleanedElement.additionalId === 0) {
+          delete cleanedElement.additionalId;
+        }
         cleanedElement.order = newOrder;
         return cleanedElement;
       });
       orderes = await Promise.all(promises);
       const newPedido = await Order.bulkCreate(orderes);
       if (newPedido.length > 0) {
-        res.status(200).send({ mensaje: 'Order created', registros: newPedido.length });
+        res.status(200).send({ mensaje: 'Order created', registros: newPedido.length, order: newOrder });
       } else {
         res.status(422).send('Not Order ');
       }
@@ -82,11 +97,14 @@ order.get('/orderes/:commerceId', async (req, res) => {
       res.status(422).send('ID was not provided');
     }
     const ord = await Order.findAll({
+      where: {
+        commerceId: parseInt(commerceId, 10),
+      },
       attributes: ['id', 'order', 'name', 'date', 'hour', 'status', 'detail', 'validity', 'promotion', 'discount', 'surcharge', 'rating', 'feedback', 'paid', 'costDelivery'],
       include: [
         {
           model: Menu,
-          attributes: ['id', 'date', 'name', 'description', 'status', 'cost', 'promotion', 'discount', 'validity', 'photo', 'dishes', 'active'],
+          attributes: ['id', 'date', 'name', 'description', 'status', 'cost', 'promotion', 'discount', 'validity', 'photo', 'dishes', 'surcharge', 'active'],
           include: [
             {
               model: MenuType,
@@ -104,10 +122,7 @@ order.get('/orderes/:commerceId', async (req, res) => {
         },
         {
           model: Commerce,
-          where: {
-            id: parseInt(commerceId, 10),
-          },
-          attributes: ['id', 'name', 'neighborhood', 'address', 'workSchedule', 'email', 'phono', 'open', 'active', 'start'],
+          attributes: ['id', 'name', 'neighborhood', 'address', 'workSchedule', 'email', 'phono', 'active', 'franchiseId', 'commercialPlanId', 'businessId', 'open', 'start'],
           include: [
             {
               model: CommerceFact,
@@ -185,6 +200,18 @@ order.get('/orderes/:commerceId', async (req, res) => {
             },
           ],
         },
+        {
+          model: Additional,
+          attributes: ['id', 'name', 'amount', 'cost', 'promotion', 'discount', 'photo', 'active'],
+        },
+        {
+          model: Sector,
+          attributes: ['id', 'name', 'discount', 'surcharge', 'capacity', 'qrCode', 'detail', 'commerceId', 'active'],
+        },
+        {
+          model: Product,
+          attributes: ['id', 'name', 'photo', 'stock', 'pointOrder', 'cost', 'allergenType', 'careful', 'active', 'commerceId'],
+        },
       ],
     });
 
@@ -199,10 +226,9 @@ order.get('/orderes/:commerceId', async (req, res) => {
   }
 });
 
-order.get('/detail/:order/:commerceId', async (req, res) => {
+order.get('/detail/:order', async (req, res) => {
   try {
     const orderParam = req.params.order;
-    const commerceIdParam = req.params.commerceId;
     const ord = await Order.findAll({
       where: { order: orderParam },
       attributes: ['id', 'order', 'name', 'date', 'hour', 'status', 'detail', 'validity', 'promotion', 'discount', 'surcharge', 'rating', 'feedback', 'paid', 'costDelivery'],
@@ -227,10 +253,7 @@ order.get('/detail/:order/:commerceId', async (req, res) => {
         },
         {
           model: Commerce,
-          where: {
-            id: parseInt(commerceIdParam, 10),
-          },
-          attributes: ['id', 'name', 'neighborhood', 'address', 'workSchedule', 'email', 'phono', 'open', 'active', 'start'],
+          attributes: ['id', 'name', 'neighborhood', 'address', 'workSchedule', 'email', 'phono', 'active', 'franchiseId', 'commercialPlanId', 'businessId', 'open', 'start'],
           include: [
             {
               model: CommerceFact,
@@ -308,6 +331,18 @@ order.get('/detail/:order/:commerceId', async (req, res) => {
             },
           ],
         },
+        {
+          model: Additional,
+          attributes: ['id', 'name', 'amount', 'cost', 'promotion', 'discount', 'photo', 'active'],
+        },
+        {
+          model: Sector,
+          attributes: ['id', 'name', 'discount', 'surcharge', 'capacity', 'qrCode', 'detail', 'commerceId', 'active'],
+        },
+        {
+          model: Product,
+          attributes: ['id', 'name', 'photo', 'stock', 'pointOrder', 'cost', 'allergenType', 'careful', 'active', 'commerceId'],
+        },
       ],
     });
     if (ord.length > 0) {
@@ -329,6 +364,7 @@ order.get('/dates/:commerceId', async (req, res) => {
         date: {
           [Op.gte]: startDate,
           [Op.lte]: endDate,
+          commerceId: parseInt(commerceIdParam, 10),
         },
       },
       attributes: ['id', 'order', 'name', 'date', 'hour', 'status', 'detail', 'validity', 'promotion', 'discount', 'surcharge', 'rating', 'feedback', 'paid', 'costDelivery'],
@@ -353,10 +389,7 @@ order.get('/dates/:commerceId', async (req, res) => {
         },
         {
           model: Commerce,
-          where: {
-            id: parseInt(commerceIdParam, 10),
-          },
-          attributes: ['id', 'name', 'neighborhood', 'address', 'workSchedule', 'email', 'phono', 'open', 'active', 'start'],
+          attributes: ['id', 'name', 'neighborhood', 'address', 'workSchedule', 'email', 'phono', 'active', 'franchiseId', 'commercialPlanId', 'businessId', 'open', 'start'],
           include: [
             {
               model: CommerceFact,
@@ -434,6 +467,18 @@ order.get('/dates/:commerceId', async (req, res) => {
             },
           ],
         },
+        {
+          model: Additional,
+          attributes: ['id', 'name', 'amount', 'cost', 'promotion', 'discount', 'photo', 'active'],
+        },
+        {
+          model: Sector,
+          attributes: ['id', 'name', 'discount', 'surcharge', 'capacity', 'qrCode', 'detail', 'commerceId', 'active'],
+        },
+        {
+          model: Product,
+          attributes: ['id', 'name', 'photo', 'stock', 'pointOrder', 'cost', 'allergenType', 'careful', 'active', 'commerceId'],
+        },
       ],
     });
     if (ord.length > 0) {
@@ -454,7 +499,10 @@ order.get('/status/:commerceId', async (req, res) => {
       res.status(422).send('ID was not provided');
     }
     const ord = await Order.findAll({
-      where: { status },
+      where: {
+        status,
+        commerceId: parseInt(commerceId, 10),
+      },
       attributes: ['id', 'order', 'name', 'date', 'hour', 'status', 'detail', 'validity', 'promotion', 'discount', 'surcharge', 'rating', 'feedback', 'paid', 'costDelivery'],
       include: [
         {
@@ -477,10 +525,7 @@ order.get('/status/:commerceId', async (req, res) => {
         },
         {
           model: Commerce,
-          where: {
-            id: parseInt(commerceId, 10),
-          },
-          attributes: ['id', 'name', 'neighborhood', 'address', 'workSchedule', 'email', 'phono', 'open', 'active', 'start'],
+          attributes: ['id', 'name', 'neighborhood', 'address', 'workSchedule', 'email', 'phono', 'active', 'franchiseId', 'commercialPlanId', 'businessId', 'open', 'start'],
           include: [
             {
               model: CommerceFact,
@@ -557,6 +602,18 @@ order.get('/status/:commerceId', async (req, res) => {
               attributes: ['id', 'type'],
             },
           ],
+        },
+        {
+          model: Additional,
+          attributes: ['id', 'name', 'amount', 'cost', 'promotion', 'discount', 'photo', 'active'],
+        },
+        {
+          model: Sector,
+          attributes: ['id', 'name', 'discount', 'surcharge', 'capacity', 'qrCode', 'detail', 'commerceId', 'active'],
+        },
+        {
+          model: Product,
+          attributes: ['id', 'name', 'photo', 'stock', 'pointOrder', 'cost', 'allergenType', 'careful', 'active', 'commerceId'],
         },
       ],
     });
@@ -895,8 +952,9 @@ order.get('/paidOrderes/:commerceId', async (req, res) => {
         paid: {
           [Op.gt]: 0,
         },
+        commerceId: parseInt(commerceIdParam, 10),
       },
-      attributes: ['id', 'order', 'name', 'date', 'hour', 'status', 'detail', 'validity', 'promotion', 'discount', 'surcharge', 'rating', 'feedback', 'paid'],
+      attributes: ['id', 'order', 'name', 'date', 'hour', 'status', 'detail', 'validity', 'promotion', 'discount', 'surcharge', 'rating', 'feedback', 'paid', 'costDelivery'],
       include: [
         {
           model: Menu,
@@ -918,10 +976,7 @@ order.get('/paidOrderes/:commerceId', async (req, res) => {
         },
         {
           model: Commerce,
-          where: {
-            id: parseInt(commerceIdParam, 10),
-          },
-          attributes: ['id', 'name', 'neighborhood', 'address', 'workSchedule', 'email', 'phono', 'open', 'active', 'start'],
+          attributes: ['id', 'name', 'neighborhood', 'address', 'workSchedule', 'email', 'phono', 'active', 'franchiseId', 'commercialPlanId', 'businessId', 'open', 'start'],
           include: [
             {
               model: CommerceFact,
@@ -988,18 +1043,28 @@ order.get('/paidOrderes/:commerceId', async (req, res) => {
         {
           model: Delivery,
           attributes: ['id', 'name', 'detail', 'company', 'account', 'start', 'promotion', 'discount', 'surcharge', 'fee', 'logo', 'active'],
+        },
+        {
+          model: Courier,
+          attributes: ['id', 'firstName', 'lastName', 'document', 'address', 'cp', 'bank', 'account', 'detail', 'start', 'promotion', 'discount', 'surcharge', 'fee', 'active'],
           include: [
             {
-              model: Courier,
-              attributes: ['id', 'firstName', 'lastName', 'document', 'address', 'cp', 'bank', 'account', 'detail', 'start', 'promotion', 'discount', 'surcharge', 'fee', 'active'],
-              include: [
-                {
-                  model: CourierType,
-                  attributes: ['id', 'type'],
-                },
-              ],
+              model: CourierType,
+              attributes: ['id', 'type'],
             },
           ],
+        },
+        {
+          model: Additional,
+          attributes: ['id', 'name', 'amount', 'cost', 'promotion', 'discount', 'photo', 'active'],
+        },
+        {
+          model: Sector,
+          attributes: ['id', 'name', 'discount', 'surcharge', 'capacity', 'qrCode', 'detail', 'commerceId', 'active'],
+        },
+        {
+          model: Product,
+          attributes: ['id', 'name', 'photo', 'stock', 'pointOrder', 'cost', 'allergenType', 'careful', 'active', 'commerceId'],
         },
       ],
     });
