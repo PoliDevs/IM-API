@@ -26,32 +26,12 @@ menu.post('/menu', async (req, res) => {
       discount,
       validity,
       photo,
-      commerce,
-      menuType,
-      tableService,
-      category,
+      commerceId,
+      menuTypeId,
+      tableServiceId,
+      categoryId,
       dishes,
     } = req.body;
-    const commerceId = commerce
-      ? (
-        await Commerce.findOne({ where: { name: commerce } })
-      )?.id
-      : null;
-    const menuTypeId = menuType
-      ? (
-        await MenuType.findOne({ where: { type: menuType } })
-      )?.id
-      : null;
-    const tableServiceId = tableService
-      ? (
-        await TableService.findOne({ where: { type: tableService } })
-      )?.id
-      : null;
-    const categoryId = category
-      ? (
-        await Category.findOne({ where: { category } })
-      )?.id
-      : null;
     const costAsNumbers = dishes.cost.map((amount) => parseFloat(amount));
     const promotionAsNumbers = dishes.promotion.map((amount) => parseFloat(amount));
     const discountAsNumbers = dishes.discount.map((amount) => parseFloat(amount));
@@ -81,6 +61,7 @@ menu.post('/menu', async (req, res) => {
     const [menuCreated, created] = await Menu.findOrCreate({
       where: {
         name: name.toLowerCase(),
+        commerceId,
       },
       defaults: {
         name: name.toLowerCase(),
@@ -109,106 +90,24 @@ menu.post('/menu', async (req, res) => {
 });
 
 menu.post('/menuUp', async (req, res) => {
-  try {
-    const {
-      date,
-      name,
-      description,
-      cost,
-      promotion,
-      discount,
-      validity,
-      photo,
-      commerce,
-      menuType,
-      tableService,
-      category,
-      dishes,
-    } = req.body;
-    const commerceId = commerce
-      ? (
-        await Commerce.findOne({ where: { name: commerce } })
-      )?.id
-      : null;
-    const menuTypeId = menuType
-      ? (
-        await MenuType.findOne({ where: { type: menuType } })
-      )?.id
-      : null;
-    const tableServiceId = tableService
-      ? (
-        await TableService.findOne({ where: { type: tableService } })
-      )?.id
-      : null;
-    const categoryId = category
-      ? (
-        await Category.findOne({ where: { category } })
-      )?.id
-      : null;
-    const costAsNumbers = dishes.cost.map((amount) => parseFloat(amount));
-    const promotionAsNumbers = dishes.promotion.map((amount) => parseFloat(amount));
-    const discountAsNumbers = dishes.discount.map((amount) => parseFloat(amount));
-    const estimatedTimeAsNumbers = dishes.estimatedTime.map((amount) => parseFloat(amount));
-    const additionalIdAsNumbers = dishes.estimatedTime.map((amount) => parseFloat(amount));
-    const supplyIdAsNumbers = dishes.estimatedTime.map((amount) => parseFloat(amount));
-    const recipeIdAsNumbers = dishes.estimatedTime.map((amount) => parseFloat(amount));
-    const dishTypeIdAsNumbers = dishes.estimatedTime.map((amount) => parseFloat(amount));
-    const activeAsBooleans = dishes.active.map((value) => value === '1');
-    const newDishes = {
-      id: dishes.id || [],
-      name: dishes.name || [],
-      description: dishes.description || [],
-      photo: dishes.photo || [],
-      cost: costAsNumbers || [],
-      promotion: promotionAsNumbers || [],
-      discount: discountAsNumbers || [],
-      estimatedTime: estimatedTimeAsNumbers || [],
-      active: activeAsBooleans || [],
-      additionalId: additionalIdAsNumbers || [],
-      supplyId: supplyIdAsNumbers || [],
-      recipeId: recipeIdAsNumbers || [],
-      dishTypeId: dishTypeIdAsNumbers || [],
-      date: dishes.date || [],
-    };
-    // eslint-disable-next-line no-unused-vars
-    const [menuCreated, created] = await Menu.findOrCreate({
-      where: {
-        name: name.toLowerCase(),
-      },
-      defaults: {
-        name: name.toLowerCase(),
-        date,
-        description,
-        cost,
-        promotion,
-        discount,
-        validity,
-        photo,
-        commerceId,
-        menuTypeId,
-        tableServiceId,
-        categoryId,
-        dishes: newDishes,
-      },
-    });
-    if (created) {
-      res.status(200).send('Menu created');
-    } else {
-      res.status(422).send('Existing Menu ');
-    }
-  } catch (error) {
-    res.status(400).send(error);
-  }
+  res.status(201).json('menuUp');
 });
 
-menu.get('/all', async (req, res) => {
+menu.get('/all/:commerceId', async (req, res) => {
   try {
+    const { commerceId } = req.params;
+    if (!commerceId && !Number.isInteger(parseInt(commerceId, 10))) {
+      res.status(422).send('ID was not provided');
+    }
     const men = await Menu.findAll({
-      attributes: ['id', 'date', 'name', 'description', 'status', 'cost', 'promotion', 'discount', 'validity', 'photo', 'dishes', 'active'],
+      where: {
+        commerceId: parseInt(commerceId, 10),
+      },
+      attributes: ['id', 'date', 'name', 'description', 'status', 'cost', 'promotion', 'discount', 'validity', 'photo', 'dishes', 'active', 'surcharge', 'commerceId'],
       include: [
         {
           model: Commerce,
-          attributes: ['id', 'name', 'neighborhood', 'address', 'workSchedule', 'email', 'phono', 'open', 'active'],
+          attributes: ['id', 'name', 'neighborhood', 'address', 'workSchedule', 'email', 'phono', 'active', 'franchiseId', 'commercialPlanId', 'businessId', 'open', 'start'],
         },
         {
           model: MenuType,
@@ -245,15 +144,22 @@ menu.get('/query', async (req, res) => {
   }
 });
 
-menu.get('/all_active', async (req, res) => {
+menu.get('/all_active/:commerceId', async (req, res) => {
   try {
+    const { commerceId } = req.params;
+    if (!commerceId && !Number.isInteger(parseInt(commerceId, 10))) {
+      res.status(422).send('ID was not provided');
+    }
     const men = await Menu.findAll({
-      where: { active: true },
-      attributes: ['id', 'date', 'name', 'description', 'status', 'cost', 'promotion', 'discount', 'validity', 'photo', 'dishes', 'active'],
+      where: {
+        commerceId: parseInt(commerceId, 10),
+        active: true,
+      },
+      attributes: ['id', 'date', 'name', 'description', 'status', 'cost', 'promotion', 'discount', 'validity', 'photo', 'dishes', 'active', 'surcharge', 'commerceId'],
       include: [
         {
           model: Commerce,
-          attributes: ['id', 'name', 'neighborhood', 'address', 'workSchedule', 'email', 'phono', 'open', 'active'],
+          attributes: ['id', 'name', 'neighborhood', 'address', 'workSchedule', 'email', 'phono', 'active', 'franchiseId', 'commercialPlanId', 'businessId', 'open', 'start'],
         },
         {
           model: MenuType,
@@ -290,16 +196,16 @@ menu.get('/lastMenu/:commerceId', async (req, res) => {
       where: {
         active: true,
         status: 'last',
+        commerceId: parseInt(commerceId, 10),
       },
-      attributes: ['id', 'date', 'name', 'description', 'status', 'cost', 'promotion', 'discount', 'validity', 'photo', 'dishes', 'active'],
+      attributes: ['id', 'date', 'name', 'description', 'status', 'cost', 'promotion', 'discount', 'validity', 'photo', 'dishes', 'active', 'surcharge', 'commerceId'],
       include: [
         {
           model: Commerce,
           where: {
             active: true,
-            id: parseInt(commerceId, 10),
           },
-          attributes: ['id', 'name', 'neighborhood', 'address', 'workSchedule', 'email', 'phono', 'open', 'active'],
+          attributes: ['id', 'name', 'neighborhood', 'address', 'workSchedule', 'email', 'phono', 'active', 'franchiseId', 'commercialPlanId', 'businessId', 'open', 'start'],
         },
         {
           model: MenuType,
@@ -337,11 +243,11 @@ menu.get('/menuCommerce/:id', async (req, res) => {
         active: true,
         id: parseInt(id, 10),
       },
-      attributes: ['id', 'date', 'name', 'description', 'status', 'cost', 'promotion', 'discount', 'validity', 'photo', 'dishes', 'active'],
+      attributes: ['id', 'date', 'name', 'description', 'status', 'cost', 'promotion', 'discount', 'validity', 'photo', 'dishes', 'active', 'surcharge', 'commerceId'],
       include: [
         {
           model: Commerce,
-          attributes: ['id', 'name', 'neighborhood', 'address', 'workSchedule', 'email', 'phono', 'open', 'active'],
+          attributes: ['id', 'name', 'neighborhood', 'address', 'workSchedule', 'email', 'phono', 'active', 'franchiseId', 'commercialPlanId', 'businessId', 'open', 'start'],
         },
         {
           model: MenuType,
@@ -374,11 +280,11 @@ menu.get('/detail/:id', async (req, res) => {
     if (id && Number.isInteger(parseInt(id, 10))) {
       const men = await Menu.findAll({
         where: { id: parseInt(id, 10) },
-        attributes: ['id', 'date', 'name', 'description', 'status', 'cost', 'promotion', 'discount', 'validity', 'photo', 'dishes', 'active'],
+        attributes: ['id', 'date', 'name', 'description', 'status', 'cost', 'promotion', 'discount', 'validity', 'photo', 'dishes', 'active', 'surcharge', 'commerceId'],
         include: [
           {
             model: Commerce,
-            attributes: ['id', 'name', 'neighborhood', 'address', 'workSchedule', 'email', 'phono', 'open', 'active'],
+            attributes: ['id', 'name', 'neighborhood', 'address', 'workSchedule', 'email', 'phono', 'active', 'franchiseId', 'commercialPlanId', 'businessId', 'open', 'start'],
           },
           {
             model: MenuType,
@@ -416,14 +322,14 @@ menu.get('/menuCommerceActive', async (req, res) => {
           commerceId: parseInt(commerceId, 10),
           date,
         },
-        attributes: ['id', 'date', 'name', 'description', 'status', 'cost', 'promotion', 'discount', 'validity', 'photo', 'dishes', 'active'],
+        attributes: ['id', 'date', 'name', 'description', 'status', 'cost', 'promotion', 'discount', 'validity', 'photo', 'dishes', 'active', 'surcharge', 'commerceId'],
         include: [
           {
             model: Commerce,
-            where: {
-              active: true,
-            },
-            attributes: ['id', 'name', 'neighborhood', 'address', 'workSchedule', 'email', 'phono', 'open', 'active'],
+            // where: {
+            //   active: true,
+            // },
+            attributes: ['id', 'name', 'neighborhood', 'address', 'workSchedule', 'email', 'phono', 'active', 'franchiseId', 'commercialPlanId', 'businessId', 'open', 'start'],
           },
           {
             model: MenuType,
@@ -465,32 +371,12 @@ menu.put('/update/:id', async (req, res) => {
       discount,
       validity,
       photo,
-      commerce,
-      menuType,
-      tableService,
-      category,
+      commerceId,
+      menuTypeId,
+      tableServiceId,
+      categoryId,
       dishes,
     } = req.body;
-    const commerceId = commerce
-      ? (
-        await Commerce.findOne({ where: { name: commerce } })
-      )?.id
-      : null;
-    const menuTypeId = menuType
-      ? (
-        await MenuType.findOne({ where: { type: menuType } })
-      )?.id
-      : null;
-    const tableServiceId = tableService
-      ? (
-        await TableService.findOne({ where: { type: tableService } })
-      )?.id
-      : null;
-    const categoryId = category
-      ? (
-        await Category.findOne({ where: { category } })
-      )?.id
-      : null;
     const costAsNumbers = dishes.cost.map((amount) => parseFloat(amount));
     const promotionAsNumbers = dishes.promotion.map((amount) => parseFloat(amount));
     const discountAsNumbers = dishes.discount.map((amount) => parseFloat(amount));
@@ -518,7 +404,9 @@ menu.put('/update/:id', async (req, res) => {
     };
 
     const menuFinded = await Menu.findOne({
-      where: { id },
+      where: {
+        id: parseInt(id, 10),
+      },
     });
     if (menuFinded) {
       await menuFinded.update({
@@ -550,7 +438,7 @@ menu.put('/active/:id', async (req, res) => {
   try {
     const { id } = req.params;
     const menuFinded = await Menu.findOne({
-      where: { id },
+      where: { id: parseInt(id, 10) },
     });
     if (menuFinded) {
       await menuFinded.update({
@@ -569,7 +457,7 @@ menu.put('/inactive/:id', async (req, res) => {
   try {
     const { id } = req.params;
     const menuFinded = await Menu.findOne({
-      where: { id },
+      where: { id: parseInt(id, 10) },
     });
     if (menuFinded) {
       await menuFinded.update({
@@ -588,7 +476,7 @@ menu.put('/status/:id/:status', async (req, res) => {
   try {
     const { id, status } = req.params;
     const menuFinded = await Menu.findOne({
-      where: { id },
+      where: { id: parseInt(id, 10) },
     });
     if (menuFinded) {
       await menuFinded.update({
