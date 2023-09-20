@@ -1,4 +1,4 @@
-const { Order } = require('../db');
+const { Order } = require('../../db');
 
 const getOrders = async (date, pos, commerce, sector) => {
   let newCodigo;
