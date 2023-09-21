@@ -20,6 +20,10 @@ module.exports = (sequelize) => {
         type: DataTypes.INTEGER,
         defaultValue: 0,
       },
+      promotion: {
+        type: DataTypes.INTEGER,
+        defaultValue: 0,
+      },
       capacity: {
         type: DataTypes.INTEGER,
         defaultValue: 0,

@@ -32,6 +32,22 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING,
         defaultValue: '', // celiacos
       },
+      promotion: {
+        type: DataTypes.INTEGER,
+        defaultValue: 0,
+      },
+      discount: {
+        type: DataTypes.INTEGER,
+        defaultValue: 0,
+      },
+      surcharge: {
+        type: DataTypes.INTEGER,
+        defaultValue: 0,
+      },
+      amount: {
+        type: DataTypes.FLOAT,
+        defaultValue: 0,
+      },
       active: {
         type: DataTypes.BOOLEAN,
         defaultValue: true,
