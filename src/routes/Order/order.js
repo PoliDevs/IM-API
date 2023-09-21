@@ -4,6 +4,7 @@ const { QueryTypes } = require('sequelize');
 const cors = require('cors');
 const { Op } = require('sequelize');
 const fs = require('fs');
+const path = require('path');
 const { sendToEmail } = require('../../controllers/nodemailer/sendEmail');
 
 const {
@@ -82,33 +83,30 @@ order.post('/order', async (req, res) => {
         return cleanedElement;
       });
       orderes = await Promise.all(promises);
-      console.log(orderes);
       const newPedido = await Order.bulkCreate(orderes);
       if (newPedido.length > 0) {
         const to = orderes[0].accountemail || orderes[0].googleemail;
-        const info = {
-          from: 'imenunotice@gmail.com',
-          to,
-          subject: 'iMenú - Pedido en marcha! 🍔',
-          text: 'Pedido en marcha! 🍔',
-          html: '<h1>iMenú - Pedido en marcha! 🍔</h1>',
-          amp: `<!doctype html>
-                      <html ⚡4email>
-                        <head>
-                          <meta charset="utf-8">
-                          <style amp4email-boilerplate>body{visibility:hidden}</style>
-                          <script async src="https://cdn.ampproject.org/v0.js"></script>
-                          <script async custom-element="amp-anim" src="https://cdn.ampproject.org/v0/amp-anim-0.1.js"></script>
-                        </head>
-                        <body>
-                          <p>Image: <amp-img src="https://cldup.com/P0b1bUmEet.png" width="16" height="16"/></p>
-                          <p>GIF (requires "amp-anim" script in header):<br/>
-                            <amp-anim src="https://cldup.com/D72zpdwI-i.gif" width="500" height="350"/></p>
-                        </body>
-                      </html>`,
-        };
+        const name = orderes[0].accountname || '';
+        // eslint-disable-next-line prefer-destructuring
+        const ordeR = orderes[0].order;
+        const filePath = path.join(__dirname, '../../controllers/nodemailer/Order/order.html');
         if (orderes[0].accountemail || orderes[0].googleemail) {
-          sendToEmail(info);
+          fs.readFile(filePath, 'utf8', (err, data) => {
+            if (err) {
+              // eslint-disable-next-line no-console
+              console.error('Error al leer el archivo HTML', err);
+              return;
+            }
+            const htmlContent = data.replace('{name}', name).replace('{ordeR}', ordeR);
+            const info = {
+              from: 'imenunotice@gmail.com',
+              to,
+              subject: 'iMenu - Pedido en marcha! 🍔',
+              text: 'Pedido en marcha! 🍔',
+              html: htmlContent,
+            };
+            sendToEmail(info);
+          });
         }
         res.status(200).send({
           mensaje: 'Order created',
@@ -270,7 +268,7 @@ order.get('/detail/:order', async (req, res) => {
       include: [
         {
           model: Menu,
-          attributes: ['id', 'date', 'name', 'description', 'status', 'cost', 'promotion', 'discount', 'validity', 'photo', 'dishes', 'active'],
+          attributes: ['id', 'date', 'name', 'description', 'status', 'cost', 'promotion', 'discount', 'surcharge', 'validity', 'photo', 'dishes', 'active'],
           include: [
             {
               model: MenuType,
@@ -406,7 +404,7 @@ order.get('/dates/:commerceId', async (req, res) => {
       include: [
         {
           model: Menu,
-          attributes: ['id', 'date', 'name', 'description', 'status', 'cost', 'promotion', 'discount', 'validity', 'photo', 'dishes', 'active'],
+          attributes: ['id', 'date', 'name', 'description', 'status', 'cost', 'promotion', 'discount', 'surcharge', 'validity', 'photo', 'dishes', 'active'],
           include: [
             {
               model: MenuType,
@@ -542,7 +540,7 @@ order.get('/status/:commerceId', async (req, res) => {
       include: [
         {
           model: Menu,
-          attributes: ['id', 'date', 'name', 'description', 'status', 'cost', 'promotion', 'discount', 'validity', 'photo', 'dishes', 'active'],
+          attributes: ['id', 'date', 'name', 'description', 'status', 'cost', 'promotion', 'discount', 'surcharge', 'validity', 'photo', 'dishes', 'active'],
           include: [
             {
               model: MenuType,
@@ -993,7 +991,7 @@ order.get('/paidOrderes/:commerceId', async (req, res) => {
       include: [
         {
           model: Menu,
-          attributes: ['id', 'date', 'name', 'description', 'status', 'cost', 'promotion', 'discount', 'validity', 'photo', 'dishes', 'active'],
+          attributes: ['id', 'date', 'name', 'description', 'status', 'cost', 'promotion', 'discount', 'validity', 'surcharge', 'photo', 'dishes', 'active'],
           include: [
             {
               model: MenuType,
@@ -1204,22 +1202,26 @@ order.get('/warning', async (req, res) => {
     const name = orderes[0].accountname || '';
     // eslint-disable-next-line prefer-destructuring
     const ordeR = orderes[0].order;
-    fs.readFile('../../controllers/nodemailer/Order/order.html', 'utf8', (err, data) => {
+    const filePath = path.join(__dirname, '../../controllers/nodemailer/Order/order.html');
+    fs.readFile(filePath, 'utf8', (err, data) => {
       if (err) {
+        // eslint-disable-next-line no-console
         console.error('Error al leer el archivo HTML', err);
         return;
       }
+      const htmlContent = data.replace('{name}', name).replace('{ordeR}', ordeR);
       const info = {
         from: 'imenunotice@gmail.com',
         to,
         subject: 'iMenu - Pedido en marcha! 🍔',
         text: 'Pedido en marcha! 🍔',
-        html: data,
+        html: htmlContent,
       };
       sendToEmail(info);
     });
     res.status(200).json({ message: `Message sent: ${orderes[0].order}` });
   } catch (error) {
+    // eslint-disable-next-line no-console
     console.error('Error sending email:', error);
     res.status(500).json({ message: 'Error interno del servidor' });
   }

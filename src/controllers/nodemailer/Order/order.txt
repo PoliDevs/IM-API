@@ -4,6 +4,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href='https://db.onlinewebfonts.com/c/e4397c6cf12af9f58d46e124d18d6d93?family=MabryPro-Regular' rel='stylesheet'
+    type='text/css'>
 </head>
 
 <body style="margin-top: 0px; margin-left: 0px; margin-right: 0px; margin-bottom: 0px;">
@@ -17,7 +19,7 @@
                 <div class="iconos" style="color: #000;
                     text-align: center;
                     font-family: Mabry Pro, Montserrat, Poppins, sans-serif;
-                    font-size: 28px;
+                    font-size: 36px;
                     font-style: normal;
                     font-weight: 400;
                     line-height: normal;
@@ -26,27 +28,28 @@
                 </div>
                 <p style="color: #989898; margin-bottom: 0px; text-align: center;
                                       font-family: Mabry Pro, Montserrat, Poppins, sans-serif;
-                                      font-size: 12px;
+                                      font-size: 18px;
                                       font-style: normal;
                                       font-weight: 400;
                                       line-height: normal;
-                                      letter-spacing: -0.36px;">Hola {name}</p>
+                                      letter-spacing: -0.36px;">Hola ${name}</p>
                 <p style="color: #989898; margin-bottom: 0px; text-align: center;
                                       font-family: Mabry Pro, Montserrat, Poppins, sans-serif;
-                                      font-size: 12px;
+                                      font-size: 18px;
                                       font-style: normal;
                                       font-weight: 400;
                                       line-height: normal;
-                                      letter-spacing: -0.36px;">Pedido {ordeR}</p>
+                                      letter-spacing: -0.36px;">Pedido ${ordeR}</p>
                 <div class="expresion" style="height: 120px; ">
                   <p style="width: 358px; color: #212121;
                                       text-align: center;
                                       font-family: Mabry Pro, Montserrat, Poppins, sans-serif;
-                                      font-size: 18px;
+                                      font-size: 36px;
                                       font-style: normal;
                                       font-weight: 700;
                                       line-height: normal;
-                                      letter-spacing: -0.72px; margin-top: 20px;" class="lacuenta">¡La cuenta regresiva
+                                      letter-spacing: -0.72px; margin-top: 20px; margin-bottom: 20px;"
+                    class="lacuenta">¡La cuenta regresiva
                     ha comenzado!</p>
                 </div>
                 <hr style="width: 295px;
@@ -54,54 +57,53 @@
                 <div class="texto" style="height: 120px;">
                   <p style="width: 358px; color: #212121;
                                       font-family: Mabry Pro, Montserrat, Poppins, sans-serif;
-                                      font-size: 14px;
+                                      font-size: 18px;
                                       font-style: normal;
                                       font-weight: 700;
                                       line-height: normal;
-                                      letter-spacing: -0.36px;"><img src="http://tenkiweb.com/imenu/img/check.png"
-                      alt="" style="width: 30px; height: 30px">
-                    Tu pago
+                                      letter-spacing: -0.36px;"><img src="../../../img/icons/check.svg" alt=""> Tu pago
                     se
                     ha procesado con
                     éxito.</p>
                   <p style="width: 358px; color: #989898;
                                       text-align: center;
                                       font-family: Mabry Pro, Montserrat, Poppins, sans-serif;
-                                      font-size: 12px;
+                                      font-size: 18px;
                                       font-style: normal;
                                       font-weight: 400;
                                       line-height: normal;
-                                      letter-spacing: -0.36px; margin-bottom: 10px;">En unos minutos, tendrás tu pedido
-                    en
+                                      letter-spacing: -0.36px;">En unos minutos, tendrás tu pedido en
                     las manos.</p>
                 </div>
                 <hr style="width: 295px;
-                                                height: 1px; margin-top: 20px;">
+                                                height: 1px;">
               </div>
 
               <div class="footer" style="text-align: center;">
                 <p style="width: 358px; color: #989898;
                                     text-align: center;
                                     font-family: Mabry Pro, Montserrat, Poppins, sans-serif;
-                                    font-size: 10px;
+                                    font-size: 18px;
                                     font-style: normal;
                                     font-weight: 400;
                                     line-height: normal;
                                     letter-spacing: -0.36px;">Apreciamos tu confianza en iMenu
-                  <img src="http://tenkiweb.com/imenu/img/red-heart.png" alt="">
+                  <img src="../../../img/icons/red-heart_2764-fe0f 1.png" alt="">
                 </p>
                 <h3 style="width: 358px; color: #000000;
                                   font-family: Mabry Pro, Montserrat, Poppins, sans-serif;
-                                  font-size: 14px;
+                                  font-size: 18px;
                                   font-style: normal;
                                   font-weight: 700;
                                   line-height: normal;
                                   letter-spacing: -0.36px;">imenu</h3>
-                <div style="text-align: center; width: 358px;">
-                  <img src="http://tenkiweb.com/imenu/img/lifebuoy.png" alt="" style="width: 24px; height: 24px;">
-                  <p style="color: #989898;
+                <div style="display: flex; justify-content: center; align-items: center;">
+                  <img src="../../../img/icons/lifebuoy.svg" alt=""
+                    style="width: 24px; height: 24px; margin-right: 10px;">
+                  <p style="width: 358px; color: #989898;
+                                                                      text-align: left;
                                                                       font-family: Mabry Pro, Montserrat, Poppins, sans-serif;
-                                                                      font-size: 12px;
+                                                                      font-size: 18px;
                                                                       font-style: normal;
                                                                       font-weight: 400;
                                                                       line-height: normal;
