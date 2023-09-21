@@ -4036,7 +4036,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "[\r\n    {\r\n    \"name\": \"sss\",\r\n    \"date\": \"2023-09-18\",\r\n    \"hour\": \"11:00\",\r\n    \"status\": \"orderPlaced\",\r\n    \"detail\": \"\",\r\n    \"validity\": \"2023-09-30\",\r\n    \"promotion\": 0,\r\n    \"discount\": 0,\r\n    \"surcharge\": 1.1,\r\n    \"rating\": 5,\r\n    \"feedback\": \"\",\r\n    \"menuId\": 4,\r\n    \"poId\": 7,\r\n    \"employeeId\": 3,\r\n    \"dishId\": 0,\r\n    \"accountId\": 3,\r\n    \"paymentId\": 5,\r\n    \"commerceId\": 2,\r\n    \"deliveryId\": 4,\r\n    \"paid\" : 2000,\r\n    \"order\": \"\",\r\n    \"courierId\": 0,\r\n    \"costDelivery\": 0,\r\n    \"productId\": 10,\r\n    \"sectorId\": 1,\r\n    \"additionalId\": 5\r\n    },\r\n    {\r\n    \"name\": \"sss\",\r\n    \"date\": \"2023-09-18\",\r\n    \"hour\": \"11:00\",\r\n    \"status\": \"orderPlaced\",\r\n    \"detail\": \"\",\r\n    \"validity\": \"2023-09-30\",\r\n    \"promotion\": 0.1,\r\n    \"discount\": 0.05,\r\n    \"surcharge\": 0,\r\n    \"rating\": 5,\r\n    \"feedback\": \"\",\r\n    \"menuId\": 6,\r\n    \"poId\": 7,\r\n    \"employeeId\": 3,\r\n    \"dishId\": 0,\r\n    \"accountId\": 3,\r\n    \"paymentId\": 5,\r\n    \"commerceId\": 2,\r\n    \"deliveryId\": 4,\r\n    \"paid\" : 1600,\r\n    \"order\": \"\",\r\n    \"courierId\": 0,\r\n    \"costDelivery\": 0,\r\n    \"productId\": 10,\r\n    \"sectorId\": 1,\r\n    \"additionalId\": 0\r\n    }\r\n]\r\n",
+							"raw": "[\r\n    {\r\n    \"name\": \"sss\",\r\n    \"date\": \"2023-09-19\",\r\n    \"hour\": \"12:00\",\r\n    \"status\": \"orderPlaced\",\r\n    \"detail\": \"cambiar la gaseosa por agua sin gas\",\r\n    \"validity\": \"2023-09-30\",\r\n    \"promotion\": 0,\r\n    \"discount\": 0,\r\n    \"surcharge\": 0,\r\n    \"rating\": 5,\r\n    \"feedback\": \"\",\r\n    \"menuId\": 4,\r\n    \"poId\": 7,\r\n    \"employeeId\": 3,\r\n    \"dishId\": 0,\r\n    \"accountId\": 0,\r\n    \"paymentId\": 6,\r\n    \"commerceId\": 2,\r\n    \"deliveryId\": 0,\r\n    \"paid\" : 2000,\r\n    \"order\": \"\",\r\n    \"courierId\": 0,\r\n    \"costDelivery\": 0,\r\n    \"productId\": 10,\r\n    \"sectorId\": 1,\r\n    \"additionalId\": 5,\r\n    \"accountemail\": \"luisglogista@gmail.com\",\r\n    \"accountname\": \"ernesto machado\",\r\n    \"accountphone\": \"222222\",\r\n    \"accountbirthDate\": \"24-10-1967\",\r\n    \"accountaddress\": \"Av siempre viva 300\",\r\n    \"googleemail\": \"\"\r\n    }\r\n]\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -4769,6 +4769,26 @@
 									"key": "dateTo",
 									"value": "2023-09-18"
 								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "WARNING",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/order/warning",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"order",
+								"warning"
 							]
 						}
 					},
