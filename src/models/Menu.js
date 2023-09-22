@@ -48,6 +48,14 @@ module.exports = (sequelize) => {
         type: DataTypes.JSON,
         allowNull: true,
       },
+      product: {
+        type: DataTypes.JSON,
+        allowNull: true,
+      },
+      additional: {
+        type: DataTypes.JSON,
+        allowNull: true,
+      },
       active: {
         type: DataTypes.BOOLEAN,
         defaultValue: true,

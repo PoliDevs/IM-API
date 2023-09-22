@@ -61,6 +61,25 @@ module.exports = (sequelize) => {
         type: DataTypes.DOUBLE,
         defaultValue: 0,
       },
+      amount: {
+        type: DataTypes.INTEGER,
+      },
+      additionals: {
+        type: DataTypes.JSON,
+        allowNull: true,
+      },
+      products: {
+        type: DataTypes.JSON,
+        allowNull: true,
+      },
+      dishes: {
+        type: DataTypes.JSON,
+        allowNull: true,
+      },
+      menu: {
+        type: DataTypes.JSON,
+        allowNull: true,
+      },
     },
     {
       timestamps: true,

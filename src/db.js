@@ -126,16 +126,10 @@ Commerce.hasMany(Delivery);
 Delivery.belongsTo(Commerce);
 MenuType.hasMany(Menu);
 Menu.belongsTo(MenuType);
-TableService.hasMany(Menu);
-Menu.belongsTo(TableService);
-Menu.hasMany(Order);
-Order.belongsTo(Menu);
 Pos.hasMany(Order);
 Order.belongsTo(Pos);
 Employee.hasMany(Order);
 Order.belongsTo(Employee);
-Dish.hasMany(Order);
-Order.belongsTo(Dish);
 Account.hasMany(Order);
 Order.belongsTo(Account);
 Payment.hasMany(Order);
@@ -174,19 +168,12 @@ CourierType.hasMany(Courier);
 Courier.belongsTo(CourierType);
 Courier.hasMany(Order);
 Order.belongsTo(Courier);
-
-Product.hasMany(Order);
-Order.belongsTo(Product);
-
-Additional.hasMany(Order);
-Order.belongsTo(Additional);
-
 Sector.hasMany(Order);
 Order.belongsTo(Sector);
-
-Product.hasMany(Menu);
-Menu.belongsTo(Product);
-
+TableService.hasMany(Pos);
+Pos.belongsTo(TableService);
+TableService.hasMany(Sector);
+Sector.belongsTo(TableService);
 Sector.hasMany(Pos);
 Pos.belongsTo(Sector);
 Commerce.hasMany(Account);
@@ -215,6 +202,8 @@ Franchise.hasMany(Commerce);
 Commerce.belongsTo(Franchise);
 Business.hasMany(Commerce);
 Commerce.belongsTo(Business);
+UnitType.hasMany(Supply);
+Supply.belongsTo(UnitType);
 
 module.exports = {
   ...sequelize.models,

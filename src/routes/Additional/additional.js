@@ -14,7 +14,7 @@ additional.use(
 additional.post('/additional', async (req, res) => {
   try {
     const {
-      name, amount, cost, promotion, discount, photo, commerceId,
+      name, amount, cost, promotion, discount, photo, commerceId, surcharge,
     } = req.body;
     // eslint-disable-next-line no-unused-vars
     const [additionalCreated, created] = await Additional.findOrCreate({
@@ -28,6 +28,7 @@ additional.post('/additional', async (req, res) => {
         cost,
         promotion,
         discount,
+        surcharge,
         photo,
         commerceId,
       },
@@ -52,7 +53,7 @@ additional.get('/all/:commerceId', async (req, res) => {
       where: {
         commerceId: parseInt(commerceId, 10),
       },
-      attributes: ['id', 'name', 'amount', 'cost', 'promotion', 'discount', 'photo', 'active', 'commerceId'],
+      attributes: ['id', 'name', 'amount', 'cost', 'promotion', 'discount', 'surcharge', 'photo', 'active', 'commerceId'],
     });
 
     if (addi.length > 0) {
@@ -76,7 +77,7 @@ additional.get('/all_active/:commerceId', async (req, res) => {
         commerceId: parseInt(commerceId, 10),
         active: true,
       },
-      attributes: ['id', 'name', 'amount', 'cost', 'promotion', 'discount', 'photo', 'active', 'commerceId'],
+      attributes: ['id', 'name', 'amount', 'cost', 'promotion', 'discount', 'surcharge', 'photo', 'active', 'commerceId'],
     });
 
     if (addi.length > 0) {
@@ -95,7 +96,7 @@ additional.get('/detail/:id', async (req, res) => {
     if (id && Number.isInteger(parseInt(id, 10))) {
       const addi = await Additional.findAll({
         where: { id: parseInt(id, 10) },
-        attributes: ['id', 'name', 'amount', 'cost', 'promotion', 'discount', 'photo', 'active', 'commerceId'],
+        attributes: ['id', 'name', 'amount', 'cost', 'promotion', 'discount', 'surcharge', 'photo', 'active', 'commerceId'],
       });
       if (addi.length > 0) {
         res.status(201).json(addi);
@@ -114,7 +115,7 @@ additional.put('/update/:id', async (req, res) => {
   try {
     const { id } = req.params;
     const {
-      name, amount, cost, promotion, discount, photo,
+      name, amount, cost, promotion, discount, photo, surcharge,
     } = req.body;
     const additionalFinded = await Additional.findOne({
       where: {
@@ -128,6 +129,7 @@ additional.put('/update/:id', async (req, res) => {
         cost,
         promotion,
         discount,
+        surcharge,
         photo,
       });
       res.status(200).send('The data was modified successfully');
