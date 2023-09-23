@@ -204,6 +204,8 @@ Business.hasMany(Commerce);
 Commerce.belongsTo(Business);
 UnitType.hasMany(Supply);
 Supply.belongsTo(UnitType);
+UnitType.hasMany(Additional);
+Additional.belongsTo(UnitType);
 
 module.exports = {
   ...sequelize.models,
