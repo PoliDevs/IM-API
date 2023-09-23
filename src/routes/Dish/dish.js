@@ -17,33 +17,8 @@ dish.post('/dish', async (req, res) => {
   try {
     const {
       name, description, photo, cost, promotion,
-      discount, estimatedTime, type, additional, supply, recipe, commerce,
+      discount, estimatedTime, dishTypeId, additionalId, supplyId, recipeId, commerceId, surcharge,
     } = req.body;
-    const dishType = type
-      ? (
-        await DishType.findOne({ where: { type } })
-      )?.id
-      : null;
-    const dishAdditional = name
-      ? (
-        await Additional.findOne({ where: { name: additional } })
-      )?.id
-      : null;
-    const dishSupply = name
-      ? (
-        await Supply.findOne({ where: { name: supply } })
-      )?.id
-      : null;
-    const dishRecipe = name
-      ? (
-        await Recipe.findOne({ where: { name: recipe } })
-      )?.id
-      : null;
-    const commerceId = commerce
-      ? (
-        await Commerce.findOne({ where: { name: commerce } })
-      )?.id
-      : null;
     // eslint-disable-next-line no-unused-vars
     const [dishCreated, created] = await Dish.findOrCreate({
       where: {
@@ -57,11 +32,12 @@ dish.post('/dish', async (req, res) => {
         promotion,
         discount,
         estimatedTime,
-        dishTypeId: dishType,
-        additionalId: dishAdditional,
-        supplyId: dishSupply,
-        recipeId: dishRecipe,
+        dishTypeId,
+        additionalId,
+        supplyId,
+        recipeId,
         commerceId,
+        surcharge,
       },
     });
     if (created) {
@@ -77,7 +53,7 @@ dish.post('/dish', async (req, res) => {
 dish.get('/all', async (req, res) => {
   try {
     const dis = await Dish.findAll({
-      attributes: ['id', 'date', 'name', 'description', 'photo', 'cost', 'promotion', 'discount', 'estimatedTime', 'active'],
+      attributes: ['id', 'date', 'name', 'description', 'photo', 'cost', 'promotion', 'discount', 'surcharge', 'estimatedTime', 'active'],
       include: [
         {
           model: DishType,
@@ -138,7 +114,7 @@ dish.get('/all_active', async (req, res) => {
   try {
     const dis = await Dish.findAll({
       where: { active: true },
-      attributes: ['id', 'date', 'name', 'description', 'photo', 'cost', 'promotion', 'discount', 'estimatedTime', 'active'],
+      attributes: ['id', 'date', 'name', 'description', 'photo', 'cost', 'promotion', 'discount', 'surcharge', 'estimatedTime', 'active'],
       include: [
         {
           model: DishType,
@@ -201,7 +177,7 @@ dish.get('/detail/:id', async (req, res) => {
     if (id && Number.isInteger(parseInt(id, 10))) {
       const dis = await Dish.findAll({
         where: { id: parseInt(id, 10) },
-        attributes: ['id', 'date', 'name', 'description', 'photo', 'cost', 'promotion', 'discount', 'estimatedTime', 'active'],
+        attributes: ['id', 'date', 'name', 'description', 'photo', 'cost', 'promotion', 'discount', 'surcharge', 'estimatedTime', 'active'],
         include: [
           {
             model: DishType,
@@ -265,28 +241,8 @@ dish.put('/update/:id', async (req, res) => {
     const { id } = req.params;
     const {
       name, description, photo, cost, promotion,
-      discount, estimatedTime, type, additional, supply, recipe,
+      discount, estimatedTime, dishTypeId, additionalId, supplyId, recipeId, surcharge,
     } = req.body;
-    const dishType = type
-      ? (
-        await DishType.findOne({ where: { type } })
-      )?.id
-      : null;
-    const dishAdditional = name
-      ? (
-        await Additional.findOne({ where: { name: additional } })
-      )?.id
-      : null;
-    const dishSupply = name
-      ? (
-        await Supply.findOne({ where: { name: supply } })
-      )?.id
-      : null;
-    const dishRecipe = name
-      ? (
-        await Recipe.findOne({ where: { name: recipe } })
-      )?.id
-      : null;
     const dishFinded = await Dish.findOne({
       where: { id },
     });
@@ -299,10 +255,11 @@ dish.put('/update/:id', async (req, res) => {
         promotion,
         discount,
         estimatedTime,
-        dishTypeId: dishType,
-        additionalId: dishAdditional,
-        supplyId: dishSupply,
-        recipeId: dishRecipe,
+        dishTypeId,
+        additionalId,
+        supplyId,
+        recipeId,
+        surcharge,
       });
       res.status(200).send('The data was modified successfully');
     } else {
