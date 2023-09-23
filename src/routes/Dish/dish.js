@@ -17,7 +17,8 @@ dish.post('/dish', async (req, res) => {
   try {
     const {
       name, description, photo, cost, promotion,
-      discount, estimatedTime, dishTypeId, additionalId, supplyId, recipeId, commerceId, surcharge,
+      discount, estimatedTime, dishTypeId, additionalId, supplyId, recipeId,
+      commerceId, surcharge, amountAdditional, amountSupplies,
     } = req.body;
     // eslint-disable-next-line no-unused-vars
     const [dishCreated, created] = await Dish.findOrCreate({
@@ -38,6 +39,8 @@ dish.post('/dish', async (req, res) => {
         recipeId,
         commerceId,
         surcharge,
+        amountAdditional,
+        amountSupplies,
       },
     });
     if (created) {
@@ -53,7 +56,7 @@ dish.post('/dish', async (req, res) => {
 dish.get('/all', async (req, res) => {
   try {
     const dis = await Dish.findAll({
-      attributes: ['id', 'date', 'name', 'description', 'photo', 'cost', 'promotion', 'discount', 'surcharge', 'estimatedTime', 'active'],
+      attributes: ['id', 'date', 'name', 'description', 'photo', 'cost', 'promotion', 'discount', 'surcharge', 'estimatedTime', 'amountAdditional', 'amountSupplies', 'active'],
       include: [
         {
           model: DishType,
@@ -114,7 +117,7 @@ dish.get('/all_active', async (req, res) => {
   try {
     const dis = await Dish.findAll({
       where: { active: true },
-      attributes: ['id', 'date', 'name', 'description', 'photo', 'cost', 'promotion', 'discount', 'surcharge', 'estimatedTime', 'active'],
+      attributes: ['id', 'date', 'name', 'description', 'photo', 'cost', 'promotion', 'discount', 'surcharge', 'estimatedTime', 'amountAdditional', 'amountSupplies', 'active'],
       include: [
         {
           model: DishType,
@@ -177,7 +180,7 @@ dish.get('/detail/:id', async (req, res) => {
     if (id && Number.isInteger(parseInt(id, 10))) {
       const dis = await Dish.findAll({
         where: { id: parseInt(id, 10) },
-        attributes: ['id', 'date', 'name', 'description', 'photo', 'cost', 'promotion', 'discount', 'surcharge', 'estimatedTime', 'active'],
+        attributes: ['id', 'date', 'name', 'description', 'photo', 'cost', 'promotion', 'discount', 'surcharge', 'estimatedTime', 'amountAdditional', 'amountSupplies', 'active'],
         include: [
           {
             model: DishType,
@@ -242,6 +245,7 @@ dish.put('/update/:id', async (req, res) => {
     const {
       name, description, photo, cost, promotion,
       discount, estimatedTime, dishTypeId, additionalId, supplyId, recipeId, surcharge,
+      amountAdditional, amountSupplies,
     } = req.body;
     const dishFinded = await Dish.findOne({
       where: { id },
@@ -260,6 +264,8 @@ dish.put('/update/:id', async (req, res) => {
         supplyId,
         recipeId,
         surcharge,
+        amountAdditional,
+        amountSupplies,
       });
       res.status(200).send('The data was modified successfully');
     } else {
