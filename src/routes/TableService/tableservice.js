@@ -14,7 +14,7 @@ tableservice.use(
 tableservice.post('/service', async (req, res) => {
   try {
     const {
-      type, detail, cost, promotion, discount, validity, commerceId,
+      type, detail, cost, promotion, discount, surcharge, validity, commerceId,
     } = req.body;
     // eslint-disable-next-line no-unused-vars
     const [tableServiceCreated, created] = await TableService.findOrCreate({
@@ -28,6 +28,7 @@ tableservice.post('/service', async (req, res) => {
         cost,
         promotion,
         discount,
+        surcharge,
         validity,
         commerceId,
       },
@@ -52,7 +53,7 @@ tableservice.get('/all/:commerceId', async (req, res) => {
       where: {
         commerceId: parseInt(commerceId, 10),
       },
-      attributes: ['id', 'type', 'detail', 'cost', 'promotion', 'discount', 'validity', 'active', 'commerceId'],
+      attributes: ['id', 'type', 'detail', 'cost', 'promotion', 'discount', 'surcharge', 'validity', 'active', 'commerceId'],
     });
 
     if (service.length > 0) {
@@ -76,7 +77,7 @@ tableservice.get('/all_active/:commerceId', async (req, res) => {
         commerceId: parseInt(commerceId, 10),
         active: true,
       },
-      attributes: ['id', 'type', 'detail', 'cost', 'promotion', 'discount', 'validity', 'active', 'commerceId'],
+      attributes: ['id', 'type', 'detail', 'cost', 'promotion', 'discount', 'surcharge', 'validity', 'active', 'commerceId'],
     });
 
     if (service.length > 0) {
@@ -95,7 +96,7 @@ tableservice.get('/detail/:id', async (req, res) => {
     if (id && Number.isInteger(parseInt(id, 10))) {
       const service = await TableService.findAll({
         where: { id: parseInt(id, 10) },
-        attributes: ['id', 'type', 'detail', 'cost', 'promotion', 'discount', 'validity', 'active', 'commerceId'],
+        attributes: ['id', 'type', 'detail', 'cost', 'promotion', 'discount', 'surcharge', 'validity', 'active', 'commerceId'],
       });
       if (service.length > 0) {
         res.status(201).json(service);
@@ -114,7 +115,7 @@ tableservice.put('/update/:id', async (req, res) => {
   try {
     const { id } = req.params;
     const {
-      type, detail, cost, promotion, discount, validity, commerceId,
+      type, detail, cost, promotion, discount, surcharge, validity, commerceId,
     } = req.body;
     const serviceFinded = await TableService.findOne({
       where: { id },
@@ -126,6 +127,7 @@ tableservice.put('/update/:id', async (req, res) => {
         cost,
         promotion,
         discount,
+        surcharge,
         validity,
         commerceId,
       });

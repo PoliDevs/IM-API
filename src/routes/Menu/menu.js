@@ -38,12 +38,12 @@ menu.post('/menu', async (req, res) => {
     const costAsNumbers = dishes.cost.map((amount) => parseFloat(amount));
     const promotionAsNumbers = dishes.promotion.map((amount) => parseFloat(amount));
     const discountAsNumbers = dishes.discount.map((amount) => parseFloat(amount));
+    const surchargeAsNumbers = dishes.surcharge.map((amount) => parseFloat(amount));
     const estimatedTimeAsNumbers = dishes.estimatedTime.map((amount) => parseFloat(amount));
     const additionalIdAsNumbers = dishes.estimatedTime.map((amount) => parseFloat(amount));
     const supplyIdAsNumbers = dishes.estimatedTime.map((amount) => parseFloat(amount));
     const recipeIdAsNumbers = dishes.estimatedTime.map((amount) => parseFloat(amount));
     const dishTypeIdAsNumbers = dishes.estimatedTime.map((amount) => parseFloat(amount));
-    const activeAsBooleans = dishes.active.map((value) => value === '1');
     const newDishes = {
       id: dishes.id || [],
       name: dishes.name || [],
@@ -52,8 +52,8 @@ menu.post('/menu', async (req, res) => {
       cost: costAsNumbers || [],
       promotion: promotionAsNumbers || [],
       discount: discountAsNumbers || [],
+      surcharge: surchargeAsNumbers || [],
       estimatedTime: estimatedTimeAsNumbers || [],
-      active: activeAsBooleans || [],
       additionalId: additionalIdAsNumbers || [],
       supplyId: supplyIdAsNumbers || [],
       recipeId: recipeIdAsNumbers || [],
@@ -62,39 +62,30 @@ menu.post('/menu', async (req, res) => {
     };
 
     const costProductAsNumbers = product.cost.map((amount) => parseFloat(amount));
-    const unitTypeProductAsNumbers = product.unitTypeId.map((amount) => parseFloat(amount));
-    const productTypeAsNumbers = product.productTypeId.map((amount) => parseFloat(amount));
     const supplierIdAsNumbers = product.supplierId.map((amount) => parseFloat(amount));
     const promotionProductAsNumbers = product.promotion.map((amount) => parseFloat(amount));
     const discountProductAsNumbers = product.discount.map((amount) => parseFloat(amount));
     const surchargeProductAsNumbers = product.surcharge.map((amount) => parseFloat(amount));
     const amountProductAsNumbers = product.amount.map((amount) => parseFloat(amount));
-    const activeProductAsBooleans = product.active.map((value) => value === '1');
 
     const newProduct = {
       id: product.id || [],
       name: product.name || [],
-      photo: product.photo || [],
       cost: costProductAsNumbers || [],
       allergeType: product.allergenType || [],
       careful: product.careful || [],
-      unitTypeId: unitTypeProductAsNumbers || [],
-      productTypeId: productTypeAsNumbers || [],
       supplierId: supplierIdAsNumbers || [],
       promotion: promotionProductAsNumbers || [],
       discount: discountProductAsNumbers || [],
       surcharge: surchargeProductAsNumbers || [],
       amount: amountProductAsNumbers || [],
-      active: activeProductAsBooleans || [],
     };
 
-    const unitTypeAdditionalAsNumbers = additional.unitTypeId.map((amount) => parseFloat(amount));
     const costAdditionalAsNumbers = additional.cost.map((amount) => parseFloat(amount));
     const promotionAdditionalAsNumbers = additional.promotion.map((amount) => parseFloat(amount));
     const discountAdditionalAsNumbers = additional.discount.map((amount) => parseFloat(amount));
     const surchargeAdditionalAsNumbers = additional.surcharge.map((amount) => parseFloat(amount));
     const amountAdditionalAsNumbers = additional.amount.map((amount) => parseFloat(amount));
-    const activeAdditionalAsBooleans = additional.active.map((value) => value === '1');
 
     const newAdditional = {
       id: additional.id || [],
@@ -105,8 +96,6 @@ menu.post('/menu', async (req, res) => {
       discount: discountAdditionalAsNumbers || [],
       surcharge: surchargeAdditionalAsNumbers || [],
       photo: additional.photo || [],
-      unitTypeId: unitTypeAdditionalAsNumbers || [],
-      active: activeAdditionalAsBooleans || [],
     };
     // eslint-disable-next-line no-unused-vars
     const [menuCreated, created] = await Menu.findOrCreate({

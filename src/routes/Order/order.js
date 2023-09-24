@@ -123,6 +123,7 @@ order.post('/new', async (req, res) => {
     const costAsNumbers = dishes.cost.map((amount) => parseFloat(amount));
     const promotionAsNumbers = dishes.promotion.map((amount) => parseFloat(amount));
     const discountAsNumbers = dishes.discount.map((amount) => parseFloat(amount));
+    const surchargeAsNumbers = dishes.discount.map((amount) => parseFloat(amount));
     const estimatedTimeAsNumbers = dishes.estimatedTime.map((amount) => parseFloat(amount));
     const additionalIdAsNumbers = dishes.estimatedTime.map((amount) => parseFloat(amount));
     const supplyIdAsNumbers = dishes.estimatedTime.map((amount) => parseFloat(amount));
@@ -140,6 +141,7 @@ order.post('/new', async (req, res) => {
       cost: costAsNumbers || [],
       promotion: promotionAsNumbers || [],
       discount: discountAsNumbers || [],
+      surcharge: surchargeAsNumbers || [],
       estimatedTime: estimatedTimeAsNumbers || [],
       additionalId: additionalIdAsNumbers || [],
       supplyId: supplyIdAsNumbers || [],
@@ -810,8 +812,32 @@ order.put('/updateMenu/:order/:id/:commerceId', async (req, res) => {
       commerceId: commerceIdParam,
       id,
     } = req.params;
-    const { menuId } = req.body;
-    const [rowsUpdated] = await Order.update({ menuId }, {
+    const { menu } = req.body;
+    const costMenuAsNumbers = menu.cost.map((amount) => parseFloat(amount));
+    const promotionMenuAsNumbers = menu.promotion.map((amount) => parseFloat(amount));
+    const discountMenuAsNumbers = menu.discount.map((amount) => parseFloat(amount));
+    const surchargeMenuAsNumbers = menu.surcharge.map((amount) => parseFloat(amount));
+    const menuTypeIdAsNumbers = menu.menuTypeId.map((amount) => parseFloat(amount));
+    const categoryAsNumbers = menu.categoryId.map((amount) => parseFloat(amount));
+    const amountAsNumbers = menu.amount.map((amount) => parseFloat(amount));
+
+    const newMenu = {
+      id: menu.id || [],
+      name: menu.name || [],
+      description: menu.description || [],
+      cost: costMenuAsNumbers || [],
+      promotion: promotionMenuAsNumbers || [],
+      discount: discountMenuAsNumbers || [],
+      surcharge: surchargeMenuAsNumbers || [],
+      menuTypeId: menuTypeIdAsNumbers || [],
+      categoryId: categoryAsNumbers || [],
+      dishes: menu.dishes || [],
+      product: menu.product || [],
+      additional: menu.additional || [],
+      amount: amountAsNumbers || [],
+    };
+
+    const [rowsUpdated] = await Order.update({ newMenu }, {
       where: { order: orderParam, commerceId: commerceIdParam, id },
     });
     if (rowsUpdated > 0) {
@@ -873,8 +899,124 @@ order.put('/updateDish/:order/:id/:commerceId', async (req, res) => {
       commerceId: commerceIdParam,
       id,
     } = req.params;
-    const { dishId } = req.body;
-    const [rowsUpdated] = await Order.update({ dishId }, {
+    const { dishes } = req.body;
+    const costAsNumbers = dishes.cost.map((amount) => parseFloat(amount));
+    const promotionAsNumbers = dishes.promotion.map((amount) => parseFloat(amount));
+    const discountAsNumbers = dishes.discount.map((amount) => parseFloat(amount));
+    const surchargeAsNumbers = dishes.discount.map((amount) => parseFloat(amount));
+    const estimatedTimeAsNumbers = dishes.estimatedTime.map((amount) => parseFloat(amount));
+    const additionalIdAsNumbers = dishes.estimatedTime.map((amount) => parseFloat(amount));
+    const supplyIdAsNumbers = dishes.estimatedTime.map((amount) => parseFloat(amount));
+    const recipeIdAsNumbers = dishes.estimatedTime.map((amount) => parseFloat(amount));
+    const dishTypeIdAsNumbers = dishes.estimatedTime.map((amount) => parseFloat(amount));
+    const amountAddInDishesAsNumbers = dishes.amountAdditional.map((amount) => parseFloat(amount));
+    const amountSuppInDishesAsNumbers = dishes.amountSupplies.map((amount) => parseFloat(amount));
+    const amountDishesAsNumbers = dishes.amount.map((amount) => parseFloat(amount));
+
+    const newDishes = {
+      id: dishes.id || [],
+      name: dishes.name || [],
+      description: dishes.description || [],
+      photo: dishes.photo || [],
+      cost: costAsNumbers || [],
+      promotion: promotionAsNumbers || [],
+      discount: discountAsNumbers || [],
+      surcharge: surchargeAsNumbers || [],
+      estimatedTime: estimatedTimeAsNumbers || [],
+      additionalId: additionalIdAsNumbers || [],
+      supplyId: supplyIdAsNumbers || [],
+      recipeId: recipeIdAsNumbers || [],
+      dishTypeId: dishTypeIdAsNumbers || [],
+      amountAdditional: amountAddInDishesAsNumbers || [],
+      amountSupplies: amountSuppInDishesAsNumbers || [],
+      amount: amountDishesAsNumbers || [],
+    };
+
+    const [rowsUpdated] = await Order.update({ newDishes }, {
+      where: { order: orderParam, commerceId: commerceIdParam, id },
+    });
+    if (rowsUpdated > 0) {
+      res.status(200).send(`Modified dish of order: ${orderParam}`);
+    } else {
+      res.status(404).send('Order not found');
+    }
+  } catch (error) {
+    res.status(400).send(error);
+  }
+});
+
+order.put('/updateAdditional/:order/:id/:commerceId', async (req, res) => {
+  try {
+    const {
+      order: orderParam,
+      commerceId: commerceIdParam,
+      id,
+    } = req.params;
+    const { additionals } = req.body;
+    const unitTypeAdditionalAsNumbers = additionals.unitTypeId.map((amount) => parseFloat(amount));
+    const costAdditionalAsNumbers = additionals.cost.map((amount) => parseFloat(amount));
+    const promotionAdditionalAsNumbers = additionals.promotion.map((amount) => parseFloat(amount));
+    const discountAdditionalAsNumbers = additionals.discount.map((amount) => parseFloat(amount));
+    const surchargeAdditionalAsNumbers = additionals.surcharge.map((amount) => parseFloat(amount));
+    const amountAdditionalAsNumbers = additionals.amount.map((amount) => parseFloat(amount));
+
+    const newAdditional = {
+      id: additionals.id || [],
+      name: additionals.name || [],
+      amount: amountAdditionalAsNumbers || [],
+      cost: costAdditionalAsNumbers || [],
+      promotion: promotionAdditionalAsNumbers || [],
+      discount: discountAdditionalAsNumbers || [],
+      surcharge: surchargeAdditionalAsNumbers || [],
+      unitTypeId: unitTypeAdditionalAsNumbers || [],
+    };
+
+    const [rowsUpdated] = await Order.update({ newAdditional }, {
+      where: { order: orderParam, commerceId: commerceIdParam, id },
+    });
+    if (rowsUpdated > 0) {
+      res.status(200).send(`Modified dish of order: ${orderParam}`);
+    } else {
+      res.status(404).send('Order not found');
+    }
+  } catch (error) {
+    res.status(400).send(error);
+  }
+});
+
+order.put('/updateProduct/:order/:id/:commerceId', async (req, res) => {
+  try {
+    const {
+      order: orderParam,
+      commerceId: commerceIdParam,
+      id,
+    } = req.params;
+    const { products } = req.body;
+    const costProductAsNumbers = products.cost.map((amount) => parseFloat(amount));
+    const unitTypeProductAsNumbers = products.unitTypeId.map((amount) => parseFloat(amount));
+    const productTypeAsNumbers = products.productTypeId.map((amount) => parseFloat(amount));
+    const supplierIdAsNumbers = products.supplierId.map((amount) => parseFloat(amount));
+    const promotionProductAsNumbers = products.promotion.map((amount) => parseFloat(amount));
+    const discountProductAsNumbers = products.discount.map((amount) => parseFloat(amount));
+    const surchargeProductAsNumbers = products.surcharge.map((amount) => parseFloat(amount));
+    const amountProductAsNumbers = products.amount.map((amount) => parseFloat(amount));
+
+    const newProduct = {
+      id: products.id || [],
+      name: products.name || [],
+      cost: costProductAsNumbers || [],
+      unitTypeId: unitTypeProductAsNumbers || [],
+      productTypeId: productTypeAsNumbers || [],
+      supplierId: supplierIdAsNumbers || [],
+      promotion: promotionProductAsNumbers || [],
+      discount: discountProductAsNumbers || [],
+      surcharge: surchargeProductAsNumbers || [],
+      amount: amountProductAsNumbers || [],
+      allergenType: products.allergenType || [],
+      careful: products.careful || [],
+    };
+
+    const [rowsUpdated] = await Order.update({ newProduct }, {
       where: { order: orderParam, commerceId: commerceIdParam, id },
     });
     if (rowsUpdated > 0) {
