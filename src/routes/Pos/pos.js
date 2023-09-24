@@ -2,7 +2,7 @@ const pointOfSale = require('express').Router();
 const express = require('express');
 const cors = require('cors');
 const {
-  Pos, PosType, Commerce, Sector,
+  Pos, PosType, Commerce, Sector, TableService,
 } = require('../../db');
 
 pointOfSale.use(express.json());
@@ -16,7 +16,8 @@ pointOfSale.use(
 pointOfSale.post('/pos', async (req, res) => {
   try {
     const {
-      qrCode, posTypeId, discount, surcharge, capacity, detail, sectorId,
+      qrCode, posTypeId, discount, surcharge, promotion,
+      capacity, detail, sectorId, name, tableServiceId,
     } = req.body;
     // eslint-disable-next-line no-unused-vars
     const [posCreated, created] = await Pos.findOrCreate({
@@ -32,6 +33,9 @@ pointOfSale.post('/pos', async (req, res) => {
         capacity,
         detail,
         sectorId,
+        promotion,
+        name,
+        tableServiceId,
       },
     });
     if (created) {
@@ -62,7 +66,7 @@ pointOfSale.get('/all/:commerceId', async (req, res) => {
           include: [
             {
               model: Pos,
-              attributes: ['id', 'name', 'qrCode', 'posTypeId', 'discount', 'surcharge', 'capacity', 'detail', 'active'],
+              attributes: ['id', 'name', 'qrCode', 'posTypeId', 'discount', 'surcharge', 'promotion', 'capacity', 'detail', 'active'],
               include: [
                 {
                   model: PosType,
@@ -71,6 +75,10 @@ pointOfSale.get('/all/:commerceId', async (req, res) => {
               ],
             },
           ],
+        },
+        {
+          model: TableService,
+          attributes: ['id', 'type', 'detail', 'active', 'cost', 'promotion', 'discount', 'surcharge'],
         },
       ],
     });
@@ -106,13 +114,21 @@ pointOfSale.get('/all_active/:commerceId', async (req, res) => {
               where: {
                 active: true,
               },
-              attributes: ['id', 'name', 'qrCode', 'posTypeId', 'discount', 'surcharge', 'capacity', 'detail', 'active'],
+              attributes: ['id', 'name', 'qrCode', 'posTypeId', 'discount', 'surcharge', 'promotion', 'capacity', 'detail', 'active'],
               include: [
                 {
                   model: PosType,
                   attributes: ['id', 'type', 'detail', 'active'],
                 },
+                {
+                  model: TableService,
+                  attributes: ['id', 'type', 'detail', 'active', 'cost', 'promotion', 'discount', 'surcharge'],
+                },
               ],
+            },
+            {
+              model: TableService,
+              attributes: ['id', 'type', 'detail', 'active', 'cost', 'promotion', 'discount', 'surcharge'],
             },
           ],
         },
@@ -150,13 +166,21 @@ pointOfSale.get('/all_inactive/:commerceId', async (req, res) => {
               where: {
                 active: false,
               },
-              attributes: ['id', 'name', 'qrCode', 'posTypeId', 'discount', 'surcharge', 'capacity', 'detail', 'active'],
+              attributes: ['id', 'name', 'qrCode', 'posTypeId', 'discount', 'surcharge', 'promotion', 'capacity', 'detail', 'active'],
               include: [
                 {
                   model: PosType,
                   attributes: ['id', 'type', 'detail', 'active'],
                 },
+                {
+                  model: TableService,
+                  attributes: ['id', 'type', 'detail', 'active', 'cost', 'promotion', 'discount', 'surcharge'],
+                },
               ],
+            },
+            {
+              model: TableService,
+              attributes: ['id', 'type', 'detail', 'active', 'cost', 'promotion', 'discount', 'surcharge'],
             },
           ],
         },
@@ -179,7 +203,7 @@ pointOfSale.get('/detail/:id', async (req, res) => {
     if (id && Number.isInteger(parseInt(id, 10))) {
       const point = await Pos.findAll({
         where: { id: parseInt(id, 10) },
-        attributes: ['id', 'name', 'qrCode', 'posTypeId', 'discount', 'surcharge', 'capacity', 'detail', 'active'],
+        attributes: ['id', 'name', 'qrCode', 'posTypeId', 'discount', 'surcharge', 'promotion', 'capacity', 'detail', 'active'],
       });
       if (point.length > 0) {
         res.status(201).json(point);
@@ -198,7 +222,8 @@ pointOfSale.put('/update/:id', async (req, res) => {
   try {
     const { id } = req.params;
     const {
-      qrCode, posTypeId, discount, surcharge, capacity, detail, sectorId,
+      qrCode, posTypeId, discount, surcharge, promotion,
+      capacity, detail, sectorId, name, tableServiceId,
     } = req.body;
     const posFinded = await Pos.findOne({
       where: { id },
@@ -212,6 +237,9 @@ pointOfSale.put('/update/:id', async (req, res) => {
         capacity,
         detail,
         sectorId,
+        promotion,
+        name,
+        tableServiceId,
       });
       res.status(200).send('The data was modified successfully');
     } else {
