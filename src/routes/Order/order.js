@@ -524,117 +524,31 @@ order.get('/detail/:order', async (req, res) => {
     const orderParam = req.params.order;
     const ord = await Order.findAll({
       where: { order: orderParam },
-      attributes: ['id', 'order', 'name', 'date', 'hour', 'status', 'detail', 'validity', 'promotion', 'discount', 'surcharge', 'rating', 'feedback', 'paid', 'costDelivery'],
+      attributes: [
+        'id', 'order', 'date', 'hour', 'status', 'detail', 'promotion',
+        'discount', 'surcharge', 'costDelivery', 'paid', 'name',
+        'additionals', 'products', 'dishes', 'menu',
+      ],
       include: [
         {
-          model: Menu,
-          attributes: ['id', 'date', 'name', 'description', 'status', 'cost', 'promotion', 'discount', 'surcharge', 'validity', 'photo', 'dishes', 'active'],
-          include: [
-            {
-              model: MenuType,
-              attributes: ['id', 'type', 'detail', 'active'],
-            },
-            {
-              model: TableService,
-              attributes: ['id', 'type', 'detail', 'cost', 'promotion', 'discount', 'validity', 'active'],
-            },
-            {
-              model: Category,
-              attributes: ['id', 'category', 'detail', 'active'],
-            },
-          ],
-        },
-        {
-          model: Commerce,
-          attributes: ['id', 'name', 'neighborhood', 'address', 'workSchedule', 'email', 'phono', 'active', 'franchiseId', 'commercialPlanId', 'businessId', 'open', 'start'],
-          include: [
-            {
-              model: CommerceFact,
-              attributes: ['id', 'type', 'detail', 'active'],
-            },
-            {
-              model: Bank,
-              attributes: ['id', 'account', 'number', 'detail', 'active'],
-            },
-            {
-              model: Franchise,
-              attributes: ['id', 'name', 'detail', 'active'],
-            },
-          ],
-        },
-        {
           model: Pos,
-          attributes: ['id', 'qrCode', 'active', 'discount', 'surcharge'],
-          include: [
-            {
-              model: PosType,
-              attributes: ['id', 'type', 'detail', 'active'],
-            },
-          ],
+          attributes: ['id', 'name'],
         },
         {
           model: Employee,
-          attributes: ['id', 'firstName', 'lastName', 'document', 'photo', 'active'],
-          include: [
-            {
-              model: EmployeeType,
-              attributes: ['id', 'type', 'detail', 'active'],
-            },
-          ],
-        },
-        {
-          model: Dish,
-          attributes: ['id', 'name', 'description', 'photo', 'cost', 'promotion', 'discount', 'estimatedTime', 'date', 'active'],
-          include: [
-            {
-              model: Additional,
-              attributes: ['id', 'name', 'amount', 'cost', 'promotion', 'discount', 'photo', 'active'],
-            },
-            {
-              model: Recipe,
-              attributes: ['id', 'name', 'amount', 'date', 'active', 'ingredients', 'supplies'],
-              include: [
-                {
-                  model: UnitType,
-                  attributes: ['id', 'unit', 'detail', 'active'],
-                },
-              ],
-            },
-          ],
-        },
-        {
-          model: Account,
-          attributes: ['id', 'name', 'phone', 'address', 'birthDate', 'status', 'email', 'validatedEmail', 'googleUser', 'facebookUser', 'twitterUser', 'cp'],
-        },
-        {
-          model: Payment,
-          attributes: ['id', 'type', 'detail', 'active'],
+          attributes: ['id', 'firstName', 'lastName', 'photo'],
         },
         {
           model: Delivery,
-          attributes: ['id', 'name', 'detail', 'company', 'account', 'start', 'promotion', 'discount', 'surcharge', 'fee', 'logo', 'active'],
+          attributes: ['id', 'name', 'company', 'logo'],
         },
         {
           model: Courier,
-          attributes: ['id', 'firstName', 'lastName', 'document', 'address', 'cp', 'bank', 'account', 'detail', 'start', 'promotion', 'discount', 'surcharge', 'fee', 'active'],
-          include: [
-            {
-              model: CourierType,
-              attributes: ['id', 'type'],
-            },
-          ],
-        },
-        {
-          model: Additional,
-          attributes: ['id', 'name', 'amount', 'cost', 'promotion', 'discount', 'photo', 'active'],
+          attributes: ['id', 'firstName', 'lastName'],
         },
         {
           model: Sector,
-          attributes: ['id', 'name', 'discount', 'surcharge', 'capacity', 'qrCode', 'detail', 'commerceId', 'active'],
-        },
-        {
-          model: Product,
-          attributes: ['id', 'name', 'photo', 'stock', 'pointOrder', 'cost', 'allergenType', 'careful', 'active', 'commerceId'],
+          attributes: ['id', 'name'],
         },
       ],
     });
@@ -660,117 +574,31 @@ order.get('/dates/:commerceId', async (req, res) => {
           commerceId: parseInt(commerceIdParam, 10),
         },
       },
-      attributes: ['id', 'order', 'name', 'date', 'hour', 'status', 'detail', 'validity', 'promotion', 'discount', 'surcharge', 'rating', 'feedback', 'paid', 'costDelivery'],
+      attributes: [
+        'id', 'order', 'date', 'hour', 'status', 'detail', 'promotion',
+        'discount', 'surcharge', 'costDelivery', 'paid', 'name',
+        'additionals', 'products', 'dishes', 'menu',
+      ],
       include: [
         {
-          model: Menu,
-          attributes: ['id', 'date', 'name', 'description', 'status', 'cost', 'promotion', 'discount', 'surcharge', 'validity', 'photo', 'dishes', 'active'],
-          include: [
-            {
-              model: MenuType,
-              attributes: ['id', 'type', 'detail', 'active'],
-            },
-            {
-              model: TableService,
-              attributes: ['id', 'type', 'detail', 'cost', 'promotion', 'discount', 'validity', 'active'],
-            },
-            {
-              model: Category,
-              attributes: ['id', 'category', 'detail', 'active'],
-            },
-          ],
-        },
-        {
-          model: Commerce,
-          attributes: ['id', 'name', 'neighborhood', 'address', 'workSchedule', 'email', 'phono', 'active', 'franchiseId', 'commercialPlanId', 'businessId', 'open', 'start'],
-          include: [
-            {
-              model: CommerceFact,
-              attributes: ['id', 'type', 'detail', 'active'],
-            },
-            {
-              model: Bank,
-              attributes: ['id', 'account', 'number', 'detail', 'active'],
-            },
-            {
-              model: Franchise,
-              attributes: ['id', 'name', 'detail', 'active'],
-            },
-          ],
-        },
-        {
           model: Pos,
-          attributes: ['id', 'qrCode', 'active', 'discount', 'surcharge'],
-          include: [
-            {
-              model: PosType,
-              attributes: ['id', 'type', 'detail', 'active'],
-            },
-          ],
+          attributes: ['id', 'name'],
         },
         {
           model: Employee,
-          attributes: ['id', 'firstName', 'lastName', 'document', 'photo', 'active'],
-          include: [
-            {
-              model: EmployeeType,
-              attributes: ['id', 'type', 'detail', 'active'],
-            },
-          ],
-        },
-        {
-          model: Dish,
-          attributes: ['id', 'name', 'description', 'photo', 'cost', 'promotion', 'discount', 'estimatedTime', 'date', 'active'],
-          include: [
-            {
-              model: Additional,
-              attributes: ['id', 'name', 'amount', 'cost', 'promotion', 'discount', 'photo', 'active'],
-            },
-            {
-              model: Recipe,
-              attributes: ['id', 'name', 'amount', 'date', 'active', 'ingredients', 'supplies'],
-              include: [
-                {
-                  model: UnitType,
-                  attributes: ['id', 'unit', 'detail', 'active'],
-                },
-              ],
-            },
-          ],
-        },
-        {
-          model: Account,
-          attributes: ['id', 'name', 'phone', 'address', 'birthDate', 'status', 'email', 'validatedEmail', 'googleUser', 'facebookUser', 'twitterUser', 'cp'],
-        },
-        {
-          model: Payment,
-          attributes: ['id', 'type', 'detail', 'active'],
+          attributes: ['id', 'firstName', 'lastName', 'photo'],
         },
         {
           model: Delivery,
-          attributes: ['id', 'name', 'detail', 'company', 'account', 'start', 'promotion', 'discount', 'surcharge', 'fee', 'logo', 'active'],
+          attributes: ['id', 'name', 'company', 'logo'],
         },
         {
           model: Courier,
-          attributes: ['id', 'firstName', 'lastName', 'document', 'address', 'cp', 'bank', 'account', 'detail', 'start', 'promotion', 'discount', 'surcharge', 'fee', 'active'],
-          include: [
-            {
-              model: CourierType,
-              attributes: ['id', 'type'],
-            },
-          ],
-        },
-        {
-          model: Additional,
-          attributes: ['id', 'name', 'amount', 'cost', 'promotion', 'discount', 'photo', 'active'],
+          attributes: ['id', 'firstName', 'lastName'],
         },
         {
           model: Sector,
-          attributes: ['id', 'name', 'discount', 'surcharge', 'capacity', 'qrCode', 'detail', 'commerceId', 'active'],
-        },
-        {
-          model: Product,
-          attributes: ['id', 'name', 'photo', 'stock', 'pointOrder', 'cost', 'allergenType', 'careful', 'active', 'commerceId'],
+          attributes: ['id', 'name'],
         },
       ],
     });
@@ -796,117 +624,31 @@ order.get('/status/:commerceId', async (req, res) => {
         status,
         commerceId: parseInt(commerceId, 10),
       },
-      attributes: ['id', 'order', 'name', 'date', 'hour', 'status', 'detail', 'validity', 'promotion', 'discount', 'surcharge', 'rating', 'feedback', 'paid', 'costDelivery'],
+      attributes: [
+        'id', 'order', 'date', 'hour', 'status', 'detail', 'promotion',
+        'discount', 'surcharge', 'costDelivery', 'paid', 'name',
+        'additionals', 'products', 'dishes', 'menu',
+      ],
       include: [
         {
-          model: Menu,
-          attributes: ['id', 'date', 'name', 'description', 'status', 'cost', 'promotion', 'discount', 'surcharge', 'validity', 'photo', 'dishes', 'active'],
-          include: [
-            {
-              model: MenuType,
-              attributes: ['id', 'type', 'detail', 'active'],
-            },
-            {
-              model: TableService,
-              attributes: ['id', 'type', 'detail', 'cost', 'promotion', 'discount', 'validity', 'active'],
-            },
-            {
-              model: Category,
-              attributes: ['id', 'category', 'detail', 'active'],
-            },
-          ],
-        },
-        {
-          model: Commerce,
-          attributes: ['id', 'name', 'neighborhood', 'address', 'workSchedule', 'email', 'phono', 'active', 'franchiseId', 'commercialPlanId', 'businessId', 'open', 'start'],
-          include: [
-            {
-              model: CommerceFact,
-              attributes: ['id', 'type', 'detail', 'active'],
-            },
-            {
-              model: Bank,
-              attributes: ['id', 'account', 'number', 'detail', 'active'],
-            },
-            {
-              model: Franchise,
-              attributes: ['id', 'name', 'detail', 'active'],
-            },
-          ],
-        },
-        {
           model: Pos,
-          attributes: ['id', 'qrCode', 'active', 'discount', 'surcharge'],
-          include: [
-            {
-              model: PosType,
-              attributes: ['id', 'type', 'detail', 'active'],
-            },
-          ],
+          attributes: ['id', 'name'],
         },
         {
           model: Employee,
-          attributes: ['id', 'firstName', 'lastName', 'document', 'photo', 'active'],
-          include: [
-            {
-              model: EmployeeType,
-              attributes: ['id', 'type', 'detail', 'active'],
-            },
-          ],
-        },
-        {
-          model: Dish,
-          attributes: ['id', 'name', 'description', 'photo', 'cost', 'promotion', 'discount', 'estimatedTime', 'date', 'active'],
-          include: [
-            {
-              model: Additional,
-              attributes: ['id', 'name', 'amount', 'cost', 'promotion', 'discount', 'photo', 'active'],
-            },
-            {
-              model: Recipe,
-              attributes: ['id', 'name', 'amount', 'date', 'active', 'ingredients', 'supplies'],
-              include: [
-                {
-                  model: UnitType,
-                  attributes: ['id', 'unit', 'detail', 'active'],
-                },
-              ],
-            },
-          ],
-        },
-        {
-          model: Account,
-          attributes: ['id', 'name', 'phone', 'address', 'birthDate', 'status', 'email', 'validatedEmail', 'googleUser', 'facebookUser', 'twitterUser', 'cp'],
-        },
-        {
-          model: Payment,
-          attributes: ['id', 'type', 'detail', 'active'],
+          attributes: ['id', 'firstName', 'lastName', 'photo'],
         },
         {
           model: Delivery,
-          attributes: ['id', 'name', 'detail', 'company', 'account', 'start', 'promotion', 'discount', 'surcharge', 'fee', 'logo', 'active'],
+          attributes: ['id', 'name', 'company', 'logo'],
         },
         {
           model: Courier,
-          attributes: ['id', 'firstName', 'lastName', 'document', 'address', 'cp', 'bank', 'account', 'detail', 'start', 'promotion', 'discount', 'surcharge', 'fee', 'active'],
-          include: [
-            {
-              model: CourierType,
-              attributes: ['id', 'type'],
-            },
-          ],
-        },
-        {
-          model: Additional,
-          attributes: ['id', 'name', 'amount', 'cost', 'promotion', 'discount', 'photo', 'active'],
+          attributes: ['id', 'firstName', 'lastName'],
         },
         {
           model: Sector,
-          attributes: ['id', 'name', 'discount', 'surcharge', 'capacity', 'qrCode', 'detail', 'commerceId', 'active'],
-        },
-        {
-          model: Product,
-          attributes: ['id', 'name', 'photo', 'stock', 'pointOrder', 'cost', 'allergenType', 'careful', 'active', 'commerceId'],
+          attributes: ['id', 'name'],
         },
       ],
     });
@@ -1247,117 +989,31 @@ order.get('/paidOrderes/:commerceId', async (req, res) => {
         },
         commerceId: parseInt(commerceIdParam, 10),
       },
-      attributes: ['id', 'order', 'name', 'date', 'hour', 'status', 'detail', 'validity', 'promotion', 'discount', 'surcharge', 'rating', 'feedback', 'paid', 'costDelivery'],
+      attributes: [
+        'id', 'order', 'date', 'hour', 'status', 'detail', 'promotion',
+        'discount', 'surcharge', 'costDelivery', 'paid', 'name',
+        'additionals', 'products', 'dishes', 'menu',
+      ],
       include: [
         {
-          model: Menu,
-          attributes: ['id', 'date', 'name', 'description', 'status', 'cost', 'promotion', 'discount', 'validity', 'surcharge', 'photo', 'dishes', 'active'],
-          include: [
-            {
-              model: MenuType,
-              attributes: ['id', 'type', 'detail', 'active'],
-            },
-            {
-              model: TableService,
-              attributes: ['id', 'type', 'detail', 'cost', 'promotion', 'discount', 'validity', 'active'],
-            },
-            {
-              model: Category,
-              attributes: ['id', 'category', 'detail', 'active'],
-            },
-          ],
-        },
-        {
-          model: Commerce,
-          attributes: ['id', 'name', 'neighborhood', 'address', 'workSchedule', 'email', 'phono', 'active', 'franchiseId', 'commercialPlanId', 'businessId', 'open', 'start'],
-          include: [
-            {
-              model: CommerceFact,
-              attributes: ['id', 'type', 'detail', 'active'],
-            },
-            {
-              model: Bank,
-              attributes: ['id', 'account', 'number', 'detail', 'active'],
-            },
-            {
-              model: Franchise,
-              attributes: ['id', 'name', 'detail', 'active'],
-            },
-          ],
-        },
-        {
           model: Pos,
-          attributes: ['id', 'qrCode', 'active', 'discount', 'surcharge'],
-          include: [
-            {
-              model: PosType,
-              attributes: ['id', 'type', 'detail', 'active'],
-            },
-          ],
+          attributes: ['id', 'name'],
         },
         {
           model: Employee,
-          attributes: ['id', 'firstName', 'lastName', 'document', 'photo', 'active'],
-          include: [
-            {
-              model: EmployeeType,
-              attributes: ['id', 'type', 'detail', 'active'],
-            },
-          ],
-        },
-        {
-          model: Dish,
-          attributes: ['id', 'name', 'description', 'photo', 'cost', 'promotion', 'discount', 'estimatedTime', 'date', 'active'],
-          include: [
-            {
-              model: Additional,
-              attributes: ['id', 'name', 'amount', 'cost', 'promotion', 'discount', 'photo', 'active'],
-            },
-            {
-              model: Recipe,
-              attributes: ['id', 'name', 'amount', 'date', 'active', 'ingredients', 'supplies'],
-              include: [
-                {
-                  model: UnitType,
-                  attributes: ['id', 'unit', 'detail', 'active'],
-                },
-              ],
-            },
-          ],
-        },
-        {
-          model: Account,
-          attributes: ['id', 'name', 'phone', 'address', 'birthDate', 'status', 'email', 'validatedEmail', 'googleUser', 'facebookUser', 'twitterUser', 'cp'],
-        },
-        {
-          model: Payment,
-          attributes: ['id', 'type', 'detail', 'active'],
+          attributes: ['id', 'firstName', 'lastName', 'photo'],
         },
         {
           model: Delivery,
-          attributes: ['id', 'name', 'detail', 'company', 'account', 'start', 'promotion', 'discount', 'surcharge', 'fee', 'logo', 'active'],
+          attributes: ['id', 'name', 'company', 'logo'],
         },
         {
           model: Courier,
-          attributes: ['id', 'firstName', 'lastName', 'document', 'address', 'cp', 'bank', 'account', 'detail', 'start', 'promotion', 'discount', 'surcharge', 'fee', 'active'],
-          include: [
-            {
-              model: CourierType,
-              attributes: ['id', 'type'],
-            },
-          ],
-        },
-        {
-          model: Additional,
-          attributes: ['id', 'name', 'amount', 'cost', 'promotion', 'discount', 'photo', 'active'],
+          attributes: ['id', 'firstName', 'lastName'],
         },
         {
           model: Sector,
-          attributes: ['id', 'name', 'discount', 'surcharge', 'capacity', 'qrCode', 'detail', 'commerceId', 'active'],
-        },
-        {
-          model: Product,
-          attributes: ['id', 'name', 'photo', 'stock', 'pointOrder', 'cost', 'allergenType', 'careful', 'active', 'commerceId'],
+          attributes: ['id', 'name'],
         },
       ],
     });
