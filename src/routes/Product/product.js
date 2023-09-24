@@ -30,6 +30,10 @@ product.post('/product', async (req, res) => {
       productTypeId,
       supplierId,
       commerceId,
+      promotion,
+      discount,
+      surcharge,
+      amount,
     } = req.body;
     // eslint-disable-next-line no-unused-vars
     const [productCreated, created] = await Product.findOrCreate({
@@ -49,6 +53,10 @@ product.post('/product', async (req, res) => {
         supplierId,
         unitTypeId,
         commerceId,
+        promotion,
+        discount,
+        surcharge,
+        amount,
       },
     });
     if (created) {
@@ -71,7 +79,7 @@ product.get('/all/:commerceId', async (req, res) => {
       where: {
         commerceId: parseInt(commerceId, 10),
       },
-      attributes: ['id', 'name', 'photo', 'stock', 'pointOrder', 'cost', 'allergenType', 'careful', 'active', 'commerceId'],
+      attributes: ['id', 'name', 'photo', 'stock', 'pointOrder', 'cost', 'allergenType', 'careful', 'active', 'commerceId', 'promotion', 'discount', 'surcharge', 'amount'],
       include: [
         {
           model: ProductType,
@@ -109,7 +117,7 @@ product.get('/all_active/:commerceId', async (req, res) => {
         commerceId: parseInt(commerceId, 10),
         active: true,
       },
-      attributes: ['id', 'name', 'photo', 'stock', 'pointOrder', 'cost', 'allergenType', 'careful', 'active', 'commerceId'],
+      attributes: ['id', 'name', 'photo', 'stock', 'pointOrder', 'cost', 'allergenType', 'careful', 'active', 'commerceId', 'promotion', 'discount', 'surcharge', 'amount'],
       include: [
         {
           model: ProductType,
@@ -142,7 +150,7 @@ product.get('/detail/:id', async (req, res) => {
     if (id && Number.isInteger(parseInt(id, 10))) {
       const prod = await Product.findAll({
         where: { id: parseInt(id, 10) },
-        attributes: ['id', 'name', 'photo', 'stock', 'pointOrder', 'cost', 'allergenType', 'careful', 'active', 'commerceId'],
+        attributes: ['id', 'name', 'photo', 'stock', 'pointOrder', 'cost', 'allergenType', 'careful', 'active', 'commerceId', 'promotion', 'discount', 'surcharge', 'amount'],
         include: [
           {
             model: ProductType,
@@ -185,6 +193,10 @@ product.put('/update/:id', async (req, res) => {
       unitTypeId,
       productTypeId,
       supplierId,
+      promotion,
+      discount,
+      surcharge,
+      amount,
     } = req.body;
     const productFinded = await Product.findOne({
       where: { id: parseInt(id, 10) },
@@ -201,6 +213,10 @@ product.put('/update/:id', async (req, res) => {
         productTypeId,
         supplierId,
         unitTypeId,
+        promotion,
+        discount,
+        surcharge,
+        amount,
       });
       res.status(200).send('The data was modified successfully');
     } else {
