@@ -237,7 +237,7 @@ order.post('/new', async (req, res) => {
   }
 });
 
-order.get('/orderes2/:commerceId', async (req, res) => {
+order.get('/orderes/:commerceId', async (req, res) => {
   try {
     const { commerceId } = req.params;
     if (!commerceId && !Number.isInteger(parseInt(commerceId, 10))) {
@@ -255,7 +255,7 @@ order.get('/orderes2/:commerceId', async (req, res) => {
       include: [
         {
           model: Pos,
-          attributes: ['id', 'name'],
+          attributes: ['id', 'name', 'promotion', 'discount', 'surcharge'],
         },
         {
           model: Employee,
@@ -263,15 +263,15 @@ order.get('/orderes2/:commerceId', async (req, res) => {
         },
         {
           model: Delivery,
-          attributes: ['id', 'name', 'company', 'logo'],
+          attributes: ['id', 'name', 'company', 'logo', 'promotion', 'discount', 'surcharge', 'fee'],
         },
         {
           model: Courier,
-          attributes: ['id', 'firstName', 'lastName'],
+          attributes: ['id', 'firstName', 'lastName', 'promotion', 'discount', 'surcharge', 'fee'],
         },
         {
           model: Sector,
-          attributes: ['id', 'name'],
+          attributes: ['id', 'name', 'promotion', 'discount', 'surcharge'],
         },
       ],
     });
@@ -383,7 +383,7 @@ order.post('/order', async (req, res) => {
   }
 });
 
-order.get('/orderes/:commerceId', async (req, res) => {
+order.get('/orderes2/:commerceId', async (req, res) => {
   try {
     const { commerceId } = req.params;
     if (!commerceId && !Number.isInteger(parseInt(commerceId, 10))) {
@@ -532,7 +532,7 @@ order.get('/detail/:order', async (req, res) => {
       include: [
         {
           model: Pos,
-          attributes: ['id', 'name'],
+          attributes: ['id', 'name', 'promotion', 'discount', 'surcharge'],
         },
         {
           model: Employee,
@@ -540,15 +540,15 @@ order.get('/detail/:order', async (req, res) => {
         },
         {
           model: Delivery,
-          attributes: ['id', 'name', 'company', 'logo'],
+          attributes: ['id', 'name', 'company', 'logo', 'promotion', 'discount', 'surcharge', 'fee'],
         },
         {
           model: Courier,
-          attributes: ['id', 'firstName', 'lastName'],
+          attributes: ['id', 'firstName', 'lastName', 'promotion', 'discount', 'surcharge', 'fee'],
         },
         {
           model: Sector,
-          attributes: ['id', 'name'],
+          attributes: ['id', 'name', 'promotion', 'discount', 'surcharge'],
         },
       ],
     });
@@ -582,7 +582,7 @@ order.get('/dates/:commerceId', async (req, res) => {
       include: [
         {
           model: Pos,
-          attributes: ['id', 'name'],
+          attributes: ['id', 'name', 'promotion', 'discount', 'surcharge'],
         },
         {
           model: Employee,
@@ -590,15 +590,15 @@ order.get('/dates/:commerceId', async (req, res) => {
         },
         {
           model: Delivery,
-          attributes: ['id', 'name', 'company', 'logo'],
+          attributes: ['id', 'name', 'company', 'logo', 'promotion', 'discount', 'surcharge', 'fee'],
         },
         {
           model: Courier,
-          attributes: ['id', 'firstName', 'lastName'],
+          attributes: ['id', 'firstName', 'lastName', 'promotion', 'discount', 'surcharge', 'fee'],
         },
         {
           model: Sector,
-          attributes: ['id', 'name'],
+          attributes: ['id', 'name', 'promotion', 'discount', 'surcharge'],
         },
       ],
     });
@@ -632,7 +632,7 @@ order.get('/status/:commerceId', async (req, res) => {
       include: [
         {
           model: Pos,
-          attributes: ['id', 'name'],
+          attributes: ['id', 'name', 'promotion', 'discount', 'surcharge'],
         },
         {
           model: Employee,
@@ -640,15 +640,15 @@ order.get('/status/:commerceId', async (req, res) => {
         },
         {
           model: Delivery,
-          attributes: ['id', 'name', 'company', 'logo'],
+          attributes: ['id', 'name', 'company', 'logo', 'promotion', 'discount', 'surcharge', 'fee'],
         },
         {
           model: Courier,
-          attributes: ['id', 'firstName', 'lastName'],
+          attributes: ['id', 'firstName', 'lastName', 'promotion', 'discount', 'surcharge', 'fee'],
         },
         {
           model: Sector,
-          attributes: ['id', 'name'],
+          attributes: ['id', 'name', 'promotion', 'discount', 'surcharge'],
         },
       ],
     });
@@ -997,7 +997,7 @@ order.get('/paidOrderes/:commerceId', async (req, res) => {
       include: [
         {
           model: Pos,
-          attributes: ['id', 'name'],
+          attributes: ['id', 'name', 'promotion', 'discount', 'surcharge'],
         },
         {
           model: Employee,
@@ -1005,15 +1005,15 @@ order.get('/paidOrderes/:commerceId', async (req, res) => {
         },
         {
           model: Delivery,
-          attributes: ['id', 'name', 'company', 'logo'],
+          attributes: ['id', 'name', 'company', 'logo', 'promotion', 'discount', 'surcharge', 'fee'],
         },
         {
           model: Courier,
-          attributes: ['id', 'firstName', 'lastName'],
+          attributes: ['id', 'firstName', 'lastName', 'promotion', 'discount', 'surcharge', 'fee'],
         },
         {
           model: Sector,
-          attributes: ['id', 'name'],
+          attributes: ['id', 'name', 'promotion', 'discount', 'surcharge'],
         },
       ],
     });
