@@ -25,6 +25,266 @@ order.use(
   }),
 );
 
+function sendNewOrder(to, name, ordeR) {
+  const filePath = path.join(__dirname, '../../controllers/nodemailer/Order/order.html');
+  fs.readFile(filePath, 'utf8', (err, data) => {
+    if (err) {
+      // eslint-disable-next-line no-console
+      console.error('Error al leer el archivo HTML', err);
+      return;
+    }
+    const htmlContent = data.replace('{name}', name).replace('{ordeR}', ordeR);
+    const info = {
+      from: 'imenunotice@gmail.com',
+      to,
+      subject: 'iMenu - Pedido en marcha! 🍔',
+      text: 'Pedido en marcha! 🍔',
+      html: htmlContent,
+    };
+    sendToEmail(info);
+  });
+}
+
+order.post('/new', async (req, res) => {
+  try {
+    const {
+      name,
+      date,
+      hour,
+      detail,
+      validity,
+      promotion,
+      discount,
+      surcharge,
+      poId,
+      employeeId,
+      accountId,
+      paymentId,
+      paid,
+      commerceId,
+      deliveryId,
+      costDelivery,
+      courierId,
+      sectorId,
+      additionals,
+      products,
+      dishes,
+      menu,
+      accountemail,
+      accountname,
+      accountphone,
+      accountbirthDate,
+      accountaddress,
+      googleemail,
+    } = req.body;
+
+    const costProductAsNumbers = products.cost.map((amount) => parseFloat(amount));
+    const unitTypeProductAsNumbers = products.unitTypeId.map((amount) => parseFloat(amount));
+    const productTypeAsNumbers = products.productTypeId.map((amount) => parseFloat(amount));
+    const supplierIdAsNumbers = products.supplierId.map((amount) => parseFloat(amount));
+    const promotionProductAsNumbers = products.promotion.map((amount) => parseFloat(amount));
+    const discountProductAsNumbers = products.discount.map((amount) => parseFloat(amount));
+    const surchargeProductAsNumbers = products.surcharge.map((amount) => parseFloat(amount));
+    const amountProductAsNumbers = products.amount.map((amount) => parseFloat(amount));
+
+    const newProduct = {
+      id: products.id || [],
+      name: products.name || [],
+      cost: costProductAsNumbers || [],
+      unitTypeId: unitTypeProductAsNumbers || [],
+      productTypeId: productTypeAsNumbers || [],
+      supplierId: supplierIdAsNumbers || [],
+      promotion: promotionProductAsNumbers || [],
+      discount: discountProductAsNumbers || [],
+      surcharge: surchargeProductAsNumbers || [],
+      amount: amountProductAsNumbers || [],
+      allergenType: products.allergenType || [],
+      careful: products.careful || [],
+    };
+
+    const unitTypeAdditionalAsNumbers = additionals.unitTypeId.map((amount) => parseFloat(amount));
+    const costAdditionalAsNumbers = additionals.cost.map((amount) => parseFloat(amount));
+    const promotionAdditionalAsNumbers = additionals.promotion.map((amount) => parseFloat(amount));
+    const discountAdditionalAsNumbers = additionals.discount.map((amount) => parseFloat(amount));
+    const surchargeAdditionalAsNumbers = additionals.surcharge.map((amount) => parseFloat(amount));
+    const amountAdditionalAsNumbers = additionals.amount.map((amount) => parseFloat(amount));
+
+    const newAdditional = {
+      id: additionals.id || [],
+      name: additionals.name || [],
+      amount: amountAdditionalAsNumbers || [],
+      cost: costAdditionalAsNumbers || [],
+      promotion: promotionAdditionalAsNumbers || [],
+      discount: discountAdditionalAsNumbers || [],
+      surcharge: surchargeAdditionalAsNumbers || [],
+      unitTypeId: unitTypeAdditionalAsNumbers || [],
+    };
+
+    const costAsNumbers = dishes.cost.map((amount) => parseFloat(amount));
+    const promotionAsNumbers = dishes.promotion.map((amount) => parseFloat(amount));
+    const discountAsNumbers = dishes.discount.map((amount) => parseFloat(amount));
+    const estimatedTimeAsNumbers = dishes.estimatedTime.map((amount) => parseFloat(amount));
+    const additionalIdAsNumbers = dishes.estimatedTime.map((amount) => parseFloat(amount));
+    const supplyIdAsNumbers = dishes.estimatedTime.map((amount) => parseFloat(amount));
+    const recipeIdAsNumbers = dishes.estimatedTime.map((amount) => parseFloat(amount));
+    const dishTypeIdAsNumbers = dishes.estimatedTime.map((amount) => parseFloat(amount));
+    const amountAddInDishesAsNumbers = dishes.amountAdditional.map((amount) => parseFloat(amount));
+    const amountSuppInDishesAsNumbers = dishes.amountSupplies.map((amount) => parseFloat(amount));
+    const amountDishesAsNumbers = dishes.amount.map((amount) => parseFloat(amount));
+
+    const newDishes = {
+      id: dishes.id || [],
+      name: dishes.name || [],
+      description: dishes.description || [],
+      photo: dishes.photo || [],
+      cost: costAsNumbers || [],
+      promotion: promotionAsNumbers || [],
+      discount: discountAsNumbers || [],
+      estimatedTime: estimatedTimeAsNumbers || [],
+      additionalId: additionalIdAsNumbers || [],
+      supplyId: supplyIdAsNumbers || [],
+      recipeId: recipeIdAsNumbers || [],
+      dishTypeId: dishTypeIdAsNumbers || [],
+      amountAdditional: amountAddInDishesAsNumbers || [],
+      amountSupplies: amountSuppInDishesAsNumbers || [],
+      amount: amountDishesAsNumbers || [],
+    };
+
+    const costMenuAsNumbers = menu.cost.map((amount) => parseFloat(amount));
+    const promotionMenuAsNumbers = menu.promotion.map((amount) => parseFloat(amount));
+    const discountMenuAsNumbers = menu.discount.map((amount) => parseFloat(amount));
+    const surchargeMenuAsNumbers = menu.surcharge.map((amount) => parseFloat(amount));
+    const menuTypeIdAsNumbers = menu.menuTypeId.map((amount) => parseFloat(amount));
+    const categoryAsNumbers = menu.categoryId.map((amount) => parseFloat(amount));
+    const amountAsNumbers = menu.amount.map((amount) => parseFloat(amount));
+
+    const newMenu = {
+      id: menu.id || [],
+      name: menu.name || [],
+      description: menu.description || [],
+      cost: costMenuAsNumbers || [],
+      promotion: promotionMenuAsNumbers || [],
+      discount: discountMenuAsNumbers || [],
+      surcharge: surchargeMenuAsNumbers || [],
+      menuTypeId: menuTypeIdAsNumbers || [],
+      categoryId: categoryAsNumbers || [],
+      dishes: menu.dishes || [],
+      product: menu.product || [],
+      additional: menu.additional || [],
+      amount: amountAsNumbers || [],
+    };
+
+    const newOrder = await getOrders(
+      date,
+      poId,
+      commerceId,
+      sectorId,
+    );
+    const orderes = await Promise.all(newOrder);
+    // eslint-disable-next-line no-unused-vars
+    const [orderCreated, created] = await Order.findOrCreate({
+      where: {
+        order: orderes,
+        commerceId,
+      },
+      defaults: {
+        name,
+        date,
+        hour,
+        status: 'orderPlaced',
+        detail,
+        validity,
+        promotion,
+        discount,
+        surcharge,
+        rating: 5,
+        feedback: '',
+        poId,
+        employeeId,
+        accountId,
+        paymentId,
+        paid,
+        order: orderes,
+        commerceId,
+        deliveryId,
+        costDelivery,
+        courierId,
+        sectorId,
+        additionals: newAdditional,
+        products: newProduct,
+        dishes: newDishes,
+        menu: newMenu,
+        accountemail,
+        accountname,
+        accountphone,
+        accountbirthDate,
+        accountaddress,
+        googleemail,
+      },
+    });
+    if (created) {
+      const to = accountemail || googleemail;
+      const names = accountname || '';
+      if (accountemail || googleemail) {
+        sendNewOrder(to, names, orderes);
+      }
+      res.status(200).send('Order created');
+    } else {
+      res.status(422).send('Existing Order');
+    }
+  } catch (error) {
+    res.status(400).send(error);
+  }
+});
+
+order.get('/orderes2/:commerceId', async (req, res) => {
+  try {
+    const { commerceId } = req.params;
+    if (!commerceId && !Number.isInteger(parseInt(commerceId, 10))) {
+      res.status(422).send('ID was not provided');
+    }
+    const ord = await Order.findAll({
+      where: {
+        commerceId: parseInt(commerceId, 10),
+      },
+      attributes: [
+        'id', 'order', 'date', 'hour', 'status', 'detail', 'promotion',
+        'discount', 'surcharge', 'costDelivery', 'paid', 'name',
+        'additionals', 'products', 'dishes', 'menu',
+      ],
+      include: [
+        {
+          model: Pos,
+          attributes: ['id', 'name'],
+        },
+        {
+          model: Employee,
+          attributes: ['id', 'firstName', 'lastName', 'photo'],
+        },
+        {
+          model: Delivery,
+          attributes: ['id', 'name', 'company', 'logo'],
+        },
+        {
+          model: Courier,
+          attributes: ['id', 'firstName', 'lastName'],
+        },
+        {
+          model: Sector,
+          attributes: ['id', 'name'],
+        },
+      ],
+    });
+    if (ord.length > 0) {
+      res.status(201).json(ord);
+    } else {
+      res.status(422).json('Not found');
+    }
+  } catch (error) {
+    res.status(500).json({ message: 'Error al obtener los pedidos' });
+  }
+});
+
 order.post('/order', async (req, res) => {
   try {
     let orderes = req.body;

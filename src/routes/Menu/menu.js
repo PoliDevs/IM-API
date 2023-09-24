@@ -88,7 +88,7 @@ menu.post('/menu', async (req, res) => {
       active: activeProductAsBooleans || [],
     };
 
-    const unitTypeAdditionalAsNumbers = product.unitTypeId.map((amount) => parseFloat(amount));
+    const unitTypeAdditionalAsNumbers = additional.unitTypeId.map((amount) => parseFloat(amount));
     const costAdditionalAsNumbers = additional.cost.map((amount) => parseFloat(amount));
     const promotionAdditionalAsNumbers = additional.promotion.map((amount) => parseFloat(amount));
     const discountAdditionalAsNumbers = additional.discount.map((amount) => parseFloat(amount));
