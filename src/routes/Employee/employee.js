@@ -30,8 +30,8 @@ employee.post('/employee', async (req, res) => {
       facebookUser,
       twitterUser,
       photo,
-      employeeType,
-      commerce,
+      employeeTypeId,
+      commerceId,
     } = req.body;
     const hash = bcrypt.hashSync(password, 10);
     // eslint-disable-next-line no-unused-vars
@@ -53,16 +53,8 @@ employee.post('/employee', async (req, res) => {
         facebookUser,
         twitterUser,
         photo,
-        employeeTypeId: employeeType
-          ? (
-            await EmployeeType.findOne({ where: { type: employeeType } })
-          )?.id
-          : null,
-        commerceId: commerce
-          ? (
-            await Commerce.findOne({ where: { name: commerce } })
-          )?.id
-          : null,
+        employeeTypeId,
+        commerceId,
       },
     });
     if (created) {
@@ -208,8 +200,8 @@ employee.put('/update/:id', async (req, res) => {
       facebookUser,
       twitterUser,
       photo,
-      employeeType,
-      commerce,
+      employeeTypeId,
+      commerceId,
     } = req.body;
     const hash = bcrypt.hashSync(password, 10);
     const employeeFinded = await Employee.findOne({
@@ -230,16 +222,8 @@ employee.put('/update/:id', async (req, res) => {
         facebookUser,
         twitterUser,
         photo,
-        employeeTypeId: employeeType
-          ? (
-            await EmployeeType.findOne({ where: { type: employeeType } })
-          )?.id
-          : null,
-        commerceId: commerce
-          ? (
-            await Commerce.findOne({ where: { name: commerce } })
-          )?.id
-          : null,
+        employeeTypeId,
+        commerceId,
       });
       res.status(200).send('The data was modified successfully');
     } else {

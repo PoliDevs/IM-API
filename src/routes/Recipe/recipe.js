@@ -31,6 +31,7 @@ recipe.post('/recipe', async (req, res) => {
         name: name.toLowerCase(),
         amount,
         unitTypeId,
+        commerceId,
       },
     });
     if (created) {

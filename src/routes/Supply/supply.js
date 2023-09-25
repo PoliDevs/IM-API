@@ -20,9 +20,12 @@ supply.post('/supply', async (req, res) => {
       cost,
       promotion,
       discount,
+      surcharge,
       supplierId,
       suppliesTypeId,
       commerceId,
+      amount,
+      unitTypeId,
     } = req.body;
     // eslint-disable-next-line no-unused-vars
     const [supplyCreated, created] = await Supply.findOrCreate({
@@ -37,8 +40,11 @@ supply.post('/supply', async (req, res) => {
         promotion,
         discount,
         supplierId,
+        surcharge,
         suppliesTypeId,
         commerceId,
+        unitTypeId,
+        amount,
       },
     });
     if (created) {
@@ -61,7 +67,7 @@ supply.get('/all/:commerceId', async (req, res) => {
       where: {
         commerceId: parseInt(commerceId, 10),
       },
-      attributes: ['id', 'name', 'cost', 'promotion', 'discount', 'active', 'commerceId'],
+      attributes: ['id', 'name', 'cost', 'promotion', 'discount', 'surcharge', 'amount', 'active', 'commerceId'],
       include: [
         {
           model: Supplier,
@@ -101,7 +107,7 @@ supply.get('/all_active/:commerceId', async (req, res) => {
         commerceId: parseInt(commerceId, 10),
         active: true,
       },
-      attributes: ['id', 'name', 'cost', 'promotion', 'discount', 'active', 'commerceId'],
+      attributes: ['id', 'name', 'cost', 'promotion', 'discount', 'surcharge', 'amount', 'active', 'commerceId'],
       include: [
         {
           model: Supplier,
@@ -130,7 +136,7 @@ supply.get('/detail/:id', async (req, res) => {
     if (id && Number.isInteger(parseInt(id, 10))) {
       const suppi = await Supply.findAll({
         where: { id: parseInt(id, 10) },
-        attributes: ['id', 'name', 'cost', 'promotion', 'discount', 'active', 'commerceId'],
+        attributes: ['id', 'name', 'cost', 'promotion', 'discount', 'surcharge', 'amount', 'active', 'commerceId'],
         include: [
           {
             model: Supplier,
@@ -163,8 +169,11 @@ supply.put('/update/:id', async (req, res) => {
       cost,
       promotion,
       discount,
+      surcharge,
       supplierId,
       suppliesTypeId,
+      unitTypeId,
+      amount,
     } = req.body;
     const supplyFinded = await Supply.findOne({
       where: { id: parseInt(id, 10) },
@@ -175,8 +184,11 @@ supply.put('/update/:id', async (req, res) => {
         cost,
         promotion,
         discount,
+        surcharge,
         supplierId,
         suppliesTypeId,
+        unitTypeId,
+        amount,
       });
       res.status(200).send('The data was modified successfully');
     } else {

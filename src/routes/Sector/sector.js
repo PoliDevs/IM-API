@@ -1,7 +1,9 @@
 const sector = require('express').Router();
 const express = require('express');
 const cors = require('cors');
-const { Sector, Pos, PosType } = require('../../db');
+const {
+  Sector, Pos, PosType, TableService,
+} = require('../../db');
 
 sector.use(express.json());
 sector.use(cors());
@@ -61,6 +63,12 @@ sector.get('/all/:commerceId', async (req, res) => {
         commerceId: parseInt(commerceId, 10),
       },
       attributes: ['id', 'name', 'discount', 'surcharge', 'promotion', 'capacity', 'qrCode', 'detail', 'commerceId', 'active'],
+      include: [
+        {
+          model: TableService,
+          attributes: ['id', 'type', 'detail', 'cost', 'promotion', 'discount', 'surcharge'],
+        },
+      ],
     });
 
     if (sect.length > 0) {
@@ -83,7 +91,7 @@ sector.get('/sectorPos/:commerceId', async (req, res) => {
       where: {
         commerceId: parseInt(commerceId, 10),
       },
-      attributes: ['id', 'name', 'discount', 'surcharge', 'capacity', 'detail', 'qrCode', 'commerceId', 'active'],
+      attributes: ['id', 'name', 'promotion', 'discount', 'surcharge', 'capacity', 'detail', 'qrCode', 'commerceId', 'active'],
       include: [
         {
           model: Pos,
@@ -94,6 +102,10 @@ sector.get('/sectorPos/:commerceId', async (req, res) => {
               attributes: ['id', 'type', 'detail', 'active'],
             },
           ],
+        },
+        {
+          model: TableService,
+          attributes: ['id', 'type', 'detail', 'cost', 'promotion', 'discount', 'surcharge'],
         },
       ],
     });
@@ -119,7 +131,13 @@ sector.get('/all_active/:commerceId', async (req, res) => {
         commerceId: parseInt(commerceId, 10),
         active: true,
       },
-      attributes: ['id', 'name', 'discount', 'surcharge', 'capacity', 'qrCode', 'detail', 'commerceId', 'active'],
+      attributes: ['id', 'name', 'promotion', 'discount', 'surcharge', 'capacity', 'qrCode', 'detail', 'commerceId', 'active'],
+      include: [
+        {
+          model: TableService,
+          attributes: ['id', 'type', 'detail', 'cost', 'promotion', 'discount', 'surcharge'],
+        },
+      ],
     });
 
     if (sect.length > 0) {
@@ -138,7 +156,13 @@ sector.get('/detail/:id', async (req, res) => {
     if (id && Number.isInteger(parseInt(id, 10))) {
       const sect = await Sector.findAll({
         where: { id: parseInt(id, 10) },
-        attributes: ['id', 'name', 'discount', 'surcharge', 'capacity', 'qrCode', 'detail', 'commerceId', 'active'],
+        attributes: ['id', 'name', 'promotion', 'discount', 'surcharge', 'capacity', 'qrCode', 'detail', 'commerceId', 'active'],
+        include: [
+          {
+            model: TableService,
+            attributes: ['id', 'type', 'detail', 'cost', 'promotion', 'discount', 'surcharge'],
+          },
+        ],
       });
       if (sect.length > 0) {
         res.status(201).json(sect);
@@ -165,6 +189,7 @@ sector.put('/update/:id', async (req, res) => {
       detail,
       qrCode,
       commerceId,
+      tableServiceId,
     } = req.body;
     const bankFinded = await Sector.findOne({
       where: {
@@ -181,6 +206,7 @@ sector.put('/update/:id', async (req, res) => {
         detail,
         qrCode,
         commerceId,
+        tableServiceId,
       });
       res.status(200).send('The data was modified successfully');
     } else {

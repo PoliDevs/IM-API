@@ -3,7 +3,7 @@ const express = require('express');
 const { QueryTypes } = require('sequelize');
 const cors = require('cors');
 const {
-  Menu, MenuType, Commerce, TableService, Category,
+  Menu, MenuType, Commerce, Category,
 } = require('../../db');
 const { conn: sequelize } = require('../../db');
 
@@ -44,6 +44,7 @@ menu.post('/menu', async (req, res) => {
     const supplyIdAsNumbers = dishes.estimatedTime.map((amount) => parseFloat(amount));
     const recipeIdAsNumbers = dishes.estimatedTime.map((amount) => parseFloat(amount));
     const dishTypeIdAsNumbers = dishes.estimatedTime.map((amount) => parseFloat(amount));
+    const unitTypeIdDishAsNumbers = dishes.unitTypeId.map((amount) => parseFloat(amount));
     const newDishes = {
       id: dishes.id || [],
       name: dishes.name || [],
@@ -59,6 +60,7 @@ menu.post('/menu', async (req, res) => {
       recipeId: recipeIdAsNumbers || [],
       dishTypeId: dishTypeIdAsNumbers || [],
       date: dishes.date || [],
+      unitTypeId: unitTypeIdDishAsNumbers || [],
     };
 
     const costProductAsNumbers = product.cost.map((amount) => parseFloat(amount));
@@ -67,6 +69,7 @@ menu.post('/menu', async (req, res) => {
     const discountProductAsNumbers = product.discount.map((amount) => parseFloat(amount));
     const surchargeProductAsNumbers = product.surcharge.map((amount) => parseFloat(amount));
     const amountProductAsNumbers = product.amount.map((amount) => parseFloat(amount));
+    const unitTypeIdProdAsNumbers = dishes.estimatedTime.map((amount) => parseFloat(amount));
 
     const newProduct = {
       id: product.id || [],
@@ -79,6 +82,7 @@ menu.post('/menu', async (req, res) => {
       discount: discountProductAsNumbers || [],
       surcharge: surchargeProductAsNumbers || [],
       amount: amountProductAsNumbers || [],
+      unitTypeId: unitTypeIdProdAsNumbers || [],
     };
 
     const costAdditionalAsNumbers = additional.cost.map((amount) => parseFloat(amount));
@@ -86,6 +90,7 @@ menu.post('/menu', async (req, res) => {
     const discountAdditionalAsNumbers = additional.discount.map((amount) => parseFloat(amount));
     const surchargeAdditionalAsNumbers = additional.surcharge.map((amount) => parseFloat(amount));
     const amountAdditionalAsNumbers = additional.amount.map((amount) => parseFloat(amount));
+    const unitTypeIdAddAsNumbers = dishes.estimatedTime.map((amount) => parseFloat(amount));
 
     const newAdditional = {
       id: additional.id || [],
@@ -96,6 +101,7 @@ menu.post('/menu', async (req, res) => {
       discount: discountAdditionalAsNumbers || [],
       surcharge: surchargeAdditionalAsNumbers || [],
       photo: additional.photo || [],
+      unitTypeId: unitTypeIdAddAsNumbers || [],
     };
     // eslint-disable-next-line no-unused-vars
     const [menuCreated, created] = await Menu.findOrCreate({
@@ -157,10 +163,6 @@ menu.get('/all/:commerceId', async (req, res) => {
           attributes: ['id', 'type', 'detail', 'active'],
         },
         {
-          model: TableService,
-          attributes: ['id', 'type', 'detail', 'cost', 'promotion', 'discount', 'surcharge', 'validity', 'active'],
-        },
-        {
           model: Category,
           attributes: ['id', 'category', 'detail', 'active'],
         },
@@ -209,10 +211,6 @@ menu.get('/all_active/:commerceId', async (req, res) => {
           attributes: ['id', 'type', 'detail', 'active'],
         },
         {
-          model: TableService,
-          attributes: ['id', 'type', 'detail', 'cost', 'promotion', 'discount', 'surcharge', 'validity', 'active'],
-        },
-        {
           model: Category,
           attributes: ['id', 'category', 'detail', 'active'],
         },
@@ -255,10 +253,6 @@ menu.get('/lastMenu/:commerceId', async (req, res) => {
           attributes: ['id', 'type', 'detail', 'active'],
         },
         {
-          model: TableService,
-          attributes: ['id', 'type', 'detail', 'cost', 'promotion', 'discount', 'surcharge', 'validity', 'active'],
-        },
-        {
           model: Category,
           attributes: ['id', 'category', 'detail', 'active'],
         },
@@ -297,10 +291,6 @@ menu.get('/menuCommerce/:id', async (req, res) => {
           attributes: ['id', 'type', 'detail', 'active'],
         },
         {
-          model: TableService,
-          attributes: ['id', 'type', 'detail', 'cost', 'promotion', 'discount', 'surcharge', 'validity', 'active'],
-        },
-        {
           model: Category,
           attributes: ['id', 'category', 'detail', 'active'],
         },
@@ -332,10 +322,6 @@ menu.get('/detail/:id', async (req, res) => {
           {
             model: MenuType,
             attributes: ['id', 'type', 'detail', 'active'],
-          },
-          {
-            model: TableService,
-            attributes: ['id', 'type', 'detail', 'cost', 'promotion', 'discount', 'surcharge', 'validity', 'active'],
           },
           {
             model: Category,
@@ -377,10 +363,6 @@ menu.get('/menuCommerceActive', async (req, res) => {
           {
             model: MenuType,
             attributes: ['id', 'type', 'detail', 'active'],
-          },
-          {
-            model: TableService,
-            attributes: ['id', 'type', 'detail', 'cost', 'promotion', 'discount', 'surcharge', 'validity', 'active'],
           },
           {
             model: Category,
@@ -425,12 +407,13 @@ menu.put('/update/:id', async (req, res) => {
     const costAsNumbers = dishes.cost.map((amount) => parseFloat(amount));
     const promotionAsNumbers = dishes.promotion.map((amount) => parseFloat(amount));
     const discountAsNumbers = dishes.discount.map((amount) => parseFloat(amount));
+    const surchargeAsNumbers = dishes.surcharge.map((amount) => parseFloat(amount));
     const estimatedTimeAsNumbers = dishes.estimatedTime.map((amount) => parseFloat(amount));
     const additionalIdAsNumbers = dishes.estimatedTime.map((amount) => parseFloat(amount));
     const supplyIdAsNumbers = dishes.estimatedTime.map((amount) => parseFloat(amount));
     const recipeIdAsNumbers = dishes.estimatedTime.map((amount) => parseFloat(amount));
     const dishTypeIdAsNumbers = dishes.estimatedTime.map((amount) => parseFloat(amount));
-    const activeAsBooleans = dishes.active.map((value) => value === '1');
+    const unitTypeIdDishAsNumbers = dishes.unitTypeId.map((amount) => parseFloat(amount));
     const newDishes = {
       id: dishes.id || [],
       name: dishes.name || [],
@@ -439,48 +422,43 @@ menu.put('/update/:id', async (req, res) => {
       cost: costAsNumbers || [],
       promotion: promotionAsNumbers || [],
       discount: discountAsNumbers || [],
+      surcharge: surchargeAsNumbers || [],
       estimatedTime: estimatedTimeAsNumbers || [],
-      active: activeAsBooleans || [],
       additionalId: additionalIdAsNumbers || [],
       supplyId: supplyIdAsNumbers || [],
       recipeId: recipeIdAsNumbers || [],
       dishTypeId: dishTypeIdAsNumbers || [],
       date: dishes.date || [],
+      unitTypeId: unitTypeIdDishAsNumbers || [],
     };
     const costProductAsNumbers = product.cost.map((amount) => parseFloat(amount));
-    const unitTypeProductAsNumbers = product.unitTypeId.map((amount) => parseFloat(amount));
-    const productTypeAsNumbers = product.productTypeId.map((amount) => parseFloat(amount));
     const supplierIdAsNumbers = product.supplierId.map((amount) => parseFloat(amount));
     const promotionProductAsNumbers = product.promotion.map((amount) => parseFloat(amount));
     const discountProductAsNumbers = product.discount.map((amount) => parseFloat(amount));
     const surchargeProductAsNumbers = product.surcharge.map((amount) => parseFloat(amount));
     const amountProductAsNumbers = product.amount.map((amount) => parseFloat(amount));
-    const activeProductAsBooleans = product.active.map((value) => value === '1');
+    const unitTypeIdProdAsNumbers = dishes.estimatedTime.map((amount) => parseFloat(amount));
 
     const newProduct = {
       id: product.id || [],
       name: product.name || [],
-      photo: product.photo || [],
       cost: costProductAsNumbers || [],
       allergeType: product.allergenType || [],
       careful: product.careful || [],
-      unitTypeId: unitTypeProductAsNumbers || [],
-      productTypeId: productTypeAsNumbers || [],
       supplierId: supplierIdAsNumbers || [],
       promotion: promotionProductAsNumbers || [],
       discount: discountProductAsNumbers || [],
       surcharge: surchargeProductAsNumbers || [],
       amount: amountProductAsNumbers || [],
-      active: activeProductAsBooleans || [],
+      unitTypeId: unitTypeIdProdAsNumbers || [],
     };
 
-    const unitTypeAdditionalAsNumbers = product.unitTypeId.map((amount) => parseFloat(amount));
     const costAdditionalAsNumbers = additional.cost.map((amount) => parseFloat(amount));
     const promotionAdditionalAsNumbers = additional.promotion.map((amount) => parseFloat(amount));
     const discountAdditionalAsNumbers = additional.discount.map((amount) => parseFloat(amount));
     const surchargeAdditionalAsNumbers = additional.surcharge.map((amount) => parseFloat(amount));
     const amountAdditionalAsNumbers = additional.amount.map((amount) => parseFloat(amount));
-    const activeAdditionalAsBooleans = additional.active.map((value) => value === '1');
+    const unitTypeIdAddAsNumbers = dishes.estimatedTime.map((amount) => parseFloat(amount));
 
     const newAdditional = {
       id: additional.id || [],
@@ -491,8 +469,7 @@ menu.put('/update/:id', async (req, res) => {
       discount: discountAdditionalAsNumbers || [],
       surcharge: surchargeAdditionalAsNumbers || [],
       photo: additional.photo || [],
-      unitTypeId: unitTypeAdditionalAsNumbers || [],
-      active: activeAdditionalAsBooleans || [],
+      unitTypeId: unitTypeIdAddAsNumbers || [],
     };
 
     const menuFinded = await Menu.findOne({
