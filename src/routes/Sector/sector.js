@@ -21,6 +21,7 @@ sector.post('/sector', async (req, res) => {
       detail,
       qrCode,
       commerceId,
+      tableServiceId,
     } = req.body;
     // eslint-disable-next-line no-unused-vars
     const [sectorCreated, created] = await Sector.findOrCreate({
@@ -36,6 +37,7 @@ sector.post('/sector', async (req, res) => {
         detail,
         qrCode,
         commerceId,
+        tableServiceId,
       },
     });
     if (created) {
@@ -58,7 +60,7 @@ sector.get('/all/:commerceId', async (req, res) => {
       where: {
         commerceId: parseInt(commerceId, 10),
       },
-      attributes: ['id', 'name', 'discount', 'surcharge', 'capacity', 'qrCode', 'detail', 'commerceId', 'active'],
+      attributes: ['id', 'name', 'discount', 'surcharge', 'promotion', 'capacity', 'qrCode', 'detail', 'commerceId', 'active'],
     });
 
     if (sect.length > 0) {
