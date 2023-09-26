@@ -24,6 +24,7 @@ dish.post('/dish', async (req, res) => {
     const [dishCreated, created] = await Dish.findOrCreate({
       where: {
         name: name.toLowerCase(),
+        commerceId,
       },
       defaults: {
         name: name.toLowerCase(),

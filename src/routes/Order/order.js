@@ -72,20 +72,47 @@ order.post('/new', async (req, res) => {
       menu,
       accountemail,
       accountname,
+      // eslint-disable-next-line no-unused-vars
       accountphone,
+      // eslint-disable-next-line no-unused-vars
       accountbirthDate,
+      // eslint-disable-next-line no-unused-vars
       accountaddress,
       googleemail,
     } = req.body;
 
-    const costProductAsNumbers = products.cost.map((amount) => parseFloat(amount));
-    const unitTypeProductAsNumbers = products.unitTypeId.map((amount) => parseFloat(amount));
-    const productTypeAsNumbers = products.productTypeId.map((amount) => parseFloat(amount));
-    const supplierIdAsNumbers = products.supplierId.map((amount) => parseFloat(amount));
-    const promotionProductAsNumbers = products.promotion.map((amount) => parseFloat(amount));
-    const discountProductAsNumbers = products.discount.map((amount) => parseFloat(amount));
-    const surchargeProductAsNumbers = products.surcharge.map((amount) => parseFloat(amount));
-    const amountProductAsNumbers = products.amount.map((amount) => parseFloat(amount));
+    const costProductAsNumbers = products.cost.map((amount) => {
+      const parseValue = parseFloat(amount);
+      return Number.isNaN(parseValue) ? 0 : parseValue;
+    });
+    const unitTypeProductAsNumbers = products.unitTypeId.map((amount) => {
+      const parseValue = parseFloat(amount);
+      return Number.isNaN(parseValue) ? null : parseValue;
+    });
+    const productTypeAsNumbers = products.productTypeId.map((amount) => {
+      const parseValue = parseFloat(amount);
+      return Number.isNaN(parseValue) ? null : parseValue;
+    });
+    const supplierIdAsNumbers = products.supplierId.map((amount) => {
+      const parseValue = parseFloat(amount);
+      return Number.isNaN(parseValue) ? null : parseValue;
+    });
+    const promotionProductAsNumbers = products.promotion.map((amount) => {
+      const parseValue = parseFloat(amount);
+      return Number.isNaN(parseValue) ? 0 : parseValue;
+    });
+    const discountProductAsNumbers = products.discount.map((amount) => {
+      const parseValue = parseFloat(amount);
+      return Number.isNaN(parseValue) ? 0 : parseValue;
+    });
+    const surchargeProductAsNumbers = products.surcharge.map((amount) => {
+      const parseValue = parseFloat(amount);
+      return Number.isNaN(parseValue) ? 0 : parseValue;
+    });
+    const amountProductAsNumbers = products.amount.map((amount) => {
+      const parseValue = parseFloat(amount);
+      return Number.isNaN(parseValue) ? 0 : parseValue;
+    });
 
     const newProduct = {
       id: products.id || [],
@@ -100,14 +127,33 @@ order.post('/new', async (req, res) => {
       amount: amountProductAsNumbers || [],
       allergenType: products.allergenType || [],
       careful: products.careful || [],
+      detail: products.detail || [],
     };
 
-    const unitTypeAdditionalAsNumbers = additionals.unitTypeId.map((amount) => parseFloat(amount));
-    const costAdditionalAsNumbers = additionals.cost.map((amount) => parseFloat(amount));
-    const promotionAdditionalAsNumbers = additionals.promotion.map((amount) => parseFloat(amount));
-    const discountAdditionalAsNumbers = additionals.discount.map((amount) => parseFloat(amount));
-    const surchargeAdditionalAsNumbers = additionals.surcharge.map((amount) => parseFloat(amount));
-    const amountAdditionalAsNumbers = additionals.amount.map((amount) => parseFloat(amount));
+    const unitTypeAdditionalAsNumbers = additionals.unitTypeId.map((amount) => {
+      const parseValue = parseFloat(amount);
+      return Number.isNaN(parseValue) ? null : parseValue;
+    });
+    const costAdditionalAsNumbers = additionals.cost.map((amount) => {
+      const parseValue = parseFloat(amount);
+      return Number.isNaN(parseValue) ? 0 : parseValue;
+    });
+    const promotionAdditionalAsNumbers = additionals.promotion.map((amount) => {
+      const parseValue = parseFloat(amount);
+      return Number.isNaN(parseValue) ? 0 : parseValue;
+    });
+    const discountAdditionalAsNumbers = additionals.discount.map((amount) => {
+      const parseValue = parseFloat(amount);
+      return Number.isNaN(parseValue) ? 0 : parseValue;
+    });
+    const surchargeAdditionalAsNumbers = additionals.surcharge.map((amount) => {
+      const parseValue = parseFloat(amount);
+      return Number.isNaN(parseValue) ? 0 : parseValue;
+    });
+    const amountAdditionalAsNumbers = additionals.amount.map((amount) => {
+      const parseValue = parseFloat(amount);
+      return Number.isNaN(parseValue) ? 0 : parseValue;
+    });
 
     const newAdditional = {
       id: additionals.id || [],
@@ -118,20 +164,57 @@ order.post('/new', async (req, res) => {
       discount: discountAdditionalAsNumbers || [],
       surcharge: surchargeAdditionalAsNumbers || [],
       unitTypeId: unitTypeAdditionalAsNumbers || [],
+      detail: additionals.detail || [],
     };
 
-    const costAsNumbers = dishes.cost.map((amount) => parseFloat(amount));
-    const promotionAsNumbers = dishes.promotion.map((amount) => parseFloat(amount));
-    const discountAsNumbers = dishes.discount.map((amount) => parseFloat(amount));
-    const surchargeAsNumbers = dishes.discount.map((amount) => parseFloat(amount));
-    const estimatedTimeAsNumbers = dishes.estimatedTime.map((amount) => parseFloat(amount));
-    const additionalIdAsNumbers = dishes.estimatedTime.map((amount) => parseFloat(amount));
-    const supplyIdAsNumbers = dishes.estimatedTime.map((amount) => parseFloat(amount));
-    const recipeIdAsNumbers = dishes.estimatedTime.map((amount) => parseFloat(amount));
-    const dishTypeIdAsNumbers = dishes.estimatedTime.map((amount) => parseFloat(amount));
-    const amountAddInDishesAsNumbers = dishes.amountAdditional.map((amount) => parseFloat(amount));
-    const amountSuppInDishesAsNumbers = dishes.amountSupplies.map((amount) => parseFloat(amount));
-    const amountDishesAsNumbers = dishes.amount.map((amount) => parseFloat(amount));
+    const costAsNumbers = dishes.cost.map((amount) => {
+      const parseValue = parseFloat(amount);
+      return Number.isNaN(parseValue) ? 0 : parseValue;
+    });
+    const promotionAsNumbers = dishes.promotion.map((amount) => {
+      const parseValue = parseFloat(amount);
+      return Number.isNaN(parseValue) ? 0 : parseValue;
+    });
+    const discountAsNumbers = dishes.discount.map((amount) => {
+      const parseValue = parseFloat(amount);
+      return Number.isNaN(parseValue) ? 0 : parseValue;
+    });
+    const surchargeAsNumbers = dishes.surcharge.map((amount) => {
+      const parseValue = parseFloat(amount);
+      return Number.isNaN(parseValue) ? 0 : parseValue;
+    });
+    const estimatedTimeAsNumbers = dishes.estimatedTime.map((amount) => {
+      const parseValue = parseFloat(amount);
+      return Number.isNaN(parseValue) ? 0 : parseValue;
+    });
+    const additionalIdAsNumbers = dishes.additionalId.map((amount) => {
+      const parseValue = parseFloat(amount);
+      return Number.isNaN(parseValue) ? null : parseValue;
+    });
+    const supplyIdAsNumbers = dishes.supplyId.map((amount) => {
+      const parseValue = parseFloat(amount);
+      return Number.isNaN(parseValue) ? null : parseValue;
+    });
+    const recipeIdAsNumbers = dishes.recipeId.map((amount) => {
+      const parseValue = parseFloat(amount);
+      return Number.isNaN(parseValue) ? null : parseValue;
+    });
+    const dishTypeIdAsNumbers = dishes.dishTypeId.map((amount) => {
+      const parseValue = parseFloat(amount);
+      return Number.isNaN(parseValue) ? null : parseValue;
+    });
+    const amountAddInDishesAsNumbers = dishes.amountAdditional.map((amount) => {
+      const parseValue = parseFloat(amount);
+      return Number.isNaN(parseValue) ? 0 : parseValue;
+    });
+    const amountSuppInDishesAsNumbers = dishes.amountSupplies.map((amount) => {
+      const parseValue = parseFloat(amount);
+      return Number.isNaN(parseValue) ? 0 : parseValue;
+    });
+    const amountDishesAsNumbers = dishes.amount.map((amount) => {
+      const parseValue = parseFloat(amount);
+      return Number.isNaN(parseValue) ? 0 : parseValue;
+    });
 
     const newDishes = {
       id: dishes.id || [],
@@ -150,15 +233,37 @@ order.post('/new', async (req, res) => {
       amountAdditional: amountAddInDishesAsNumbers || [],
       amountSupplies: amountSuppInDishesAsNumbers || [],
       amount: amountDishesAsNumbers || [],
+      detail: dishes.detail || [],
     };
 
-    const costMenuAsNumbers = menu.cost.map((amount) => parseFloat(amount));
-    const promotionMenuAsNumbers = menu.promotion.map((amount) => parseFloat(amount));
-    const discountMenuAsNumbers = menu.discount.map((amount) => parseFloat(amount));
-    const surchargeMenuAsNumbers = menu.surcharge.map((amount) => parseFloat(amount));
-    const menuTypeIdAsNumbers = menu.menuTypeId.map((amount) => parseFloat(amount));
-    const categoryAsNumbers = menu.categoryId.map((amount) => parseFloat(amount));
-    const amountAsNumbers = menu.amount.map((amount) => parseFloat(amount));
+    const costMenuAsNumbers = menu.cost.map((amount) => {
+      const parseValue = parseFloat(amount);
+      return Number.isNaN(parseValue) ? 0 : parseValue;
+    });
+    const promotionMenuAsNumbers = menu.promotion.map((amount) => {
+      const parseValue = parseFloat(amount);
+      return Number.isNaN(parseValue) ? 0 : parseValue;
+    });
+    const discountMenuAsNumbers = menu.discount.map((amount) => {
+      const parseValue = parseFloat(amount);
+      return Number.isNaN(parseValue) ? 0 : parseValue;
+    });
+    const surchargeMenuAsNumbers = menu.surcharge.map((amount) => {
+      const parseValue = parseFloat(amount);
+      return Number.isNaN(parseValue) ? 0 : parseValue;
+    });
+    const menuTypeIdAsNumbers = menu.menuTypeId.map((amount) => {
+      const parseValue = parseFloat(amount);
+      return Number.isNaN(parseValue) ? null : parseValue;
+    });
+    const categoryAsNumbers = menu.categoryId.map((amount) => {
+      const parseValue = parseFloat(amount);
+      return Number.isNaN(parseValue) ? null : parseValue;
+    });
+    const amountAsNumbers = menu.amount.map((amount) => {
+      const parseValue = parseFloat(amount);
+      return Number.isNaN(parseValue) ? 0 : parseValue;
+    });
 
     const newMenu = {
       id: menu.id || [],
@@ -174,6 +279,7 @@ order.post('/new', async (req, res) => {
       product: menu.product || [],
       additional: menu.additional || [],
       amount: amountAsNumbers || [],
+      detail: menu.detail || [],
     };
 
     const newOrder = await getOrders(
@@ -182,53 +288,49 @@ order.post('/new', async (req, res) => {
       commerceId,
       sectorId,
     );
+    // eslint-disable-next-line no-unused-vars
     const orderes = await Promise.all(newOrder);
     // eslint-disable-next-line no-unused-vars
-    const [orderCreated, created] = await Order.findOrCreate({
-      where: {
-        order: orderes,
-        commerceId,
-      },
-      defaults: {
-        name,
-        date,
-        hour,
-        status: 'orderPlaced',
-        detail,
-        validity,
-        promotion,
-        discount,
-        surcharge,
-        rating: 5,
-        feedback: '',
-        poId,
-        employeeId,
-        accountId,
-        paymentId,
-        paid,
-        order: orderes,
-        commerceId,
-        deliveryId,
-        costDelivery,
-        courierId,
-        sectorId,
-        additionals: newAdditional,
-        products: newProduct,
-        dishes: newDishes,
-        menu: newMenu,
-        accountemail,
-        accountname,
-        accountphone,
-        accountbirthDate,
-        accountaddress,
-        googleemail,
-      },
+    const created = await Order.create({
+      name,
+      date,
+      hour,
+      status: 'orderPlaced',
+      detail,
+      validity,
+      promotion,
+      discount,
+      surcharge,
+      rating: 5,
+      feedback: '',
+      poId,
+      employeeId,
+      accountId,
+      paymentId,
+      paid,
+      order: newOrder,
+      commerceId,
+      deliveryId,
+      costDelivery,
+      courierId,
+      sectorId,
+      additionals: newAdditional,
+      products: newProduct,
+      dishes: newDishes,
+      menu: newMenu,
+      // accountemail,
+      // accountname,
+      // accountphone,
+      // accountbirthDate,
+      // accountaddress,
+      // googleemail,
+
     });
     if (created) {
       const to = accountemail || googleemail;
       const names = accountname || '';
       if (accountemail || googleemail) {
-        sendNewOrder(to, names, orderes);
+        sendNewOrder(to, names, newOrder);
       }
       res.status(200).send('Order created');
     } else {
@@ -813,13 +915,34 @@ order.put('/updateMenu/:order/:id/:commerceId', async (req, res) => {
       id,
     } = req.params;
     const { menu } = req.body;
-    const costMenuAsNumbers = menu.cost.map((amount) => parseFloat(amount));
-    const promotionMenuAsNumbers = menu.promotion.map((amount) => parseFloat(amount));
-    const discountMenuAsNumbers = menu.discount.map((amount) => parseFloat(amount));
-    const surchargeMenuAsNumbers = menu.surcharge.map((amount) => parseFloat(amount));
-    const menuTypeIdAsNumbers = menu.menuTypeId.map((amount) => parseFloat(amount));
-    const categoryAsNumbers = menu.categoryId.map((amount) => parseFloat(amount));
-    const amountAsNumbers = menu.amount.map((amount) => parseFloat(amount));
+    const costMenuAsNumbers = menu.cost.map((amount) => {
+      const parseValue = parseFloat(amount);
+      return Number.isNaN(parseValue) ? 0 : parseValue;
+    });
+    const promotionMenuAsNumbers = menu.promotion.map((amount) => {
+      const parseValue = parseFloat(amount);
+      return Number.isNaN(parseValue) ? 0 : parseValue;
+    });
+    const discountMenuAsNumbers = menu.discount.map((amount) => {
+      const parseValue = parseFloat(amount);
+      return Number.isNaN(parseValue) ? 0 : parseValue;
+    });
+    const surchargeMenuAsNumbers = menu.surcharge.map((amount) => {
+      const parseValue = parseFloat(amount);
+      return Number.isNaN(parseValue) ? 0 : parseValue;
+    });
+    const menuTypeIdAsNumbers = menu.menuTypeId.map((amount) => {
+      const parseValue = parseFloat(amount);
+      return Number.isNaN(parseValue) ? null : parseValue;
+    });
+    const categoryAsNumbers = menu.categoryId.map((amount) => {
+      const parseValue = parseFloat(amount);
+      return Number.isNaN(parseValue) ? null : parseValue;
+    });
+    const amountAsNumbers = menu.amount.map((amount) => {
+      const parseValue = parseFloat(amount);
+      return Number.isNaN(parseValue) ? 0 : parseValue;
+    });
 
     const newMenu = {
       id: menu.id || [],
@@ -835,6 +958,7 @@ order.put('/updateMenu/:order/:id/:commerceId', async (req, res) => {
       product: menu.product || [],
       additional: menu.additional || [],
       amount: amountAsNumbers || [],
+      detail: menu.detail || [],
     };
 
     const [rowsUpdated] = await Order.update({ newMenu }, {
@@ -900,18 +1024,54 @@ order.put('/updateDish/:order/:id/:commerceId', async (req, res) => {
       id,
     } = req.params;
     const { dishes } = req.body;
-    const costAsNumbers = dishes.cost.map((amount) => parseFloat(amount));
-    const promotionAsNumbers = dishes.promotion.map((amount) => parseFloat(amount));
-    const discountAsNumbers = dishes.discount.map((amount) => parseFloat(amount));
-    const surchargeAsNumbers = dishes.discount.map((amount) => parseFloat(amount));
-    const estimatedTimeAsNumbers = dishes.estimatedTime.map((amount) => parseFloat(amount));
-    const additionalIdAsNumbers = dishes.estimatedTime.map((amount) => parseFloat(amount));
-    const supplyIdAsNumbers = dishes.estimatedTime.map((amount) => parseFloat(amount));
-    const recipeIdAsNumbers = dishes.estimatedTime.map((amount) => parseFloat(amount));
-    const dishTypeIdAsNumbers = dishes.estimatedTime.map((amount) => parseFloat(amount));
-    const amountAddInDishesAsNumbers = dishes.amountAdditional.map((amount) => parseFloat(amount));
-    const amountSuppInDishesAsNumbers = dishes.amountSupplies.map((amount) => parseFloat(amount));
-    const amountDishesAsNumbers = dishes.amount.map((amount) => parseFloat(amount));
+    const costAsNumbers = dishes.cost.map((amount) => {
+      const parseValue = parseFloat(amount);
+      return Number.isNaN(parseValue) ? 0 : parseValue;
+    });
+    const promotionAsNumbers = dishes.promotion.map((amount) => {
+      const parseValue = parseFloat(amount);
+      return Number.isNaN(parseValue) ? 0 : parseValue;
+    });
+    const discountAsNumbers = dishes.discount.map((amount) => {
+      const parseValue = parseFloat(amount);
+      return Number.isNaN(parseValue) ? 0 : parseValue;
+    });
+    const surchargeAsNumbers = dishes.surcharge.map((amount) => {
+      const parseValue = parseFloat(amount);
+      return Number.isNaN(parseValue) ? 0 : parseValue;
+    });
+    const estimatedTimeAsNumbers = dishes.estimatedTime.map((amount) => {
+      const parseValue = parseFloat(amount);
+      return Number.isNaN(parseValue) ? 0 : parseValue;
+    });
+    const additionalIdAsNumbers = dishes.additionalId.map((amount) => {
+      const parseValue = parseFloat(amount);
+      return Number.isNaN(parseValue) ? null : parseValue;
+    });
+    const supplyIdAsNumbers = dishes.supplyId.map((amount) => {
+      const parseValue = parseFloat(amount);
+      return Number.isNaN(parseValue) ? null : parseValue;
+    });
+    const recipeIdAsNumbers = dishes.recipeId.map((amount) => {
+      const parseValue = parseFloat(amount);
+      return Number.isNaN(parseValue) ? null : parseValue;
+    });
+    const dishTypeIdAsNumbers = dishes.dishTypeId.map((amount) => {
+      const parseValue = parseFloat(amount);
+      return Number.isNaN(parseValue) ? null : parseValue;
+    });
+    const amountAddInDishesAsNumbers = dishes.amountAdditional.map((amount) => {
+      const parseValue = parseFloat(amount);
+      return Number.isNaN(parseValue) ? 0 : parseValue;
+    });
+    const amountSuppInDishesAsNumbers = dishes.amountSupplies.map((amount) => {
+      const parseValue = parseFloat(amount);
+      return Number.isNaN(parseValue) ? 0 : parseValue;
+    });
+    const amountDishesAsNumbers = dishes.amount.map((amount) => {
+      const parseValue = parseFloat(amount);
+      return Number.isNaN(parseValue) ? 0 : parseValue;
+    });
 
     const newDishes = {
       id: dishes.id || [],
@@ -930,6 +1090,7 @@ order.put('/updateDish/:order/:id/:commerceId', async (req, res) => {
       amountAdditional: amountAddInDishesAsNumbers || [],
       amountSupplies: amountSuppInDishesAsNumbers || [],
       amount: amountDishesAsNumbers || [],
+      detail: dishes.detail || [],
     };
 
     const [rowsUpdated] = await Order.update({ newDishes }, {
@@ -953,12 +1114,30 @@ order.put('/updateAdditional/:order/:id/:commerceId', async (req, res) => {
       id,
     } = req.params;
     const { additionals } = req.body;
-    const unitTypeAdditionalAsNumbers = additionals.unitTypeId.map((amount) => parseFloat(amount));
-    const costAdditionalAsNumbers = additionals.cost.map((amount) => parseFloat(amount));
-    const promotionAdditionalAsNumbers = additionals.promotion.map((amount) => parseFloat(amount));
-    const discountAdditionalAsNumbers = additionals.discount.map((amount) => parseFloat(amount));
-    const surchargeAdditionalAsNumbers = additionals.surcharge.map((amount) => parseFloat(amount));
-    const amountAdditionalAsNumbers = additionals.amount.map((amount) => parseFloat(amount));
+    const unitTypeAdditionalAsNumbers = additionals.unitTypeId.map((amount) => {
+      const parseValue = parseFloat(amount);
+      return Number.isNaN(parseValue) ? null : parseValue;
+    });
+    const costAdditionalAsNumbers = additionals.cost.map((amount) => {
+      const parseValue = parseFloat(amount);
+      return Number.isNaN(parseValue) ? 0 : parseValue;
+    });
+    const promotionAdditionalAsNumbers = additionals.promotion.map((amount) => {
+      const parseValue = parseFloat(amount);
+      return Number.isNaN(parseValue) ? 0 : parseValue;
+    });
+    const discountAdditionalAsNumbers = additionals.discount.map((amount) => {
+      const parseValue = parseFloat(amount);
+      return Number.isNaN(parseValue) ? 0 : parseValue;
+    });
+    const surchargeAdditionalAsNumbers = additionals.surcharge.map((amount) => {
+      const parseValue = parseFloat(amount);
+      return Number.isNaN(parseValue) ? 0 : parseValue;
+    });
+    const amountAdditionalAsNumbers = additionals.amount.map((amount) => {
+      const parseValue = parseFloat(amount);
+      return Number.isNaN(parseValue) ? 0 : parseValue;
+    });
 
     const newAdditional = {
       id: additionals.id || [],
@@ -969,6 +1148,7 @@ order.put('/updateAdditional/:order/:id/:commerceId', async (req, res) => {
       discount: discountAdditionalAsNumbers || [],
       surcharge: surchargeAdditionalAsNumbers || [],
       unitTypeId: unitTypeAdditionalAsNumbers || [],
+      detail: additionals.detail || [],
     };
 
     const [rowsUpdated] = await Order.update({ newAdditional }, {
@@ -992,14 +1172,38 @@ order.put('/updateProduct/:order/:id/:commerceId', async (req, res) => {
       id,
     } = req.params;
     const { products } = req.body;
-    const costProductAsNumbers = products.cost.map((amount) => parseFloat(amount));
-    const unitTypeProductAsNumbers = products.unitTypeId.map((amount) => parseFloat(amount));
-    const productTypeAsNumbers = products.productTypeId.map((amount) => parseFloat(amount));
-    const supplierIdAsNumbers = products.supplierId.map((amount) => parseFloat(amount));
-    const promotionProductAsNumbers = products.promotion.map((amount) => parseFloat(amount));
-    const discountProductAsNumbers = products.discount.map((amount) => parseFloat(amount));
-    const surchargeProductAsNumbers = products.surcharge.map((amount) => parseFloat(amount));
-    const amountProductAsNumbers = products.amount.map((amount) => parseFloat(amount));
+    const costProductAsNumbers = products.cost.map((amount) => {
+      const parseValue = parseFloat(amount);
+      return Number.isNaN(parseValue) ? 0 : parseValue;
+    });
+    const unitTypeProductAsNumbers = products.unitTypeId.map((amount) => {
+      const parseValue = parseFloat(amount);
+      return Number.isNaN(parseValue) ? null : parseValue;
+    });
+    const productTypeAsNumbers = products.productTypeId.map((amount) => {
+      const parseValue = parseFloat(amount);
+      return Number.isNaN(parseValue) ? null : parseValue;
+    });
+    const supplierIdAsNumbers = products.supplierId.map((amount) => {
+      const parseValue = parseFloat(amount);
+      return Number.isNaN(parseValue) ? null : parseValue;
+    });
+    const promotionProductAsNumbers = products.promotion.map((amount) => {
+      const parseValue = parseFloat(amount);
+      return Number.isNaN(parseValue) ? 0 : parseValue;
+    });
+    const discountProductAsNumbers = products.discount.map((amount) => {
+      const parseValue = parseFloat(amount);
+      return Number.isNaN(parseValue) ? 0 : parseValue;
+    });
+    const surchargeProductAsNumbers = products.surcharge.map((amount) => {
+      const parseValue = parseFloat(amount);
+      return Number.isNaN(parseValue) ? 0 : parseValue;
+    });
+    const amountProductAsNumbers = products.amount.map((amount) => {
+      const parseValue = parseFloat(amount);
+      return Number.isNaN(parseValue) ? 0 : parseValue;
+    });
 
     const newProduct = {
       id: products.id || [],
@@ -1014,6 +1218,7 @@ order.put('/updateProduct/:order/:id/:commerceId', async (req, res) => {
       amount: amountProductAsNumbers || [],
       allergenType: products.allergenType || [],
       careful: products.careful || [],
+      detail: products.detail || [],
     };
 
     const [rowsUpdated] = await Order.update({ newProduct }, {

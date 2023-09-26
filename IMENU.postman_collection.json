@@ -1154,7 +1154,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "/*\r\n{\r\n    \"category\": \"Pastas\",\r\n    \"detail\": \"Pastas italianas\",\r\n    \"commerceId\":2\r\n    \r\n}*/\r\n{\r\n    \"category\": \"Minutas\",\r\n    \"detail\": \"las frituras mas ricas\",\r\n    \"commerceId\":2\r\n    \r\n}\r\n/*\r\n\r\n{\r\n    \"category\": \"Postres\",\r\n    \"detail\": \"Postres\",\r\n    \"commerceId\":1\r\n}*/\r\n",
+							"raw": "{\r\n    \"category\": \"Bebidas\",\r\n    \"detail\": \"Bebidas\",\r\n    \"commerceId\":4\r\n    \r\n}\r\n\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1323,7 +1323,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"el pollo loco\",\r\n    \"neighborhood\": \"La Plata\",\r\n    \"address\": \"13 y 147\",\r\n    \"workSchedule\": \"12 a 24\",\r\n    \"email\":\"luisfactum@gmail.com\",\r\n    \"phono\":\"01142552154\",\r\n    \"franchiseId\": null,\r\n    \"commercialPlanId\": 2,\r\n    \"businessId\": null\r\n    \r\n}\r\n\r\n",
+							"raw": "{\r\n    \"name\": \"diversion\",\r\n    \"neighborhood\": \"Quilmes\",\r\n    \"address\": \"Mosconi y Belgrano\",\r\n    \"workSchedule\": \"Sab-Dom 23 - 05\",\r\n    \"email\":\"luisfactum@gmail.com\",\r\n    \"phono\":\"01142552154\",\r\n    \"franchiseId\": null,\r\n    \"commercialPlanId\": 2,\r\n    \"businessId\": null\r\n    \r\n}\r\n\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1970,7 +1970,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"firstName\": \"el pela\",\r\n    \"lastName\":\"sarmiento\",\r\n    \"document\": \"78455\",\r\n    \"address\": \"San Juan 12\",\r\n    \"cp\": \"546\",\r\n    \"bank\": \"itau\",\r\n    \"account\": \"2323232\",\r\n    \"detail\": \"\",\r\n    \"start\": \"2023-09-15\",\r\n    \"courierTypeId\": 3,\r\n    \"promotion\": 0,\r\n    \"discount\": 0,\r\n    \"surcharge\": 0,\r\n    \"fee\": 300\r\n}\r\n",
+							"raw": "{\r\n    \"firstName\": \"el pela\",\r\n    \"lastName\":\"sarmiento\",\r\n    \"document\": \"78455\",\r\n    \"address\": \"San Juan 12\",\r\n    \"cp\": \"546\",\r\n    \"bank\": \"itau\",\r\n    \"account\": \"2323232\",\r\n    \"detail\": \"\",\r\n    \"start\": \"2023-09-15\",\r\n    \"courierTypeId\": 4,\r\n    \"promotion\": 0,\r\n    \"discount\": 0,\r\n    \"surcharge\": 0,\r\n    \"fee\": 300\r\n}\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -2139,7 +2139,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"type\": \"moto\",\r\n    \"detail\":\"moto\",\r\n    \"commerceId\": 2 \r\n}\r\n",
+							"raw": "{\r\n    \"type\": \"moto\",\r\n    \"detail\":\"moto\",\r\n    \"commerceId\": 4 \r\n}\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -2308,7 +2308,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"Rappi\",\r\n    \"detail\":\"rappi\",\r\n    \"company\": \"rappi sa\",\r\n    \"account\": \"777777\",\r\n    \"start\": \"2023-08-10\",\r\n    \"promotion\": 0,\r\n    \"discount\": 0,\r\n    \"surcharge\": 0,\r\n    \"fee\": 200,\r\n    \"logo\": \"\",\r\n    \"commerceId\": 2\r\n}\r\n",
+							"raw": "{\r\n    \"name\": \"pedido ya\",\r\n    \"detail\":\"peya\",\r\n    \"company\": \"peya sa\",\r\n    \"account\": \"777777\",\r\n    \"start\": \"2023-08-10\",\r\n    \"promotion\": 0,\r\n    \"discount\": 0,\r\n    \"surcharge\": 0,\r\n    \"fee\": 200,\r\n    \"logo\": \"\",\r\n    \"commerceId\": 4\r\n}\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -2456,7 +2456,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"ensalada lechuga y tomate\",\r\n    \"description\": \"lechuga y tomate\",\r\n    \"photo\": \"\",\r\n    \"cost\": 700,\r\n    \"promotion\": 0,\r\n    \"discount\": 0,\r\n    \"surcharge\": 0,\r\n    \"estimatedTime\": 10,\r\n    \"dishTypeId\": 1,\r\n    \"additionalId\": 1,\r\n    \"supplyId\": null,\r\n    \"recipeId\": 1,\r\n    \"commerceId\": 2,\r\n    \"amountAdditional\": 0,\r\n    \"amountSupplies\": 0\r\n}\r\n",
+							"raw": "{\r\n    \"name\": \"ensalada lechuga y tomate\",\r\n    \"description\": \"lechuga y tomate\",\r\n    \"photo\": \"\",\r\n    \"cost\": 700,\r\n    \"promotion\": 0,\r\n    \"discount\": 0,\r\n    \"surcharge\": 0,\r\n    \"estimatedTime\": 10,\r\n    \"dishTypeId\": 1,\r\n    \"additionalId\": 1,\r\n    \"supplyId\": null,\r\n    \"recipeId\": null,\r\n    \"commerceId\": 2,\r\n    \"amountAdditional\": 0,\r\n    \"amountSupplies\": 0\r\n}\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -2623,7 +2623,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"type\": \"Celíaco\",\r\n    \"detail\": \"Apto celíacos\",\r\n    \"photo\":\"\",\r\n    \"commerceId\": 2\r\n}\r\n",
+							"raw": "{\r\n    \"type\": \"celíaco\",\r\n    \"detail\": \"bebidas aptas\",\r\n    \"photo\":\"\",\r\n    \"commerceId\": 4\r\n}\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -2792,7 +2792,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"firstName\": \"mario\",\r\n    \"lastName\": \"garcia\",\r\n    \"password\": \"22222\",\r\n    \"address\": \"colombia 2323\",\r\n    \"phone\":\"4444-3333\",\r\n    \"birthDate\":\"2000-04-15\",\r\n    \"start\":\"2023-07-27\",\r\n    \"document\":\"34343434\",\r\n    \"email\":\"luisglogista@gmail.com\",\r\n    \"googleUser\":\"\",\r\n    \"facebookUser\":\"\",\r\n    \"twitterUser\":\"\",\r\n    \"photo\":\"\",\r\n    \"employeeType\":\"cocinero\",\r\n    \"commerce\":\"cp luisito\"\r\n    \r\n}\r\n",
+							"raw": "{\r\n    \"firstName\": \"walter\",\r\n    \"lastName\": \"z\",\r\n    \"password\": \"22222\",\r\n    \"address\": \"cordoba 2323\",\r\n    \"phone\":\"4444-3333\",\r\n    \"birthDate\":\"2000-04-15\",\r\n    \"start\":\"2023-07-27\",\r\n    \"document\":\"34343434\",\r\n    \"email\":\"walteralejandrogordillo@gmail.com\",\r\n    \"googleUser\":\"\",\r\n    \"facebookUser\":\"\",\r\n    \"twitterUser\":\"\",\r\n    \"photo\":\"\",\r\n    \"employeeTypeId\":6,\r\n    \"commerceId\":4\r\n    \r\n}\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -2821,7 +2821,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"firstName\": \"luis\",\r\n    \"lastName\": \"gimenez\",\r\n    \"password\": \"1111\",\r\n    \"address\": \"ecuador 3531\",\r\n    \"phone\":\"4879-8956\",\r\n    \"birthDate\":\"1967-10-24\",\r\n    \"start\":\"2023-07-27\",\r\n    \"document\":\"2154874\",\r\n    \"email\":\"luisfactum@gmail.com\",\r\n    \"googleUser\":\"\",\r\n    \"facebookUser\":\"\",\r\n    \"twitterUser\":\"\",\r\n    \"photo\":\"\",\r\n    \"employeeType\":\"mozo\",\r\n    \"commerce\":\"cp luisito\"\r\n    \r\n}",
+							"raw": "{\r\n    \"firstName\": \"cacho\",\r\n    \"lastName\": \"garcia\",\r\n    \"password\": \"22222\",\r\n    \"address\": \"cordoba 2323\",\r\n    \"phone\":\"4444-3333\",\r\n    \"birthDate\":\"2000-04-15\",\r\n    \"start\":\"2023-07-27\",\r\n    \"document\":\"34343434\",\r\n    \"email\":\"luisglogista@gmail.com\",\r\n    \"googleUser\":\"\",\r\n    \"facebookUser\":\"\",\r\n    \"twitterUser\":\"\",\r\n    \"photo\":\"\",\r\n    \"employeeType\":6,\r\n    \"commerce\":4\r\n    \r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -2892,7 +2892,7 @@
 						"method": "PUT",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3001/employee/validated/3",
+							"raw": "http://localhost:3001/employee/validated/5",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -2901,7 +2901,7 @@
 							"path": [
 								"employee",
 								"validated",
-								"3"
+								"5"
 							]
 						}
 					},
@@ -3616,7 +3616,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"date\": \"2023-09-16\",\r\n    \"name\": \"tortilla de papa\",\r\n    \"description\": \"tortilla\",\r\n    \"cost\": 800,\r\n    \"promotion\": 0,\r\n    \"discount\": 0,\r\n    \"surcharge\": 0,\r\n    \"validity\": \"2024-09-17\",\r\n    \"photo\": \"\",\r\n    \"commerceId\": 2,\r\n    \"menuTypeId\": 2,\r\n    \"tableServiceId\": 3,\r\n    \"categoryId\": 5,\r\n    \"dishes\": {\r\n        \"id\": [\"1\"],\r\n        \"name\": [\"tortilla de papa\"],\r\n        \"description\": [\"tortilla\"],\r\n        \"photo\": [\"\"],\r\n        \"cost\": [\"900\"],\r\n        \"promotion\": [\"0\"],\r\n        \"discount\": [\"0\"],\r\n        \"surcharge\": [\"0\"],\r\n        \"estimatedTime\": [\"40\"],\r\n        \"additionalId\": [\"\"],\r\n        \"supplyId\": [\"\"],\r\n        \"recipeId\": [\"5\"],\r\n        \"dishTypeId\": [\"3\"],\r\n        \"date\": [\"2023-09-17\"]\r\n    },\r\n    \"product\": {\r\n        \"id\": [\"\"],\r\n        \"name\": [\"\"],\r\n        \"cost\": [\"\"],\r\n        \"promotion\": [\"\"],\r\n        \"discount\": [\"\"],\r\n        \"surcharge\": [\"\"],\r\n        \"allergeType\": [\"\"],\r\n        \"careful\": [\"\"],\r\n        \"supplierId\": [\"\"],\r\n        \"amount\": [\"\"]\r\n    },\r\n    \"additional\": {\r\n        \"id\": [\"\"],\r\n        \"name\": [\"\"],\r\n        \"cost\": [\"\"],\r\n        \"promotion\": [\"\"],\r\n        \"discount\": [\"\"],\r\n        \"surcharge\": [\"\"],\r\n        \"photo\": [\"\"],\r\n        \"amount\": [\"\"]\r\n    }\r\n    \r\n}\r\n",
+							"raw": "{\r\n    \"date\": \"2023-09-25\",\r\n    \"name\": \"cuba libre\",\r\n    \"description\": \"bebida alcoholica\",\r\n    \"cost\": 4500,\r\n    \"promotion\": 0.1,\r\n    \"discount\": 0,\r\n    \"surcharge\": 0,\r\n    \"validity\": \"2024-09-25\",\r\n    \"photo\": \"\",\r\n    \"commerceId\": 4,\r\n    \"menuTypeId\": 3,\r\n    \"tableServiceId\": 4,\r\n    \"categoryId\": 6,\r\n    \"dishes\": {\r\n        \"id\": [\"\"],\r\n        \"name\": [\"\"],\r\n        \"description\": [\"\"],\r\n        \"photo\": [\"\"],\r\n        \"cost\": [\"\"],\r\n        \"promotion\": [\"\"],\r\n        \"discount\": [\"\"],\r\n        \"surcharge\": [\"\"],\r\n        \"estimatedTime\": [\"\"],\r\n        \"additionalId\": [\"\"],\r\n        \"supplyId\": [\"\"],\r\n        \"recipeId\": [\"\"],\r\n        \"dishTypeId\": [\"\"],\r\n        \"date\": [\"\"],\r\n        \"unitTypeId\": [\"\"]\r\n    },\r\n    \"product\": {\r\n        \"id\": [\"11\",\"12\",\"13\"],\r\n        \"name\": [\"ron\", \"cola\", \"limón\"],\r\n        \"cost\": [\"\"],\r\n        \"promotion\": [\"\"],\r\n        \"discount\": [\"\"],\r\n        \"surcharge\": [\"\"],\r\n        \"allergeType\": [\"\"],\r\n        \"careful\": [\"\"],\r\n        \"supplierId\": [\"9\", \"9\", \"10\"],\r\n        \"amount\": [\"0.2\", \"0.4\", \"0.25\"],\r\n        \"unitTypeId\": [\"11\", \"11\", \"10\"]\r\n    },\r\n    \"additional\": {\r\n        \"id\": [\"\"],\r\n        \"name\": [\"\"],\r\n        \"cost\": [\"\"],\r\n        \"promotion\": [\"\"],\r\n        \"discount\": [\"\"],\r\n        \"surcharge\": [\"\"],\r\n        \"photo\": [\"\"],\r\n        \"amount\": [\"\"],\r\n        \"unitTypeId\": [\"\"]\r\n    }\r\n    \r\n}\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -3674,7 +3674,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"date\": \"2023-09-16\",\r\n    \"name\": \"tortilla de papa\",\r\n    \"description\": \"tortilla\",\r\n    \"cost\": 800,\r\n    \"promotion\": 0,\r\n    \"discount\": 0,\r\n    \"surcharge\": 0,\r\n    \"validity\": \"2024-09-17\",\r\n    \"photo\": \"\",\r\n    \"commerceId\": 2,\r\n    \"menuTypeId\": 2,\r\n    \"tableServiceId\": 3,\r\n    \"categoryId\": 5,\r\n    \"dishes\": {\r\n        \"id\": [\"1\"],\r\n        \"name\": [\"tortilla de papa\"],\r\n        \"description\": [\"tortilla\"],\r\n        \"photo\": [\"\"],\r\n        \"cost\": [\"900\"],\r\n        \"promotion\": [\"0\"],\r\n        \"discount\": [\"0\"],\r\n        \"surcharge\": [\"0\"],\r\n        \"estimatedTime\": [\"40\"],\r\n        \"additionalId\": [\"\"],\r\n        \"supplyId\": [\"\"],\r\n        \"recipeId\": [\"5\"],\r\n        \"dishTypeId\": [\"3\"],\r\n        \"date\": [\"2023-09-17\"]\r\n    },\r\n    \"product\": {\r\n        \"id\": [\"\"],\r\n        \"name\": [\"\"],\r\n        \"cost\": [\"\"],\r\n        \"promotion\": [\"\"],\r\n        \"discount\": [\"\"],\r\n        \"surcharge\": [\"\"],\r\n        \"allergeType\": [\"\"],\r\n        \"careful\": [\"\"],\r\n        \"supplierId\": [\"\"],\r\n        \"amount\": [\"\"]\r\n    },\r\n    \"additional\": {\r\n        \"id\": [\"\"],\r\n        \"name\": [\"\"],\r\n        \"cost\": [\"\"],\r\n        \"promotion\": [\"\"],\r\n        \"discount\": [\"\"],\r\n        \"surcharge\": [\"\"],\r\n        \"photo\": [\"\"],\r\n        \"amount\": [\"\"]\r\n    }\r\n    \r\n}",
+							"raw": "{\r\n    \"date\": \"2023-09-25\",\r\n    \"name\": \"cuba libre\",\r\n    \"description\": \"bebida alcoholica\",\r\n    \"cost\": 4500,\r\n    \"promotion\": 0.1,\r\n    \"discount\": 0,\r\n    \"surcharge\": 0,\r\n    \"validity\": \"2024-09-25\",\r\n    \"photo\": \"\",\r\n    \"commerceId\": 4,\r\n    \"menuTypeId\": 3,\r\n    \"tableServiceId\": 4,\r\n    \"categoryId\": 6,\r\n    \"dishes\": {\r\n        \"id\": [\"\"],\r\n        \"name\": [\"\"],\r\n        \"description\": [\"\"],\r\n        \"photo\": [\"\"],\r\n        \"cost\": [\"\"],\r\n        \"promotion\": [\"\"],\r\n        \"discount\": [\"\"],\r\n        \"surcharge\": [\"\"],\r\n        \"estimatedTime\": [\"\"],\r\n        \"additionalId\": [\"\"],\r\n        \"supplyId\": [\"\"],\r\n        \"recipeId\": [\"\"],\r\n        \"dishTypeId\": [\"\"],\r\n        \"date\": [\"\"],\r\n        \"unitTypeId\": [\"\"]\r\n    },\r\n    \"product\": {\r\n        \"id\": [\"11\",\"12\",\"13\"],\r\n        \"name\": [\"ron\", \"cola\", \"limón\"],\r\n        \"cost\": [\"\"],\r\n        \"promotion\": [\"\"],\r\n        \"discount\": [\"\"],\r\n        \"surcharge\": [\"\"],\r\n        \"allergeType\": [\"\"],\r\n        \"careful\": [\"\"],\r\n        \"supplierId\": [\"9\", \"9\", \"10\"],\r\n        \"amount\": [\"0.2\", \"0.4\", \"0.25\"],\r\n        \"unitTypeId\": [\"11\", \"11\", \"10\"]\r\n    },\r\n    \"additional\": {\r\n        \"id\": [\"\"],\r\n        \"name\": [\"\"],\r\n        \"cost\": [\"\"],\r\n        \"promotion\": [\"\"],\r\n        \"discount\": [\"\"],\r\n        \"surcharge\": [\"\"],\r\n        \"photo\": [\"\"],\r\n        \"amount\": [\"\"],\r\n        \"unitTypeId\": [\"\"]\r\n    }\r\n    \r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -3703,7 +3703,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3001/menu/all/2",
+							"raw": "http://localhost:3001/menu/all/4",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -3712,7 +3712,7 @@
 							"path": [
 								"menu",
 								"all",
-								"2"
+								"4"
 							]
 						}
 					},
@@ -3812,7 +3812,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"commerceId\": 2,\r\n    \"date\": \"2023-09-16\" \r\n}",
+							"raw": "{\r\n    \"commerceId\": 4,\r\n    \"date\": \"2023-09-25\" \r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -3840,7 +3840,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3001/menu/lastMenu/2",
+							"raw": "http://localhost:3001/menu/lastMenu/4",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -3849,7 +3849,7 @@
 							"path": [
 								"menu",
 								"lastMenu",
-								"2"
+								"4"
 							]
 						}
 					},
@@ -3867,7 +3867,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"type\": \"libre\",\r\n    \"detail\": \"No es apto para celíacos\",\r\n    \"commerceId\": 1\r\n    \r\n}",
+							"raw": "{\r\n    \"type\": \"ALCOHOL\",\r\n    \"detail\": \"diversas bebidas\",\r\n    \"commerceId\": 4\r\n    \r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -4036,7 +4036,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"sss\",\r\n    \"date\": \"2023-09-19\",\r\n    \"hour\": \"12:00\",\r\n    \"detail\": \"cambiar la gaseosa por agua sin gas\",\r\n    \"validity\": \"2023-09-30\",\r\n    \"promotion\": 0,\r\n    \"discount\": 0,\r\n    \"surcharge\": 0,\r\n    \"poId\": 7,\r\n    \"employeeId\": 3,\r\n    \"accountId\": 0,\r\n    \"paymentId\": 6,\r\n    \"commerceId\": 2,\r\n    \"deliveryId\": 0,\r\n    \"paid\" : 2000,\r\n    \"courierId\": 0,\r\n    \"costDelivery\": 0,\r\n    \"sectorId\": 1,\r\n    \"accountemail\": \"luisglogista@gmail.com\",\r\n    \"accountname\": \"ernesto machado\",\r\n    \"accountphone\": \"222222\",\r\n    \"accountbirthDate\": \"24-10-1967\",\r\n    \"accountaddress\": \"Av siempre viva 300\",\r\n    \"googleemail\": \"\",\r\n    \"additionals\": {\r\n        \"id\": [\"\"],\r\n        \"name\": [\"\"],\r\n        \"cost\": [\"\"],\r\n        \"promotion\": [\"\"],\r\n        \"discount\": [\"\"],\r\n        \"surcharge\": [\"\"],\r\n        \"amount\": [\"\"],\r\n        \"unitTypeId\": [\"\"]\r\n    },\r\n    \"products\": {\r\n        \"id\": [\"\"],\r\n        \"name\": [\"\"],\r\n        \"cost\": [\"\"],\r\n        \"unitTypeId\": [\"\"],\r\n        \"productTypeId\": [\"\"],\r\n        \"supplierId\": [\"\"],\r\n        \"promotion\": [\"\"],\r\n        \"discount\": [\"\"],\r\n        \"surcharge\": [\"\"],\r\n        \"amount\": [\"\"],\r\n        \"allergenType\": [\"\"],\r\n        \"careful\": [\"\"]\r\n    },\r\n    \"dishes\": {\r\n        \"id\": [\"\"],\r\n        \"name\": [\"\"],\r\n        \"description\": [\"\"],\r\n        \"photo\": [\"\"],\r\n        \"cost\": [\"\"],\r\n        \"estimatedTime\": [\"\"],\r\n        \"additionalId\": [\"\"],\r\n        \"amountAdditional\": [\"\"],\r\n        \"supplyId\": [\"\"],\r\n        \"amountSupplies\": [\"\"],\r\n        \"recipeId\": [\"\"],\r\n        \"dishTypeId\": [\"\"],\r\n        \"promotion\": [\"\"],\r\n        \"discount\": [\"\"],\r\n        \"surcharge\": [\"\"],\r\n        \"amount\": [\"\"]\r\n    },\r\n    \"menu\": {\r\n        \"id\": [\"\"],\r\n        \"name\": [\"\"],\r\n        \"description\": [\"\"],\r\n        \"cost\": [\"\"],\r\n        \"menuTypeId\": [\"\"],\r\n        \"categoryId\": [\"\"],\r\n        \"dishes\": [\"\"],\r\n        \"product\": [\"\"],\r\n        \"additional\": [\"\"],\r\n        \"promotion\": [\"\"],\r\n        \"discount\": [\"\"],\r\n        \"surcharge\": [\"\"],\r\n        \"amount\": [\"\"]\r\n    }\r\n}\r\n",
+							"raw": "{\r\n    \"name\": \"sss\",\r\n    \"date\": \"2023-09-25\",\r\n    \"hour\": \"20:00\",\r\n    \"detail\": \"\",\r\n    \"validity\": \"2023-09-30\",\r\n    \"promotion\": 0,\r\n    \"discount\": 0,\r\n    \"surcharge\": 0,\r\n    \"poId\": 5,\r\n    \"employeeId\": 3,\r\n    \"accountId\": null,\r\n    \"paymentId\": 5,\r\n    \"commerceId\": 2,\r\n    \"deliveryId\": 4,\r\n    \"paid\" : 2000,\r\n    \"courierId\": null,\r\n    \"costDelivery\": 0,\r\n    \"sectorId\": 1,\r\n    \"accountemail\": \"\",\r\n    \"accountname\": \"ernesto machado\",\r\n    \"accountphone\": \"222222\",\r\n    \"accountbirthDate\": \"24-10-1967\",\r\n    \"accountaddress\": \"Av siempre viva 300\",\r\n    \"googleemail\": \"luisglogista@gmail.com\",\r\n    \"additionals\": {\r\n        \"id\": [\"5\"],\r\n        \"name\": [\"mayonesa\"],\r\n        \"cost\": [\"\"],\r\n        \"promotion\": [\"\"],\r\n        \"discount\": [\"\"],\r\n        \"surcharge\": [\"\"],\r\n        \"amount\": [\"1\"],\r\n        \"unitTypeId\": [\"\"],\r\n        \"detail\": [\"\"]\r\n    },\r\n    \"products\": {\r\n        \"id\": [\"10\", \"14\"],\r\n        \"name\": [\"agua\", \"cola\"],\r\n        \"cost\": [\"800\", \"800\"],\r\n        \"unitTypeId\": [\"7\", \"7\"],\r\n        \"productTypeId\": [\"12\", \"12\"],\r\n        \"supplierId\": [\"11\", \"11\"],\r\n        \"promotion\": [\"\", \"\"],\r\n        \"discount\": [\"\", \"\"],\r\n        \"surcharge\": [\"\", \"\"],\r\n        \"amount\": [\"1\", \"1\"],\r\n        \"allergenType\": [\"\", \"\"],\r\n        \"careful\": [\"\", \"\"],\r\n        \"detail\": [\"natural\", \"sin hielo\"]\r\n    },\r\n    \"dishes\": {\r\n        \"id\": [\"2\",\"5\"],\r\n        \"name\": [\"tortilla\", \"ensalada lechuga y tomate\"],\r\n        \"description\": [\"tortilla de papa\", \"\"],\r\n        \"photo\": [\"\", \"\"],\r\n        \"cost\": [\"900\", \"700\"],\r\n        \"estimatedTime\": [\"40\", \"10\"],\r\n        \"additionalId\": [\"5\", \"\"],\r\n        \"amountAdditional\": [\"2\", \"\"],\r\n        \"supplyId\": [\"\", \"\"],\r\n        \"amountSupplies\": [\"\", \"\"],\r\n        \"recipeId\": [\"\", \"\"],\r\n        \"dishTypeId\": [\"1\", \"1\"],\r\n        \"promotion\": [\"\", \"\"],\r\n        \"discount\": [\"\", \"\"],\r\n        \"surcharge\": [\"\", \"\"],\r\n        \"amount\": [\"1\", \"1\"],\r\n        \"detail\": [\"babé\", \"\"]\r\n    },\r\n    \"menu\": {\r\n        \"id\": [\"\"],\r\n        \"name\": [\"\"],\r\n        \"description\": [\"\"],\r\n        \"cost\": [\"\"],\r\n        \"menuTypeId\": [\"\"],\r\n        \"categoryId\": [\"\"],\r\n        \"dishes\": [\"\"],\r\n        \"product\": [\"\"],\r\n        \"additionalId\": [\"\"],\r\n        \"promotion\": [\"\"],\r\n        \"discount\": [\"\"],\r\n        \"surcharge\": [\"\"],\r\n        \"amount\": [\"\"],\r\n        \"detail\": [\"\"]\r\n    }\r\n}\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -4172,7 +4172,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3001/order/dates/2?startDate=2023-09-18&endDate=2023-09-18",
+							"raw": "http://localhost:3001/order/dates/2?startDate=2023-09-25&endDate=2023-09-25",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -4186,36 +4186,15 @@
 							"query": [
 								{
 									"key": "startDate",
-									"value": "2023-09-18"
+									"value": "2023-09-25"
 								},
 								{
 									"key": "endDate",
-									"value": "2023-09-18"
+									"value": "2023-09-25"
 								}
 							]
 						},
 						"description": "Trae todas las ordenes de order por id commerce y en intervalo de fecha. si las fechas coinciden trae el día."
-					},
-					"response": []
-				},
-				{
-					"name": "Orderes for Commerce",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:3001/order/orderes2/2",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3001",
-							"path": [
-								"order",
-								"orderes2",
-								"2"
-							]
-						}
 					},
 					"response": []
 				},
@@ -4768,7 +4747,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3001/order/paidOrderes/2?startDate=2023-09-18&endDate=2023-09-18",
+							"raw": "http://localhost:3001/order/paidOrderes/2?startDate=2023-09-25&endDate=2023-09-25",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -4782,11 +4761,11 @@
 							"query": [
 								{
 									"key": "startDate",
-									"value": "2023-09-18"
+									"value": "2023-09-25"
 								},
 								{
 									"key": "endDate",
-									"value": "2023-09-18"
+									"value": "2023-09-25"
 								}
 							]
 						}
@@ -4799,7 +4778,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3001/order/vtas/2?dateFrom=2023-09-18&dateTo=2023-09-18",
+							"raw": "http://localhost:3001/order/vtas/2?dateFrom=2023-09-25&dateTo=2023-09-25",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -4813,11 +4792,11 @@
 							"query": [
 								{
 									"key": "dateFrom",
-									"value": "2023-09-18"
+									"value": "2023-09-25"
 								},
 								{
 									"key": "dateTo",
-									"value": "2023-09-18"
+									"value": "2023-09-25"
 								}
 							]
 						}
@@ -4952,7 +4931,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"type\": \"efectivo\",\r\n    \"detail\": \"\",\r\n    \"commerceId\": 2\r\n    \r\n}",
+							"raw": "{\r\n    \"type\": \"mercadopago\",\r\n    \"detail\": \"\",\r\n    \"commerceId\": 4\r\n    \r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -5010,7 +4989,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3001/payment/all/2",
+							"raw": "http://localhost:3001/payment/all/4",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -5019,7 +4998,7 @@
 							"path": [
 								"payment",
 								"all",
-								"2"
+								"4"
 							]
 						}
 					},
@@ -5121,7 +5100,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"qrCode\": \"https://punctuation-gamma.vercel.app/1\",\r\n    \"name\": \"\",\r\n    \"posTypeId\": 4,\r\n    \"promotion\": 0,\r\n    \"discount\": 0,\r\n    \"surcharge\": 0,\r\n    \"capacity\": 1,\r\n    \"detail\": \"\",\r\n    \"sectorId\": 6,\r\n    \"tableServiceId\": 1,\r\n}\r\n",
+							"raw": "{\r\n    \"qrCode\": \"https://punctuation-gamma.vercel.app/2\",\r\n    \"name\": \"\",\r\n    \"posTypeId\": 5,\r\n    \"promotion\": 0,\r\n    \"discount\": 0,\r\n    \"surcharge\": 0,\r\n    \"capacity\": 1,\r\n    \"detail\": \"se retira en barra\",\r\n    \"sectorId\": 10,\r\n    \"tableServiceId\": 4\r\n}\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -5179,7 +5158,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3001/pos/all/1",
+							"raw": "http://localhost:3001/pos/all/4",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -5188,7 +5167,7 @@
 							"path": [
 								"pos",
 								"all",
-								"1"
+								"4"
 							]
 						}
 					},
@@ -5310,7 +5289,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "/*\r\n{\r\n    \"type\": \"mesa\",\r\n    \"detail\": \"Mesa\"\r\n    \r\n}\r\n*/\r\n/*\r\n{\r\n    \"type\": \"VIP\",\r\n    \"detail\": \"Mesa VIP\"\r\n    \r\n}\r\n*/\r\n{\r\n    \"type\": \"butaca\",\r\n    \"detail\": \"butaca de estadio\",\r\n    \"commerceId\": 2\r\n    \r\n}",
+							"raw": "{\r\n    \"type\": \"barra\",\r\n    \"detail\": \"venta de barra\",\r\n    \"commerceId\": 4\r\n    \r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -5479,7 +5458,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"pata y muslo\",\r\n    \"photo\": \"\",\r\n    \"stock\": 20,\r\n    \"pointOrder\": 10,\r\n    \"cost\" : 1500,\r\n    \"allergenType\" : \"\",\r\n    \"careful\" : \"\",\r\n    \"unitTypeId\" : 5,\r\n    \"productTypeId\" : 11,\r\n    \"supplierId\" : 1,\r\n    \"commerceId\": 2,\r\n    \"promotion\": 0,\r\n    \"discopunt\": 0,\r\n    \"surcharge\": 0,\r\n    \"amount\": 1\r\n    \r\n}\r\n",
+							"raw": "{\r\n    \"name\": \"cola\",\r\n    \"photo\": \"\",\r\n    \"stock\": 12,\r\n    \"pointOrder\": 10,\r\n    \"cost\" : 800,\r\n    \"allergenType\" : \"\",\r\n    \"careful\" : \"\",\r\n    \"unitTypeId\" : 10,\r\n    \"productTypeId\" : 14,\r\n    \"supplierId\" : 11,\r\n    \"commerceId\": 2,\r\n    \"promotion\": 0,\r\n    \"discopunt\": 0,\r\n    \"surcharge\": 0,\r\n    \"amount\": 10\r\n    \r\n}\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -5648,7 +5627,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"type\": \"pollo\",\r\n    \"detail\": \"pollo entero\",\r\n    \"commerceId\": 2\r\n}",
+							"raw": "{\r\n    \"type\": \"verduras\",\r\n    \"detail\": \"\",\r\n    \"commerceId\": 4\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -5817,7 +5796,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"fritas\",\r\n    \"amount\": 1,\r\n    \"unitTypeId\": 1,\r\n    \"commerceId\": 2\r\n}",
+							"raw": "{\r\n    \"name\": \"cubalibre\",\r\n    \"amount\": 1,\r\n    \"unitTypeId\": 9,\r\n    \"commerceId\": 4\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -5846,7 +5825,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"ingredients\": {\r\n        \"product\": [\"papa\",\"aceite\"],\r\n        \"active\": [\"1\",\"1\"],\r\n        \"detail\": [\"\",\"\"],\r\n        \"amount\": [\"0.2\",\"0.1\"],\r\n        \"unit\": [\"kg\", \"lt\"]\r\n    },\r\n    \"supply\": {\r\n       \"active\": [\"1\"],\r\n       \"supply\": [\"servilletas\"],\r\n       \"detail\":[\"\"],\r\n       \"amount\": [\"1\"],\r\n       \"unit\": [\"unidad\"] \r\n    }\r\n}\r\n/*\r\n{\r\n    \"ingredients\": {\r\n        \"product\": [\"nalga\",\"pan rallado\"],\r\n        \"active\": [\"1\",\"1\"],\r\n        \"detail\": [\"xxxx\",\"\"],\r\n        \"amount\": [\"1\",\"0.5\"],\r\n        \"unit\": [\"kg\", \"kg\"]\r\n    },\r\n    \"supply\": {\r\n       \"active\": [\"1\",\"1\"],\r\n       \"supply\": [\"servilletas\",\"\"],\r\n       \"detail\":[\"ccccc\",\"\"],\r\n       \"amount\": [\"1\",\"0.1\"],\r\n       \"unit\": [\"unidad\", \"\"] \r\n    }\r\n}\r\n*/",
+							"raw": "{\r\n    \"ingredients\": {\r\n        \"product\": [\"papa\",\"aceite\"],\r\n        \"active\": [\"1\",\"1\"],\r\n        \"detail\": [\"\",\"\"],\r\n        \"amount\": [\"0.2\",\"0.1\"],\r\n        \"unit\": [\"kg\", \"lt\"]\r\n    },\r\n    \"supply\": {\r\n       \"active\": [\"1\"],\r\n       \"supply\": [\"servilletas\"],\r\n       \"detail\":[\"\"],\r\n       \"amount\": [\"1\"],\r\n       \"unit\": [\"unidad\"] \r\n    }\r\n}\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -6016,7 +5995,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"terraza\",\r\n    \"promotion\": 0,\r\n    \"discount\": 0,\r\n    \"surcharge\": 0,\r\n    \"capacity\": 20,\r\n    \"detail\": \"terraza frente al río\",\r\n    \"qrCode\": \"\",\r\n    \"commerceId\": 2\r\n}\r\n",
+							"raw": "{\r\n    \"name\": \"pista pa\",\r\n    \"promotion\": 0,\r\n    \"discount\": 0,\r\n    \"surcharge\": 0,\r\n    \"capacity\": 200,\r\n    \"detail\": \"pista de la planta alta\",\r\n    \"qrCode\": \"\",\r\n    \"commerceId\": 4,\r\n    \"tableServiceId\": 4\r\n}\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -6045,7 +6024,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"terraza\",\r\n    \"promotion\": 0,\r\n    \"discount\": 0,\r\n    \"surcharge\": 0,\r\n    \"capacity\": 20,\r\n    \"detail\": \"terraza frente al río\",\r\n    \"qrCode\": \"\",\r\n    \"commerceId\": 2\r\n}",
+							"raw": "{\r\n    \"name\": \"terraza\",\r\n    \"promotion\": 0,\r\n    \"discount\": 0,\r\n    \"surcharge\": 0,\r\n    \"capacity\": 20,\r\n    \"detail\": \"terraza frente al río\",\r\n    \"qrCode\": \"\",\r\n    \"commerceId\": 2,\r\n    \"tableServiceId\": 4\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -6074,7 +6053,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3001/sector/all/2",
+							"raw": "http://localhost:3001/sector/all/4",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -6083,7 +6062,7 @@
 							"path": [
 								"sector",
 								"all",
-								"2"
+								"4"
 							]
 						}
 					},
@@ -6179,7 +6158,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3001/sector/sectorPos/2",
+							"raw": "http://localhost:3001/sector/sectorPos/4",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -6188,7 +6167,7 @@
 							"path": [
 								"sector",
 								"sectorPos",
-								"2"
+								"4"
 							]
 						}
 					},
@@ -6206,7 +6185,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "/*\r\n{\r\n    \"item\": \"papelería\",\r\n    \"name\": \"Todo papel\",\r\n    \"ssn\":\"555555\",\r\n    \"mail\":\"luisglogista@gmail.com\",\r\n    \"phone\":\"548754\",\r\n    \"contact\":\"Pedro\",\r\n    \"commerceId\": 2\r\n}\r\n*/\r\n{\r\n    \"item\": \"bandejas\",\r\n    \"name\": \"Super Envases\",\r\n    \"ssn\":\"232323\",\r\n    \"mail\":\"luisglogista@gmail.com\",\r\n    \"phone\":\"222222\",\r\n    \"contact\":\"José\",\r\n    \"commerceId\": 2\r\n}\r\n",
+							"raw": "{\r\n    \"item\": \"bebidas\",\r\n    \"name\": \"acuaman\",\r\n    \"ssn\":\"232323\",\r\n    \"mail\":\"luisglogista@gmail.com\",\r\n    \"phone\":\"222222\",\r\n    \"contact\":\"maría\",\r\n    \"commerceId\": 2\r\n}\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -6375,7 +6354,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"cucharitas para helado\",\r\n    \"cost\": 300.50,\r\n    \"promotion\":0,\r\n    \"discount\":0,\r\n    \"supplierId\": 2,\r\n    \"suppliesTypeId\": 5,\r\n    \"commerceId\": 2\r\n    \r\n}\r\n",
+							"raw": "{\r\n    \"name\": \"vaso plástico\",\r\n    \"cost\": 300.50,\r\n    \"promotion\":0,\r\n    \"discount\":0,\r\n    \"surcharge\": 0,\r\n    \"supplierId\": 8,\r\n    \"suppliesTypeId\": 8,\r\n    \"commerceId\": 4,\r\n    \"unitTypeId\": 9,\r\n    \"amount\": 1000\r\n    \r\n}\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -6404,7 +6383,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"cucharitas para helado\",\r\n    \"cost\": 300.50,\r\n    \"promotion\":0,\r\n    \"discount\":0,\r\n    \"supplierId\": 2,\r\n    \"suppliesTypeId\": 5\r\n    \r\n}",
+							"raw": "{\r\n    \"name\": \"vaso de vidrio\",\r\n    \"cost\": 300.50,\r\n    \"promotion\":0,\r\n    \"discount\":0,\r\n    \"surcharge\": 0,\r\n    \"supplierId\": 8,\r\n    \"suppliesTypeId\": 8,\r\n    \"commerceId\": 4,\r\n    \"unitTypeId\": 9,\r\n    \"amount\": 100\r\n    \r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -6544,7 +6523,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"type\": \"bolsas camiseta\",\r\n    \"detail\": \"\",\r\n    \"unitTypeId\": 1,\r\n    \"commerceId\": 2\r\n}\r\n",
+							"raw": "{\r\n    \"type\": \"cristalería\",\r\n    \"detail\": \"\",\r\n    \"unitTypeId\": 9,\r\n    \"commerceId\": 4\r\n}\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -6573,7 +6552,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"type\": \"bolsas camsieta\",\r\n    \"detail\": \"\",\r\n    \"unitTypeId\": 1\r\n}",
+							"raw": "{\r\n    \"type\": \"cristalería\",\r\n    \"detail\": \"\",\r\n    \"unitTypeId\": 8,\r\n    \"commerceId\": 4\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -6713,7 +6692,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"type\": \"mesa\",\r\n    \"detail\": \"servicio de mesa\",\r\n    \"cost\": 100,\r\n    \"promotion\": 0,\r\n    \"discount\":0,\r\n    \"surcharge\": 0,\r\n    \"validity\":\"2023-12-31\",\r\n    \"commerceId\": 2\r\n    \r\n}\r\n\r\n",
+							"raw": "{\r\n    \"type\": \"tragos\",\r\n    \"detail\": \"tragos a retirar en barra\",\r\n    \"cost\": 0,\r\n    \"promotion\": 0,\r\n    \"discount\":0,\r\n    \"surcharge\": 0,\r\n    \"validity\":\"2023-12-31\",\r\n    \"commerceId\": 4\r\n    \r\n}\r\n\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -6882,7 +6861,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"unit\": \"unidad\",\r\n    \"detail\": \"unidad\",\r\n    \"commerceId\": 2\r\n}\r\n",
+							"raw": "{\r\n    \"unit\": \"lt\",\r\n    \"detail\": \"litro\",\r\n    \"commerceId\": 4\r\n}\r\n",
 							"options": {
 								"raw": {
 									"language": "json"

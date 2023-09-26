@@ -77,6 +77,16 @@ module.exports = (sequelize) => {
         type: DataTypes.JSON,
         allowNull: true,
       },
+      // accountId: {
+      //   type: DataTypes.INTEGER,
+      //   allowNull: true, // Permite valores nulos
+      //   defaultValue: null, // Establece el valor predeterminado como null
+      //   references: {
+      //     model: 'accounts', // Debe coincidir con el nombre de la tabla de cuentas
+      //     key: 'id', // Debe coincidir con la columna de clave primaria en la tabla de cuentas
+      //   },
+      //   // ...
+      // },
     },
     {
       timestamps: true,
