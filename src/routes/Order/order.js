@@ -1374,6 +1374,122 @@ order.get('/paidOrderes/:commerceId', async (req, res) => {
   }
 });
 
+order.get('/orderesDelivery/:commerceId', async (req, res) => {
+  try {
+    const { commerceId: commerceIdParam } = req.params;
+    const { startDate, endDate } = req.query;
+    const ord = await Order.findAll({
+      where: {
+        date: {
+          [Op.gte]: startDate,
+          [Op.lte]: endDate,
+        },
+        status: {
+          [Op.not]: 'canceled',
+        },
+        paid: {
+          [Op.gt]: 0,
+        },
+        commerceId: parseInt(commerceIdParam, 10),
+        deliveryId: {
+          [Op.not]: null,
+        },
+      },
+      attributes: [
+        'id', 'order', 'date', 'hour', 'status', 'detail', 'promotion',
+        'discount', 'surcharge', 'costDelivery', 'paid', 'name',
+        'additionals', 'products', 'dishes', 'menu',
+      ],
+      include: [
+        {
+          model: Pos,
+          attributes: ['id', 'name', 'promotion', 'discount', 'surcharge'],
+        },
+        {
+          model: Employee,
+          attributes: ['id', 'firstName', 'lastName', 'photo'],
+        },
+        {
+          model: Delivery,
+          attributes: ['id', 'name', 'company', 'logo', 'promotion', 'discount', 'surcharge', 'fee'],
+        },
+        {
+          model: Courier,
+          attributes: ['id', 'firstName', 'lastName', 'promotion', 'discount', 'surcharge', 'fee'],
+        },
+        {
+          model: Sector,
+          attributes: ['id', 'name', 'promotion', 'discount', 'surcharge'],
+        },
+      ],
+    });
+    if (ord) {
+      res.status(201).json(ord);
+    } else {
+      res.status(422).json('Not found');
+    }
+  } catch (error) {
+    res.status(500).json({ message: 'Error al obtener los pagos realizados' });
+  }
+});
+
+order.get('/orderesNotDelivery/:commerceId', async (req, res) => {
+  try {
+    const { commerceId: commerceIdParam } = req.params;
+    const { startDate, endDate } = req.query;
+    const ord = await Order.findAll({
+      where: {
+        date: {
+          [Op.gte]: startDate,
+          [Op.lte]: endDate,
+        },
+        status: {
+          [Op.not]: 'canceled',
+        },
+        paid: {
+          [Op.gt]: 0,
+        },
+        commerceId: parseInt(commerceIdParam, 10),
+        deliveryId: null,
+      },
+      attributes: [
+        'id', 'order', 'date', 'hour', 'status', 'detail', 'promotion',
+        'discount', 'surcharge', 'costDelivery', 'paid', 'name',
+        'additionals', 'products', 'dishes', 'menu',
+      ],
+      include: [
+        {
+          model: Pos,
+          attributes: ['id', 'name', 'promotion', 'discount', 'surcharge'],
+        },
+        {
+          model: Employee,
+          attributes: ['id', 'firstName', 'lastName', 'photo'],
+        },
+        {
+          model: Delivery,
+          attributes: ['id', 'name', 'company', 'logo', 'promotion', 'discount', 'surcharge', 'fee'],
+        },
+        {
+          model: Courier,
+          attributes: ['id', 'firstName', 'lastName', 'promotion', 'discount', 'surcharge', 'fee'],
+        },
+        {
+          model: Sector,
+          attributes: ['id', 'name', 'promotion', 'discount', 'surcharge'],
+        },
+      ],
+    });
+    if (ord) {
+      res.status(201).json(ord);
+    } else {
+      res.status(422).json('Not found');
+    }
+  } catch (error) {
+    res.status(500).json({ message: 'Error al obtener los pagos realizados' });
+  }
+});
+
 order.put('/updateCourier/:order/:id/:commerceId', async (req, res) => {
   try {
     const {
