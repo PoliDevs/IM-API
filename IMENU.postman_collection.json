@@ -4919,6 +4919,68 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Orderes with Delivery",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/order/orderesDelivery/2?startDate=2023-09-08&endDate=2023-09-27",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"order",
+								"orderesDelivery",
+								"2"
+							],
+							"query": [
+								{
+									"key": "startDate",
+									"value": "2023-09-08"
+								},
+								{
+									"key": "endDate",
+									"value": "2023-09-27"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Orderes with Not Delivery",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/order/orderesNotDelivery/2?startDate=2023-09-08&endDate=2023-09-27",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"order",
+								"orderesNotDelivery",
+								"2"
+							],
+							"query": [
+								{
+									"key": "startDate",
+									"value": "2023-09-08"
+								},
+								{
+									"key": "endDate",
+									"value": "2023-09-27"
+								}
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
