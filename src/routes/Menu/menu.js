@@ -6,6 +6,9 @@ const {
   Menu, MenuType, Commerce, Category,
 } = require('../../db');
 const { conn: sequelize } = require('../../db');
+const { loadMenuType } = require('../../controllers/Menu/loadMenuType');
+const { loadCategory } = require('../../controllers/Menu/loadCategory');
+const { loadMenu } = require('../../controllers/Menu/loadMenu');
 
 menu.use(express.json());
 menu.use(cors());
@@ -29,7 +32,7 @@ menu.post('/menu', async (req, res) => {
       photo,
       commerceId,
       menuTypeId,
-      tableServiceId,
+      // tableServiceId,
       categoryId,
       dishes,
       product,
@@ -190,7 +193,7 @@ menu.post('/menu', async (req, res) => {
         photo,
         commerceId,
         menuTypeId,
-        tableServiceId,
+        // tableServiceId,
         categoryId,
         dishes: newDishes,
         product: newProduct,
@@ -207,8 +210,29 @@ menu.post('/menu', async (req, res) => {
   }
 });
 
-menu.post('/menuUp', async (req, res) => {
-  res.status(201).json('menuUp');
+menu.post('/menuUp/:commerceId', async (req, res) => {
+  try {
+    const { commerceId } = req.params;
+    const { menuJSON } = req.body;
+    if (!commerceId && !Number.isInteger(parseInt(commerceId, 10))) {
+      res.status(422).send('ID was not provided');
+    }
+
+    const newMenuType = await loadMenuType(menuJSON, commerceId);
+    const newCategory = await loadCategory(menuJSON, commerceId);
+    const newMenu = await loadMenu(menuJSON, commerceId);
+    // console.log(newMenuType);
+    res.status(201).json({
+      type: 'menuUp',
+      MenuType: newMenuType,
+      Category: newCategory,
+      Menu: newMenu,
+    });
+  } catch (error) {
+    // eslint-disable-next-line no-console
+    console.error(error);
+    res.status(500).send(error);
+  }
 });
 
 menu.get('/all/:commerceId', async (req, res) => {
@@ -467,7 +491,7 @@ menu.put('/update/:id', async (req, res) => {
       photo,
       commerceId,
       menuTypeId,
-      tableServiceId,
+      // tableServiceId,
       categoryId,
       dishes,
       product,
@@ -628,7 +652,7 @@ menu.put('/update/:id', async (req, res) => {
         photo,
         commerceId,
         menuTypeId,
-        tableServiceId,
+        // tableServiceId,
         categoryId,
         dishes: newDishes,
         product: newProduct,
