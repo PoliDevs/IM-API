@@ -332,7 +332,7 @@ order.post('/new', async (req, res) => {
       if (accountemail || googleemail) {
         sendNewOrder(to, names, newOrder);
       }
-      res.status(200).send('Order created');
+      res.status(200).json({ mensaje: 'Order created', order: newOrder, id: created.dataValues.id });
     } else {
       res.status(422).send('Existing Order');
     }

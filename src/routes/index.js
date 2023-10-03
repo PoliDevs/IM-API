@@ -39,6 +39,7 @@ const courierTypeRouter = require('./Courier/courierType');
 const sectorRouter = require('./Sector');
 const logoutEmployeeRouter = require('./LogOut/logoutEmployee');
 const logoutAccountRouter = require('./LogOut/logoutAccount');
+const mercadoPagoRouter = require('./MercadoPago');
 
 const router = Router();
 
@@ -82,5 +83,6 @@ router.use('/courierType', courierTypeRouter);
 router.use('/sector', sectorRouter);
 router.use('/logoutemployee', logoutEmployeeRouter);
 router.use('/logoutaccount', logoutAccountRouter);
+router.use('/mp', mercadoPagoRouter);
 
 module.exports = router;

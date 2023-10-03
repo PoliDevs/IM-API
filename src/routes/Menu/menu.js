@@ -320,7 +320,7 @@ menu.get('/all_active/:commerceId', async (req, res) => {
   }
 });
 
-menu.get('/lastMenu/:commerceId', async (req, res) => {
+menu.get('/lastMenuActive/:commerceId', async (req, res) => {
   try {
     const { commerceId } = req.params;
     if (!commerceId && !Number.isInteger(parseInt(commerceId, 10))) {
@@ -329,6 +329,48 @@ menu.get('/lastMenu/:commerceId', async (req, res) => {
     const men = await Menu.findAll({
       where: {
         active: true,
+        status: 'last',
+        commerceId: parseInt(commerceId, 10),
+      },
+      attributes: ['id', 'date', 'name', 'description', 'status', 'cost', 'promotion', 'discount', 'validity', 'photo', 'dishes', 'active', 'surcharge', 'commerceId', 'product', 'additional'],
+      include: [
+        {
+          model: Commerce,
+          where: {
+            active: true,
+          },
+          attributes: ['id', 'name', 'neighborhood', 'address', 'workSchedule', 'email', 'phono', 'active', 'franchiseId', 'commercialPlanId', 'businessId', 'open', 'start'],
+        },
+        {
+          model: MenuType,
+          attributes: ['id', 'type', 'detail', 'active'],
+        },
+        {
+          model: Category,
+          attributes: ['id', 'category', 'detail', 'active'],
+        },
+      ],
+    });
+
+    if (men.length > 0) {
+      res.status(201).json(men);
+    } else {
+      res.status(422).json('Not found');
+    }
+  } catch (error) {
+    res.status(500).send(error);
+  }
+});
+
+menu.get('/lastMenu/:commerceId', async (req, res) => {
+  try {
+    const { commerceId } = req.params;
+    if (!commerceId && !Number.isInteger(parseInt(commerceId, 10))) {
+      res.status(422).send('ID was not provided');
+    }
+    const men = await Menu.findAll({
+      where: {
+        // active: true,
         status: 'last',
         commerceId: parseInt(commerceId, 10),
       },
