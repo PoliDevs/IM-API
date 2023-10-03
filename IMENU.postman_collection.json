@@ -3645,7 +3645,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n\"menuJSON\": [\r\n              {\r\n                  \"photo\": \"🍔\",\r\n                  \"menuType\": \"Menú vegano\",\r\n                  \"category\": \"Minutas\",\r\n                  \"name\": \"Hamburguesa Clásica\",\r\n                  \"cost\": 2500,\r\n                  \"description\": \"\",\r\n                  \"date\": \"2023-09-27\",\r\n                  \"promotion\": 0,\r\n                  \"discount\": 0,\r\n                  \"surcharge\": 0,\r\n                  \"validity\": \"2023-12-30\",\r\n                  \"dishes\": null,\r\n                  \"product\": null,\r\n                  \"additional\": null\r\n              },\r\n              {\r\n                  \"photo\": \"🍕\",\r\n                  \"menuType\": \"Otro\",\r\n                  \"category\": \"Pizza\",\r\n                  \"name\": \"Pizza Margherita\",\r\n                  \"cost\": 2200,\r\n                  \"description\": \"\",\r\n                  \"date\": \"2023-09-27\",\r\n                  \"promotion\" : 0,\r\n                  \"discount\": 0,\r\n                  \"surcharge\": 0,\r\n                  \"validity\": \"2023-12-30\",\r\n                  \"dishes\": null,\r\n                  \"product\": null,\r\n                  \"additional\": null\r\n              },\r\n              {\r\n                  \"photo\": \"🌯\",\r\n                  \"menuType\": \"libre\",\r\n                  \"category\": \"Mexicana\",\r\n                  \"name\": \"Tacos de Pollo\",\r\n                  \"cost\": 2800,\r\n                  \"description\": \"\",\r\n                  \"date\": \"2023-09-27\",\r\n                  \"promotion\" : 0,\r\n                  \"discount\": 0,\r\n                  \"surcharge\": 0,\r\n                  \"validity\": \"2023-12-30\",\r\n                  \"dishes\": null,\r\n                  \"product\": null,\r\n                  \"additional\": null\r\n              },\r\n              {\r\n                  \"photo\": \"🥗\",\r\n                  \"menuType\": \"Menú sin gluten\",\r\n                  \"category\": \"Ensaladas\",\r\n                  \"name\": \"Ensalada César\",\r\n                  \"cost\": 2600,\r\n                  \"description\": \"\",\r\n                  \"date\": \"2023-09-27\",\r\n                  \"promotion\" : 0,\r\n                  \"discount\": 0,\r\n                  \"surcharge\": 0,\r\n                  \"validity\": \"2023-12-30\",\r\n                  \"dishes\": null,\r\n                  \"product\": null,\r\n                  \"additional\": null\r\n              },\r\n              {\r\n                  \"photo\": \"🍝\",\r\n                  \"menuType\": \"Menú sin soja\",\r\n                  \"category\": \"Pastas\",\r\n                  \"name\": \"Spaghetti Carbonara\",\r\n                  \"cost\": 3000,\r\n                  \"description\": \"\",\r\n                  \"date\": \"2023-09-27\",\r\n                  \"promotion\" : 0,\r\n                  \"discount\": 0,\r\n                  \"surcharge\": 0,\r\n                  \"validity\": \"2023-12-30\",\r\n                  \"dishes\": null,\r\n                  \"product\": null,\r\n                  \"additional\": null\r\n              },\r\n              {\r\n                  \"photo\": \"🍗\",\r\n                  \"menuType\": \"Menú bajo en grasas\",\r\n                  \"category\": \"Asiatica\",\r\n                  \"name\": \"Sushi Variado\",\r\n                  \"cost\": 2750,\r\n                  \"description\": \"\",\r\n                  \"date\": \"2023-09-27\",\r\n                  \"promotion\" : 0,\r\n                  \"discount\": 0,\r\n                  \"surcharge\": 0,\r\n                  \"validity\": \"2023-12-30\",\r\n                  \"dishes\": null,\r\n                  \"product\": null,\r\n                  \"additional\": null\r\n              },\r\n              {\r\n                  \"photo\": \"🍟\",\r\n                  \"menuType\": \"Menú vegano\",\r\n                  \"category\": \"Mexicana\",\r\n                  \"name\": \"Burrito de Pollo\",\r\n                  \"cost\": 1890,\r\n                  \"description\": \"\",\r\n                  \"date\": \"2023-09-27\",\r\n                  \"promotion\" : 0,\r\n                  \"discount\": 0,\r\n                  \"surcharge\": 0,\r\n                  \"validity\": \"2023-12-30\",\r\n                  \"dishes\": null,\r\n                  \"product\": null,\r\n                  \"additional\": null\r\n              },\r\n              {\r\n                  \"photo\": \"🍳\",\r\n                  \"menuType\": \"Menú vegetariano\",\r\n                  \"category\": \"Asiatica\",\r\n                  \"name\": \"Curry de Cordero\",\r\n                  \"cost\": 1500,\r\n                  \"description\": \"\",\r\n                  \"date\": \"2023-09-27\",\r\n                  \"promotion\" : 0,\r\n                  \"discount\": 0,\r\n                  \"surcharge\": 0,\r\n                  \"validity\": \"2023-12-30\",\r\n                  \"dishes\": null,\r\n                  \"product\": null,\r\n                  \"additional\": null\r\n              },\r\n              {\r\n                  \"photo\": \"🥖\",\r\n                  \"menuType\": \"Menú sin mariscos\",\r\n                  \"category\": \"Asiatica\",\r\n                  \"name\": \"Sushi Vegano\",\r\n                  \"cost\": 2350,\r\n                  \"description\": \"\",\r\n                  \"date\": \"2023-09-27\",\r\n                  \"promotion\" : 0,\r\n                  \"discount\": 0,\r\n                  \"surcharge\": 0,\r\n                  \"validity\": \"2023-12-30\",\r\n                  \"dishes\": null,\r\n                  \"product\": null,\r\n                  \"additional\": null\r\n              },\r\n              {\r\n                  \"photo\": \"🧀\",\r\n                  \"menuType\": \"Menú sin frutos secos\",\r\n                  \"category\": \"Sandwiches\",\r\n                  \"name\": \"Sándwich de Pavo\",\r\n                  \"cost\": 3050,\r\n                  \"description\": \"\",\r\n                  \"date\": \"2023-09-27\",\r\n                  \"promotion\" : 0,\r\n                  \"discount\": 0,\r\n                  \"surcharge\": 0,\r\n                  \"validity\": \"2023-12-30\",\r\n                  \"dishes\": null,\r\n                  \"product\": null,\r\n                  \"additional\": null\r\n              },\r\n              {\r\n                  \"photo\": \"🍤\",\r\n                  \"menuType\": \"Menú kosher\",\r\n                  \"category\": \"Carnes\",\r\n                  \"name\": \"Churrasco Brasileño\",\r\n                  \"cost\": 3250,\r\n                  \"description\": \"\",\r\n                  \"date\": \"2023-09-27\",\r\n                  \"promotion\" : 0,\r\n                  \"discount\": 0,\r\n                  \"surcharge\": 0,\r\n                  \"validity\": \"2023-12-30\",\r\n                  \"dishes\": null,\r\n                  \"product\": null,\r\n                  \"additional\": null\r\n              },\r\n              {\r\n                  \"photo\": \"🍱\",\r\n                  \"menuType\": \"Menú orgánico\",\r\n                  \"category\": \"Mediterranea\",\r\n                  \"name\": \"Paella Vegetariana\",\r\n                  \"cost\": 2640,\r\n                  \"description\": \"\",\r\n                  \"date\": \"2023-09-27\",\r\n                  \"promotion\" : 0,\r\n                  \"discount\": 0,\r\n                  \"surcharge\": 0,\r\n                  \"validity\": \"2023-12-30\",\r\n                  \"dishes\": null,\r\n                  \"product\": null,\r\n                  \"additional\": null\r\n              },\r\n              {\r\n                  \"photo\": \"🍯\",\r\n                  \"menuType\": \"Menú sin transgénicos\",\r\n                  \"category\": \"Sopas\",\r\n                  \"name\": \"Sopa de Lentejas\",\r\n                  \"cost\": 2234,\r\n                  \"description\": \"\",\r\n                  \"date\": \"2023-09-27\",\r\n                  \"promotion\" : 0,\r\n                  \"discount\": 0,\r\n                  \"surcharge\": 0,\r\n                  \"validity\": \"2023-12-30\",\r\n                  \"dishes\": null,\r\n                  \"product\": null,\r\n                  \"additional\": null\r\n              },\r\n              {\r\n                  \"photo\": \"🧁\",\r\n                  \"menuType\": \"Menú sin carne roja\",\r\n                  \"category\": \"Asiatica\",\r\n                  \"name\": \"Arroz Frito con Pollo\",\r\n                  \"cost\": 2542,\r\n                  \"description\": \"\",\r\n                  \"date\": \"2023-09-27\",\r\n                  \"promotion\" : 0,\r\n                  \"discount\": 0,\r\n                  \"surcharge\": 0,\r\n                  \"validity\": \"2023-12-30\",\r\n                  \"dishes\": null,\r\n                  \"product\": null,\r\n                  \"additional\": null\r\n              },\r\n              {\r\n                  \"photo\": \"🍇\",\r\n                  \"menuType\": \"celíaco\",\r\n                  \"category\": \"Minutas\",\r\n                  \"name\": \"Hamburguesa Vegana\",\r\n                  \"cost\": 2780,\r\n                  \"description\": \"\",\r\n                  \"date\": \"2023-09-27\",\r\n                  \"promotion\" : 0,\r\n                  \"discount\": 0,\r\n                  \"surcharge\": 0,\r\n                  \"validity\": \"2023-12-30\",\r\n                  \"dishes\": null,\r\n                  \"product\": null,\r\n                  \"additional\": null\r\n              },\r\n              {\r\n                  \"photo\": \"🌭\",\r\n                  \"menuType\": \"diabético\",\r\n                  \"category\": \"Minutas\",\r\n                  \"name\": \"Papas Fritas\",\r\n                  \"cost\": 1250,\r\n                  \"description\": \"\",\r\n                  \"date\": \"2023-09-27\",\r\n                  \"promotion\" : 0,\r\n                  \"discount\": 0,\r\n                  \"surcharge\": 0,\r\n                  \"validity\": \"2023-12-30\",\r\n                  \"dishes\": null,\r\n                  \"product\": null,\r\n                  \"additional\": null\r\n              },\r\n              {\r\n                  \"photo\": \"🥪\",\r\n                  \"menuType\": \"Otro\",\r\n                  \"category\": \"Carnes\",\r\n                  \"name\": \"Pollo a la Parrilla\",\r\n                  \"cost\": 1500,\r\n                  \"description\": \"\",\r\n                  \"date\": \"2023-09-27\",\r\n                  \"promotion\" : 0,\r\n                  \"discount\": 0,\r\n                  \"surcharge\": 0,\r\n                  \"validity\": \"2023-12-30\",\r\n                  \"dishes\": null,\r\n                  \"product\": null,\r\n                  \"additional\": null\r\n              },\r\n              {\r\n                  \"photo\": \"🍙\",\r\n                  \"menuType\": \"Menú sin lactosa\",\r\n                  \"category\": \"Mariscos\",\r\n                  \"name\": \"Camarones al Ajillo\",\r\n                  \"cost\": 1900,\r\n                  \"description\": \"\",\r\n                  \"date\": \"2023-09-27\",\r\n                  \"promotion\" : 0,\r\n                  \"discount\": 0,\r\n                  \"surcharge\": 0,\r\n                  \"validity\": \"2023-12-30\",\r\n                  \"dishes\": null,\r\n                  \"product\": null,\r\n                  \"additional\": null\r\n              },\r\n              {\r\n                  \"photo\": \"🍅\",\r\n                  \"menuType\": \"Menú paleo*\",\r\n                  \"category\": \"Postres\",\r\n                  \"name\": \"Donas de Chocolate\",\r\n                  \"cost\": 2310,\r\n                  \"description\": \"\",\r\n                  \"date\": \"2023-09-27\",\r\n                  \"promotion\" : 0,\r\n                  \"discount\": 0,\r\n                  \"surcharge\": 0,\r\n                  \"validity\": \"2023-12-30\",\r\n                  \"dishes\": null,\r\n                  \"product\": null,\r\n                  \"additional\": null\r\n              },\r\n              {\r\n                  \"photo\": \"🍣\",\r\n                  \"menuType\": \"Menú cetogénico (keto)\",\r\n                  \"category\": \"Postres\",\r\n                  \"name\": \"Helado de Vainilla\",\r\n                  \"cost\": 3400,\r\n                  \"description\": \"\",\r\n                  \"date\": \"2023-09-27\",\r\n                  \"promotion\" : 0,\r\n                  \"discount\": 0,\r\n                  \"surcharge\": 0,\r\n                  \"validity\": \"2023-12-30\",\r\n                  \"dishes\": null,\r\n                  \"product\": null,\r\n                  \"additional\": null\r\n              }\r\n            ]\r\n}",
+							"raw": "{\r\n\"menuJSON\": [\r\n    {\r\n        \"photo\": \"U+D83C U+DF54\",\r\n        \"category\": \"Minutas\",\r\n        \"name\": \"Hamburguesa Clásica\",\r\n        \"cost\": 2192,\r\n        \"description\": \"Hamburguesa de queso con bacon y salsa barbacoa.\",\r\n        \"discount\": 12,\r\n        \"promotion\": 20,\r\n        \"surcharge\": 1,\r\n        \"menuType\": \"Menú vegano\",\r\n        \"validity\": \"2023-09-26\",\r\n        \"aditionals\": null,\r\n        \"products\": null,\r\n        \"dishes\": null,\r\n        \"date\": \"2023-09-28\"\r\n    },\r\n    {\r\n        \"photo\": \"U+D83C U+DF55\",\r\n        \"category\": \"Pizza\",\r\n        \"name\": \"Pizza Margherita\",\r\n        \"cost\": 2192,\r\n        \"description\": \"Ensalada César con pollo a la parrilla.\",\r\n        \"discount\": 12,\r\n        \"promotion\": 10,\r\n        \"surcharge\": 10,\r\n        \"menuType\": \"Otro\",\r\n        \"validity\": \"2023-09-27\",\r\n        \"aditionals\": null,\r\n        \"products\": null,\r\n        \"dishes\": null,\r\n        \"date\": \"2023-09-28\"\r\n    },\r\n    {\r\n        \"photo\": \"U+D83C U+DF2F\",\r\n        \"category\": \"Mexicana\",\r\n        \"name\": \"Tacos de Pollo\",\r\n        \"cost\": 3288,\r\n        \"description\": \"Pizza Margarita con tomates frescos y albahaca.\",\r\n        \"discount\": 23,\r\n        \"promotion\": 15,\r\n        \"surcharge\": 4,\r\n        \"menuType\": \"libre\",\r\n        \"validity\": \"2023-09-28\",\r\n        \"aditionals\": null,\r\n        \"products\": null,\r\n        \"dishes\": null,\r\n        \"date\": \"2023-09-28\"\r\n    },\r\n    {\r\n        \"photo\": \"U+D83E U+DD57\",\r\n        \"category\": \"Ensaladas\",\r\n        \"name\": \"Ensalada César\",\r\n        \"cost\": 3288,\r\n        \"description\": \"Sushi variado con sashimi y makis.\",\r\n        \"discount\": 454,\r\n        \"promotion\": 5,\r\n        \"surcharge\": 5,\r\n        \"menuType\": \"Menú sin gluten\",\r\n        \"validity\": \"2023-09-29\",\r\n        \"aditionals\": null,\r\n        \"products\": null,\r\n        \"dishes\": null,\r\n        \"date\": \"2023-09-28\"\r\n    },\r\n    {\r\n        \"photo\": \"U+D83C U+DF5D\",\r\n        \"category\": \"Pastas\",\r\n        \"name\": \"Spaghetti Carbonara\",\r\n        \"cost\": 3288,\r\n        \"description\": \"Tacos de carnitas con cebolla y cilantro.\",\r\n        \"discount\": 34,\r\n        \"promotion\": 4,\r\n        \"surcharge\": 13,\r\n        \"menuType\": \"Menú sin soja\",\r\n        \"validity\": \"2023-09-30\",\r\n        \"aditionals\": null,\r\n        \"products\": null,\r\n        \"dishes\": null,\r\n        \"date\": \"2023-09-28\"\r\n    },\r\n    {\r\n        \"photo\": \"U+D83C U+DF57\",\r\n        \"category\": \"Asiatica\",\r\n        \"name\": \"Sushi Variado\",\r\n        \"cost\": 3288,\r\n        \"description\": \"Pasta al pesto con piñones y queso parmesano.\",\r\n        \"discount\": 54,\r\n        \"promotion\": 6,\r\n        \"surcharge\": 22,\r\n        \"menuType\": \"Menú bajo en grasas\",\r\n        \"validity\": \"2023-10-01\",\r\n        \"aditionals\": null,\r\n        \"products\": null,\r\n        \"dishes\": null,\r\n        \"date\": \"2023-09-28\"\r\n    },\r\n    {\r\n        \"photo\": \"U+D83C U+DF5F\",\r\n        \"category\": \"Mexicana\",\r\n        \"name\": \"Burrito de Pollo\",\r\n        \"cost\": 3288,\r\n        \"description\": \"Sopa de tomate casera con croutons.\",\r\n        \"discount\": 65,\r\n        \"promotion\": 14,\r\n        \"surcharge\": 12,\r\n        \"menuType\": \"Menú vegano\",\r\n        \"validity\": \"2023-10-02\",\r\n        \"aditionals\": null,\r\n        \"products\": null,\r\n        \"dishes\": null,\r\n        \"date\": \"2023-09-28\"\r\n    },\r\n    {\r\n        \"photo\": \"U+D83C U+DF73\",\r\n        \"category\": \"Asiatica\",\r\n        \"name\": \"Curry de Cordero\",\r\n        \"cost\": 3288,\r\n        \"description\": \"Ternera a la parrilla con chimichurri.\",\r\n        \"discount\": 40,\r\n        \"promotion\": 13,\r\n        \"surcharge\": 4,\r\n        \"menuType\": \"Menú vegetariano\",\r\n        \"validity\": \"2023-10-03\",\r\n        \"aditionals\": null,\r\n        \"products\": null,\r\n        \"dishes\": null,\r\n        \"date\": \"2023-09-28\"\r\n    },\r\n    {\r\n        \"photo\": \"U+D83E U+DD56\",\r\n        \"category\": \"Asiatica\",\r\n        \"name\": \"Sushi Vegano\",\r\n        \"cost\": 3288,\r\n        \"description\": \"Rollitos de primavera con salsa agridulce.\",\r\n        \"discount\": 23,\r\n        \"promotion\": 17,\r\n        \"surcharge\": 4,\r\n        \"menuType\": \"Menú sin mariscos\",\r\n        \"validity\": \"2023-10-04\",\r\n        \"aditionals\": null,\r\n        \"products\": null,\r\n        \"dishes\": null,\r\n        \"date\": \"2023-09-28\"\r\n    },\r\n    {\r\n        \"photo\": \"U+D83E U+DDC0\",\r\n        \"category\": \"Sandwiches\",\r\n        \"name\": \"Sándwich de Pavo\",\r\n        \"cost\": 3288,\r\n        \"description\": \"Burrito de pollo con guacamole y crema agria.\",\r\n        \"discount\": 7,\r\n        \"promotion\": 20,\r\n        \"surcharge\": 21,\r\n        \"menuType\": \"Menú sin frutos secos\",\r\n        \"validity\": \"2023-10-05\",\r\n        \"aditionals\": null,\r\n        \"products\": null,\r\n        \"dishes\": null,\r\n        \"date\": \"2023-09-28\"\r\n    },\r\n    {\r\n        \"photo\": \"U+D83C U+DF64\",\r\n        \"category\": \"Carnes\",\r\n        \"name\": \"Churrasco Brasileño\",\r\n        \"cost\": 3288,\r\n        \"description\": \"Pescado a la plancha con verduras asadas.\",\r\n        \"discount\": 4,\r\n        \"promotion\": 2,\r\n        \"surcharge\": 5,\r\n        \"menuType\": \"Menú kosher\",\r\n        \"validity\": \"2023-10-06\",\r\n        \"aditionals\": null,\r\n        \"products\": null,\r\n        \"dishes\": null,\r\n        \"date\": \"2023-09-28\"\r\n    },\r\n    {\r\n        \"photo\": \"U+D83C U+DF71\",\r\n        \"category\": \"Mediterranea\",\r\n        \"name\": \"Paella Vegetariana\",\r\n        \"cost\": 3288,\r\n        \"description\": \"Pollo al curry con arroz basmati.\",\r\n        \"discount\": 65,\r\n        \"promotion\": 5,\r\n        \"surcharge\": 3,\r\n        \"menuType\": \"Menú orgánico\",\r\n        \"validity\": \"2023-10-07\",\r\n        \"aditionals\": null,\r\n        \"products\": null,\r\n        \"dishes\": null,\r\n        \"date\": \"2023-09-28\"\r\n    },\r\n    {\r\n        \"photo\": \"U+D83C U+DF6F\",\r\n        \"category\": \"Sopas\",\r\n        \"name\": \"Sopa de Lentejas\",\r\n        \"cost\": 3288,\r\n        \"description\": \"Tarta de manzana con helado de vainilla.\",\r\n        \"discount\": 56,\r\n        \"promotion\": 4,\r\n        \"surcharge\": 33,\r\n        \"menuType\": \"Menú sin transgénicos\",\r\n        \"validity\": \"2023-10-08\",\r\n        \"aditionals\": null,\r\n        \"products\": null,\r\n        \"dishes\": null,\r\n        \"date\": \"2023-09-28\"\r\n    },\r\n    {\r\n        \"photo\": \"U+D83E U+DDC1\",\r\n        \"category\": \"Asiatica\",\r\n        \"name\": \"Arroz Frito con Pollo\",\r\n        \"cost\": 3288,\r\n        \"description\": \"Tiramisú italiano con café y cacao.\",\r\n        \"discount\": 23,\r\n        \"promotion\": 3,\r\n        \"surcharge\": 12,\r\n        \"menuType\": \"Menú sin carne roja\",\r\n        \"validity\": \"2023-10-09\",\r\n        \"aditionals\": null,\r\n        \"products\": null,\r\n        \"dishes\": null,\r\n        \"date\": \"2023-09-28\"\r\n    },\r\n    {\r\n        \"photo\": \"U+D83C U+DF47\",\r\n        \"category\": \"Minutas\",\r\n        \"name\": \"Hamburguesa Vegana\",\r\n        \"cost\": 3288,\r\n        \"description\": \"Pimientos rellenos de carne y arroz.\",\r\n        \"discount\": 45,\r\n        \"promotion\": 2,\r\n        \"surcharge\": 11,\r\n        \"menuType\": \"celíaco\",\r\n        \"validity\": \"2023-10-10\",\r\n        \"aditionals\": null,\r\n        \"products\": null,\r\n        \"dishes\": null,\r\n        \"date\": \"2023-09-28\"\r\n    },\r\n    {\r\n        \"photo\": \"U+D83C U+DF2D\",\r\n        \"category\": \"Minutas\",\r\n        \"name\": \"Papas Fritas\",\r\n        \"cost\": 3288,\r\n        \"description\": \"Sándwich de pavo con aguacate y espinacas.\",\r\n        \"discount\": 32,\r\n        \"promotion\": 3,\r\n        \"surcharge\": 9,\r\n        \"menuType\": \"diabético\",\r\n        \"validity\": \"2023-10-11\",\r\n        \"aditionals\": null,\r\n        \"products\": null,\r\n        \"dishes\": null,\r\n        \"date\": \"2023-09-28\"\r\n    },\r\n    {\r\n        \"photo\": \"U+D83E U+DD6A\",\r\n        \"category\": \"Carnes\",\r\n        \"name\": \"Pollo a la Parrilla\",\r\n        \"cost\": 3288,\r\n        \"description\": \"Tofu salteado con vegetales frescos.\",\r\n        \"discount\": 54,\r\n        \"promotion\": 43,\r\n        \"surcharge\": 4,\r\n        \"menuType\": \"Otro\",\r\n        \"validity\": \"2023-10-12\",\r\n        \"aditionals\": null,\r\n        \"products\": null,\r\n        \"dishes\": null,\r\n        \"date\": \"2023-09-28\"\r\n    },\r\n    {\r\n        \"photo\": \"U+D83C U+DF59\",\r\n        \"category\": \"Mariscos\",\r\n        \"name\": \"Camarones al Ajillo\",\r\n        \"cost\": 3288,\r\n        \"description\": \"Langosta a la parrilla con mantequilla de ajo.\",\r\n        \"discount\": 32,\r\n        \"promotion\": 23,\r\n        \"surcharge\": 8,\r\n        \"menuType\": \"Menú sin lactosa\",\r\n        \"validity\": \"2023-10-13\",\r\n        \"aditionals\": null,\r\n        \"products\": null,\r\n        \"dishes\": null,\r\n        \"date\": \"2023-09-28\"\r\n    },\r\n    {\r\n        \"photo\": \"U+D83C U+DF45\",\r\n        \"category\": \"Postres\",\r\n        \"name\": \"Donas de Chocolate\",\r\n        \"cost\": 3288,\r\n        \"description\": \"Crepe de chocolate con fresas y nata.\",\r\n        \"discount\": 3,\r\n        \"promotion\": 21,\r\n        \"surcharge\": 6,\r\n        \"menuType\": \"Menú paleo*\",\r\n        \"validity\": \"2023-10-14\",\r\n        \"aditionals\": null,\r\n        \"products\": null,\r\n        \"dishes\": null,\r\n        \"date\": \"2023-09-28\"\r\n    },\r\n    {\r\n        \"photo\": \"U+D83C U+DF63\",\r\n        \"category\": \"Postres\",\r\n        \"name\": \"Helado de Vainilla\",\r\n        \"cost\": 1500,\r\n        \"description\": \"Batido de frutas frescas con yogur.\",\r\n        \"discount\": 20,\r\n        \"promotion\": 10,\r\n        \"surcharge\": 17,\r\n        \"menuType\": \"Menú cetogénico (keto)\",\r\n        \"validity\": \"2023-10-15\",\r\n        \"aditionals\": null,\r\n        \"products\": null,\r\n        \"dishes\": null,\r\n        \"date\": \"2023-09-28\"\r\n    }\r\n]\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -3746,7 +3746,7 @@
 						"method": "PUT",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3001/menu/active/3",
+							"raw": "http://localhost:3001/menu/active/4",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -3755,7 +3755,7 @@
 							"path": [
 								"menu",
 								"active",
-								"3"
+								"4"
 							]
 						}
 					},
@@ -3767,7 +3767,7 @@
 						"method": "PUT",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3001/menu/inactive/3",
+							"raw": "http://localhost:3001/menu/inactive/4",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -3776,7 +3776,7 @@
 							"path": [
 								"menu",
 								"inactive",
-								"3"
+								"4"
 							]
 						}
 					},
@@ -3841,7 +3841,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3001/menu/lastMenu/4",
+							"raw": "http://localhost:3001/menu/lastMenu/2",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -3850,7 +3850,7 @@
 							"path": [
 								"menu",
 								"lastMenu",
-								"4"
+								"2"
 							]
 						}
 					},
@@ -4028,16 +4028,16 @@
 			]
 		},
 		{
-			"name": "Orders",
+			"name": "MercadoPago",
 			"item": [
 				{
-					"name": "NEW",
+					"name": "CREATE ORDER",
 					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"sss\",\r\n    \"date\": \"2023-09-25\",\r\n    \"hour\": \"20:00\",\r\n    \"detail\": \"\",\r\n    \"validity\": \"2023-09-30\",\r\n    \"promotion\": 0,\r\n    \"discount\": 0,\r\n    \"surcharge\": 0,\r\n    \"poId\": 5,\r\n    \"employeeId\": 3,\r\n    \"accountId\": null,\r\n    \"paymentId\": 5,\r\n    \"commerceId\": 2,\r\n    \"deliveryId\": 4,\r\n    \"paid\" : 2000,\r\n    \"courierId\": null,\r\n    \"costDelivery\": 0,\r\n    \"sectorId\": 1,\r\n    \"accountemail\": \"\",\r\n    \"accountname\": \"ernesto machado\",\r\n    \"accountphone\": \"222222\",\r\n    \"accountbirthDate\": \"24-10-1967\",\r\n    \"accountaddress\": \"Av siempre viva 300\",\r\n    \"googleemail\": \"luisglogista@gmail.com\",\r\n    \"additionals\": {\r\n        \"id\": [\"5\"],\r\n        \"name\": [\"mayonesa\"],\r\n        \"cost\": [\"\"],\r\n        \"promotion\": [\"\"],\r\n        \"discount\": [\"\"],\r\n        \"surcharge\": [\"\"],\r\n        \"amount\": [\"1\"],\r\n        \"unitTypeId\": [\"\"],\r\n        \"detail\": [\"\"]\r\n    },\r\n    \"products\": {\r\n        \"id\": [\"10\", \"14\"],\r\n        \"name\": [\"agua\", \"cola\"],\r\n        \"cost\": [\"800\", \"800\"],\r\n        \"unitTypeId\": [\"7\", \"7\"],\r\n        \"productTypeId\": [\"12\", \"12\"],\r\n        \"supplierId\": [\"11\", \"11\"],\r\n        \"promotion\": [\"\", \"\"],\r\n        \"discount\": [\"\", \"\"],\r\n        \"surcharge\": [\"\", \"\"],\r\n        \"amount\": [\"1\", \"1\"],\r\n        \"allergenType\": [\"\", \"\"],\r\n        \"careful\": [\"\", \"\"],\r\n        \"detail\": [\"natural\", \"sin hielo\"]\r\n    },\r\n    \"dishes\": {\r\n        \"id\": [\"2\",\"5\"],\r\n        \"name\": [\"tortilla\", \"ensalada lechuga y tomate\"],\r\n        \"description\": [\"tortilla de papa\", \"\"],\r\n        \"photo\": [\"\", \"\"],\r\n        \"cost\": [\"900\", \"700\"],\r\n        \"estimatedTime\": [\"40\", \"10\"],\r\n        \"additionalId\": [\"5\", \"\"],\r\n        \"amountAdditional\": [\"2\", \"\"],\r\n        \"supplyId\": [\"\", \"\"],\r\n        \"amountSupplies\": [\"\", \"\"],\r\n        \"recipeId\": [\"\", \"\"],\r\n        \"dishTypeId\": [\"1\", \"1\"],\r\n        \"promotion\": [\"\", \"\"],\r\n        \"discount\": [\"\", \"\"],\r\n        \"surcharge\": [\"\", \"\"],\r\n        \"amount\": [\"1\", \"1\"],\r\n        \"detail\": [\"babé\", \"\"]\r\n    },\r\n    \"menu\": {\r\n        \"id\": [\"\"],\r\n        \"name\": [\"\"],\r\n        \"description\": [\"\"],\r\n        \"cost\": [\"\"],\r\n        \"menuTypeId\": [\"\"],\r\n        \"categoryId\": [\"\"],\r\n        \"dishes\": [\"\"],\r\n        \"product\": [\"\"],\r\n        \"additionalId\": [\"\"],\r\n        \"promotion\": [\"\"],\r\n        \"discount\": [\"\"],\r\n        \"surcharge\": [\"\"],\r\n        \"amount\": [\"\"],\r\n        \"detail\": [\"\"]\r\n    }\r\n}\r\n",
+							"raw": "{\r\n\"commerce\": {\r\n    \"commerce\": \"la tablita\"\r\n},\r\n\"order\": {\r\n    \"name\": \"sss\",\r\n    \"date\": \"2023-09-25\",\r\n    \"hour\": \"20:00\",\r\n    \"detail\": \"\",\r\n    \"validity\": \"2023-09-30\",\r\n    \"promotion\": 0,\r\n    \"discount\": 0,\r\n    \"surcharge\": 0,\r\n    \"poId\": 5,\r\n    \"employeeId\": 3,\r\n    \"accountId\": null,\r\n    \"paymentId\": 5,\r\n    \"commerceId\": 2,\r\n    \"deliveryId\": 4,\r\n    \"paid\" : 20,\r\n    \"courierId\": null,\r\n    \"costDelivery\": 0,\r\n    \"sectorId\": 1,\r\n    \"accountemail\": \"\",\r\n    \"accountname\": \"ernesto machado\",\r\n    \"accountphone\": 1141658088,\r\n    \"accountbirthDate\": \"24-10-1967\",\r\n    \"accountaddress\": \"Av siempre viva 300\",\r\n    \"googleemail\": \"luisglogista@gmail.com\",\r\n    \"additionals\": {\r\n        \"id\": [\"5\"],\r\n        \"name\": [\"mayonesa\"],\r\n        \"cost\": [\"\"],\r\n        \"promotion\": [\"\"],\r\n        \"discount\": [\"\"],\r\n        \"surcharge\": [\"\"],\r\n        \"amount\": [\"1\"],\r\n        \"unitTypeId\": [\"\"],\r\n        \"detail\": [\"\"]\r\n    },\r\n    \"products\": {\r\n        \"id\": [\"10\", \"14\"],\r\n        \"name\": [\"agua\", \"cola\"],\r\n        \"cost\": [\"800\", \"800\"],\r\n        \"unitTypeId\": [\"7\", \"7\"],\r\n        \"productTypeId\": [\"12\", \"12\"],\r\n        \"supplierId\": [\"11\", \"11\"],\r\n        \"promotion\": [\"\", \"\"],\r\n        \"discount\": [\"\", \"\"],\r\n        \"surcharge\": [\"\", \"\"],\r\n        \"amount\": [\"1\", \"1\"],\r\n        \"allergenType\": [\"\", \"\"],\r\n        \"careful\": [\"\", \"\"],\r\n        \"detail\": [\"natural\", \"sin hielo\"]\r\n    },\r\n    \"dishes\": {\r\n        \"id\": [\"2\",\"5\"],\r\n        \"name\": [\"tortilla\", \"ensalada lechuga y tomate\"],\r\n        \"description\": [\"tortilla de papa\", \"\"],\r\n        \"photo\": [\"\", \"\"],\r\n        \"cost\": [\"900\", \"700\"],\r\n        \"estimatedTime\": [\"40\", \"10\"],\r\n        \"additionalId\": [\"5\", \"\"],\r\n        \"amountAdditional\": [\"2\", \"\"],\r\n        \"supplyId\": [\"\", \"\"],\r\n        \"amountSupplies\": [\"\", \"\"],\r\n        \"recipeId\": [\"\", \"\"],\r\n        \"dishTypeId\": [\"1\", \"1\"],\r\n        \"promotion\": [\"\", \"\"],\r\n        \"discount\": [\"\", \"\"],\r\n        \"surcharge\": [\"\", \"\"],\r\n        \"amount\": [\"1\", \"1\"],\r\n        \"detail\": [\"babé\", \"\"]\r\n    },\r\n    \"menu\": {\r\n        \"id\": [\"\"],\r\n        \"name\": [\"\"],\r\n        \"description\": [\"\"],\r\n        \"cost\": [\"\"],\r\n        \"menuTypeId\": [\"\"],\r\n        \"categoryId\": [\"\"],\r\n        \"dishes\": [\"\"],\r\n        \"product\": [\"\"],\r\n        \"additionalId\": [\"\"],\r\n        \"promotion\": [\"\"],\r\n        \"discount\": [\"\"],\r\n        \"surcharge\": [\"\"],\r\n        \"amount\": [\"\"],\r\n        \"detail\": [\"\"]\r\n    }\r\n}\r\n}\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -4045,20 +4045,47 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3001/order/new",
+							"raw": "http://localhost:3001/mp/create-order",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "3001",
 							"path": [
-								"order",
-								"new"
+								"mp",
+								"create-order"
 							]
 						}
 					},
 					"response": []
 				},
+				{
+					"name": "Payments for Id",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "https://api.mercadopago.com/v1/payments/1315088318",
+							"protocol": "https",
+							"host": [
+								"api",
+								"mercadopago",
+								"com"
+							],
+							"path": [
+								"v1",
+								"payments",
+								"1315088318"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Orders",
+			"item": [
 				{
 					"name": "NEW Order",
 					"request": {
@@ -4748,7 +4775,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3001/order/paidOrderes/2?startDate=2023-09-25&endDate=2023-09-25",
+							"raw": "http://localhost:3001/order/paidOrderes/2?startDate=2023-09-25&endDate=2023-09-29",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -4766,7 +4793,7 @@
 								},
 								{
 									"key": "endDate",
-									"value": "2023-09-25"
+									"value": "2023-09-29"
 								}
 							]
 						}
@@ -4779,7 +4806,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3001/order/vtas/2?dateFrom=2023-09-25&dateTo=2023-09-25",
+							"raw": "http://localhost:3001/order/vtas/2?dateFrom=2023-09-25&dateTo=2023-09-29",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -4797,7 +4824,7 @@
 								},
 								{
 									"key": "dateTo",
-									"value": "2023-09-25"
+									"value": "2023-09-29"
 								}
 							]
 						}
@@ -4977,6 +5004,35 @@
 									"key": "endDate",
 									"value": "2023-09-27"
 								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "NEW",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"sss\",\r\n    \"date\": \"2023-10-03\",\r\n    \"hour\": \"20:00\",\r\n    \"detail\": \"\",\r\n    \"validity\": \"2023-10-30\",\r\n    \"promotion\": 0,\r\n    \"discount\": 0,\r\n    \"surcharge\": 0,\r\n    \"poId\": 5,\r\n    \"employeeId\": 3,\r\n    \"accountId\": null,\r\n    \"paymentId\": 5,\r\n    \"commerceId\": 2,\r\n    \"deliveryId\": 4,\r\n    \"paid\" : 2000,\r\n    \"courierId\": null,\r\n    \"costDelivery\": 0,\r\n    \"sectorId\": 1,\r\n    \"accountemail\": \"\",\r\n    \"accountname\": \"ernesto machado\",\r\n    \"accountphone\": \"222222\",\r\n    \"accountbirthDate\": \"24-10-1967\",\r\n    \"accountaddress\": \"Av siempre viva 300\",\r\n    \"googleemail\": \"luisglogista@gmail.com\",\r\n    \"additionals\": {\r\n        \"id\": [\"5\"],\r\n        \"name\": [\"mayonesa\"],\r\n        \"cost\": [\"\"],\r\n        \"promotion\": [\"\"],\r\n        \"discount\": [\"\"],\r\n        \"surcharge\": [\"\"],\r\n        \"amount\": [\"1\"],\r\n        \"unitTypeId\": [\"\"],\r\n        \"detail\": [\"\"]\r\n    },\r\n    \"products\": {\r\n        \"id\": [\"10\", \"14\"],\r\n        \"name\": [\"agua\", \"cola\"],\r\n        \"cost\": [\"800\", \"800\"],\r\n        \"unitTypeId\": [\"7\", \"7\"],\r\n        \"productTypeId\": [\"12\", \"12\"],\r\n        \"supplierId\": [\"11\", \"11\"],\r\n        \"promotion\": [\"\", \"\"],\r\n        \"discount\": [\"\", \"\"],\r\n        \"surcharge\": [\"\", \"\"],\r\n        \"amount\": [\"1\", \"1\"],\r\n        \"allergenType\": [\"\", \"\"],\r\n        \"careful\": [\"\", \"\"],\r\n        \"detail\": [\"natural\", \"sin hielo\"]\r\n    },\r\n    \"dishes\": {\r\n        \"id\": [\"2\",\"5\"],\r\n        \"name\": [\"tortilla\", \"ensalada lechuga y tomate\"],\r\n        \"description\": [\"tortilla de papa\", \"\"],\r\n        \"photo\": [\"\", \"\"],\r\n        \"cost\": [\"900\", \"700\"],\r\n        \"estimatedTime\": [\"40\", \"10\"],\r\n        \"additionalId\": [\"5\", \"\"],\r\n        \"amountAdditional\": [\"2\", \"\"],\r\n        \"supplyId\": [\"\", \"\"],\r\n        \"amountSupplies\": [\"\", \"\"],\r\n        \"recipeId\": [\"\", \"\"],\r\n        \"dishTypeId\": [\"1\", \"1\"],\r\n        \"promotion\": [\"\", \"\"],\r\n        \"discount\": [\"\", \"\"],\r\n        \"surcharge\": [\"\", \"\"],\r\n        \"amount\": [\"1\", \"1\"],\r\n        \"detail\": [\"babé\", \"\"]\r\n    },\r\n    \"menu\": {\r\n        \"id\": [\"\"],\r\n        \"name\": [\"\"],\r\n        \"description\": [\"\"],\r\n        \"cost\": [\"\"],\r\n        \"menuTypeId\": [\"\"],\r\n        \"categoryId\": [\"\"],\r\n        \"dishes\": [\"\"],\r\n        \"product\": [\"\"],\r\n        \"additionalId\": [\"\"],\r\n        \"promotion\": [\"\"],\r\n        \"discount\": [\"\"],\r\n        \"surcharge\": [\"\"],\r\n        \"amount\": [\"\"],\r\n        \"detail\": [\"\"]\r\n    }\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/order/new",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"order",
+								"new"
 							]
 						}
 					},
