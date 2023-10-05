@@ -25,6 +25,12 @@ order.use(
   }),
 );
 
+let laCuenta = '';
+let enUnosMinutos = '';
+let subject = '';
+let text = '';
+let tuPago = '';
+
 function sendNewOrder(to, name, ordeR) {
   const filePath = path.join(__dirname, '../../controllers/nodemailer/Order/order.html');
   fs.readFile(filePath, 'utf8', (err, data) => {
@@ -33,12 +39,16 @@ function sendNewOrder(to, name, ordeR) {
       console.error('Error al leer el archivo HTML', err);
       return;
     }
-    const htmlContent = data.replace('{name}', name).replace('{ordeR}', ordeR);
+    const htmlContent = data.replace('{name}', name)
+      .replace('{ordeR}', ordeR)
+      .replace('{lacuenta}', laCuenta)
+      .replace('{enUnosMinutos}', enUnosMinutos)
+      .replace('{tuPago}', tuPago);
     const info = {
       from: 'imenunotice@gmail.com',
       to,
-      subject: 'iMenu - Pedido en marcha! 🍔',
-      text: 'Pedido en marcha! 🍔',
+      subject,
+      text,
       html: htmlContent,
     };
     sendToEmail(info);
@@ -330,7 +340,12 @@ order.post('/new', async (req, res) => {
       const to = accountemail || googleemail;
       const names = accountname || '';
       if (accountemail || googleemail) {
-        sendNewOrder(to, names, newOrder);
+        laCuenta = '¡La cuenta regresiva ha comenzado!';
+        enUnosMinutos = 'En unos minutos, tendrás tu pedido en las manos.';
+        subject = 'iMenu - Pedido en marcha! 🍔';
+        text = 'Pedido en marcha! 🍔';
+        tuPago = 'Tu pago se ha procesado con éxito.';
+        sendNewOrder(to, names, newOrder, laCuenta, enUnosMinutos);
       }
       res.status(200).json({ mensaje: 'Order created', order: newOrder, id: created.dataValues.id });
     } else {
@@ -768,10 +783,43 @@ order.get('/status/:commerceId', async (req, res) => {
   }
 });
 
+order.put('/status-ready/:order/:commerceId', async (req, res) => {
+  try {
+    const { order: orderParam, commerceId: commerceIdParam } = req.params;
+    const {
+      status, accountemail, googleemail, accountname,
+    } = req.body;
+    const [rowsUpdated] = await Order.update({ status }, {
+      where: { order: orderParam, commerceId: commerceIdParam, status: 'orderInPreparation' },
+    });
+    if (rowsUpdated > 0) {
+      if (status === 'orderReady') {
+        const to = accountemail || googleemail;
+        const names = accountname || '';
+        if (accountemail || googleemail) {
+          laCuenta = '¡Ya está tu Pedido!';
+          enUnosMinutos = '';
+          subject = 'iMenu - Tu Pedido está Listo! 🍔';
+          text = 'Tu Pedido está Listo! 🍔';
+          tuPago = 'Que disfrutes tu Pedido!';
+          sendNewOrder(to, names, orderParam, laCuenta, enUnosMinutos);
+        }
+      }
+      res.status(200).send(status);
+    } else {
+      res.status(404).send('Order not found');
+    }
+  } catch (error) {
+    res.status(400).send(error);
+  }
+});
+
 order.put('/change-status/:order/:commerceId', async (req, res) => {
   try {
     const { order: orderParam, commerceId: commerceIdParam } = req.params;
-    const { status } = req.body;
+    const {
+      status,
+    } = req.body;
     const [rowsUpdated] = await Order.update({ status }, {
       where: { order: orderParam, commerceId: commerceIdParam },
     });
