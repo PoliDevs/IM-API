@@ -4265,7 +4265,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"status\": \"orderPlaced\"\r\n}\r\n",
+							"raw": "{\r\n    \"status\": \"orderReady\"\r\n}\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -4273,7 +4273,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3001/order/change-status/C2M3 - 1/2",
+							"raw": "http://localhost:3001/order/status-ready/C2S2M7 - 17/2",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -4281,8 +4281,8 @@
 							"port": "3001",
 							"path": [
 								"order",
-								"change-status",
-								"C2M3 - 1",
+								"status-ready",
+								"C2S2M7 - 17",
 								"2"
 							]
 						},
@@ -5033,6 +5033,37 @@
 							"path": [
 								"order",
 								"new"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE Status READY",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"status\": \"orderReady\",\r\n    \"accountemail\": \"\",\r\n    \"accountname\": \"ernesto machado\",\r\n    \"googleemail\": \"luisglogista@gmail.com\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/order/status-ready/C2S2M7 - 17/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"order",
+								"status-ready",
+								"C2S2M7 - 17",
+								"2"
 							]
 						}
 					},

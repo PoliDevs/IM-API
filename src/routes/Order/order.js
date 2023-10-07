@@ -25,25 +25,32 @@ order.use(
   }),
 );
 
-let laCuenta = '';
-let enUnosMinutos = '';
-let subject = '';
-let text = '';
-let tuPago = '';
-
-function sendNewOrder(to, name, ordeR) {
-  const filePath = path.join(__dirname, '../../controllers/nodemailer/Order/order.html');
+function sendNewOrder(
+  to,
+  names,
+  newOrder,
+  laCuenta,
+  enUnosMinutos,
+  tuPago,
+  apreciamos,
+  necesitasAyuda,
+  subject,
+  text,
+) {
+  const filePath = path.join(__dirname, '../../controllers/nodemailer/Order/order/order.html');
   fs.readFile(filePath, 'utf8', (err, data) => {
     if (err) {
       // eslint-disable-next-line no-console
       console.error('Error al leer el archivo HTML', err);
       return;
     }
-    const htmlContent = data.replace('{name}', name)
-      .replace('{ordeR}', ordeR)
-      .replace('{lacuenta}', laCuenta)
+    const htmlContent = data.replace('{name}', names)
+      .replace('{ordeR}', newOrder)
+      .replace('{laCuenta}', laCuenta)
       .replace('{enUnosMinutos}', enUnosMinutos)
-      .replace('{tuPago}', tuPago);
+      .replace('{tuPago}', tuPago)
+      .replace('{apreciamos}', apreciamos)
+      .replace('{necesitasAyuda}', necesitasAyuda);
     const info = {
       from: 'imenunotice@gmail.com',
       to,
@@ -340,12 +347,25 @@ order.post('/new', async (req, res) => {
       const to = accountemail || googleemail;
       const names = accountname || '';
       if (accountemail || googleemail) {
-        laCuenta = '¡La cuenta regresiva ha comenzado!';
-        enUnosMinutos = 'En unos minutos, tendrás tu pedido en las manos.';
-        subject = 'iMenu - Pedido en marcha! 🍔';
-        text = 'Pedido en marcha! 🍔';
-        tuPago = 'Tu pago se ha procesado con éxito.';
-        sendNewOrder(to, names, newOrder, laCuenta, enUnosMinutos);
+        const laCuenta = '¡La cuenta regresiva ha comenzado!';
+        const enUnosMinutos = 'En unos minutos, tendrás tu pedido en las manos.';
+        const subject = 'iMenu - Pedido en marcha! 🍔';
+        const text = 'Pedido en marcha! 🍔';
+        const tuPago = 'Tu pago se ha procesado con éxito.';
+        const apreciamos = 'Apreciamos tu confianza en iMenu';
+        const necesitasAyuda = '¿Necestas ayuda?';
+        sendNewOrder(
+          to,
+          names,
+          newOrder,
+          laCuenta,
+          enUnosMinutos,
+          tuPago,
+          apreciamos,
+          necesitasAyuda,
+          subject,
+          text,
+        );
       }
       res.status(200).json({ mensaje: 'Order created', order: newOrder, id: created.dataValues.id });
     } else {
@@ -797,12 +817,25 @@ order.put('/status-ready/:order/:commerceId', async (req, res) => {
         const to = accountemail || googleemail;
         const names = accountname || '';
         if (accountemail || googleemail) {
-          laCuenta = '¡Ya está tu Pedido!';
-          enUnosMinutos = '';
-          subject = 'iMenu - Tu Pedido está Listo! 🍔';
-          text = 'Tu Pedido está Listo! 🍔';
-          tuPago = 'Que disfrutes tu Pedido!';
-          sendNewOrder(to, names, orderParam, laCuenta, enUnosMinutos);
+          const laCuenta = '¡Ya está tu Pedido!';
+          const enUnosMinutos = '';
+          const subject = 'iMenu - Tu Pedido está Listo! 🍔';
+          const text = 'Tu Pedido está Listo! 🍔';
+          const tuPago = 'Que disfrutes tu Pedido!';
+          const apreciamos = '';
+          const necesitasAyuda = '¿Necestas ayuda?';
+          sendNewOrder(
+            to,
+            names,
+            orderParam,
+            laCuenta,
+            enUnosMinutos,
+            tuPago,
+            apreciamos,
+            necesitasAyuda,
+            subject,
+            text,
+          );
         }
       }
       res.status(200).send(status);
@@ -1626,26 +1659,49 @@ order.get('/warning', async (req, res) => {
       },
     ];
     const to = orderes[0].accountemail || orderes[0].googleemail;
-    const name = orderes[0].accountname || '';
+    const names = orderes[0].accountname || '';
     // eslint-disable-next-line prefer-destructuring
-    const ordeR = orderes[0].order;
-    const filePath = path.join(__dirname, '../../controllers/nodemailer/Order/order.html');
-    fs.readFile(filePath, 'utf8', (err, data) => {
-      if (err) {
-        // eslint-disable-next-line no-console
-        console.error('Error al leer el archivo HTML', err);
-        return;
-      }
-      const htmlContent = data.replace('{name}', name).replace('{ordeR}', ordeR);
-      const info = {
-        from: 'imenunotice@gmail.com',
-        to,
-        subject: 'iMenu - Pedido en marcha! 🍔',
-        text: 'Pedido en marcha! 🍔',
-        html: htmlContent,
-      };
-      sendToEmail(info);
-    });
+    const newOrder = orderes[0].order;
+    // const filePath = path.join(__dirname, '../../controllers/nodemailer/Order/order.html');
+    // fs.readFile(filePath, 'utf8', (err, data) => {
+    //   if (err) {
+    //     // eslint-disable-next-line no-console
+    //     console.error('Error al leer el archivo HTML', err);
+    //     return;
+    //   }
+    const laCuenta = '¡La cuenta regresiva ha comenzado!';
+    const enUnosMinutos = 'En unos minutos, tendrás tu pedido en las manos.';
+    const subject = 'iMenu - Pedido en marcha! 🍔';
+    const text = 'Pedido en marcha! 🍔';
+    const tuPago = 'Tu pago se ha procesado con éxito.';
+    const apreciamos = 'Apreciamos tu confianza en iMenu';
+    const necesitasAyuda = '¿Necestas ayuda?';
+    // const htmlContent = data.replace('{name}', name)
+    //   .replace('{ordeR}', ordeR)
+    //   .replace('{lacuenta}', laCuenta)
+    //   .replace('{enUnosMinutos}', enUnosMinutos)
+    //   .replace('{tuPago}', tuPago);
+    // const info = {
+    //   from: 'imenunotice@gmail.com',
+    //   to,
+    //   subject,
+    //   text,
+    //   html: htmlContent,
+    // };
+    // sendToEmail(info);
+    sendNewOrder(
+      to,
+      names,
+      newOrder,
+      laCuenta,
+      enUnosMinutos,
+      tuPago,
+      apreciamos,
+      necesitasAyuda,
+      subject,
+      text,
+    );
+    // });
     res.status(200).json({ message: `Message sent: ${orderes[0].order}` });
   } catch (error) {
     // eslint-disable-next-line no-console

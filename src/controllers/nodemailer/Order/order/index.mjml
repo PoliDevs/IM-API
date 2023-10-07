@@ -1,0 +1,76 @@
+<mjml>
+  <mj-head>
+    <mj-attributes>
+      <mj-all font-family="Mabry Pro, Montserrat, Poppins, sans-serif" />
+    </mj-attributes>
+    <mj-style> @media (max-width: 420px) { .stack { width: 5px; } .mobile-p-lacuenta { font-size: 14px; line-height: 20px;} .mobile-icons { font-size: 20px; line-height: 1px; height: 0px; } .mobile-p-tupago { font-size: 8px; } .mobile-p-apreciamos { font-size: 8px; } .mobile-padding-top { padding-top: 1px; padding-bottom: 1px;} .mobile-lifebuoy { font-size: 10px; line-height: 0px; height: 0px; } .mobile-order { font-size: 10px; } .mobile-name { font-size: 10px; } } @media (orientation: landscape) { .stack { width: 5px; } .mobile-p-lacuenta { font-size: 14px; line-height: 20px;} .mobile-icons { font-size: 20px; line-height: 1px; height: 0px; } .mobile-p-tupago { font-size: 8px; } .mobile-p-apreciamos { font-size: 8px; } .mobile-padding-top { padding-top: 1px; padding-bottom: 1px;} .mobile-lifebuoy { font-size: 10px; line-height: 0px; height: 0px; } .mobile-order { font-size: 10px; } .mobile-name { font-size: 10px; } } </mj-style>
+    <mj-preview> iMenu!!! </mj-preview>
+    <mj-breakpoint width="320px" />
+  </mj-head>
+  <mj-body background-color="#FDFDF5" width="430px" heigth="932px">
+    <mj-section full-width="full-width">
+      <mj-column class="mobile-padding-top" width="400px">
+        <mj-text class="mobile-icons" color="#212121" align="center" font-family="Mabry Pro, Montserrat, Poppins, sans-serif" font-size="30px" font-style="normal" font-weight="400" letter-spacing="-0.72px" line-height="50px">
+          <mj-column>
+            <p style="display: inline-block; margin-right: 10px;" class="mobile-icons">⏱</p>
+          </mj-column>
+          <mj-column>
+            <p style="display: inline-block; margin-right: 10px;" class="mobile-icons">🚀</p>
+          </mj-column>
+          <mj-column>
+            <p style="display: inline-block; margin-right: 10px;" class="mobile-icons">🍟</p>
+          </mj-column>
+        </mj-text>
+        <mj-text class="mobile-name" color="#989898" font-family="Mabry Pro, Montserrat, Poppins, sans-serif" font-size="14px" font-style="normal" font-weight="400" line-height="0px" letter-spacing="-0.36px" align="center">
+          <p class="mobile-name">{name}</p>
+        </mj-text>
+        <mj-text class="mobile-order" color="#989898" font-family="Mabry Pro, Montserrat, Poppins, sans-serif" font-size="14px" font-style="normal" font-weight="400" line-height="0px" letter-spacing="-0.36px" align="center">
+          <p class="mobile-order">{ordeR}</p>
+        </mj-text>
+        <mj-text color="#212121" align="center" font-family="Mabry Pro, Montserrat, Poppins, sans-serif" font-size="36px" font-style="normal" font-weight="700" line-height="40px" letter-spacing="-0.72px">
+          <p class="mobile-p-lacuenta">{laCuenta}</p>
+        </mj-text>
+      </mj-column>
+    </mj-section>
+    <mj-divider class="mobile-padding-top" width="380px" border-width="1px" border-color="#bababa" padding-top="5px" padding-botton="10px" />
+    <mj-section class="mobile-padding-top" full-width="full-width" padding-botton="5px">
+      <mj-column class="stack" width="20%">
+        <mj-image width="30px" height="30px" padding-right="1px" src="http://tenkiweb.com/imenu/img/check.png"></mj-image>
+      </mj-column>
+      <mj-column padding-left="0px" width="80%">
+        <mj-text padding-left="5px" width="296px" color="#212121" font-family="Mabry Pro, Montserrat, Poppins, sans-serif" font-size="18px" font-style="normal" font-weight="700" line-height="20px" letter-spacing="-0.72px" padding-top="0px" height="30px">
+          <p class="mobile-p-tupago">{tuPago}</p>
+        </mj-text>
+      </mj-column>
+      <mj-column padding-left="1px" padding-right="1px" padding-top="5px" width="380px">
+        <mj-text color="#989898" align="center" font-family="Mabry Pro, Montserrat, Poppins, sans-serif" font-size="18px" font-style="normal" font-weight="400" line-height="30px" letter-spacing="-0.36px">
+          <p class="mobile-p-tupago">{enUnosMinutos}</p>
+        </mj-text>
+      </mj-column>
+    </mj-section>
+    <mj-divider class="mobile-padding-top" width="380px" border-width="1px" border-color="#bababa" padding-top="21px" padding-botton="21px" />
+    <mj-section full-width="full-width">
+      <mj-column class="mobile-padding-top" padding-right="1px" padding-top="10px" width="287px">
+        <mj-text color="#989898" font-family="Mabry Pro, Montserrat, Poppins, sans-serif" font-size="16px" font-style="normal" font-weight="400" line-height="1px" letter-spacing="-0.36px" align="center">
+          <p class="mobile-p-apreciamos">{apreciamos}</p>
+        </mj-text>
+      </mj-column>
+      <mj-column width="15%" padding-top="10px">
+        <mj-image width="20px" height="20px" padding-left="0px" src="http://tenkiweb.com/imenu/img/red-heart.png"></mj-image>
+      </mj-column>
+      <mj-column width="40%">
+        <mj-image width="100px" src="http://tenkiweb.com/imenu/img/imenu.png"></mj-image>
+      </mj-column>
+    </mj-section>
+    <mj-section class="mobile-padding-top" padding-left="100px" padding-right="50px" padding-top="0px">
+      <mj-column width="20%">
+        <mj-image class="mobile-lifebuoy" width="30px" height="30px" padding-right="1px" src="http://tenkiweb.com/imenu/img/lifebuoy.png"></mj-image>
+      </mj-column>
+      <mj-column padding-left="0px" width="80%">
+        <mj-text padding-left="5px" width="296px" color="#98989898" font-family="Mabry Pro, Montserrat, Poppins, sans-serif" font-size="16px" font-style="normal" font-weight="700" line-height="20px" letter-spacing="-0.72px" padding-top="0px" height="30px">
+          <p class="mobile-p-tupago">{necesitasAyuda}</p>
+        </mj-text>
+      </mj-column>
+    </mj-section>
+  </mj-body>
+</mjml>
