@@ -95,7 +95,7 @@ order.post('/new', async (req, res) => {
       accountbirthDate,
       // eslint-disable-next-line no-unused-vars
       accountaddress,
-      googleemail,
+      googleEmail,
     } = req.body;
 
     const costProductAsNumbers = products.cost.map((amount) => {
@@ -340,13 +340,13 @@ order.post('/new', async (req, res) => {
       // accountphone,
       // accountbirthDate,
       // accountaddress,
-      // googleemail,
+      googleEmail,
 
     });
     if (created) {
-      const to = accountemail || googleemail;
+      const to = accountemail || googleEmail;
       const names = accountname || '';
-      if (accountemail || googleemail) {
+      if (accountemail || googleEmail) {
         const laCuenta = '¡La cuenta regresiva ha comenzado!';
         const enUnosMinutos = 'En unos minutos, tendrás tu pedido en las manos.';
         const subject = 'iMenu - Pedido en marcha! 🍔';
@@ -389,7 +389,7 @@ order.get('/orderes/:commerceId', async (req, res) => {
       attributes: [
         'id', 'order', 'date', 'hour', 'status', 'detail', 'promotion',
         'discount', 'surcharge', 'costDelivery', 'paid', 'name',
-        'additionals', 'products', 'dishes', 'menu',
+        'additionals', 'products', 'dishes', 'menu', 'googleEmail',
       ],
       include: [
         {
@@ -484,12 +484,12 @@ order.post('/order', async (req, res) => {
       orderes = await Promise.all(promises);
       const newPedido = await Order.bulkCreate(orderes);
       if (newPedido.length > 0) {
-        const to = orderes[0].accountemail || orderes[0].googleemail;
+        const to = orderes[0].accountemail || orderes[0].googleEmail;
         const name = orderes[0].accountname || '';
         // eslint-disable-next-line prefer-destructuring
         const ordeR = orderes[0].order;
         const filePath = path.join(__dirname, '../../controllers/nodemailer/Order/order.html');
-        if (orderes[0].accountemail || orderes[0].googleemail) {
+        if (orderes[0].accountemail || orderes[0].googleEmail) {
           fs.readFile(filePath, 'utf8', (err, data) => {
             if (err) {
               // eslint-disable-next-line no-console
@@ -511,7 +511,7 @@ order.post('/order', async (req, res) => {
           mensaje: 'Order created',
           registros: newPedido.length,
           order: newOrder,
-          email: orderes[0].accountemail || orderes[0].googleemail,
+          email: orderes[0].accountemail || orderes[0].googleEmail,
         });
       } else {
         res.status(422).send('Not Order ');
@@ -666,7 +666,7 @@ order.get('/detail/:order', async (req, res) => {
       attributes: [
         'id', 'order', 'date', 'hour', 'status', 'detail', 'promotion',
         'discount', 'surcharge', 'costDelivery', 'paid', 'name',
-        'additionals', 'products', 'dishes', 'menu',
+        'additionals', 'products', 'dishes', 'menu', 'googleEmail',
       ],
       include: [
         {
@@ -716,7 +716,7 @@ order.get('/dates/:commerceId', async (req, res) => {
       attributes: [
         'id', 'order', 'date', 'hour', 'status', 'detail', 'promotion',
         'discount', 'surcharge', 'costDelivery', 'paid', 'name',
-        'additionals', 'products', 'dishes', 'menu',
+        'additionals', 'products', 'dishes', 'menu', 'googleEmail',
       ],
       include: [
         {
@@ -807,16 +807,16 @@ order.put('/status-ready/:order/:commerceId', async (req, res) => {
   try {
     const { order: orderParam, commerceId: commerceIdParam } = req.params;
     const {
-      status, accountemail, googleemail, accountname,
+      status, accountemail, googleEmail, accountname,
     } = req.body;
     const [rowsUpdated] = await Order.update({ status }, {
       where: { order: orderParam, commerceId: commerceIdParam, status: 'orderInPreparation' },
     });
     if (rowsUpdated > 0) {
       if (status === 'orderReady') {
-        const to = accountemail || googleemail;
+        const to = accountemail || googleEmail;
         const names = accountname || '';
-        if (accountemail || googleemail) {
+        if (accountemail || googleEmail) {
           const laCuenta = '¡Ya está tu Pedido!';
           const enUnosMinutos = '';
           const subject = 'iMenu - Tu Pedido está Listo! 🍔';
@@ -1420,7 +1420,7 @@ order.get('/paidOrderes/:commerceId', async (req, res) => {
       attributes: [
         'id', 'order', 'date', 'hour', 'status', 'detail', 'promotion',
         'discount', 'surcharge', 'costDelivery', 'paid', 'name',
-        'additionals', 'products', 'dishes', 'menu',
+        'additionals', 'products', 'dishes', 'menu', 'googleEmail',
       ],
       include: [
         {
@@ -1442,6 +1442,10 @@ order.get('/paidOrderes/:commerceId', async (req, res) => {
         {
           model: Sector,
           attributes: ['id', 'name', 'promotion', 'discount', 'surcharge'],
+        },
+        {
+          model: Account,
+          attributes: ['id', 'name', 'phone', 'email', 'googleUser', 'facebookUser', 'sex'],
         },
       ],
     });
@@ -1479,7 +1483,7 @@ order.get('/orderesDelivery/:commerceId', async (req, res) => {
       attributes: [
         'id', 'order', 'date', 'hour', 'status', 'detail', 'promotion',
         'discount', 'surcharge', 'costDelivery', 'paid', 'name',
-        'additionals', 'products', 'dishes', 'menu',
+        'additionals', 'products', 'dishes', 'menu', 'googleEmail',
       ],
       include: [
         {
@@ -1536,7 +1540,7 @@ order.get('/orderesNotDelivery/:commerceId', async (req, res) => {
       attributes: [
         'id', 'order', 'date', 'hour', 'status', 'detail', 'promotion',
         'discount', 'surcharge', 'costDelivery', 'paid', 'name',
-        'additionals', 'products', 'dishes', 'menu',
+        'additionals', 'products', 'dishes', 'menu', 'googleEmail',
       ],
       include: [
         {
@@ -1655,10 +1659,10 @@ order.get('/warning', async (req, res) => {
         accountphone: '222222',
         accountbirthDate: '24-10-1967',
         accountaddress: 'Av siempre viva 300',
-        googleemail: '',
+        googleEmail: '',
       },
     ];
-    const to = orderes[0].accountemail || orderes[0].googleemail;
+    const to = orderes[0].accountemail || orderes[0].googleEmail;
     const names = orderes[0].accountname || '';
     // eslint-disable-next-line prefer-destructuring
     const newOrder = orderes[0].order;
