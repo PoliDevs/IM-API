@@ -18,6 +18,19 @@ const loadMenu = async (menus, commerceId) => {
   try {
     let menuTypeId = 0;
     let categoryId = 0;
+    const fechaActual = new Date();
+    const año = fechaActual.getFullYear();
+    const mes = (fechaActual.getMonth() + 1).toString().padStart(2, '0');
+    const dia = fechaActual.getDate().toString().padStart(2, '0');
+    const fechaCorta = `${año}-${mes}-${dia}`;
+
+    await Menu.update({ status: 'old' }, {
+      where: {
+        status: 'last',
+        commerceId,
+      },
+    });
+
     await Promise.all(menus.map(async (element) => {
       const type = element.menuType;
       const menuFinded = await MenuType.findOne({
@@ -40,15 +53,17 @@ const loadMenu = async (menus, commerceId) => {
       if (categoryFinded) {
         categoryId = categoryFinded.id;
       }
+
       // eslint-disable-next-line no-unused-vars
       const [menuCreated, created] = await Menu.findOrCreate({
         where: {
           name: element.name.toLowerCase(),
           commerceId,
+          status: 'last',
         },
         defaults: {
           name: element.name,
-          date: element.date,
+          date: fechaCorta,
           description: element.description,
           cost: element.cost,
           promotion: element.promotion,

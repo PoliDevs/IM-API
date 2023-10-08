@@ -9,6 +9,10 @@ const { conn: sequelize } = require('../../db');
 const { loadMenuType } = require('../../controllers/Menu/loadMenuType');
 const { loadCategory } = require('../../controllers/Menu/loadCategory');
 const { loadMenu } = require('../../controllers/Menu/loadMenu');
+const { loadCommerce } = require('../../controllers/Menu/loadCommerce');
+const { loadCommerceFact } = require('../../controllers/Menu/loadCommerceFacts');
+const { loadEmployeeType } = require('../../controllers/Menu/loadEmployeeType');
+const { loadEmployeer } = require('../../controllers/Menu/loadEmployeer');
 
 menu.use(express.json());
 menu.use(cors());
@@ -212,21 +216,37 @@ menu.post('/menu', async (req, res) => {
 
 menu.post('/menuUp/:commerceId', async (req, res) => {
   try {
-    const { commerceId } = req.params;
-    const { menuJSON } = req.body;
-    if (!commerceId && !Number.isInteger(parseInt(commerceId, 10))) {
+    let { commerceId: commerceIdParam } = req.params;
+    const { menuJSON, commerceJSON } = req.body;
+    if (!commerceIdParam && !Number.isInteger(parseInt(commerceIdParam, 10))) {
       res.status(422).send('ID was not provided');
     }
-
-    const newMenuType = await loadMenuType(menuJSON, commerceId);
-    const newCategory = await loadCategory(menuJSON, commerceId);
-    const newMenu = await loadMenu(menuJSON, commerceId);
-    // console.log(newMenuType);
+    const objCommerce = {
+      commerce: '',
+      commerceFact: '',
+      employeeType: '',
+      employee: '',
+    };
+    if (commerceIdParam === '0') {
+      commerceIdParam = await loadCommerce(commerceJSON);
+      objCommerce.commerce = commerceIdParam;
+      const newCommerceFacts = await loadCommerceFact(commerceJSON, commerceIdParam);
+      objCommerce.commerceFact = newCommerceFacts;
+      const newEmployeeType = await loadEmployeeType(commerceIdParam);
+      objCommerce.employeeType = newEmployeeType;
+      const newEmployee = await loadEmployeer(commerceJSON, commerceIdParam, newEmployeeType);
+      objCommerce.employee = newEmployee;
+    }
+    const newMenuType = await loadMenuType(menuJSON, commerceIdParam);
+    const newCategory = await loadCategory(menuJSON, commerceIdParam);
+    const newMenu = await loadMenu(menuJSON, commerceIdParam);
     res.status(201).json({
       type: 'menuUp',
       MenuType: newMenuType,
       Category: newCategory,
       Menu: newMenu,
+      CommerceId: commerceIdParam,
+      objCommerce,
     });
   } catch (error) {
     // eslint-disable-next-line no-console
