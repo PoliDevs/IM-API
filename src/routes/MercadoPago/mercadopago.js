@@ -32,6 +32,7 @@ mepa.post('/create-order', (req, res) => {
         currency_id: 'ARS',
         quantity: 1,
         picture_url: 'https://www.mercadopago.com/org-img/MP3/home/logomp3.gif',
+        // appication_fee: 2.5,
       },
     ],
     payer: {
