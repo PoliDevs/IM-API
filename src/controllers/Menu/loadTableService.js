@@ -1,26 +1,29 @@
-const employeeType = require('express').Router();
+const tableService = require('express').Router();
 const express = require('express');
 const cors = require('cors');
 const {
-  EmployeeType,
+  TableService,
 } = require('../../db');
 
-employeeType.use(express.json());
-employeeType.use(cors());
-employeeType.use(
+tableService.use(express.json());
+tableService.use(cors());
+tableService.use(
   express.urlencoded({
     extended: true,
   }),
 );
 
-const loadEmployeeType = async (commerceId) => {
+const loadTableService = async (commerceId) => {
   let created;
   try {
     // eslint-disable-next-line no-unused-vars
-    created = await EmployeeType.create({
-      type: 'Employeer',
-      detail: '',
+    created = await TableService.create({
+      type: 'Mesa',
+      detail: 'Servicio de mesa',
+      cost: 0,
+      validity: '2030-12-31',
       commerceId: Number(commerceId),
+
     });
   } catch (error) {
     // eslint-disable-next-line no-console
@@ -30,5 +33,5 @@ const loadEmployeeType = async (commerceId) => {
 };
 
 module.exports = {
-  loadEmployeeType,
+  loadTableService,
 };

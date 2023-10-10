@@ -26,7 +26,7 @@ const loadCommerceFact = async (commerceJSON, commerceId) => {
     created = await CommerceFact.create({
       type,
       detail: '',
-      commerceId,
+      commerceId: Number(commerceId),
     });
   } catch (error) {
     // eslint-disable-next-line no-console

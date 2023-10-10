@@ -13,6 +13,10 @@ const { loadCommerce } = require('../../controllers/Menu/loadCommerce');
 const { loadCommerceFact } = require('../../controllers/Menu/loadCommerceFacts');
 const { loadEmployeeType } = require('../../controllers/Menu/loadEmployeeType');
 const { loadEmployeer } = require('../../controllers/Menu/loadEmployeer');
+const { loadSector } = require('../../controllers/Menu/loadSector');
+const { loadPosType } = require('../../controllers/Menu/loadPosType');
+const { loadTableService } = require('../../controllers/Menu/loadTableService');
+const { loadPos } = require('../../controllers/Menu/loadPos');
 
 menu.use(express.json());
 menu.use(cors());
@@ -222,12 +226,18 @@ menu.post('/menuUp/:commerceId', async (req, res) => {
       res.status(422).send('ID was not provided');
     }
     const objCommerce = {
-      commerce: '',
-      commerceFact: '',
-      employeeType: '',
-      employee: '',
+      commerce: 0,
+      commerceFact: 0,
+      employeeType: 0,
+      employee: 0,
+      sector: 0,
+      postype: 0,
+      tableService: 0,
+      countPos: 0,
+      objPos: [],
     };
-    if (commerceIdParam === '0') {
+    commerceIdParam = Number(commerceIdParam);
+    if (commerceIdParam === 0) {
       commerceIdParam = await loadCommerce(commerceJSON);
       objCommerce.commerce = commerceIdParam;
       const newCommerceFacts = await loadCommerceFact(commerceJSON, commerceIdParam);
@@ -236,6 +246,21 @@ menu.post('/menuUp/:commerceId', async (req, res) => {
       objCommerce.employeeType = newEmployeeType;
       const newEmployee = await loadEmployeer(commerceJSON, commerceIdParam, newEmployeeType);
       objCommerce.employee = newEmployee;
+      const newTableService = await loadTableService(commerceIdParam);
+      objCommerce.tableService = newTableService;
+      const newPosType = await loadPosType(commerceIdParam);
+      objCommerce.postype = newPosType;
+      const newSector = await loadSector(commerceIdParam, newTableService);
+      objCommerce.sector = newSector;
+      objCommerce.countPos = commerceJSON[0].mesas;
+      const newPos = await loadPos(
+        commerceIdParam,
+        newSector,
+        newPosType,
+        newTableService,
+        commerceJSON,
+      );
+      objCommerce.objPos = newPos;
     }
     const newMenuType = await loadMenuType(menuJSON, commerceIdParam);
     const newCategory = await loadCategory(menuJSON, commerceIdParam);
