@@ -96,6 +96,7 @@ order.post('/new', async (req, res) => {
       // eslint-disable-next-line no-unused-vars
       accountaddress,
       googleEmail,
+      mpPayment,
     } = req.body;
 
     const costProductAsNumbers = products.cost.map((amount) => {
@@ -341,6 +342,7 @@ order.post('/new', async (req, res) => {
       // accountbirthDate,
       // accountaddress,
       googleEmail,
+      mpPayment,
 
     });
     if (created) {
@@ -666,7 +668,7 @@ order.get('/detail/:order', async (req, res) => {
       attributes: [
         'id', 'order', 'date', 'hour', 'status', 'detail', 'promotion',
         'discount', 'surcharge', 'costDelivery', 'paid', 'name',
-        'additionals', 'products', 'dishes', 'menu', 'googleEmail',
+        'additionals', 'products', 'dishes', 'menu', 'googleEmail', 'mpPayment',
       ],
       include: [
         {
@@ -716,7 +718,7 @@ order.get('/dates/:commerceId', async (req, res) => {
       attributes: [
         'id', 'order', 'date', 'hour', 'status', 'detail', 'promotion',
         'discount', 'surcharge', 'costDelivery', 'paid', 'name',
-        'additionals', 'products', 'dishes', 'menu', 'googleEmail',
+        'additionals', 'products', 'dishes', 'menu', 'googleEmail', 'mpPayment',
       ],
       include: [
         {
@@ -1420,7 +1422,7 @@ order.get('/paidOrderes/:commerceId', async (req, res) => {
       attributes: [
         'id', 'order', 'date', 'hour', 'status', 'detail', 'promotion',
         'discount', 'surcharge', 'costDelivery', 'paid', 'name',
-        'additionals', 'products', 'dishes', 'menu', 'googleEmail',
+        'additionals', 'products', 'dishes', 'menu', 'googleEmail', 'mpPayment',
       ],
       include: [
         {
@@ -1483,7 +1485,7 @@ order.get('/orderesDelivery/:commerceId', async (req, res) => {
       attributes: [
         'id', 'order', 'date', 'hour', 'status', 'detail', 'promotion',
         'discount', 'surcharge', 'costDelivery', 'paid', 'name',
-        'additionals', 'products', 'dishes', 'menu', 'googleEmail',
+        'additionals', 'products', 'dishes', 'menu', 'googleEmail', 'mpPayment',
       ],
       include: [
         {
@@ -1540,7 +1542,7 @@ order.get('/orderesNotDelivery/:commerceId', async (req, res) => {
       attributes: [
         'id', 'order', 'date', 'hour', 'status', 'detail', 'promotion',
         'discount', 'surcharge', 'costDelivery', 'paid', 'name',
-        'additionals', 'products', 'dishes', 'menu', 'googleEmail',
+        'additionals', 'products', 'dishes', 'menu', 'googleEmail', 'mpPayment',
       ],
       include: [
         {

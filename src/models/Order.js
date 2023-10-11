@@ -81,6 +81,10 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING,
         allowNull: true,
       },
+      mpPayment: {
+        type: DataTypes.JSON,
+        allowNull: true,
+      },
       // accountId: {
       //   type: DataTypes.INTEGER,
       //   allowNull: true, // Permite valores nulos
