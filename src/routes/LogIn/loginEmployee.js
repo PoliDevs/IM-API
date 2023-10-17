@@ -131,10 +131,10 @@ login.post('/login', async (req, res) => {
 
 login.post('/loginG', async (req, res) => {
   try {
-    const { email } = req.body;
+    const { googleUser } = req.body;
     const employeeFound = await Employee.findOne({
       where: {
-        email,
+        googleUser,
       },
       include: [
         {
@@ -181,7 +181,7 @@ login.post('/loginG', async (req, res) => {
       addres: employeeFound.addres,
       bithDate: employeeFound.bithDate,
       start: employeeFound.start,
-      email: employeeFound.email,
+      googleUser: employeeFound.googleUser,
       EmployeeType: {
         id: employeeFound['EmployeeType.id'],
         type: employeeFound['EmployeeType.type'],
