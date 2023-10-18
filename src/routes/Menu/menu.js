@@ -18,6 +18,7 @@ const { loadPosType } = require('../../controllers/Menu/loadPosType');
 const { loadTableService } = require('../../controllers/Menu/loadTableService');
 const { loadPos } = require('../../controllers/Menu/loadPos');
 const { loadPayment } = require('../../controllers/Menu/loadPayment');
+const { loadUnitType } = require('../../controllers/Menu/loadUnitType');
 
 menu.use(express.json());
 menu.use(cors());
@@ -235,6 +236,7 @@ menu.post('/menuUp/:commerceId', async (req, res) => {
       postype: 0,
       tableService: 0,
       payment: 0,
+      unitType: 0,
       countPos: 0,
       objPos: [],
     };
@@ -257,6 +259,8 @@ menu.post('/menuUp/:commerceId', async (req, res) => {
       objCommerce.countPos = commerceJSON[0].mesas;
       const newPayment = await loadPayment(commerceIdParam);
       objCommerce.payment = newPayment;
+      const newUnitType = await loadUnitType(commerceIdParam);
+      objCommerce.unitType = newUnitType;
       const newPos = await loadPos(
         commerceIdParam,
         newSector,
