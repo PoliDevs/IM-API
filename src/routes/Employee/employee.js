@@ -33,12 +33,18 @@ employee.post('/employee', async (req, res) => {
       employeeTypeId,
       commerceId,
     } = req.body;
-    const hash = bcrypt.hashSync(password, 10);
+    let hash = bcrypt.hashSync(password, 10);
+    password === '' ? hash = '' : null;
+    let whereClause = '';
+    if (email !== '' && email !== null) {
+      whereClause = { email: email.toLowerCase() };
+    } else if (googleUser !== '' && googleUser !== null) {
+      whereClause = { googleUser: googleUser.toLowerCase() };
+    }
+
     // eslint-disable-next-line no-unused-vars
     const [employeeCreated, created] = await Employee.findOrCreate({
-      where: {
-        email: email.toLowerCase(),
-      },
+      where: whereClause,
       defaults: {
         firstName: firstName.toLowerCase(),
         lastName,
