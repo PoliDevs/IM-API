@@ -173,7 +173,6 @@ login.post('/loginG', async (req, res) => {
         .status(401)
         .json({ error: 'Employee email is not validated', id: employeeFound.id });
     }
-
     const employeeInfo = {
       id: employeeFound.id,
       firstName: employeeFound.firstName,
@@ -183,14 +182,14 @@ login.post('/loginG', async (req, res) => {
       start: employeeFound.start,
       googleUser: employeeFound.googleUser,
       EmployeeType: {
-        id: employeeFound['EmployeeType.id'],
-        type: employeeFound['EmployeeType.type'],
-        detail: employeeFound['EmployeeType.detail'],
+        id: employeeFound['employeeType.id'],
+        type: employeeFound['employeeType.type'],
+        detail: employeeFound['employeeType.detail'],
       },
       Commerce: {
-        name: employeeFound['Commerce.name'],
-        neighborhood: employeeFound['Commerce.neighborhood'],
-        address: employeeFound['Commerce.address'],
+        name: employeeFound['commerce.name'],
+        neighborhood: employeeFound['commerce.neighborhood'],
+        address: employeeFound['commerce.address'],
       },
     };
     const tokenFront = jwt.sign(employeeFound, process.env.TOKENKEY, {
@@ -211,6 +210,109 @@ login.post('/loginG', async (req, res) => {
     res.cookie(
       'SessionEmployeeImenu',
       { employeeId: employeeInfo.id },
+      {
+        expires: new Date(Date.now() + 3 * 60 * 60 * 1000),
+        httpOnly: false,
+      },
+    );
+    res.status(200).json({
+      message: 'Login success',
+      token: tokenFront,
+      // userInformation: userInfoFront,
+    });
+    return true;
+  } catch (error) {
+    res.status(400).send(error);
+  }
+  return true;
+});
+
+login.post('/loginG_2', async (req, res) => {
+  try {
+    const { googleUser } = req.body;
+    const employeeFound = await Employee.findAll({
+      where: {
+        googleUser,
+      },
+      include: [
+        {
+          model: EmployeeType,
+          attributes: ['id', 'type', 'detail', 'active'],
+        },
+        {
+          model: Commerce,
+          attributes: ['id', 'name', 'neighborhood', 'address', 'active'],
+          include: [
+            {
+              model: CommerceFact,
+              attributes: ['id', 'type', 'detail', 'active'],
+            },
+            {
+              model: CommercialPlan,
+              attributes: ['id', 'plan'],
+            },
+          ],
+        },
+      ],
+      raw: true,
+    });
+
+    if (!employeeFound) {
+      return res.status(401).json({
+        error: 'Employee not found',
+      });
+    }
+
+    if (employeeFound.active === 0) {
+      return res.status(401).json({ error: 'Employee is inactive' });
+    }
+    if (employeeFound.validatedEmail === 0) {
+      return res
+        .status(401)
+        .json({ error: 'Employee email is not validated', id: employeeFound.id });
+    }
+    const employeeInfo = [];
+    employeeFound.forEach((element) => {
+      employeeInfo.push({
+        id: element.id,
+        firstName: element.firstName,
+        lastName: element.lastName,
+        addres: element.addres,
+        bithDate: element.bithDate,
+        start: element.start,
+        googleUser: element.googleUser,
+        EmployeeType: {
+          id: element['employeeType.id'],
+          type: element['employeeType.type'],
+          detail: element['employeeType.detail'],
+        },
+        Commerce: {
+          name: element['commerce.name'],
+          neighborhood: element['commerce.neighborhood'],
+          address: element['commerce.address'],
+        },
+      });
+    });
+
+    const employeeInfoString = JSON.stringify(employeeInfo);
+    const tokenFront = jwt.sign({ employeeInfo: employeeInfoString }, process.env.TOKENKEY, {
+      expiresIn: '3h',
+    });
+    const tokenBack = jwt.sign({ employeeInfo: employeeInfoString }, process.env.TOKENKEY, {
+      expiresIn: '3h',
+    });
+      // COOKIE BACKEND
+    res.cookie('employeeBackend', tokenBack, {
+      expires: new Date(Date.now() + 3 * 60 * 60 * 1000), // 3 horas de expiración
+      httpOnly: true, // Protege contra ataques de secuestro de cookies
+      secure: true, // Requiere HTTPS para enviar la cookie (si tu aplicación utiliza HTTPS)
+      // Agregar otras opciones de seguridad según sea necesario
+    });
+
+    // COOKIE FRONTEND
+    res.cookie(
+      'SessionEmployeeImenu',
+      { employeeInfo },
       {
         expires: new Date(Date.now() + 3 * 60 * 60 * 1000),
         httpOnly: false,

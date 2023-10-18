@@ -24,7 +24,7 @@ const loadPos = async (commerceId, newSector, posTypeId, tableServiceId, commerc
 
     let mesa = 0;
     for (let i = 0; i < Number(mesas); i += 1) {
-      mesa = +1;
+      mesa = i + 1;
       const nuevoObjeto = {
         qrCode: `${URL_QR}/${commerceId}/${newSector}/${mesa}`,
         posTypeId: Number(posTypeId),
