@@ -25,8 +25,11 @@ const loadCommerce = async (commerceJSON) => {
       email: commerceJSON[0].email,
       phono: commerceJSON[0].phono,
       franchiseId: null,
-      commercialPlanId: 2,
+      commercialPlanId: 1,
       businessId: null,
+      city: commerceJSON[0].city,
+      state: commerceJSON[0].state,
+      country: commerceJSON[0].country,
     });
   } catch (error) {
     // eslint-disable-next-line no-console

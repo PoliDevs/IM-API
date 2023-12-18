@@ -17,7 +17,8 @@ const loadCategory = async (menu, commerceId) => {
     await Promise.all(menu.map(async (element) => {
       // eslint-disable-next-line prefer-destructuring
       const category = element.category;
-      const [, created] = await Category.findOrCreate({
+      // eslint-disable-next-line no-unused-vars
+      const [categoryCreated, created] = await Category.findOrCreate({
         where: {
           category: category.toLowerCase(),
           commerceId,
