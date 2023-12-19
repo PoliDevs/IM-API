@@ -36,8 +36,10 @@ function sendNewOrder(
   necesitasAyuda,
   subject,
   text,
+  local,
+  tipoDeOrder,
 ) {
-  const filePath = path.join(__dirname, '../../controllers/nodemailer/Order/order/order.html');
+  const filePath = path.join(__dirname, `../../controllers/nodemailer/Order/order/${tipoDeOrder}.html`);
   fs.readFile(filePath, 'utf8', (err, data) => {
     if (err) {
       // eslint-disable-next-line no-console
@@ -50,7 +52,8 @@ function sendNewOrder(
       .replace('{enUnosMinutos}', enUnosMinutos)
       .replace('{tuPago}', tuPago)
       .replace('{apreciamos}', apreciamos)
-      .replace('{necesitasAyuda}', necesitasAyuda);
+      .replace('{necesitasAyuda}', necesitasAyuda)
+      .replace('{local}', local);
     const info = {
       from: 'imenunotice@gmail.com',
       to,
@@ -356,6 +359,11 @@ order.post('/new', async (req, res) => {
         const tuPago = 'Tu pago se ha procesado con éxito.';
         const apreciamos = 'Apreciamos tu confianza en iMenu';
         const necesitasAyuda = '¿Necestas ayuda?';
+        const local = commerceId
+          ? (
+            await Commerce.findOne({ where: { id: commerceId } })
+          )?.name
+          : '';
         sendNewOrder(
           to,
           names,
@@ -367,6 +375,8 @@ order.post('/new', async (req, res) => {
           necesitasAyuda,
           subject,
           text,
+          local,
+          'order',
         );
       }
       res.status(200).json({ mensaje: 'Order created', order: newOrder, id: created.dataValues.id });
@@ -826,6 +836,11 @@ order.put('/status-ready/:order/:commerceId', async (req, res) => {
           const tuPago = 'Que disfrutes tu Pedido!';
           const apreciamos = '';
           const necesitasAyuda = '¿Necestas ayuda?';
+          const local = commerceIdParam
+            ? (
+              await Commerce.findOne({ where: { id: commerceIdParam } })
+            )?.name
+            : '';
           sendNewOrder(
             to,
             names,
@@ -837,6 +852,8 @@ order.put('/status-ready/:order/:commerceId', async (req, res) => {
             necesitasAyuda,
             subject,
             text,
+            local,
+            'listo',
           );
         }
       }
@@ -1682,6 +1699,7 @@ order.get('/warning', async (req, res) => {
     const tuPago = 'Tu pago se ha procesado con éxito.';
     const apreciamos = 'Apreciamos tu confianza en iMenu';
     const necesitasAyuda = '¿Necestas ayuda?';
+    const local = 'la tablita';
     // const htmlContent = data.replace('{name}', name)
     //   .replace('{ordeR}', ordeR)
     //   .replace('{lacuenta}', laCuenta)
@@ -1706,6 +1724,8 @@ order.get('/warning', async (req, res) => {
       necesitasAyuda,
       subject,
       text,
+      local,
+      'listo',
     );
     // });
     res.status(200).json({ message: `Message sent: ${orderes[0].order}` });
