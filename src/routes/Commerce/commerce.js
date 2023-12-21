@@ -4,6 +4,7 @@ const cors = require('cors');
 const {
   Commerce, CommerceFact, Franchise,
   FranchiseType, Bank, CommercialPlan,
+  Payment,
 } = require('../../db');
 
 commerces.use(express.json());
@@ -74,6 +75,10 @@ commerces.get('/all', async (req, res) => {
           model: CommercialPlan,
           attributes: ['id', 'plan', 'validity', 'cost', 'promotion', 'discount', 'scope', 'updatedAt', 'type', 'detail', 'active'],
         },
+        {
+          model: Payment,
+          attributes: ['id', 'type', 'detail', 'commerceId', 'active', 'publicKey', 'accesToken', 'alias'],
+        },
       ],
     });
 
@@ -114,6 +119,10 @@ commerces.get('/all_active', async (req, res) => {
         {
           model: CommercialPlan,
           attributes: ['id', 'plan', 'validity', 'cost', 'promotion', 'discount', 'scope', 'updatedAt', 'type', 'detail', 'active'],
+        },
+        {
+          model: Payment,
+          attributes: ['id', 'type', 'detail', 'commerceId', 'active', 'publicKey', 'accesToken', 'alias'],
         },
       ],
     });
@@ -157,6 +166,10 @@ commerces.get('/detail/:id', async (req, res) => {
           {
             model: CommercialPlan,
             attributes: ['id', 'plan', 'validity', 'cost', 'promotion', 'discount', 'scope', 'updatedAt', 'type', 'detail', 'active'],
+          },
+          {
+            model: Payment,
+            attributes: ['id', 'type', 'detail', 'commerceId', 'active', 'publicKey', 'accesToken', 'alias'],
           },
         ],
       });
