@@ -14,6 +14,15 @@ module.exports = (sequelize) => {
         type: DataTypes.BOOLEAN,
         defaultValue: true,
       },
+      publicKey: {
+        type: DataTypes.STRING,
+      },
+      accesToken: {
+        type: DataTypes.STRING,
+      },
+      alias: {
+        type: DataTypes.STRING,
+      },
     },
     {
       timestamps: false,
