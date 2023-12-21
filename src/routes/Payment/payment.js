@@ -1,6 +1,7 @@
 const payment = require('express').Router();
 const express = require('express');
 const cors = require('cors');
+const bcrypt = require('bcrypt');
 const { Payment } = require('../../db');
 
 payment.use(express.json());
@@ -13,7 +14,12 @@ payment.use(
 
 payment.post('/payment', async (req, res) => {
   try {
-    const { type, detail, commerceId } = req.body;
+    const {
+      type, detail, commerceId, publicKey, accesToken, alias,
+    } = req.body;
+    const hashPublicKey = bcrypt.hashSync(publicKey, 10);
+    const hashAccesToken = bcrypt.hashSync(accesToken, 10);
+    const hashAlias = bcrypt.hashSync(alias, 10);
     // eslint-disable-next-line no-unused-vars
     const [paymentCreated, created] = await Payment.findOrCreate({
       where: {
@@ -24,6 +30,9 @@ payment.post('/payment', async (req, res) => {
         type: type.toLowerCase(),
         detail,
         commerceId,
+        publicKey: hashPublicKey,
+        accesToken: hashAccesToken,
+        alias: hashAlias,
       },
     });
     if (created) {
@@ -46,7 +55,7 @@ payment.get('/all/:commerceId', async (req, res) => {
       where: {
         commerceId: parseInt(commerceId, 10),
       },
-      attributes: ['id', 'type', 'detail', 'commerceId', 'active'],
+      attributes: ['id', 'type', 'detail', 'commerceId', 'active', 'publicKey', 'accesToken', 'alias'],
     });
 
     if (pay.length > 0) {
@@ -70,7 +79,7 @@ payment.get('/all_active/:commerceId', async (req, res) => {
         commerceId: parseInt(commerceId, 10),
         active: true,
       },
-      attributes: ['id', 'type', 'detail', 'commerceId', 'active'],
+      attributes: ['id', 'type', 'detail', 'commerceId', 'active', 'publicKey', 'accesToken', 'alias'],
     });
 
     if (pay.length > 0) {
@@ -89,7 +98,7 @@ payment.get('/detail/:id', async (req, res) => {
     if (id && Number.isInteger(parseInt(id, 10))) {
       const pay = await Payment.findAll({
         where: { id: parseInt(id, 10) },
-        attributes: ['id', 'type', 'detail', 'commerceId', 'active'],
+        attributes: ['id', 'type', 'detail', 'commerceId', 'active', 'publicKey', 'accesToken', 'alias'],
       });
       if (pay.length > 0) {
         res.status(201).json(pay);
@@ -106,8 +115,13 @@ payment.get('/detail/:id', async (req, res) => {
 
 payment.put('/update/:id', async (req, res) => {
   try {
-    const { id, commerceId } = req.params;
+    const {
+      id, commerceId, publicKey, accesToken, alias,
+    } = req.params;
     const { type, detail } = req.body;
+    const hashPublicKey = bcrypt.hashSync(publicKey, 10);
+    const hashAccesToken = bcrypt.hashSync(accesToken, 10);
+    const hashAlias = bcrypt.hashSync(alias, 10);
     const paymentFinded = await Payment.findOne({
       where: {
         id: parseInt(id, 10),
@@ -118,6 +132,9 @@ payment.put('/update/:id', async (req, res) => {
         type,
         detail,
         commerceId,
+        publicKey: hashPublicKey,
+        accesToken: hashAccesToken,
+        alias: hashAlias,
       });
       res.status(200).send('The data was modified successfully');
     } else {
