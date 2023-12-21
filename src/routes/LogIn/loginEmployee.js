@@ -11,6 +11,7 @@ const {
   Commerce,
   CommerceFact,
   CommercialPlan,
+  Payment,
 } = require('../../db');
 
 login.use(express.json());
@@ -152,6 +153,10 @@ login.post('/loginG', async (req, res) => {
             {
               model: CommercialPlan,
               attributes: ['id', 'plan'],
+            },
+            {
+              model: Payment,
+              attributes: ['id', 'publicKey', 'accesToken', 'alias'],
             },
           ],
         },
