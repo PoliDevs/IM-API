@@ -147,12 +147,10 @@ payment.put('/update/:id', async (req, res) => {
 
 payment.put('/updateKeys/:id', async (req, res) => {
   try {
+    const { id } = req.params;
     const {
-      id, commerceId, publicKey, accesToken, alias,
-    } = req.params;
-    const hashPublicKey = bcrypt.hashSync(publicKey, 10);
-    const hashAccesToken = bcrypt.hashSync(accesToken, 10);
-    const hashAlias = bcrypt.hashSync(alias, 10);
+      commerceId, publicKey, accesToken, alias,
+    } = req.body;
     const paymentFinded = await Payment.findOne({
       where: {
         id: parseInt(id, 10),
@@ -161,9 +159,9 @@ payment.put('/updateKeys/:id', async (req, res) => {
     });
     if (paymentFinded) {
       await paymentFinded.update({
-        publicKey: hashPublicKey,
-        accesToken: hashAccesToken,
-        alias: hashAlias,
+        publicKey,
+        accesToken,
+        alias,
       });
       res.status(200).send('The data was modified successfully');
     } else {
@@ -173,6 +171,35 @@ payment.put('/updateKeys/:id', async (req, res) => {
     res.status(400).send(error);
   }
 });
+
+// payment.put('/updateKeys/:id', async (req, res) => {
+//   try {
+//     const {
+//       id, commerceId, publicKey, accesToken, alias,
+//     } = req.params;
+//     const hashPublicKey = bcrypt.hashSync(publicKey, 10);
+//     const hashAccesToken = bcrypt.hashSync(accesToken, 10);
+//     const hashAlias = bcrypt.hashSync(alias, 10);
+//     const paymentFinded = await Payment.findOne({
+//       where: {
+//         id: parseInt(id, 10),
+//         commerceId: parseInt(commerceId, 10),
+//       },
+//     });
+//     if (paymentFinded) {
+//       await paymentFinded.update({
+//         publicKey: hashPublicKey,
+//         accesToken: hashAccesToken,
+//         alias: hashAlias,
+//       });
+//       res.status(200).send('The data was modified successfully');
+//     } else {
+//       res.status(200).send('ID not found');
+//     }
+//   } catch (error) {
+//     res.status(400).send(error);
+//   }
+// });
 
 payment.put('/active/:id', async (req, res) => {
   try {
