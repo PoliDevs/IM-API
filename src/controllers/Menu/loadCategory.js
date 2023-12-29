@@ -11,25 +11,66 @@ categories.use(
   }),
 );
 
+// const loadCategory = async (menu, commerceId) => {
+//   let countCreated = 0;
+//   try {
+//     await Promise.all(menu.map(async (element) => {
+//       // eslint-disable-next-line prefer-destructuring
+//       const category = element.category;
+//       // eslint-disable-next-line no-unused-vars
+//       const [categoryCreated, created] = await Category.findOrCreate({
+//         where: {
+//           category: category.toLowerCase(),
+//           commerceId,
+//         },
+//         defaults: {
+//           category: category.toLowerCase(),
+//           commerceId,
+//         },
+//       });
+//       if (created) {
+//         countCreated += 1;
+//       }
+//     }));
+//   } catch (error) {
+//     // eslint-disable-next-line no-console
+//     console.log(error);
+//   }
+//   return countCreated;
+// };
+
 const loadCategory = async (menu, commerceId) => {
   let countCreated = 0;
   try {
     await Promise.all(menu.map(async (element) => {
       // eslint-disable-next-line prefer-destructuring
       const category = element.category;
-      // eslint-disable-next-line no-unused-vars
-      const [categoryCreated, created] = await Category.findOrCreate({
+
+      // Verificar si la categoría ya existe
+      const existingCategory = await Category.findOne({
         where: {
           category: category.toLowerCase(),
           commerceId,
         },
-        defaults: {
-          category: category.toLowerCase(),
-          commerceId,
-        },
       });
-      if (created) {
-        countCreated += 1;
+
+      if (!existingCategory) {
+        // La categoría no existe, por lo tanto, la creamos
+        // eslint-disable-next-line no-unused-vars
+        const [categoryCreated, created] = await Category.findOrCreate({
+          where: {
+            category: category.toLowerCase(),
+            commerceId,
+          },
+          defaults: {
+            category: category.toLowerCase(),
+            commerceId,
+          },
+        });
+
+        if (created) {
+          countCreated += 1;
+        }
       }
     }));
   } catch (error) {
