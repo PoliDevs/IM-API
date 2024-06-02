@@ -1,0 +1,19 @@
+services:
+    nodeserver:
+        build:
+            context: ./app
+        ports:
+          - "3001:3001"
+        image: imenu-nodeserver-api
+        
+    nginx:
+        restart: always
+        build:
+            context: ./nginx
+        ports:
+          - "80:80"
+          - "443:443"
+        image: imenu-nginx-api
+        depends_on:
+          - nodeserver
+        

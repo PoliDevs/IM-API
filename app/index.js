@@ -5,6 +5,7 @@ const { conn } = require('./src/db');
 const { PORT } = process.env;
 
 const port = PORT || 3001;
+
 const message = `%s listening at  ${port}`;
 conn
   .sync({ alter: true })
