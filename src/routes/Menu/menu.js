@@ -2,15 +2,15 @@ const menu = require('express').Router();
 const express = require('express');
 const { QueryTypes } = require('sequelize');
 const cors = require('cors');
-const {
-  Menu, MenuType, Commerce, Category,
-} = require('../../db');
+const { Menu, MenuType, Commerce, Category } = require('../../db');
 const { conn: sequelize } = require('../../db');
 const { loadMenuType } = require('../../controllers/Menu/loadMenuType');
 const { loadCategory } = require('../../controllers/Menu/loadCategory');
 const { loadMenu } = require('../../controllers/Menu/loadMenu');
 const { loadCommerce } = require('../../controllers/Menu/loadCommerce');
-const { loadCommerceFact } = require('../../controllers/Menu/loadCommerceFacts');
+const {
+  loadCommerceFact,
+} = require('../../controllers/Menu/loadCommerceFacts');
 const { loadEmployeeType } = require('../../controllers/Menu/loadEmployeeType');
 const { loadEmployeer } = require('../../controllers/Menu/loadEmployeer');
 const { loadSector } = require('../../controllers/Menu/loadSector');
@@ -26,7 +26,7 @@ menu.use(cors());
 menu.use(
   express.urlencoded({
     extended: true,
-  }),
+  })
 );
 
 menu.post('/menu', async (req, res) => {
@@ -246,11 +246,18 @@ menu.post('/menuUp/:commerceId', async (req, res) => {
     if (commerceIdParam === 0) {
       commerceIdParam = await loadCommerce(commerceJSON);
       objCommerce.commerce = commerceIdParam;
-      const newCommerceFacts = await loadCommerceFact(commerceJSON, commerceIdParam);
+      const newCommerceFacts = await loadCommerceFact(
+        commerceJSON,
+        commerceIdParam
+      );
       objCommerce.commerceFact = newCommerceFacts;
       const newEmployeeType = await loadEmployeeType(commerceIdParam);
       objCommerce.employeeType = newEmployeeType;
-      const newEmployee = await loadEmployeer(commerceJSON, commerceIdParam, newEmployeeType);
+      const newEmployee = await loadEmployeer(
+        commerceJSON,
+        commerceIdParam,
+        newEmployeeType
+      );
       objCommerce.employee = newEmployee;
       const newTableService = await loadTableService(commerceIdParam);
       objCommerce.tableService = newTableService;
@@ -270,7 +277,7 @@ menu.post('/menuUp/:commerceId', async (req, res) => {
         newSector,
         newPosType,
         newTableService,
-        commerceJSON,
+        commerceJSON
       );
       objCommerce.objPos = newPos;
     }
@@ -303,11 +310,42 @@ menu.get('/all/:commerceId', async (req, res) => {
       where: {
         commerceId: parseInt(commerceId, 10),
       },
-      attributes: ['id', 'date', 'name', 'description', 'status', 'cost', 'promotion', 'discount', 'validity', 'photo', 'dishes', 'active', 'surcharge', 'commerceId', 'product', 'additional'],
+      attributes: [
+        'id',
+        'date',
+        'name',
+        'description',
+        'status',
+        'cost',
+        'promotion',
+        'discount',
+        'validity',
+        'photo',
+        'dishes',
+        'active',
+        'surcharge',
+        'commerceId',
+        'product',
+        'additional',
+      ],
       include: [
         {
           model: Commerce,
-          attributes: ['id', 'name', 'neighborhood', 'address', 'workSchedule', 'email', 'phono', 'active', 'franchiseId', 'commercialPlanId', 'businessId', 'open', 'start'],
+          attributes: [
+            'id',
+            'name',
+            'neighborhood',
+            'address',
+            'workSchedule',
+            'email',
+            'phono',
+            'active',
+            'franchiseId',
+            'commercialPlanId',
+            'businessId',
+            'open',
+            'start',
+          ],
         },
         {
           model: MenuType,
@@ -332,7 +370,9 @@ menu.get('/all/:commerceId', async (req, res) => {
 
 menu.get('/query', async (req, res) => {
   try {
-    const recipe = await sequelize.query('SELECT * FROM `recipes`', { type: QueryTypes.SELECT });
+    const recipe = await sequelize.query('SELECT * FROM `recipes`', {
+      type: QueryTypes.SELECT,
+    });
     res.json(recipe);
   } catch (error) {
     // console.error(error);
@@ -351,11 +391,42 @@ menu.get('/all_active/:commerceId', async (req, res) => {
         commerceId: parseInt(commerceId, 10),
         active: true,
       },
-      attributes: ['id', 'date', 'name', 'description', 'status', 'cost', 'promotion', 'discount', 'validity', 'photo', 'dishes', 'active', 'surcharge', 'commerceId', 'product', 'additional'],
+      attributes: [
+        'id',
+        'date',
+        'name',
+        'description',
+        'status',
+        'cost',
+        'promotion',
+        'discount',
+        'validity',
+        'photo',
+        'dishes',
+        'active',
+        'surcharge',
+        'commerceId',
+        'product',
+        'additional',
+      ],
       include: [
         {
           model: Commerce,
-          attributes: ['id', 'name', 'neighborhood', 'address', 'workSchedule', 'email', 'phono', 'active', 'franchiseId', 'commercialPlanId', 'businessId', 'open', 'start'],
+          attributes: [
+            'id',
+            'name',
+            'neighborhood',
+            'address',
+            'workSchedule',
+            'email',
+            'phono',
+            'active',
+            'franchiseId',
+            'commercialPlanId',
+            'businessId',
+            'open',
+            'start',
+          ],
         },
         {
           model: MenuType,
@@ -390,14 +461,45 @@ menu.get('/lastMenuActive/:commerceId', async (req, res) => {
         status: 'last',
         commerceId: parseInt(commerceId, 10),
       },
-      attributes: ['id', 'date', 'name', 'description', 'status', 'cost', 'promotion', 'discount', 'validity', 'photo', 'dishes', 'active', 'surcharge', 'commerceId', 'product', 'additional'],
+      attributes: [
+        'id',
+        'date',
+        'name',
+        'description',
+        'status',
+        'cost',
+        'promotion',
+        'discount',
+        'validity',
+        'photo',
+        'dishes',
+        'active',
+        'surcharge',
+        'commerceId',
+        'product',
+        'additional',
+      ],
       include: [
         {
           model: Commerce,
           where: {
             active: true,
           },
-          attributes: ['id', 'name', 'neighborhood', 'address', 'workSchedule', 'email', 'phono', 'active', 'franchiseId', 'commercialPlanId', 'businessId', 'open', 'start'],
+          attributes: [
+            'id',
+            'name',
+            'neighborhood',
+            'address',
+            'workSchedule',
+            'email',
+            'phono',
+            'active',
+            'franchiseId',
+            'commercialPlanId',
+            'businessId',
+            'open',
+            'start',
+          ],
         },
         {
           model: MenuType,
@@ -432,14 +534,45 @@ menu.get('/lastMenu/:commerceId', async (req, res) => {
         status: 'last',
         commerceId: parseInt(commerceId, 10),
       },
-      attributes: ['id', 'date', 'name', 'description', 'status', 'cost', 'promotion', 'discount', 'validity', 'photo', 'dishes', 'active', 'surcharge', 'commerceId', 'product', 'additional'],
+      attributes: [
+        'id',
+        'date',
+        'name',
+        'description',
+        'status',
+        'cost',
+        'promotion',
+        'discount',
+        'validity',
+        'photo',
+        'dishes',
+        'active',
+        'surcharge',
+        'commerceId',
+        'product',
+        'additional',
+      ],
       include: [
         {
           model: Commerce,
           where: {
             active: true,
           },
-          attributes: ['id', 'name', 'neighborhood', 'address', 'workSchedule', 'email', 'phono', 'active', 'franchiseId', 'commercialPlanId', 'businessId', 'open', 'start'],
+          attributes: [
+            'id',
+            'name',
+            'neighborhood',
+            'address',
+            'workSchedule',
+            'email',
+            'phono',
+            'active',
+            'franchiseId',
+            'commercialPlanId',
+            'businessId',
+            'open',
+            'start',
+          ],
         },
         {
           model: MenuType,
@@ -473,11 +606,42 @@ menu.get('/menuCommerce/:id', async (req, res) => {
         active: true,
         id: parseInt(id, 10),
       },
-      attributes: ['id', 'date', 'name', 'description', 'status', 'cost', 'promotion', 'discount', 'validity', 'photo', 'dishes', 'active', 'surcharge', 'commerceId', 'product', 'additional'],
+      attributes: [
+        'id',
+        'date',
+        'name',
+        'description',
+        'status',
+        'cost',
+        'promotion',
+        'discount',
+        'validity',
+        'photo',
+        'dishes',
+        'active',
+        'surcharge',
+        'commerceId',
+        'product',
+        'additional',
+      ],
       include: [
         {
           model: Commerce,
-          attributes: ['id', 'name', 'neighborhood', 'address', 'workSchedule', 'email', 'phono', 'active', 'franchiseId', 'commercialPlanId', 'businessId', 'open', 'start'],
+          attributes: [
+            'id',
+            'name',
+            'neighborhood',
+            'address',
+            'workSchedule',
+            'email',
+            'phono',
+            'active',
+            'franchiseId',
+            'commercialPlanId',
+            'businessId',
+            'open',
+            'start',
+          ],
         },
         {
           model: MenuType,
@@ -506,11 +670,42 @@ menu.get('/detail/:id', async (req, res) => {
     if (id && Number.isInteger(parseInt(id, 10))) {
       const men = await Menu.findAll({
         where: { id: parseInt(id, 10) },
-        attributes: ['id', 'date', 'name', 'description', 'status', 'cost', 'promotion', 'discount', 'validity', 'photo', 'dishes', 'active', 'surcharge', 'commerceId', 'product', 'surcharge'],
+        attributes: [
+          'id',
+          'date',
+          'name',
+          'description',
+          'status',
+          'cost',
+          'promotion',
+          'discount',
+          'validity',
+          'photo',
+          'dishes',
+          'active',
+          'surcharge',
+          'commerceId',
+          'product',
+          'surcharge',
+        ],
         include: [
           {
             model: Commerce,
-            attributes: ['id', 'name', 'neighborhood', 'address', 'workSchedule', 'email', 'phono', 'active', 'franchiseId', 'commercialPlanId', 'businessId', 'open', 'start'],
+            attributes: [
+              'id',
+              'name',
+              'neighborhood',
+              'address',
+              'workSchedule',
+              'email',
+              'phono',
+              'active',
+              'franchiseId',
+              'commercialPlanId',
+              'businessId',
+              'open',
+              'start',
+            ],
           },
           {
             model: MenuType,
@@ -544,14 +739,45 @@ menu.get('/menuCommerceActive', async (req, res) => {
           commerceId: parseInt(commerceId, 10),
           date,
         },
-        attributes: ['id', 'date', 'name', 'description', 'status', 'cost', 'promotion', 'discount', 'validity', 'photo', 'dishes', 'active', 'surcharge', 'commerceId', 'product', 'additional'],
+        attributes: [
+          'id',
+          'date',
+          'name',
+          'description',
+          'status',
+          'cost',
+          'promotion',
+          'discount',
+          'validity',
+          'photo',
+          'dishes',
+          'active',
+          'surcharge',
+          'commerceId',
+          'product',
+          'additional',
+        ],
         include: [
           {
             model: Commerce,
             // where: {
             //   active: true,
             // },
-            attributes: ['id', 'name', 'neighborhood', 'address', 'workSchedule', 'email', 'phono', 'active', 'franchiseId', 'commercialPlanId', 'businessId', 'open', 'start'],
+            attributes: [
+              'id',
+              'name',
+              'neighborhood',
+              'address',
+              'workSchedule',
+              'email',
+              'phono',
+              'active',
+              'franchiseId',
+              'commercialPlanId',
+              'businessId',
+              'open',
+              'start',
+            ],
           },
           {
             model: MenuType,
@@ -821,6 +1047,32 @@ menu.put('/status/:id/:status', async (req, res) => {
     }
   } catch (error) {
     res.status(400).send(error);
+  }
+});
+
+menu.delete('/lastmenu/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    if (!id || Number.isInteger(parseInt(id, 10))) {
+      return res.status(422).send('No se proporcionó el ID');
+    }
+
+    const menuToDelete = await Menu.findOne({
+      where: { id: parseInt(id, 10) },
+      status: 'last',
+    });
+
+    if (!menuToDelete) {
+      return res.status(404).send('No se encontró el menú');
+    }
+
+    await menuToDelete.destroy();
+    res
+      .status(200)
+      .send(`El último menú con ID ${id} ha sido eliminado con éxito`);
+  } catch (error) {
+    res.status(500).send(error);
   }
 });
 
